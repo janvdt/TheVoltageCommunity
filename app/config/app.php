@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'sJ8f0GCMzlX3Jaei0L7zE87bv51BfZ@O',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -99,6 +99,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+		'Intervention\Image\ImageServiceProvider',
 
 	),
 
@@ -164,6 +166,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+
+		'ImageHandler'    => 'Intervention\Image\Facades\Image',
 
 	),
 
