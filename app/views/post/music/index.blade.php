@@ -5,7 +5,6 @@
 <script>
   SC.initialize({
     client_id: "706bb7625906c6e65ff8bb1bebdd22b7",
-    redirect_uri: "http://example.com/callback.html",
   });
 </script>
 <div class="span12">
@@ -23,7 +22,7 @@
 		<div id="postsoundcloud">
 		<div id="putTheWidgetHere"></div>
 		<script type="text/JavaScript">
-  			SC.oEmbed("{{$post->soundcloud}}", {color: "ff0066"},  document.getElementById("postsoundcloud"));
+  			SC.oEmbed({{$post->soundcloud}}, {color: "ff0066"},  document.getElementById("postsoundcloud"));
 		</script>
 		</div>
 		<div>
