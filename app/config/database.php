@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'thecvoltagecommu.mysql.eu1.frbit.com',
-			'database'  => 'thecvoltagecommu',
-			'username'  => 'thecvoltagecommu',
-			'password'  => 'p8ONGlib97iGCbmX',
+			'host'      => 'localhost',
+			'database'  => 'thevoltagecommu',
+			'username'  => 'root',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

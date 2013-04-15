@@ -1,0 +1,239 @@
+/*
+* Author: Volta Web
+* Version: 1.0.0
+* Copyright 2013 Volta Web
+* www: http://volta.be
+* mail: web@volta.be
+*/
+
+/* Top Navbar
+==========================================*/
+
+#top-navbar {
+
+	margin-bottom: 25px;
+	background-color:#c6e2cc;
+
+}
+.carousel
+{
+	margin-bottom: 0px;
+}
+.thumbnails-home
+{
+	margin-left: 25px;
+}
+#myCarousel
+{
+	color:white;
+}
+.carousel-caption
+{
+	height: 360px;
+}
+.soundcloud
+{
+	margin-top: 80px;
+}
+
+.shelfmusicpost
+{
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+
+/* Header
+==========================================*/
+
+.site-header {
+	position: relative;
+}
+.site-header .site-header-content {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.site-header .site-header-content .nav,
+.site-header .site-header-content .form-search {
+	margin-bottom: 0;
+}
+.site-header .site-header-content .form-search {
+	float: right;
+}
+.artist-menu
+{
+	background-color: #c6e2cc;
+	margin-bottom: 25px;
+}
+/* Menu
+==========================================*/
+.menu .nav ul {
+	margin-bottom: 1px;
+	padding-left: 25px;
+}
+.menu .nav ul > li:first-child > a {
+	border-top: none;
+	border-radius: 0;
+}
+.menu .nav ul > li:last-child > a {
+	border-radius: 0;
+}
+/* Sidebar
+==========================================*/
+
+.newpage
+{
+	margin-bottom: 15px;
+	display:block;
+}
+.buttonnewbusinnescard
+{
+	margin-bottom: 15px;
+	display:block;
+}
+
+
+/* Login
+==========================================*/
+
+.login-box {
+	margin: 0 auto;
+	max-width: 500px;
+}
+
+/* Blocks
+==========================================*/
+.delete-links a
+{
+	float: right;
+}
+.document-links
+{
+		float:right;
+}
+/* Search
+==========================================*/
+.search-table td
+{
+	height: 60px;
+}
+
+/* Settings
+==========================================*/
+
+.button-settings
+{
+	margin-top: 10px;
+}
+/* User role
+==========================================*/
+.add-userbutton
+{
+	margin-bottom: 10px;
+}
+/* Usermanagement
+==========================================*/
+.btn-usermanagement
+{
+	margin-bottom: 10px;
+}
+/* Businesscards
+==========================================*/
+.thumbnail-businesscards img
+{
+	margin-bottom: 7px;
+}
+.btn-create
+{
+	margin-bottom: 10px;
+} 
+/* User roles
+==========================================*/
+.table td.center
+{
+	text-align: center;
+}
+.table th.center
+{
+	text-align: center;
+}
+/* Galleries
+==========================================*/
+.thumbnail-gallery
+{
+	margin-bottom: 15px;
+}
+.sortablegallery li
+{
+	margin-left: 30px;
+}
+/* Media
+==========================================*/
+.btn-centered a {
+  
+  display:block;
+  margin-bottom:5px;
+}
+/* User roles
+==========================================*/
+.td-empty,
+.table-striped tbody > tr:nth-child(odd) > td.td-empty
+{
+	background-color: grey;
+	height: 100%;
+}
+
+/* Media Queries
+==========================================*/
+
+/* Portrait tablet to landscape
+==========================================*/
+
+@media (max-width: 979px) {
+
+.artist-menu
+{
+	background-color: #c6e2cc;
+	margin-bottom: 25px;
+	display: none;
+}
+
+/* Content
+==========================================*/
+
+.content .nav {
+	float: none;
+}
+
+}
+
+/* Landscape phones and down
+==========================================*/
+
+@media (max-width: 767px) {
+
+
+/* Header
+==========================================*/
+
+.site-header .logo {
+	margin-bottom: 20px;
+}
+
+.site-header .site-header-content {
+	position: static;
+}
+.site-header .site-header-content .nav,
+.site-header .site-header-content .form-search {
+	float: none;
+}
+.site-header .site-header-content .form-search {
+	margin-top: 20px;
+}
+.site-header .site-header-content .nav li {
+	display: block;
+	width: 100%;
+}
+
+}
