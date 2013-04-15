@@ -9,7 +9,9 @@
 </script>
 <div class="span12">
 	<div class="span11">
+	@if(Auth::user()->id == $post->created_by)
 	<a href="{{ URL::action('PostController@editMusic', array($post->id)) }}" class="btn btn-primary pull-right">Edit post</a>
+	@endif
 	<h4>{{$post->title}}</h4>
 	</div>
 </div>
