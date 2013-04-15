@@ -10,8 +10,8 @@ class InstanceController extends BaseController {
 	public function index()
 	{	
 		$images = Image::take(4)->get();
-		$musicposts = Post::where('type','music')->take(4)->get();
-		$graphposts = Post::where('type','graph')->take(4)->get();
+		$musicposts = Post::where('type','music')->take(4)->orderBy('created_at', 'desc')->get();
+		$graphposts = Post::where('type','graph')->take(4)->orderBy('created_at', 'desc')->get();
 		$posts = Post::take(4)->orderBy('created_at', 'desc')->get();
 
 		return View::make('instance.index')
