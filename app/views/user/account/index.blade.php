@@ -8,7 +8,7 @@
 	<div class="span12">
 		<div class="span4">
 			<a href="{{ URL::action('AccountController@edit', array($user->accountUser()->id)) }}" class="btn btn-primary">Edit Account</a><br />
-			
+			<img src="{{ url($user->accountUser()->getImagePathname()) }}" alt="">
 		</div>
 
 		<div class="span4">
