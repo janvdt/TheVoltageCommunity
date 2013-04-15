@@ -18,7 +18,7 @@
 <div class="row">
 	<div class="span12">
 		<div class="span4">
-		<img class="avatar img-polaroid" src="/{{ $post->image->getSize('thumb')->getPathname() }}" alt="">
+		<img class="avatar img-polaroid" src="/{{ $post->image->getSize('medium')->getPathname() }}" alt="">
 	</div>
 	<div class="span7">
 		<div id="postsoundcloud">
