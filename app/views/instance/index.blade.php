@@ -16,7 +16,7 @@
 				@else
 				<div class="item">
 				@endif
-					<img class="avatar img-polaroid" src="/{{ $post->image->getSize('medium')->getPathname() }}" alt="">
+					<img class="avatar img-polaroid" src="/{{ $post->image->getSize('thumb')->getPathname() }}" alt="">
 					<div class="carousel-caption offset4">
 						@if($post->type == 'music')
 						<a class="btn btn-large pull-right" href="{{ URL::action('PostController@showMusic', array($post->id)) }}"><i class="icon-eye-open"></i> View</a>
