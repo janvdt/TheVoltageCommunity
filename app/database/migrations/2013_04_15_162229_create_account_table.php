@@ -11,7 +11,12 @@ class CreateAccountTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('accounts', function($table) {
+			$table->increments('id');
+			$table->string('biography');
+			$table->integer('image_id');
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -21,7 +26,7 @@ class CreateAccountTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('accounts');
 	}
 
 }
