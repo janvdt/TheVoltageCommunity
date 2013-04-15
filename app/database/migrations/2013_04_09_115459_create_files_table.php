@@ -56,6 +56,7 @@ class CreateFilesTable extends Migration {
 			$table->string('type');
 			$table->string('title');
 			$table->string('alt');
+			$table->boolean('profile');
 
 			// Meta info.
 			$table->integer('created_by');
