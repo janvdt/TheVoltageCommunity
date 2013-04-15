@@ -113,6 +113,7 @@ class PostController extends BaseController {
 			'title'          => Input::get('title'),
 			'body'           => Input::get('body'),
 			'type'			 => Input::get('type'),
+			'created_by'     => Auth::user()->id,
 		);
 
 
