@@ -22,7 +22,7 @@
 		<div id="postsoundcloud">
 		<div id="putTheWidgetHere"></div>
 		<script type="text/JavaScript">
-  			SC.oEmbed({{$post->soundcloud}}, {color: "ff0066"},  document.getElementById("postsoundcloud"));
+  			SC.oEmbed(<?php echo($post->soundcloud) ?>, {color: "ff0066"},  document.getElementById("postsoundcloud"));
 		</script>
 		</div>
 		<div>
