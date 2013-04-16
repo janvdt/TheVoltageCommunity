@@ -60,7 +60,7 @@ class PostController extends BaseController {
 			'title'          => Input::get('title'),
 			'body'           => Input::get('body'),
 			'type'			 => Input::get('type'),
-			'soundcloud' 	 => Input::get('soundcloud'),
+			'soundcloud' 	 => Input::get('soundcloud-hidden'),
 			'created_by'     => Auth::user()->id,
 		);
 

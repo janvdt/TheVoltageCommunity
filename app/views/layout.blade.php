@@ -178,6 +178,67 @@ $('.pagination').hide();
 });
 </script>
 
+<script src="http://connect.soundcloud.com/sdk.js"></script>
+			
+			<script>
+			SC.initialize({
+			  client_id: '4dad0bbf95a4e0ab59b556e79fe2ce55'
+			});
+			</script>
+
+
+
+<script>
+$(document).ready(function() {
+$("#soundcloud").select2({
+    placeholder: "Search for a track",
+    minimumInputLength: 3,
+    ajax: {
+        url: "https://api.soundcloud.com/tracks?client_id=4dad0bbf95a4e0ab59b556e79fe2ce55",
+        dataType: 'json',
+        quietMillis: 100,
+        data: function (term, page) { // page is the one-based page number tracked by Select2
+            return {
+            	types:["bpm"],
+                q: term, //search term
+                page_limit: 10, // page size
+                page: page, // page number
+            };
+        },
+        results: function (data, page) {
+            var more = (page * 10) < data.total; // whether or not there are more results available
+ 			
+            // notice we return the value of more so Select2 knows if more results can be loaded
+            return {results: data, more: more};
+        }
+    },
+    formatResult: movieFormatResult, // omitted for brevity, see the source of this page
+    formatSelection: movieFormatSelection, // omitted for brevity, see the source of this page
+    dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+    escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+});
+});
+</script>
+
+<script>
+
+    function movieFormatResult(data) {
+        var markup = "<table class='movie-result'><tr>";
+        if (data.artwork_url !== null){
+        markup += "<td class='soundcloud-image'><img src='" + data.artwork_url + "'/></td>";
+    	}
+        markup += "<td class='movie-info'><div class='movie-title'>" + data.title + "</div>";
+        markup += "</td></tr></table>"
+        return markup;
+    }
+
+    function movieFormatSelection(data) {
+        $('.soundcloud-hidden').attr('value', data.permalink_url);
+        return data.title;
+    }
+
+</script>
+
 
 
 </body>

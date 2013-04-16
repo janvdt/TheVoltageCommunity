@@ -8,7 +8,10 @@
 
 /* Top Navbar
 ==========================================*/
-
+.select2-drop 
+{
+	display: none;
+}
 #top-navbar {
 
 	margin-bottom: 25px;
@@ -235,5 +238,6 @@
 	display: block;
 	width: 100%;
 }
+
 
 }

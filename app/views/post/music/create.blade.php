@@ -26,7 +26,8 @@
 			<div class="control-group">
 				<label class="control-label" for="inputTextarea">Soundcloud</label>
 				<div class="controls">
-					<input class="input-xlarge" type="text" size="100" name="soundcloud" placeholder="Enter url" value="{{ Input::old('soundcloud') }}">
+					<input type="hidden" class="bigdrop" id="soundcloud" name="soundcloud" style="width:600px" value="click here"/>
+					<input type="hidden" class="soundcloud-hidden" value="" name="soundcloud-hidden">
 					<span class="help-inline">{{ $errors->first('soundcloud') }}</span>
 				</div>
 			</div>
