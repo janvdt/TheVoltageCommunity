@@ -18,7 +18,12 @@
 <div class="row">
 	<div class="span12">
 		<div class="span4">
-		<img class="avatar img-polaroid" src="/{{ $post->image->getSize('medium')->getPathname() }}" alt="">
+		@if($post->image_id != 0)
+        			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
+        			@else
+        			<div class="slider-img ch-img-1" style="background-image: url({{$post->soundcloud_art}});">
+        			@endif
+        		</div>
 	</div>
 	<div class="span7">
 		<div id="postsoundcloud">

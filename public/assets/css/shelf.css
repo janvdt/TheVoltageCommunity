@@ -1,7 +1,7 @@
 .shelf {
   display: block;
   position: relative;
-  width: 100%;
+  width: 94%;
   height: 20px;
   margin-bottom: 25px;
   background-color: #d1d8de;
@@ -116,3 +116,4 @@
   /* IE6-9 */
 
 }
+

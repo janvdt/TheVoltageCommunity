@@ -207,7 +207,7 @@ $("#soundcloud").select2({
         },
         results: function (data, page) {
             var more = (page * 10) < data.total; // whether or not there are more results available
- 			
+ 			console.log(data);
             // notice we return the value of more so Select2 knows if more results can be loaded
             return {results: data, more: more};
         }
@@ -233,7 +233,11 @@ $("#soundcloud").select2({
     }
 
     function movieFormatSelection(data) {
+        $('.preview').empty();
         $('.soundcloud-hidden').attr('value', data.permalink_url);
+        $('#title').attr('value', data.title);
+        $('#art_url').attr('value', data.artwork_url);
+        $('.preview').append("<img src='" + data.artwork_url + "'/>");
         return data.title;
     }
 

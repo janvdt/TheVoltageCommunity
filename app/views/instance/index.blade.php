@@ -16,8 +16,13 @@
 				@else
 				<div class="item">
 				@endif
-					<img class="avatar img-polaroid" src="/{{ $post->image->getSize('thumb')->getPathname() }}" alt="">
-					<div class="carousel-caption offset4">
+					@if($post->image_id != 0)
+        			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
+        			@else
+        			<div class="slider-img ch-img-1" style="background-image: url({{$post->soundcloud_art}});">
+        			@endif
+        			</div>
+					<div class="carousel-caption offset3">
 						@if($post->type == 'music')
 						<a class="btn btn-large pull-right" href="{{ URL::action('PostController@showMusic', array($post->id)) }}"><i class="icon-eye-open"></i> View</a>
 						@elseif($post->type == 'graph')
@@ -50,17 +55,34 @@
 
 <div class ="span12 tracks-overview-home">
 	<h2>Music</h2>
-	<div class="row">
-		<ul class="nav nav-pills">
+	<div class="row span12">
+		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
-				<li class="span3">
-					<div class="thumbnails-home">
-						<a href="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
-							<img class="avatar img-polaroid" src="/{{ $musicpost->image->getSize('thumb')->getPathname() }}" alt="">
-						</a>
-						Posted by : <a href="">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a>
-					</div>
-				</li>
+				<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
+					<li class= "musicpost">
+						@if($musicpost->image_id != 0)
+							<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
+						@else
+							<div class="ch-item ch-img-1" style="background-image: url({{$musicpost->soundcloud_art}});">
+						@endif
+
+						<div class="ch-info">
+							<?php 
+								$string = $musicpost->title;
+								$maxLength = 40;
+
+								if (strlen($string) > $maxLength) {
+									$stringCut = substr($string, 0, $maxLength);
+									$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
+								}
+
+								echo "<h3>$string</h3>"
+							?>
+							<p><a href="">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a></p>
+            			</div>
+        			</div>
+    				</li>
+    			</a>
 			@endforeach
 		</ul>
 	
@@ -74,17 +96,34 @@
 
 <div class ="span12 tracks-overview-home">
 	<h2>Graphics</h2>
-	<div class="row">
-		<ul class="nav nav-pills">
+	<div class="row span12">
+		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($graphposts as $graphpost)
-				<li class="span3">
-					<div class="thumbnails-home">
-						<a href="{{ URL::action('PostController@showGraph', array($graphpost->id)) }}">
-							<img class="avatar img-polaroid" src="/{{ $graphpost->image->getSize('thumb')->getPathname() }}" alt="">
-						</a>
-						Posted by :<a href="">{{$graphpost->createdBy()->first_name}} {{$graphpost->createdBy()->last_name}}</a>
-					</div>
-				</li>
+				<a href ="{{ URL::action('PostController@showMusic', array($graphpost->id)) }}">
+				<li class= "musicpost">
+					@if($musicpost->image_id != 0)
+					<div class="ch-item ch-img-1" style="background-image: url(/{{ $graphpost->image->getSize('thumb')->getPathname() }});">
+					@else
+					<div class="ch-item ch-img-1" style="background-image: url({{$graphpost->soundcloud_art}});">
+					@endif
+
+						<div class="ch-info">
+						<?php 
+							$string = $graphpost->title;
+							$maxLength = 40;
+	
+							if (strlen($string) > $maxLength) {
+								$stringCut = substr($string, 0, $maxLength);
+								$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
+							}
+	
+							echo "<h3>$string</h3>"
+						?>
+							<p><a href="">{{$graphpost->createdBy()->first_name}} {{$graphpost->createdBy()->last_name}}</a></p>
+						</div>
+        			</div>
+    			</li>
+    			</a>
 			@endforeach
 		</ul>
 	

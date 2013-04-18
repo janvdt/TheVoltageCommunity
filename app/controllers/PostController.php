@@ -44,8 +44,7 @@ class PostController extends BaseController {
 			Input::all(),
 			array(
 				'title'        => 'required',
-				'body'         => 'required',
-				'image_id'     => 'integer', 
+				'body'         => 'required', 
 			)
 		);
 
@@ -66,8 +65,14 @@ class PostController extends BaseController {
 
 
 		$post = new Post($new_post);
-
+		
+		if(Input::has('art_url'))
+		{
+			$post->soundcloud_art = Input::get('art_url');
+		}
+		else{
 		$post->image_id = Input::get('image_id') ? Input::get('image_id'): 0;
+		}
 		
 		$post->save();
 		

@@ -11,7 +11,7 @@
 			<div class="control-group">
 				<label class="control-label">Post title  </label>
 				<div class="controls">
-					<input class="input-xlarge" type="text" size="100" name="title" placeholder="Post title" value="{{ Input::old('title') }}">
+					<input class="input-xlarge" id="title" type="text" size="100" name="title" placeholder="Post title" value="{{ Input::old('title') }}">
 				</div>
 			</div>
  			
@@ -31,6 +31,14 @@
 					<span class="help-inline">{{ $errors->first('soundcloud') }}</span>
 				</div>
 			</div>
+
+			<div class="control-group">
+				<input type="hidden" id="art_url" name="art_url" value="">
+				<div class="controls preview">
+
+				</div>
+			</div>
+
 					
 			<div class="control-group">
 				<label class="control-label" for="image">Image</label>

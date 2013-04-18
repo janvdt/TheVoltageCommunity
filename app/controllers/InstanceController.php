@@ -12,7 +12,7 @@ class InstanceController extends BaseController {
 		$images = Image::take(4)->get();
 		$musicposts = Post::where('type','music')->take(4)->orderBy('created_at', 'desc')->get();
 		$graphposts = Post::where('type','graph')->take(4)->orderBy('created_at', 'desc')->get();
-		$posts = Post::take(4)->orderBy('created_at', 'desc')->get();
+		$posts = Post::take(16)->orderBy('created_at', 'desc')->get();
 
 		return View::make('instance.index')
 			->with('musicposts',$musicposts)
