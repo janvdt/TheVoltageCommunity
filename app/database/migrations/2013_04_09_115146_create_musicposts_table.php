@@ -19,6 +19,7 @@ class CreateMusicpostsTable extends Migration {
 			$table->integer('image_id');
 			$table->string('type');
 			$table->text('soundcloud');
+			$table->string('soundcloud_art');
 			$table->integer('created_by');
 			$table->timestamps();
 		});
