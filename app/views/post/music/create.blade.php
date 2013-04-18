@@ -33,17 +33,28 @@
 			</div>
 
 			<div class="control-group">
-				<input type="hidden" id="art_url" name="art_url" value="">
-				<div class="controls preview">
+				<input type="hidden" id="art_urlsoundcloud" name="art_urlsoundcloud" value="">
+				
+			</div>
 
+			<div class="control-group">
+				<label class="control-label" for="inputTextarea">Youtube</label>
+				<div class="controls">
+					<input type="hidden" class="bigdrop" id="youtube" name="youtube" style="width:600px" value="click here"/>
+					<input type="hidden" class="youtube-hidden" value="" name="youtube-hidden">
+					<span class="help-inline">{{ $errors->first('soundcloud') }}</span>
 				</div>
 			</div>
 
-					
 			<div class="control-group">
-				<label class="control-label" for="image">Image</label>
+				<input type="hidden" id="art_urlyoutube" name="art_urlyoutube" value="">
+				
+			</div>
+
+			<div class="control-group">
 				<div class="controls">
-					@include('file.image.upload')
+					<div class="controls preview">
+					</div>
 				</div>
 			</div>
 					

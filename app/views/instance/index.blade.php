@@ -19,7 +19,11 @@
 					@if($post->image_id != 0)
         			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
         			@else
+        			@if($post->soundcloud_art != NULL)
         			<div class="slider-img ch-img-1" style="background-image: url({{$post->soundcloud_art}});">
+        			@else
+        			<div class="slider-img ch-img-1" style="background-image: url({{$post->youtube_art}});">
+        			@endif
         			@endif
         			</div>
 					<div class="carousel-caption offset3">
@@ -63,7 +67,11 @@
 						@if($musicpost->image_id != 0)
 							<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
 						@else
+						@if($musicpost->soundcloud_art != NULL)
 							<div class="ch-item ch-img-1" style="background-image: url({{$musicpost->soundcloud_art}});">
+						@else
+							<div class="ch-item ch-img-1" style="background-image: url({{$musicpost->youtube_art}});">
+						@endif
 						@endif
 
 						<div class="ch-info">

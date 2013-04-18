@@ -21,16 +21,25 @@
 		@if($post->image_id != 0)
         			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
         			@else
+        			@if($post->soundcloud_art != NULL)
         			<div class="slider-img ch-img-1" style="background-image: url({{$post->soundcloud_art}});">
+        			@else
+        			<div class="slider-img ch-img-1" style="background-image: url({{$post->youtube_art}});">
+        			@endif
         			@endif
         		</div>
 	</div>
 	<div class="span7">
 		<div id="postsoundcloud">
-		<div id="putTheWidgetHere"></div>
-		<script type="text/JavaScript">
-  			SC.oEmbed('{{$post->soundcloud}}', {color: "ff0066"},  document.getElementById("postsoundcloud"));
-		</script>
+			@if($post->soundcloud != NULL)
+			<div id="putTheWidgetHere"></div>
+			<script type="text/JavaScript">
+  				SC.oEmbed('{{$post->soundcloud}}', {color: "ff0066"},  document.getElementById("postsoundcloud"));
+			</script>
+			@else
+				<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{$post->youtube}}" allowfullscreen frameborder="0">
+</iframe>
+			@endif
 		</div>
 		<div>
 		<p>{{$post->body}}</p>

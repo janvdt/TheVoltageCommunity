@@ -186,7 +186,64 @@ $('.pagination').hide();
 			});
 			</script>
 
+<script>
+$(document).ready(function() {	
+$("#youtube").select2({
+    placeholder: "Search for a track",
+    minimumInputLength: 3,
+    ajax: {
+        url: "http://gdata.youtube.com/feeds/api/videos?format=5&max-results=20&v=2&alt=jsonc",
+        dataType: 'jsonp',
+        quietMillis: 100,
+        data: function (term, page) { // page is the one-based page number tracked by Select2
+            return {
+                q: term, //search term
+                page_limit: 10, // page size
+                page: page, // page number
+            };
+        },
+        results: function (data,page) {
+            var more = (page * 10) < data.total; // whether or not there are more results available
+ 			console.log(data.data.items);
+            // notice we return the value of more so Select2 knows if more results can be loaded
+            return {results: data.data.items, more: more};
+        }
+    },
+    formatResult: youtubeFormatResult, // omitted for brevity, see the source of this page
+    formatSelection: youtubeFormatSelection, // omitted for brevity, see the source of this page
+    dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+    escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+});
+});
+</script>
 
+<script>
+
+    function youtubeFormatResult(data) {
+        var markup = "<table class='movie-result'><tr>";
+        if (data.artwork_url !== null){
+        markup += "<td class='soundcloud-image'><img src='" + data.thumbnail.hqDefault + "' width='100' height='100'/></td>";
+    	}
+        markup += "<td class='movie-info'><div class='movie-title'>" + data.title + "</div>";
+        markup += "</td></tr></table>"
+        return markup;
+    }
+
+    function youtubeFormatSelection(data) {
+        
+
+        $('.preview').empty();
+        $('#soundcloud').val('');
+        $('.soundcloud-hidden').val('');
+        $('.soundcloud-hidden').attr('value', data.permalink_url);
+        $('#title').attr('value', data.title);
+        $('.youtube-hidden').attr('value', data.id);
+        $('#art_urlyoutube').attr('value', data.thumbnail.hqDefault);
+        $('.preview').append("<img src='" + data.thumbnail.hqDefault + "' width='100' height='100'/>");
+        return data.title;
+    }
+
+</script>
 
 <script>
 $(document).ready(function() {
@@ -236,7 +293,7 @@ $("#soundcloud").select2({
         $('.preview').empty();
         $('.soundcloud-hidden').attr('value', data.permalink_url);
         $('#title').attr('value', data.title);
-        $('#art_url').attr('value', data.artwork_url);
+        $('#art_urlsoundcloud').attr('value', data.artwork_url);
         $('.preview').append("<img src='" + data.artwork_url + "'/>");
         return data.title;
     }

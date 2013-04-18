@@ -60,15 +60,20 @@ class PostController extends BaseController {
 			'body'           => Input::get('body'),
 			'type'			 => Input::get('type'),
 			'soundcloud' 	 => Input::get('soundcloud-hidden'),
+			'youtube' 	 	 => Input::get('youtube-hidden'),
 			'created_by'     => Auth::user()->id,
 		);
 
 
 		$post = new Post($new_post);
 		
-		if(Input::has('art_url'))
+		if(Input::has('art_urlsoundcloud'))
 		{
-			$post->soundcloud_art = Input::get('art_url');
+			$post->soundcloud_art = Input::get('art_urlsoundcloud');
+		}
+		if(Input::has('art_urlyoutube'))
+		{
+			$post->youtube_art = Input::get('art_urlyoutube');
 		}
 		else{
 		$post->image_id = Input::get('image_id') ? Input::get('image_id'): 0;
