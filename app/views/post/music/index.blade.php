@@ -37,8 +37,10 @@
   				SC.oEmbed('{{$post->soundcloud}}', {color: "ff0066"},  document.getElementById("postsoundcloud"));
 			</script>
 			@else
+			<div class="video-container">
 				<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{$post->youtube}}" allowfullscreen frameborder="0">
-</iframe>
+			</iframe>
+			</div>
 			@endif
 		</div>
 		<div>
