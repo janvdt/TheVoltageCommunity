@@ -293,7 +293,9 @@ $("#soundcloud").select2({
         $('.preview').empty();
         $('.soundcloud-hidden').attr('value', data.permalink_url);
         $('#title').attr('value', data.title);
-        $('#art_urlsoundcloud').attr('value', data.artwork_url);
+        var str=data.artwork_url;
+		var n=str.replace("large","t500x500");
+        $('#art_urlsoundcloud').attr('value', n);
         $('.preview').append("<img src='" + data.artwork_url + "'/>");
         return data.title;
     }

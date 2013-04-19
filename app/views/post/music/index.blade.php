@@ -22,9 +22,9 @@
         			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
         			@else
         			@if($post->soundcloud_art != NULL)
-        			<div class="slider-img ch-img-1" style="background-image: url({{$post->soundcloud_art}});">
+        			<div class="slider-img ch-img-1 soundimgslider" style="background-image: url({{$post->soundcloud_art}});">
         			@else
-        			<div class="slider-img ch-img-1" style="background-image: url({{$post->youtube_art}});">
+        			<div class="slider-img ch-img-1 youtubeimgslider" style="background-image: url({{$post->youtube_art}});">
         			@endif
         			@endif
         		</div>
