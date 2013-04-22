@@ -109,7 +109,7 @@
 			@foreach ($graphposts as $graphpost)
 				<a href ="{{ URL::action('PostController@showMusic', array($graphpost->id)) }}">
 				<li class= "musicpost">
-					@if($musicpost->image_id != 0)
+					@if($graphpost->image_id != 0)
 					<div class="ch-item ch-img-1" style="background-image: url(/{{ $graphpost->image->getSize('thumb')->getPathname() }});">
 					@else
 					<div class="ch-item ch-img-1" style="background-image: url({{$graphpost->soundcloud_art}});">

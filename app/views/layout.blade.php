@@ -32,7 +32,7 @@
 @yield('content')
 
 	<footer class="site-footer">
-		<hr>
+		
 
 		<div class="row">
 			<div class="span2">
@@ -65,7 +65,48 @@
 <script src="/assets/js/script.js"></script>
 <script src="/assets/libraries/ajax-scroll/src/jquery-ias.js"></script>
 <script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>
+<script src="/assets/libraries/masonry2/jquery.masonry.min.js"></script>
 
+<script>
+$(document).ready(function() {
+  var $container = $('.graphposts');
+  $('.pagination ul li:not(:last)').remove();
+
+	$container.infinitescroll({
+
+    navSelector  : ".pagination",            
+                   // selector for the paged navigation (it will be hidden)
+    nextSelector : ".pagination ul li a",    
+                   // selector for the NEXT link (to page 2)
+    itemSelector : ".box",          
+                   // selector for all items you'll retrieve
+    loading: {
+        finished: undefined,
+        finishedMsg: "<em>Congratulations</em>",
+        img: "/images/loader.gif",
+        msg: null,
+        msgText: "<em>Loading the next set of posts...</em>",
+        selector: null,
+        speed: 'fast',
+        start: undefined
+    }
+  },
+  // trigger Masonry as a callback
+  function( newElements ) {
+    var $newElems = $( newElements );
+    $container.masonry( 'appended', $newElems );
+    	$container.imagesLoaded( function(){
+  			$container.masonry({
+    		itemSelector : '.box'
+  		});
+	});
+  }
+);
+
+
+});
+
+</script>
 
 <script>
 $('#inputTextarea').wysihtml5({

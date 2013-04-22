@@ -30,7 +30,7 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="span2 offset2"><a href="{{ URL::action('MusicController@index') }}">Music</a></li>
-					<li class="span2"><a href="">Graph</a></li>
+					<li class="span2"><a href="{{ URL::action('GraphController@index') }}">Graph</a></li>
 					<li class="span3"><a href="">Do it yourself</a></li>
 				</ul>
 

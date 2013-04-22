@@ -1,6 +1,6 @@
 <?php
 
-class MusicController extends BaseController {
+class GraphController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,11 +9,11 @@ class MusicController extends BaseController {
 	 */
 	public function index()
 	{
-		$musicposts = Post::where('type','music')->orderBy('created_at', 'desc');
+		$graphposts = Post::where('type','graph')->orderBy('created_at', 'desc');
 
-		$musicposts = $musicposts->paginate(4);
-		return View::make('music.index')
-			->with('musicposts',$musicposts);
+		$graphposts = $graphposts->paginate(4);
+		return View::make('graph.index')
+			->with('graphposts',$graphposts);
 	}
 
 	/**

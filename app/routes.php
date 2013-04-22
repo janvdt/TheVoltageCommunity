@@ -24,6 +24,8 @@ Route::get('login', array('as' => 'login', function()
 }));
 
 Route::resource('user', 'UserController');
+Route::resource('music','MusicController');
+Route::resource('graph','GraphController');
 
 Route::group(array('before' => 'auth'), function()
 {
@@ -42,7 +44,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('post/showmusic/{id}', 'PostController@showMusic');
 	Route::get('post/showgraph/{id}', 'PostController@showGraph');
 	Route::resource('post','PostController');
-	Route::resource('music','MusicController');
+	
 	Route::resource('account','AccountController');
 
 	
