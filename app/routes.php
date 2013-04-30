@@ -13,9 +13,9 @@
 
 Route::get('/', function()
 {
-	$InstanceController = new InstanceController;
+	$HomeController = new HomeController;
 
-	return $InstanceController->index();
+	return $HomeController->index();
 });
 
 Route::get('login', array('as' => 'login', function()
@@ -23,9 +23,15 @@ Route::get('login', array('as' => 'login', function()
 	return View::make('instance.login');
 }));
 
+Route::get('post/createMusic', 'PostController@createMusic');
+Route::post('post/storeMusic', 'PostController@storeMusic');
 Route::resource('user', 'UserController');
 Route::resource('music','MusicController');
 Route::resource('graph','GraphController');
+Route::resource('post','PostController');
+Route::post('post/like/{id}', 'PostController@like');
+Route::get('post/showmusic/{id}', 'PostController@showMusic');
+Route::get('post/showgraph/{id}', 'PostController@showGraph');
 
 Route::group(array('before' => 'auth'), function()
 {
@@ -35,15 +41,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::delete('files/{id}', 'FileController@destroy');
 	Route::post('images', 'ImageController@index');
 	Route::get('user/showaccount/{id}', 'UserController@showAccount');
+	Route::resource('post','PostController');
 	Route::get('post/createGraph', 'PostController@createGraph');
 	Route::post('post/storeGraph', 'PostController@storeGraph');
 	Route::get('post/editmusic/{id}', 'PostController@editMusic');
 	Route::post('post/updatemusic/{id}', 'PostController@updateMusic');
-	Route::get('post/createMusic', 'PostController@createMusic');
-	Route::post('post/storeMusic', 'PostController@storeMusic');
-	Route::get('post/showmusic/{id}', 'PostController@showMusic');
-	Route::get('post/showgraph/{id}', 'PostController@showGraph');
-	Route::resource('post','PostController');
 	
 	Route::resource('account','AccountController');
 

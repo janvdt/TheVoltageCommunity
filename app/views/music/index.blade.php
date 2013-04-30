@@ -31,8 +31,26 @@
 
 						echo "<h3>$string</h3>"
 						?>
-                			<p><a href="">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a></p>
+
+                			<p>
+                				<a href="">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a>
+                			</p>
             			</div>
+        			</div>
+        			<div class="viewslikes span2">
+        				<div class="pull-left">
+        					<div class="pull-left">
+        						<i class='icon-eye-open'></i>
+        						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
+        					</div>
+        				</div>
+        				<div class="">
+        					<div class="pull-left likes">
+        						<i class='icon-thumbs-up'></i>
+        						<span class="badge badge-inverse">{{count($musicpost->likes)}}</span></i>
+        					</div>
+        					
+        				</div>
         			</div>
         			<div class="shelf shelfmusicpost">
 					<div class="bookend_left"></div>

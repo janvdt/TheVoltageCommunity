@@ -19,4 +19,25 @@ class Post extends BaseModel {
 	{
 		return User::find($this->created_by);
 	}
+
+	public function likes()
+    {
+        return $this->hasMany('Like','post_id');
+    }
+
+    public function can($post_id,$user_id)
+	{
+			//Itterate over each permission from a role
+			foreach($this->likes as $like)
+			{
+				//Check if a permission was found.
+				if($post_id === $like->post_id)
+				{
+					// Or if a specified value was matched.
+					if($user_id ===$like->user_id)return false;
+				}
+			}
+		
+		return true;
+	}
 }

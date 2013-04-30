@@ -9,25 +9,36 @@
 </script>
 <div class="span12">
 	<div class="span11">
+	@if(Auth::user())
 	@if(Auth::user()->id == $post->created_by)
 	<a href="{{ URL::action('PostController@editMusic', array($post->id)) }}" class="btn btn-primary pull-right">Edit post</a>
 	@endif
+	@endif
 	<h4>{{$post->title}}</h4>
+	{{count($post->likes)}}
 	</div>
 </div>
+
 <div class="row">
 	<div class="span12">
 		<div class="span4">
-		@if($post->image_id != 0)
-        			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
-        			@else
-        			@if($post->soundcloud_art != NULL)
-        			<div class="slider-img ch-img-1 soundimgslider" style="background-image: url({{$post->soundcloud_art}});">
-        			@else
-        			<div class="slider-img ch-img-1 youtubeimgslider" style="background-image: url({{$post->youtube_art}});">
-        			@endif
-        			@endif
-        		</div>
+			@if($post->image_id != 0)
+			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
+			@else
+				@if($post->soundcloud_art != NULL)
+				<div class="slider-img ch-img-1 soundimgslider" style="background-image: url({{$post->soundcloud_art}});">
+				@else
+				<div class="slider-img ch-img-1 youtubeimgslider" style="background-image: url({{$post->youtube_art}});">
+				@endif
+			@endif
+		</div>
+		<div class="row">
+			<div class="span4 offset1 likebutton">
+       		@if($post->can($post->id,Auth::user()->id))
+				<a class="btn btn-primary btn-large" id="post"><i class="icon-thumbs-up"> Like !</i></a>
+			@endif
+			</div>
+		</div>
 	</div>
 	<div class="span7">
 		<div id="postsoundcloud">
@@ -65,5 +76,18 @@
 
 	</div>
 </div>
+@stop
+
+@section('scripts')
+	@parent
+
+	 $("#post").click(function(){ 
+
+	$.post('/post/like/' + {{$post->id}},
+	function(data)
+	{
+		$('#post').hide();
+	});
+});
 
 @stop

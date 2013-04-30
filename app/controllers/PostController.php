@@ -145,6 +145,9 @@ class PostController extends BaseController {
 	public function showMusic($id)
 	{
 		$post = Post::find($id);
+
+		DB::table('posts')->where('id',$id)->increment('views');
+
 		return View::make('post.music.index')
 			->with('post',$post);
 	}
@@ -218,4 +221,13 @@ class PostController extends BaseController {
 		//
 	}
 
+	public function like($id)
+	{
+		$post = Post::find($id);
+
+		DB::table('likes')->insert(array('post_id' => $post->id,'user_id' => Auth::user()->id));
+		DB::table('posts')->where('id',$post->id)->increment('postlikes');
+
+		return $id;
+	}
 }

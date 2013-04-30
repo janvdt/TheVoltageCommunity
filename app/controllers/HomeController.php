@@ -15,9 +15,18 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function index()
 	{
-		return View::make('hello');
+		$images = Image::take(4)->get();
+		$musicposts = Post::where('type','music')->take(4)->orderBy('created_at', 'desc')->get();
+		$graphposts = Post::where('type','graph')->take(4)->orderBy('created_at', 'desc')->get();
+		$posts = Post::where('type','music')->take(5)->orderBy('created_at', 'desc')->get();
+
+		return View::make('instance.index')
+			->with('musicposts',$musicposts)
+			->with('graphposts',$graphposts)
+			->with('posts',$posts)
+			->with('images',$images);
 	}
 
 }
