@@ -15,7 +15,6 @@
 	@endif
 	@endif
 	<h4>{{$post->title}}</h4>
-	{{count($post->likes)}}
 	</div>
 </div>
 
