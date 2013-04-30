@@ -33,11 +33,13 @@
 			@endif
 		</div>
 		<div class="row">
+			@if(Auth::user())
 			<div class="span4 offset1 likebutton">
        		@if($post->can($post->id,Auth::user()->id))
 				<a class="btn btn-primary btn-large" id="post"><i class="icon-thumbs-up"> Like !</i></a>
 			@endif
 			</div>
+			@endif
 		</div>
 	</div>
 	<div class="span7">
