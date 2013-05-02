@@ -33,7 +33,7 @@
 						?>
 
                 			<p>
-                				<a href="">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a>
+                				<a href="{{ URL::action('UserController@visitAccount',array($musicpost->createdBy()->id)) }}">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a>
                 			</p>
             			</div>
         			</div>
