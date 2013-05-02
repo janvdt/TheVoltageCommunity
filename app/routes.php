@@ -22,7 +22,7 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
-
+Route::get('post/showlikes/{id}', 'PostController@showLikes');
 Route::get('post/createMusic', 'PostController@createMusic');
 Route::post('post/storeMusic', 'PostController@storeMusic');
 Route::resource('user', 'UserController');
@@ -41,6 +41,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::delete('files/{id}', 'FileController@destroy');
 	Route::post('images', 'ImageController@index');
 	Route::get('user/showaccount/{id}', 'UserController@showAccount');
+	Route::get('user/visitaccount/{id}', 'UserController@visitAccount');
 	Route::resource('post','PostController');
 	Route::get('post/createGraph', 'PostController@createGraph');
 	Route::post('post/storeGraph', 'PostController@storeGraph');

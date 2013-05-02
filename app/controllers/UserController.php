@@ -184,4 +184,20 @@ class UserController extends BaseController {
 		
 	}
 
+	/**
+	 * Display the specified resource.
+	 *
+	 * @return Response
+	 */
+	public function visitAccount($id)
+	{	
+		$user = User::find($id);
+		$musicposts = Post::where('created_by',$user->id)->where('type','music')->get();
+		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
+		return View::make('user.account.visit')
+			->with('user',$user)
+			->with('musicposts',$musicposts)
+			->with('graphposts',$graphposts);
+	}
+
 }

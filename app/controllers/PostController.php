@@ -230,4 +230,18 @@ class PostController extends BaseController {
 
 		return $id;
 	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function showLikes($id)
+	{
+		$post = Post::find($id);
+
+		return View::make('like.index')
+			->with('post',$post);
+	}
 }

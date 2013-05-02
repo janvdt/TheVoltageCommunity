@@ -17,7 +17,6 @@
 	<h4>{{$post->title}}</h4>
 	</div>
 </div>
-
 <div class="row">
 	<div class="span12">
 		<div class="span4">
@@ -37,6 +36,7 @@
        		@if($post->can($post->id,Auth::user()->id))
 				<a class="btn btn-primary btn-large" id="post"><i class="icon-thumbs-up"> Like !</i></a>
 			@endif
+			<a class="btn btn-link btn-large" href="{{ URL::action('PostController@showLikes', array($post->id)) }}"><i class="icon-thumbs-up">{{count($post->likes)}} </i></a>
 			</div>
 			@endif
 		</div>
@@ -46,7 +46,7 @@
 			@if($post->soundcloud != NULL)
 			<div id="putTheWidgetHere"></div>
 			<script type="text/JavaScript">
-  				SC.oEmbed('{{$post->soundcloud}}', {color: "ff0066"},  document.getElementById("postsoundcloud"));
+  				SC.oEmbed('{{$post->soundcloud}}', {color: "c6e2cc"},  document.getElementById("postsoundcloud"));
 			</script>
 			@else
 			<div class="video-container">

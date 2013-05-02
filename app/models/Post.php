@@ -21,9 +21,9 @@ class Post extends BaseModel {
 	}
 
 	public function likes()
-    {
-        return $this->hasMany('Like','post_id');
-    }
+	{
+		return $this->hasMany('Like','post_id');
+	}
 
     public function can($post_id,$user_id)
 	{
