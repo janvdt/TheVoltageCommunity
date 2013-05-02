@@ -420,6 +420,18 @@
 	
 	margin-bottom: 25px;
 }
+.comments
+{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #c6e2cc;
+	padding: 25px;
+}
+.buttoncomment
+{
+	margin-bottom: 25px;
+}
+
 
 
 /* Blocks
@@ -526,7 +538,7 @@
 	float: none;
 }
 
-}
+
 
 /* Landscape phones and down
 ==========================================*/

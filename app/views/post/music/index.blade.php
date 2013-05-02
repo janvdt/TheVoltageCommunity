@@ -55,27 +55,46 @@
 			</div>
 			@endif
 		</div>
-	
 		<div class="postreview">
 			{{$post->body}}
 		</div>
-		<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'thevoltagecommunity'; // required: replace example with your forum shortname
+		@if(Auth::user())
+		<div class="buttoncomment">
+			<a class="btn btn-success btn-large" href="#comment-post" data-toggle="modal"><i class="icon-pencil"> Comment!</i></a>
+		</div>
+		@endif
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-		
-
+		<div class="comments">
+			<h3>Comments</h3>
+			@foreach($post->comments as $comment)
+			<div class="well">
+				<p class="pull-right">Posted by: {{$comment->user->first_name}} {{$comment->user->last_name}}</p>
+				<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="100">
+				{{$comment->body}}
+				<div class="row">
+					<a class="btn btn-success btn-small pull-right" href="" data-toggle="modal"><i class="icon-share-alt"> Reply!</i></a>
+				</div>
+			</div>
+			@endforeach
+		</div>
 	</div>
+</div>
+
+<div class="modal hide fade" id="comment-post">
+	<form class="form-horizontal" method="POST" action="{{ URL::action('CommentController@store')}}?post_id={{$post->id}}"  id="upload-comment-form">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>Comment</h3>
+		</div>
+		<div class="modal-body">
+			<textarea name="textcomment" class="input-xxlarge pull-left" rows="5" id="inputTextarea" placeholder="Enter text ..."></textarea>
+			<span class="help-inline">{{ $errors->first('menu_title') }}</span>	
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Cancel</button>
+			<input class="btn btn-primary" type="submit" value="Comment">
+		</div>
+	</form>
 </div>
 @stop
 
@@ -90,5 +109,22 @@
 		$('#post').hide();
 	});
 });
+@if(Auth::user())
+// Ajax file upload for the file upload modal.
+$("#upload-comment-form").ajaxForm({
+	data: { 'ajax': 'true' },
+	dataType: 'json',
+	success: function(data) {
+		
+	var comment = "<div class='well'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>" + data.body + "</div>";
+	$(".comments").append(comment);
+
+	// Hide the upload modal.
+	$("#comment-post").modal('hide');
+
+	}
+});
+@endif
+
 
 @stop

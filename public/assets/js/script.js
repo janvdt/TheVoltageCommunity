@@ -49,15 +49,20 @@ function selectImage()
  *
  * @return void
  */
-function setChosenImage(id, title)
+function setComment(user_id, body)
 {
 	// Set image id to hidden input.
 	$("#selected-image-input").attr('value', id);
 
 	// Set image title to help span.
 	var dismissLink = " &nbsp;&nbsp;<a class='btn btn-round dismiss-image' href='#'><i class='icon-remove'></i></a>";
-	var helpText = "Selected image: " + title + dismissLink;
-	$("#selected-image").html(helpText);
+	<div class="well">
+				<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="100">
+				{{$comment->body}}
+			</div>
+
+	var comment = "<div class='well'><img class='img-rounded'>" + body + "</div>";
+	$(".comments").append(comment);
 
 	// Add dismiss event handler.
 	$("a.dismiss-image").on('click', dismissImage);

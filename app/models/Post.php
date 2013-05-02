@@ -40,4 +40,9 @@ class Post extends BaseModel {
 		
 		return true;
 	}
+
+	public function comments()
+    {
+        return $this->hasMany('Comment');
+    }
 }

@@ -49,6 +49,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('post/updatemusic/{id}', 'PostController@updateMusic');
 	
 	Route::resource('account','AccountController');
+	Route::resource('comment','CommentController');
 
 	
 });
