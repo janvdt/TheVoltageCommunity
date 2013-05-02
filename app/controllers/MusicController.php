@@ -11,7 +11,7 @@ class MusicController extends BaseController {
 	{
 		$musicposts = Post::where('type','music')->orderBy('created_at', 'desc');
 
-		$musicposts = $musicposts->paginate(4);
+		$musicposts = $musicposts->paginate(8);
 		return View::make('music.index')
 			->with('musicposts',$musicposts);
 	}
