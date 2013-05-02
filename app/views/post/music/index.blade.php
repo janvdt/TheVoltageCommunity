@@ -36,7 +36,7 @@
        		@if($post->can($post->id,Auth::user()->id))
 				<a class="btn btn-primary btn-large" id="post"><i class="icon-thumbs-up"> Like !</i></a>
 			@endif
-			<a class="btn btn-link btn-large" href="{{ URL::action('PostController@showLikes', array($post->id)) }}"><i class="icon-thumbs-up">{{count($post->likes)}} </i></a>
+			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}"><i class="icon-thumbs-up"><p class="likevalue">{{count($post->likes)}}</p></i></a>
 			</div>
 			@endif
 		</div>
@@ -106,6 +106,10 @@
 	$.post('/post/like/' + {{$post->id}},
 	function(data)
 	{
+		var likecount = {{count($post->likes)}}+1;
+		$('.likevalue').remove();
+		counttext="<p class='likevalue'>"+likecount+"</p>";
+		$('.likeref').append(counttext);
 		$('#post').hide();
 	});
 });
