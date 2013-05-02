@@ -120,7 +120,7 @@ $("#upload-comment-form").ajaxForm({
 	dataType: 'json',
 	success: function(data) {
 		
-	var comment = "<div class='well'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>" + data.body + "</div>";
+	var comment = "<div class='well'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>"  + data.body + "</div>";
 	$(".comments").append(comment);
 
 	// Hide the upload modal.

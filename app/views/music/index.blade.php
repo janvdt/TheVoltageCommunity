@@ -75,6 +75,20 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="row loadmore">
+		<div class="span12 offset7">
+			
+		</div>
+	</div>
+@stop
 
+@section('scripts')
+	@parent
+
+	 $('#loadmore').click(function(){
+      $(document).trigger('retrieve.infscr');
+      return false;
+    });
 
 @stop
