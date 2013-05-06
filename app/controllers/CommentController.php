@@ -50,13 +50,15 @@ class CommentController extends BaseController {
 		$commentModel->body = Input::get('textcomment');
 		$commentModel->post_id = Input::get("post_id");
 		$commentModel->user_id = Auth::user()->id;
+
+		$post = Post::find(Input::get("post_id"));
 		if(Input::has('comment_id'))
 		{
 			$commentModel->parent = Input::get('comment_id');	
 		}
 		$commentModel->save();
 
-		DB::table('notifications')->insert(array('body' => "commented your post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id));
+		DB::table('notifications')->insert(array('body' => "commented your post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by));
 
 		// If it was an ajax call, pass along the filename and file id
 		// as a json array.

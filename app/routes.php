@@ -22,7 +22,7 @@ View::composer('instance.header', function($view)
 {
 	if(Auth::user())
 	{
-	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->get();
+	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->where('post_creator',Auth::user()->id)->get();
 	$notifications = Notification::where('user_id','!=',Auth::user()->id)->get();
 
 	$view->with('notcount', $notcount)->with('notifications',$notifications);

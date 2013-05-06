@@ -232,7 +232,7 @@ class PostController extends BaseController {
 
 		DB::table('likes')->insert(array('post_id' => $post->id,'user_id' => Auth::user()->id));
 		DB::table('posts')->where('id',$post->id)->increment('postlikes');
-		DB::table('notifications')->insert(array('body' => "liked your post!",'user_id' => Auth::user()->id,'post_id' => $post->id));
+		DB::table('notifications')->insert(array('body' => "liked your post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by));
 
 		return $id;
 	}

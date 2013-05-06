@@ -18,6 +18,7 @@ class CreateNotificationsTable extends Migration {
 			$table->integer('post_id');
 			$table->integer('user_id');
 			$table->boolean('viewed');
+			$table->integer('post_creator');
 			$table->timestamps();
 		});
 	}
