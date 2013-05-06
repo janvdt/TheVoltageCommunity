@@ -148,7 +148,10 @@ class PostController extends BaseController {
 
 		DB::table('posts')->where('id',$id)->increment('views');
 
-		DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
+		if(Auth::user())
+		{
+			DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
+		}
 
 		return View::make('post.music.index')
 			->with('post',$post);

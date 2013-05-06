@@ -30,6 +30,20 @@ function dismissDownload()
 	$("#selected-download").html("");
 }
 
+function setChosenImage(id, title)
+{
+	// Set image id to hidden input.
+	$("#selected-image-input").attr('value', id);
+
+	// Set image title to help span.
+	var dismissLink = " &nbsp;&nbsp;<a class='btn btn-round dismiss-image' href='#'><i class='icon-remove'></i></a>";
+	var helpText = "Selected image: " + title + dismissLink;
+	$("#selected-image").html(helpText);
+
+	// Add dismiss event handler.
+	$("a.dismiss-image").on('click', dismissImage);
+}
+
 /**
  * Gets the id and title from an image.
  *

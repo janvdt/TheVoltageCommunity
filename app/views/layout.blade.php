@@ -66,6 +66,8 @@
 <script src="/assets/libraries/ajax-scroll/src/jquery-ias.js"></script>
 <script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>
 <script src="/assets/libraries/masonry2/jquery.masonry.min.js"></script>
+<script src="/assets/libraries/tinycon/tinycon.min.js"></script>
+
 
 <script>
 $(document).ready(function() {
@@ -341,6 +343,12 @@ $("#soundcloud").select2({
         return data.title;
     }
 
+</script>
+
+<script>
+$(document).ready(function() {
+	Tinycon.setBubble(6);
+	});		
 </script>
 
 
