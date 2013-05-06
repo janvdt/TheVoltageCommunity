@@ -148,6 +148,8 @@ class PostController extends BaseController {
 
 		DB::table('posts')->where('id',$id)->increment('views');
 
+		DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
+
 		return View::make('post.music.index')
 			->with('post',$post);
 	}
@@ -227,6 +229,7 @@ class PostController extends BaseController {
 
 		DB::table('likes')->insert(array('post_id' => $post->id,'user_id' => Auth::user()->id));
 		DB::table('posts')->where('id',$post->id)->increment('postlikes');
+		DB::table('notifications')->insert(array('body' => "liked your post!",'user_id' => Auth::user()->id,'post_id' => $post->id));
 
 		return $id;
 	}

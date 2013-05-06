@@ -18,6 +18,18 @@ Route::get('/', function()
 	return $HomeController->index();
 });
 
+View::composer('instance.header', function($view)
+{
+	if(Auth::user())
+	{
+	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->get();
+	$notifications = Notification::where('user_id','!=',Auth::user()->id)->get();
+
+	$view->with('notcount', $notcount)->with('notifications',$notifications);
+	}
+
+});
+
 Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
@@ -47,9 +59,10 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('post/storeGraph', 'PostController@storeGraph');
 	Route::get('post/editmusic/{id}', 'PostController@editMusic');
 	Route::post('post/updatemusic/{id}', 'PostController@updateMusic');
-	
+	Route::resource('subcomment','SubcommentController');
 	Route::resource('account','AccountController');
 	Route::resource('comment','CommentController');
+
 
 	
 });

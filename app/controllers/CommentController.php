@@ -50,7 +50,13 @@ class CommentController extends BaseController {
 		$commentModel->body = Input::get('textcomment');
 		$commentModel->post_id = Input::get("post_id");
 		$commentModel->user_id = Auth::user()->id;
+		if(Input::has('comment_id'))
+		{
+			$commentModel->parent = Input::get('comment_id');	
+		}
 		$commentModel->save();
+
+		DB::table('notifications')->insert(array('body' => "commented your post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id));
 
 		// If it was an ajax call, pass along the filename and file id
 		// as a json array.
@@ -59,10 +65,12 @@ class CommentController extends BaseController {
 			$response = array(
 				'user_id'    => $commentModel->user_id,
 				'body' => $commentModel->body,
+				'id'    => $commentModel->id,
 			);
 
 			return Response::json($response);
 		}
+
 	}
 
 	/**

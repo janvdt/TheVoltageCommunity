@@ -12,6 +12,11 @@ class Comment extends BaseModel {
 		return $this->belongsTo('User');
 	}
 
+	public function comments()
+	{
+		return $this->hasMany('Comment', 'parent');
+	}
+
 	public function hasParent($parent)
 	{
 		$comment = $this;

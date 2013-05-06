@@ -27,6 +27,8 @@ class HomeController extends BaseController {
 			->with('graphposts',$graphposts)
 			->with('posts',$posts)
 			->with('images',$images);
+
+		
 	}
 
 }

@@ -60,20 +60,16 @@
 		</div>
 		@if(Auth::user())
 		<div class="buttoncomment">
-			<a class="btn btn-success btn-large" href="#comment-post" data-toggle="modal"><i class="icon-pencil"> Comment!</i></a>
+			<a class="btn btn-success" href="#comment-post" data-toggle="modal"><i class="icon-pencil"> Comment!</i></a>
 		</div>
 		@endif
 
 		<div class="comments">
-			<h3>Comments</h3>
 			@foreach($post->comments as $comment)
 			<div class="well">
 				<p class="pull-right">Posted by: {{$comment->user->first_name}} {{$comment->user->last_name}}</p>
 				<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="100">
 				{{$comment->body}}
-				<div class="row">
-					<a class="btn btn-success btn-small pull-right" href="" data-toggle="modal"><i class="icon-share-alt"> Reply!</i></a>
-				</div>
 			</div>
 			@endforeach
 		</div>
@@ -96,6 +92,7 @@
 		</div>
 	</form>
 </div>
+
 @stop
 
 @section('scripts')
@@ -120,7 +117,7 @@ $("#upload-comment-form").ajaxForm({
 	dataType: 'json',
 	success: function(data) {
 		
-	var comment = "<div class='well'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>"  + data.body + "</div>";
+	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>"  + data.body + "</div>";
 	$(".comments").append(comment);
 
 	// Hide the upload modal.
@@ -130,5 +127,20 @@ $("#upload-comment-form").ajaxForm({
 });
 @endif
 
+@if(Auth::user())
+// Ajax file upload for the file upload modal.
+$("#upload-subcomment-form").ajaxForm({
+	data: { 'ajax': 'true' },
+	dataType: 'json',
+	success: function(data) {
+		
+	
+
+	// Hide the upload modal.
+	$("#subcomment-post").modal('hide');
+
+	}
+});
+@endif
 
 @stop

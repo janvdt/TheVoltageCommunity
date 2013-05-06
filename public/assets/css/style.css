@@ -336,6 +336,10 @@
 
 /* Header
 ==========================================*/
+.notifications li
+{
+	margin-bottom: 5px;
+}
 
 .site-header {
 	position: relative;
@@ -424,7 +428,7 @@
 {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
-	background-color: #c6e2cc;
+	&
 	padding: 25px;
 }
 .buttoncomment
@@ -435,6 +439,7 @@
 {
 	margin-top: 50px;
 }
+
 
 
 /* Blocks

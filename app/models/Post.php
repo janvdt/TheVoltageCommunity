@@ -45,4 +45,8 @@ class Post extends BaseModel {
     {
         return $this->hasMany('Comment');
     }
+    public function notifications()
+    {
+        return $this->hasMany('Notification');
+    }
 }
