@@ -33,7 +33,7 @@ class HomeController extends BaseController {
 
 	public function showActivity()
 	{
-		$followers = Follower::where('account_id',Auth::user()->accountUser()->id)->paginate(2);
+		$followers = Follower::where('account_id',Auth::user()->accountUser()->id)->get();
 
 		return View::make('instance.activity')
 			->with('followers',$followers);
