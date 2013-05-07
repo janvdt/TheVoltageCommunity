@@ -40,10 +40,9 @@
 	</div>
 </div>
 <div class="row">
-		<div class="span12">
-			<div class="pagination pagination-centered">
-				{{$followers->links()}}
-			</div>
+	<div class="span12">
+		<div class="pagination pagination-centered">
+			{{$followers->links()}}
 		</div>
 	</div>
 </div>
