@@ -80,6 +80,8 @@ class PostController extends BaseController {
 		}
 		
 		$post->save();
+
+		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1));
 		
 		return Redirect::action('InstanceController@index');	
 	}
@@ -232,7 +234,12 @@ class PostController extends BaseController {
 
 		DB::table('likes')->insert(array('post_id' => $post->id,'user_id' => Auth::user()->id));
 		DB::table('posts')->where('id',$post->id)->increment('postlikes');
+		
 		DB::table('notifications')->insert(array('body' => "liked your post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by));
+		
+		if($post->created_by != Auth::user()->id){
+		DB::table('notifications')->insert(array('body' => "liked a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by,'activity' => 1));
+		}
 
 		return $id;
 	}

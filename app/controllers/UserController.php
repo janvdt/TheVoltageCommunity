@@ -85,10 +85,14 @@ class UserController extends BaseController {
 		$user = User::find($id);
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
+		$followers = Follower::where('account_id','!=', Auth::user()->accountUser()->id)->where('follower_id',Auth::user()->accountUser()->id)->get();
+		$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
 		return View::make('user.account.index')
 			->with('user',$user)
 			->with('musicposts',$musicposts)
-			->with('graphposts',$graphposts);
+			->with('graphposts',$graphposts)
+			->with('followers',$followers)
+			->with('following',$following);
 	}
 	/**
 	 * Display the specified resource.

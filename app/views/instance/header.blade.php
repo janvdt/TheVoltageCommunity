@@ -3,7 +3,7 @@
 		<a href="{{{ URL::to('/') }}}"><img class="" src="/images/logovoltage.png" alt=""></a>
 	</div>
 	@if (Auth::check())
-	<ul class="nav span8">
+	<ul class="nav span6">
 		
 			<li class="dropdown pull-right">
 				<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> Welcome {{Auth::user()->first_name}} {{Auth::user()->last_name}}<b class="caret"></b></a>
@@ -26,35 +26,52 @@
 				<ul class="dropdown-menu notifications span4" role="menu">
 					@foreach($notifications as $notification)
 						@if($notification->post->created_by == Auth::user()->id)
+							@if($notification->activity == FALSE)
 							@if($notification->viewed == FALSE)
-								<li class="notificationsitem span3" style="background-color: #c6e2cc;">
-									<a class="pull-left" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">{{$notification->user->first_name}} {{$notification->body}}
-									</a>
-									@if($notification->post->soundcloud_art != NULL)
+								<li class="notificationsitem span3">
+									<div class="alert alert-success">
+									<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+  									 {{$notification->user->first_name}} {{$notification->body}}
+  									 @if($notification->post->soundcloud_art != NULL)
 											<img class="img-rounded pull-right" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="25">
 										@else
 											<img class="img-rounded pull-right" src="{{ url($notification->post->youtube_art) }}" alt="" width="25">
 										@endif
+									</a>
+									</div>
 								</li>
 							@else
 								<li class="notificationsitem span3">
-									<a class="pull-left" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
-										{{$notification->user->first_name}} {{$notification->body}}
-									</a>
-									@if($notification->post->soundcloud_art != NULL)
+									<div class="alert">
+									<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+  									 {{$notification->user->first_name}} {{$notification->body}}
+  									 @if($notification->post->soundcloud_art != NULL)
 											<img class="img-rounded pull-right" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="25">
 										@else
 											<img class="img-rounded pull-right" src="{{ url($notification->post->youtube_art) }}" alt="" width="25">
 										@endif
+									</a>
+									</div>
+									
+									
 								</li>
+							@endif
 							@endif
 						@endif
 					@endforeach
-					
+					@foreach($following as $follow)
+						<li class="notificationsitem span3">
+							{{$follow->account->user->notification}}
+						
+						</li>
+					@endforeach
 				</ul>
 			</li>
 		</ul>
-@endif
+	<div class="span2 pull-right">
+		<a href="{{ URL::action('HomeController@showActivity') }}"><i class="icon-bullhorn"> Activity log</i></a>
+	</div>
+	@endif
 </div>
 
 <div id="top-navbar" class="navbar navbar-static-top navbar-inverse span12">

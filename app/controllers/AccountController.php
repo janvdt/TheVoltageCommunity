@@ -100,4 +100,22 @@ class AccountController extends BaseController {
 		//
 	}
 
+	public function follow($id)
+	{
+		$account = Account::find($id);
+
+		DB::table('followers')->insert(array('account_id' => Auth::user()->accountUser()->id,'follower_id' => $account->id));
+		
+		return $id;
+	}
+
+	public function unfollow($id)
+	{
+		$account = Account::find($id);
+
+		DB::table('followers')->where('account_id',Auth::user()->accountUser()->id)->where('follower_id',$id)->delete();
+		
+		return $id;
+	}
+
 }

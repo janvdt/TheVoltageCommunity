@@ -15,6 +15,24 @@
 			<h4>Biografie</h4>
 			<p class="span4">{{$user->accountUser()->biography}}</p>
 		</div>
+		<div class="span3">
+			<h4>Social</h4>
+			<div class="pull-left">
+				<h5>Following</h5>
+				<p>{{count($following)}}</p>
+				@foreach($following as $follow)
+				<img class="img-rounded" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
+				@endforeach
+			</div>
+
+			<div class="pull-right">
+				<h5>Followers</h5>
+				<p>{{count($followers)}}</p>
+				@foreach($followers as $follower)
+					<img class="img-rounded" src="{{ url($follower->accountfollower->getImagePathname()) }}" alt="" width="25">
+				@endforeach
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row">

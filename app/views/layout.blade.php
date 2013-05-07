@@ -194,31 +194,7 @@ $('select[name=select-tag]').change(function(){
 
 
 <script>
-$(document).ready(function() {
-$('.pagination ul li:not(:last)').remove();
-$('.pagination').hide();
-// infinitescroll() is called on the element that surrounds 
-// the items you will be loading more of
-  $('.music-posts').infinitescroll({
- 
-    navSelector  : ".pagination",            
-                   // selector for the paged navigation (it will be hidden)
-    nextSelector : ".pagination ul li a",    
-                   // selector for the NEXT link (to page 2)
-    itemSelector : ".musicpost",          
-                   // selector for all items you'll retrieve
-    loading: {
-        finished: undefined,
-        finishedMsg: "<em>Congratulations</em>",
-        img: "/images/loader.gif",
-        msg: null,
-        msgText: "<em>Loading the next set of posts...</em>",
-        selector: null,
-        speed: 'fast',
-        start: undefined
-    }
-  });
-});
+
 </script>
 
 <script src="http://connect.soundcloud.com/sdk.js"></script>

@@ -22,10 +22,12 @@ View::composer('instance.header', function($view)
 {
 	if(Auth::user())
 	{
-	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->where('post_creator',Auth::user()->id)->get();
+	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->where('post_creator',Auth::user()->id)->where('activity',FALSE)->get();
 	$notifications = Notification::where('user_id','!=',Auth::user()->id)->get();
 
-	$view->with('notcount', $notcount)->with('notifications',$notifications);
+	$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
+
+	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following);
 	}
 
 });
@@ -61,7 +63,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('post/updatemusic/{id}', 'PostController@updateMusic');
 	Route::resource('subcomment','SubcommentController');
 	Route::resource('account','AccountController');
+	Route::post('account/unfollow/{id}', 'AccountController@unfollow');
+	Route::post('account/follow/{id}', 'AccountController@follow');
 	Route::resource('comment','CommentController');
+	Route::get('activity', 'HomeController@showActivity');
+
 
 
 	
