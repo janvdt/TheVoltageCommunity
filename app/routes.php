@@ -32,9 +32,10 @@ View::composer('instance.header', function($view)
 
 	if(Session::has('hybridAuth'))
 	{
-	$facebooksession = Session::get('hybridAuth');
+	$_SESSION['hybridAuth'] = serialize($facebooksession);
+	$facebooksession = unserialize($_SESSION['hybridAuth']);
 
-	$facebooksession = unserialize(serialize($facebooksession));
+
 	$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
 
 	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',$facebookuser->id)->where('post_creator',$facebookuser->id)->where('activity',FALSE)->get();
