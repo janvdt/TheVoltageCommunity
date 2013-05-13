@@ -82,11 +82,21 @@ class UserController extends BaseController {
 	 */
 	public function showAccount($id)
 	{	
+
 		$user = User::find($id);
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
+		if(Session::has('hybridAuth'))
+		{
+			$facebookuser = User::where('identifier',Session::get('hybridAuth')->identifier)->first();
+			$followers = Follower::where('account_id','!=', $facebookuser->accountUser()->id)->where('follower_id',$facebookuser->accountUser()->id)->get();
+
+			$following = Follower::where('account_id', $facebookuser->accountUser()->id)->get();
+		}
+		else{
 		$followers = Follower::where('account_id','!=', Auth::user()->accountUser()->id)->where('follower_id',Auth::user()->accountUser()->id)->get();
 		$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
+		}
 		return View::make('user.account.index')
 			->with('user',$user)
 			->with('musicposts',$musicposts)
@@ -198,10 +208,24 @@ class UserController extends BaseController {
 		$user = User::find($id);
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
-		return View::make('user.account.visit')
-			->with('user',$user)
-			->with('musicposts',$musicposts)
-			->with('graphposts',$graphposts);
+
+		if(Session::has('hybridAuth')){
+			$facebooksession = Session::get('hybridAuth');
+			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
+			
+			return View::make('user.account.visit')
+				->with('user',$user)
+				->with('musicposts',$musicposts)
+				->with('graphposts',$graphposts)
+				->with('facebookuser',$facebookuser);
+		}
+		else
+		{
+			return View::make('user.account.visit')
+				->with('user',$user)
+				->with('musicposts',$musicposts)
+				->with('graphposts',$graphposts);
+		}
 	}
 
 }

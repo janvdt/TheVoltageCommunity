@@ -11,7 +11,7 @@
 
 	<!-- Info -->
 	<title>The Voltage Community</title>
-
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon1.ico">
 	<!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="/assets/libraries/bootstrap-wysihtml5/css/bootstrap-wysihtml5.css">
 	<link rel="stylesheet" href="/assets/libraries/bootstrap/css/bootstrap.min.css">
@@ -321,11 +321,7 @@ $("#soundcloud").select2({
 
 </script>
 
-<script>
-$(document).ready(function() {
-	Tinycon.setBubble(6);
-	});		
-</script>
+
 
 
 

@@ -59,7 +59,7 @@
 			</div>
 					
 			<div class="form-actions">
-				<a href="{{ URL::action('InstanceController@index') }}" class="btn">Cancel</a>
+				<a href="{{{ URL::to('/') }}}" class="btn">Cancel</a>
 				<button type="submit" class="btn btn-primary">Save</button>
 			</div>
 		</form>

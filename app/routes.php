@@ -30,12 +30,26 @@ View::composer('instance.header', function($view)
 	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following);
 	}
 
+	if(Session::has('hybridAuth'))
+	{
+	$facebooksession = Session::get('hybridAuth');
+	$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
+
+	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',$facebookuser->id)->where('post_creator',$facebookuser->id)->where('activity',FALSE)->get();
+	$notifications = Notification::where('user_id','!=',$facebookuser->id)->get();
+
+	$following = Follower::where('account_id', $facebookuser->accountUser()->id)->get();
+
+	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following)->with('facebookuser',$facebookuser);
+	}
+
 });
 
 Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
+Route::resource('comment','CommentController');
 Route::get('post/showlikes/{id}', 'PostController@showLikes');
 Route::get('post/createMusic', 'PostController@createMusic');
 Route::post('post/storeMusic', 'PostController@storeMusic');
@@ -46,6 +60,14 @@ Route::resource('post','PostController');
 Route::post('post/like/{id}', 'PostController@like');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');
+Route::get('user/showaccount/{id}', 'UserController@showAccount');
+Route::get('user/visitaccount/{id}', 'UserController@visitAccount');
+Route::resource('account','AccountController');
+Route::post('account/unfollow/{id}', 'AccountController@unfollow');
+Route::post('account/follow/{id}', 'AccountController@follow');
+Route::get('activity', 'HomeController@showActivity');
+
+
 
 Route::group(array('before' => 'auth'), function()
 {
@@ -54,23 +76,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('files', 'FileController@store');
 	Route::delete('files/{id}', 'FileController@destroy');
 	Route::post('images', 'ImageController@index');
-	Route::get('user/showaccount/{id}', 'UserController@showAccount');
-	Route::get('user/visitaccount/{id}', 'UserController@visitAccount');
-	Route::resource('post','PostController');
 	Route::get('post/createGraph', 'PostController@createGraph');
 	Route::post('post/storeGraph', 'PostController@storeGraph');
 	Route::get('post/editmusic/{id}', 'PostController@editMusic');
 	Route::post('post/updatemusic/{id}', 'PostController@updateMusic');
 	Route::resource('subcomment','SubcommentController');
-	Route::resource('account','AccountController');
-	Route::post('account/unfollow/{id}', 'AccountController@unfollow');
-	Route::post('account/follow/{id}', 'AccountController@follow');
-	Route::resource('comment','CommentController');
-	Route::get('activity', 'HomeController@showActivity');
-
-
-
-	
 });
 
 Route::post('login', function()
@@ -91,5 +101,84 @@ Route::post('login', function()
 
 Route::get('logout', function() {
 	Auth::logout();
+	Session::flush();
 	return Redirect::to('/');
+
 });
+
+/**
+ * GET-Route: Catch the provider for auth with other network and redirect to authenticate route
+ */
+Route::get('social/{provider}', array('as' => 'socialAuth', function($provider)
+{
+	return Redirect::route('hybridauth', 'start')->with('provider', $provider);
+}));
+ 
+/**
+ * GET-Route: Catch action and process the login via hybrid Auth
+ */
+Route::get('social/authenticate/{action}', array("as" => "hybridauth", function($action = "")
+{
+	if (Session::has('provider'))
+	{
+		$provider = Session::get('provider');
+	}
+ 
+	// if "auth" is set as "action" do login
+	if ($action == "auth")
+	{
+		// process auth
+		try
+		{
+			Hybrid_Endpoint::process();
+		}
+		catch (Exception $e)
+		{
+			// redirect home on error
+			return Redirect::route('showWelcome')
+				->with('hybridAuthError', 'Social Network Authentication failed');
+		}
+ 
+		return;
+	}
+ 
+	// if != auth create new HybridAuth-Object
+	try
+	{
+		// create a new HybridAuth Object by using the configuration file for secrets and token
+		$socialAuth = new Hybrid_Auth(__DIR__ . '/config/hybridauth.php');
+		// authenticate with Twitter
+		$provider = $socialAuth->authenticate($provider);
+		// fetch user profile
+		$userProfile = $provider->getUserProfile();
+	}
+	catch (Exception $e)
+	{
+		// Redirect Home on error
+		return Redirect::route('showWelcome')
+			->with('hybridAuthError', 'Social Network Authentication failed');
+	}
+ 
+	// Store received data in session
+	Session::put('hybridAuth', $userProfile);
+ 
+	// logout
+	$provider->logout();
+
+	$facebooklogin = Session::get('hybridAuth');
+
+	$identifier = $facebooklogin->identifier;
+
+	$user = DB::table('users')->where('identifier', $identifier )->first();
+
+	if($user == NULL)
+	{	
+		DB::table('accounts')->insert(array('identifier' => $facebooklogin->identifier));
+
+		$account = Account::where('identifier',$facebooklogin->identifier)->first();
+
+   		DB::table('users')->insert(array('email' => $facebooklogin->email,'first_name' => $facebooklogin->firstName,'last_name' => $facebooklogin->lastName,'status' => 'Active','account_id' => $account->id,'identifier' => $facebooklogin->identifier));
+   	}
+             
+    return Redirect::to('/')->with('hybridAuthSuccess', 'Social network Authentication successfull');
+}));

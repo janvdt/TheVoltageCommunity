@@ -86,7 +86,7 @@ class AccountController extends BaseController {
 
 		$account->save();
 
-		return Redirect::action('UserController@showAccount', array($account->id));
+		return Redirect::action('UserController@showAccount', array($account->user->id));
 	}
 
 	/**
@@ -104,7 +104,15 @@ class AccountController extends BaseController {
 	{
 		$account = Account::find($id);
 
-		DB::table('followers')->insert(array('account_id' => Auth::user()->accountUser()->id,'follower_id' => $account->id));
+		if(Auth::user()){
+			DB::table('followers')->insert(array('account_id' => Auth::user()->accountUser()->id,'follower_id' => $account->id));
+		}
+		else
+		{
+			$facebooksession = Session::get('hybridAuth');
+			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
+			DB::table('followers')->insert(array('account_id' => $facebookuser->accountUser()->id,'follower_id' => $account->id));
+		}
 		
 		return $id;
 	}
@@ -113,7 +121,16 @@ class AccountController extends BaseController {
 	{
 		$account = Account::find($id);
 
+		if(Auth::user()){
 		DB::table('followers')->where('account_id',Auth::user()->accountUser()->id)->where('follower_id',$id)->delete();
+		}
+		else
+		{
+			$facebooksession = Session::get('hybridAuth');
+			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
+			DB::table('followers')->where('account_id',$facebookuser->accountUser()->id)->where('follower_id',$id)->delete();
+
+		}
 		
 		return $id;
 	}

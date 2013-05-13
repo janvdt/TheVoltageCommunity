@@ -8,7 +8,11 @@
 	<div class="span12">
 		<div class="span4">
 			<a href="{{ URL::action('AccountController@edit', array($user->accountUser()->id)) }}" class="btn btn-primary">Edit Account</a><br />
+			@if(Auth::user())
 			<img src="{{ url($user->accountUser()->getImagePathname()) }}" alt="">
+			@elseif(Session::has('hybridAuth'))
+			<img src="{{Session::get('hybridAuth')->photoURL}}">
+			@endif
 		</div>
 
 		<div class="span4">
@@ -21,7 +25,11 @@
 				<h5>Following</h5>
 				<p>{{count($following)}}</p>
 				@foreach($following as $follow)
+				@if($follow->account->facebookpic == NULL)
 				<img class="img-rounded" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
+				@else
+				<img class="img-rounded" src="{{ url($follow->account->facebookpic) }}" alt="" width="25">
+				@endif
 				@endforeach
 			</div>
 

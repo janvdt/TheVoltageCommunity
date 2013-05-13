@@ -13,13 +13,14 @@
 					<textarea class="input-xlarge" type="text" size="100" name="biography" placeholder="Biography" value=""></textarea>
 				</div>
 			</div>
-					
+			@if(!Session::has('hybridAuth'))
 			<div class="control-group">
 				<label class="control-label" for="image">Image</label>
 				<div class="controls">
 					@include('file.account.upload')
 				</div>
 			</div>
+			@endif
 					
 			<div class="form-actions">
 				<a href="{{ URL::action('UserController@showAccount',array($account->id)) }}" class="btn">Cancel</a>

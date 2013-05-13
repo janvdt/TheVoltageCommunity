@@ -11,13 +11,21 @@
 			<h4>Biografie</h4>
 			<p class="span4">{{$user->accountUser()->biography}}</p>
 		</div>
-		@if(Auth::user())
+		@if(Auth::user() or Session::has('hybridAuth'))
 		<div class="span3 socialbutton">
 			<h4>Follow!</h4>
-			@if($user->accountUser()->canFollow(Auth::user()->accountUser()->id,$user->accountUser()->id))
-			<a class="btn btn-primary" id="follow"><i class="icon-star"> Follow !</i></a>
+			@if(Auth::user())
+				@if($user->accountUser()->canFollow(Auth::user()->accountUser()->id,$user->accountUser()->id))
+					<a class="btn btn-primary" id="follow"><i class="icon-star"> Follow !</i></a>
+				@else
+					<a class="btn btn-danger" id="unfollow"><i class="icon-star-empty"> Unfollow !</i></a>
+				@endif
 			@else
-			<a class="btn btn-danger" id="unfollow"><i class="icon-star-empty"> Unfollow !</i></a>
+				@if($user->accountUser()->canFollow($facebookuser->accountUser()->id,$user->accountUser()->id))
+					<a class="btn btn-primary" id="follow"><i class="icon-star"> Follow !</i></a>
+				@else
+					<a class="btn btn-danger" id="unfollow"><i class="icon-star-empty"> Unfollow !</i></a>
+				@endif
 			@endif
 		</div>
 		@endif

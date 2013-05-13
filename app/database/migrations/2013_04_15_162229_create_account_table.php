@@ -15,6 +15,8 @@ class CreateAccountTable extends Migration {
 			$table->increments('id');
 			$table->string('biography');
 			$table->integer('image_id');
+			$table->integer('identifier');
+			$table->string('facebookpic');
 			$table->timestamps();
 		});
 	}

@@ -33,7 +33,15 @@ class HomeController extends BaseController {
 
 	public function showActivity()
 	{
+		if(Auth::user()){
 		$followers = Follower::where('account_id',Auth::user()->accountUser()->id)->get();
+		}
+		else
+		{
+			$facebooksession = Session::get('hybridAuth');
+			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
+			$followers = Follower::where('account_id',$facebookuser->accountUser()->id)->get();
+		}
 
 		return View::make('instance.activity')
 			->with('followers',$followers);
