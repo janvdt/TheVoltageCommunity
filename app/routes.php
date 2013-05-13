@@ -107,18 +107,7 @@ View::composer('instance.header', function($view)
 	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following);
 	}
 
-	if(Session::has('hybridAuth'))
-	{
-	$facebooksession = Session::get('hybridAuth');
-	$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
 
-	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',$facebookuser->id)->where('post_creator',$facebookuser->id)->where('activity',FALSE)->get();
-	$notifications = Notification::where('user_id','!=',$facebookuser->id)->get();
-
-	$following = Follower::where('account_id', $facebookuser->accountUser()->id)->get();
-
-	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following)->with('facebookuser',$facebookuser);
-	}
 
 });
 
