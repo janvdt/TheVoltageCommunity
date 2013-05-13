@@ -35,7 +35,7 @@
 	<div class="span2 pull-right">
 		<a href="{{ URL::action('HomeController@showActivity') }}"><i class="icon-bullhorn"> Activity log</i></a>
 	</div>
-	@endif
+	
 </div>
 
 <div id="top-navbar" class="navbar navbar-static-top navbar-inverse span12">
