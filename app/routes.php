@@ -32,12 +32,7 @@ View::composer('instance.header', function($view)
 
 	if(Session::has('hybridAuth'))
 	{
-	$facebooksession = unserialize($_SESSION['hybridAuth']);
-	$_SESSION['hybridAuth'] = serialize($facebooksession);
-	
-
-	
-
+	$facebooksession = unserialize(Session::get('hybridAuth'));
 
 	$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
 
