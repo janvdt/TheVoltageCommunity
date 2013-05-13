@@ -5,12 +5,12 @@
 
 <div class ="span12 artist-menu">
 	<?php  
-	$facebooklogin = Session::get('hybridAuth');
+	$facebooklogin = Cache::get('hybridAuth');
 
 	print_r($facebooklogin);
 
 	?>
-
+	
 	<div id="myCarousel" class="carousel slide">
 
 		<div class="carousel-inner">

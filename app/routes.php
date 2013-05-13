@@ -30,9 +30,9 @@ View::composer('instance.header', function($view)
 	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following);
 	}
 
-	if(Session::has('hybridAuth'))
+	if(Cache::has('hybridAuth'))
 	{
-	$facebooksession = Session::get('hybridAuth');
+	$facebooksession = Cache::get('hybridAuth');
 
 	$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
 
@@ -161,12 +161,12 @@ Route::get('social/authenticate/{action}', array("as" => "hybridauth", function(
 	}
  
 	// Store received data in session
-	Session::put('hybridAuth', $userProfile);
+	Cache::put('hybridAuth', $userProfile,120);
  
 	// logout
 	$provider->logout();
 
-	$facebooklogin = Session::get('hybridAuth');
+	$facebooklogin = Cache::get('hybridAuth');
 
 	$identifier = $facebooklogin->identifier;
 

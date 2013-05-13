@@ -3,7 +3,7 @@
 		<a href="{{{ URL::to('/') }}}"><img class="" src="/images/logovoltage.png" alt=""></a>
 	</div>
 
-	@if (Auth::check() or Session::has('hybridAuth'))
+	@if (Auth::check() or Cache::has('hybridAuth'))
 	<ul class="nav span6">
 		
 			<li class="dropdown pull-right">
@@ -31,7 +31,7 @@
 		
 	</ul>
 	@endif
-	@if(Auth::user() or Session::has('hybridAuth'))
+	@if(Auth::user() or Cache::has('hybridAuth'))
 	<ul class="nav span1 pull-right">
 		
 			<li class="dropdown pull-right">
@@ -104,10 +104,10 @@
 				</ul>
 
 				<ul class="nav">
-					@if (Auth::check() or Session::has('hybridAuth'))
+					@if (Auth::check() or Cache::has('hybridAuth'))
 					<li class="span2"><a href="{{ URL::to('logout')}}">Logout</a></li>
 					@else
-						@if (!Session::has('hybridAuth'))
+						@if (!Cache::has('hybridAuth'))
 							<li class="span2"><a href="{{ URL::route('login') }}">Login</a></li>
 						@endif
 					@endif
@@ -118,7 +118,7 @@
 </div>
 
 @section('scripts')
-	
+
 
 @stop
 	
