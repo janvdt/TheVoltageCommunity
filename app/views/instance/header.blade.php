@@ -3,34 +3,7 @@
 		<a href="{{{ URL::to('/') }}}"><img class="" src="/images/logovoltage.png" alt=""></a>
 	</div>
 
-	@if (Auth::check() or Session::has('hybridAuth'))
-	<ul class="nav span6">
-		
-			<li class="dropdown pull-right">
-				<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>
-				@if(Auth::user())
-				 Welcome {{Auth::user()->first_name}} {{Auth::user()->last_name}}
-				@else
-				Welcome {{$facebookuser->first_name}} {{$facebookuser->last_name}}
-				@endif
-				<b class="caret"></b></a>
-
-				<ul class="dropdown-menu" role="menu" aria-labelledby="choose-instance">
-					<li>
-						@if(Auth::user())
-						<a href="{{ URL::action('UserController@showAccount',array(Auth::user()->id)) }}"><i class="icon-eye-open"> View Account</i></a>
-						@else
-						<a href="{{ URL::action('UserController@showAccount',array($facebookuser->id)) }}"><i class="icon-eye-open"> View Account</i></a>
-						@endif
-
-					</li>
-					<li><a href=""><i class="icon-key"> Change password</i></a></li>
-					<li><a href="{{ URL::action('PostController@create') }}"><i class="icon-plus"> Create post</i></a></li>
-				</ul>
-			</li>
-		
-	</ul>
-	@endif
+	
 	
 	<div class="span2 pull-right">
 		<a href="{{ URL::action('HomeController@showActivity') }}"><i class="icon-bullhorn"> Activity log</i></a>
