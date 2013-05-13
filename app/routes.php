@@ -165,8 +165,14 @@ Route::get('social/authenticate/{action}', array("as" => "hybridauth", function(
 		$account = Account::where('identifier',$facebooklogin->identifier)->first();
 
    		DB::table('users')->insert(array('email' => $facebooklogin->email,'first_name' => $facebooklogin->firstName,'last_name' => $facebooklogin->lastName,'status' => 'Active','account_id' => $account->id,'identifier' => $facebooklogin->identifier));
+   		$facebookuser = User::where('identifier',$facebooklogin->identifier)->first();
+
+   			Auth::loginUsingId($faecebookuser->id);
    	}
-   	Auth::loginUsingId($user->id);
+   	else
+   	{
+   		Auth::loginUsingId($user->id);
+   }
              
     return Redirect::to('/')->with('hybridAuthSuccess', 'Social network Authentication successfull');
 }));
