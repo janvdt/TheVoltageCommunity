@@ -9,7 +9,7 @@ return array(
                 "secret" => "9mysecret"
                 )
         ),
-        "facebook" => array(
+        "Facebook" => array(
             "enabled" => true,
             "keys" => array(
                 "id" => "450678531689902",
