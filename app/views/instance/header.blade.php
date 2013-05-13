@@ -19,8 +19,6 @@
 					<li>
 						@if(Auth::user())
 						<a href="{{ URL::action('UserController@showAccount',array(Auth::user()->id)) }}"><i class="icon-eye-open"> View Account</i></a>
-						@else
-						<a href="{{ URL::action('UserController@showAccount',array($facebookuser->id)) }}"><i class="icon-eye-open"> View Account</i></a>
 						@endif
 
 					</li>
