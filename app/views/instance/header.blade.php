@@ -36,9 +36,7 @@
 </div>
 
 @section('scripts')
-	@if (Auth::check() or Session::has('hybridAuth'))
-	Tinycon.setBubble({{count($notcount)}});
-	@endif
+	
 
 @stop
 	
