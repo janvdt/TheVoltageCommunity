@@ -8,10 +8,10 @@
 	<div class="span12">
 		<div class="span4">
 			<a href="{{ URL::action('AccountController@edit', array($user->accountUser()->id)) }}" class="btn btn-primary">Edit Account</a><br />
-			@if(Auth::user())
+			@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL )
 			<img src="{{ url($user->accountUser()->getImagePathname()) }}" alt="">
-			@elseif(Session::has('hybridAuth'))
-			<img src="{{Session::get('hybridAuth')->photoURL}}">
+			@elseif(Auth::user()->accountUser()->facebookpic != NULL)
+			<img src="{{ url($user->accountUser()->facebookpic) }}" alt="">
 			@endif
 		</div>
 
