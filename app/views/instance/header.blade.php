@@ -31,7 +31,7 @@
 		
 	</ul>
 	@endif
-	@if(Auth::user() or Cache::has('hybridAuth'))
+	@if(Auth::user())
 	<ul class="nav span1 pull-right">
 		
 			<li class="dropdown pull-right">
@@ -39,7 +39,7 @@
 
 				<ul class="dropdown-menu notifications span4" role="menu">
 					@foreach($notifications as $notification)
-						@if(Auth::user() and $notification->post->created_by == Auth::user()->id or $notification->post->created_by == $facebookuser->id)
+						@if($notification->post->created_by == Auth::user()->id)
 							@if($notification->activity == FALSE)
 							@if($notification->viewed == FALSE)
 								<li class="notificationsitem span3">
@@ -104,12 +104,10 @@
 				</ul>
 
 				<ul class="nav">
-					@if (Auth::check() or Cache::has('hybridAuth'))
+					@if (Auth::check())
 					<li class="span2"><a href="{{ URL::to('logout')}}">Logout</a></li>
 					@else
-						@if (!Cache::has('hybridAuth'))
-							<li class="span2"><a href="{{ URL::route('login') }}">Login</a></li>
-						@endif
+						<li class="span2"><a href="{{ URL::route('login') }}">Login</a></li>
 					@endif
 				</ul>
 			</div>

@@ -30,20 +30,6 @@ View::composer('instance.header', function($view)
 	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following);
 	}
 
-	if(Cache::has('hybridAuth'))
-	{
-	$facebooksession = Cache::get('hybridAuth');
-
-	$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
-
-	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',$facebookuser->id)->where('post_creator',$facebookuser->id)->where('activity',FALSE)->get();
-	$notifications = Notification::where('user_id','!=',$facebookuser->id)->get();
-
-	$following = Follower::where('account_id', $facebookuser->accountUser()->id)->get();
-
-	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following)->with('facebookuser',$facebookuser);
-	}
-
 });
 
 Route::get('login', array('as' => 'login', function()
@@ -102,7 +88,7 @@ Route::post('login', function()
 
 Route::get('logout', function() {
 	Auth::logout();
-	Session::flush();
+	Cache::forget('hybridAuth');
 	return Redirect::to('/');
 
 });
@@ -174,12 +160,13 @@ Route::get('social/authenticate/{action}', array("as" => "hybridauth", function(
 
 	if($user == NULL)
 	{	
-		DB::table('accounts')->insert(array('identifier' => $facebooklogin->identifier));
+		DB::table('accounts')->insert(array('identifier' => $facebooklogin->identifier,'facebookpic' => $facebooklogin->photoURL ));
 
 		$account = Account::where('identifier',$facebooklogin->identifier)->first();
 
    		DB::table('users')->insert(array('email' => $facebooklogin->email,'first_name' => $facebooklogin->firstName,'last_name' => $facebooklogin->lastName,'status' => 'Active','account_id' => $account->id,'identifier' => $facebooklogin->identifier));
    	}
+   	Auth::loginUsingId($user->id);
              
     return Redirect::to('/')->with('hybridAuthSuccess', 'Social network Authentication successfull');
 }));

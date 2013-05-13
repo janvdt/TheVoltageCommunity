@@ -54,7 +54,7 @@ class PostController extends BaseController {
 				->withInput()
 				->withErrors($validator);
 		}
-		if(Auth::user()){
+
 		$new_post = array(
 			'title'          => Input::get('title'),
 			'body'           => Input::get('body'),
@@ -63,21 +63,6 @@ class PostController extends BaseController {
 			'youtube' 	 	 => Input::get('youtube-hidden'),
 			'created_by'     => Auth::user()->id,
 		);
-		}
-		else
-		{
-			$facebooksession = Session::get('hybridAuth');
-			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
-
-			$new_post = array(
-			'title'          => Input::get('title'),
-			'body'           => Input::get('body'),
-			'type'			 => Input::get('type'),
-			'soundcloud' 	 => Input::get('soundcloud-hidden'),
-			'youtube' 	 	 => Input::get('youtube-hidden'),
-			'created_by'     => $facebookuser->id,
-		);
-		}
 
 
 		$post = new Post($new_post);
@@ -95,15 +80,9 @@ class PostController extends BaseController {
 		}
 		
 		$post->save();
-		if(Auth::user()){
+
 
 		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1));
-		}
-		else
-		{
-
-			DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => $facebookuser->id,'post_id' => $post->id,'post_creator' => $facebookuser->id,'activity' => 1));
-		}
 		
 		return Redirect::action('MusicController@index');	
 	}
@@ -169,10 +148,6 @@ class PostController extends BaseController {
 	public function showMusic($id)
 	{
 		$post = Post::find($id);
-		if(Session::has('hybridAuth')){
-			$facebooksession = Session::get('hybridAuth');
-			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
-		}
 
 		DB::table('posts')->where('id',$id)->increment('views');
 
@@ -180,20 +155,9 @@ class PostController extends BaseController {
 		{
 			DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
 		}
-		else
-		{
-			DB::table('notifications')->where('user_id','!=',$facebookuser->id)->where('post_id',$post->id)->update(array('viewed' => 1));
-		}
-		if(Session::has('hybridAuth')){
+
 		return View::make('post.music.index')
-			->with('post',$post)
-			->with('facebookuser',$facebookuser);
-		}
-		else
-		{
-			return View::make('post.music.index')
 			->with('post',$post);
-		}
 	}
 
 	/**
