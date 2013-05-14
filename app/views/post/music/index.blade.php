@@ -58,7 +58,7 @@
 		<div class="postreview">
 			{{$post->body}}
 		</div>
-		@if(Auth::user() or Session::has('hybridAuth'))
+		@if(Auth::user())
 		<div class="buttoncomment">
 			<a class="btn btn-success" href="#comment-post" data-toggle="modal"><i class="icon-pencil"> Comment!</i></a>
 		</div>
@@ -69,9 +69,13 @@
 			<div class="well">
 				<p class="pull-right">Posted by: {{$comment->user->first_name}} {{$comment->user->last_name}}</p>
 				@if($comment->user->accountUser()->identifier == 0)
-				<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="100">
+				<a href="{{ URL::action('UserController@visitAccount',array($comment->user->id)) }}">
+					<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="100">
+				</a>
 				@else
-				<img class="img-rounded" src="{{ url($comment->user->accountUser()->facebookpic) }}" alt="" width="100">
+				<a href="{{ URL::action('UserController@visitAccount',array($comment->user->id)) }}">
+					<img class="img-rounded" src="{{ url($comment->user->accountUser()->facebookpic) }}" alt="" width="100">
+				</a>
 				@endif
 				{{$comment->body}}
 			</div>
@@ -121,10 +125,10 @@ $("#upload-comment-form").ajaxForm({
 	dataType: 'json',
 	success: function(data) {
 	console.log(data.id);
-	@if(Auth::user())		
+	@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL)		
 	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>"  + data.body + "</div>";
 	@else
-	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url($facebookuser->accountUser()->facebookpic) }}' width='100'>"  + data.body + "</div>";
+	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' width='100'>"  + data.body + "</div>";
 	@endif
 	$(".comments").append(comment);
 

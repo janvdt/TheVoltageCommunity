@@ -4,7 +4,11 @@
 <div class="row">
 	<div class="span12">
 		<div class="span4">
+			@if($user->accountUser()->image_id != 0 or $user->accountUser()->facebookpic == NULL )
 			<img src="{{ url($user->accountUser()->getImagePathname()) }}" alt="">
+			@else
+			<img src="{{ url($user->accountUser()->facebookpic) }}" alt="">
+			@endif
 		</div>
 
 		<div class="span4">
