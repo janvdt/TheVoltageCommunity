@@ -69,12 +69,15 @@
 <script src="/assets/libraries/tinycon/tinycon.min.js"></script>
 
 <script>
+$(document).ready(function() {
  $("#share").click(function(){ 
+ 	console.log('succes');
 	$.post('/post/share/' + {{$post->id}},
 	function(data)
 	{
 		console.log('succes');
 	});
+});
 });
 </script>
 
