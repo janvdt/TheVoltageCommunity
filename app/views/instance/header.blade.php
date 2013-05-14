@@ -33,7 +33,47 @@
 			<li class="dropdown pull-right">
 				<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="badge badge-important">{{count($notcount)}}</span><b class="caret"></b></a>
 
-				
+				<ul class="dropdown-menu notifications span4" role="menu">
+					@foreach($notifications as $notification)
+						@if($notification->post->created_by == Auth::user()->id)
+							@if($notification->activity == FALSE)
+							@if($notification->viewed == FALSE)
+								<li class="notificationsitem span3">
+									<div class="alert alert-success">
+									<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+  									 {{$notification->user->first_name}} {{$notification->body}}
+  									 @if($notification->post->soundcloud_art != NULL)
+											<img class="img-rounded pull-right" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="25">
+										@else
+											<img class="img-rounded pull-right" src="{{ url($notification->post->youtube_art) }}" alt="" width="25">
+										@endif
+									</a>
+									</div>
+								</li>
+							@else
+								<li class="notificationsitem span3">
+									<div class="alert">
+									<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+  									 {{$notification->user->first_name}} {{$notification->body}}
+  									 @if($notification->post->soundcloud_art != NULL)
+											<img class="img-rounded pull-right" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="25">
+										@else
+											<img class="img-rounded pull-right" src="{{ url($notification->post->youtube_art) }}" alt="" width="25">
+										@endif
+									</a>
+									</div>
+								</li>
+							@endif
+							@endif
+						@endif
+					@endforeach
+					@foreach($following as $follow)
+						<li class="notificationsitem span3">
+							{{$follow->account->user->notification}}
+						
+						</li>
+					@endforeach
+				</ul>
 			</li>
 		</ul>
 	<div class="span2 pull-right">
