@@ -68,6 +68,16 @@
 <script src="/assets/libraries/masonry2/jquery.masonry.min.js"></script>
 <script src="/assets/libraries/tinycon/tinycon.min.js"></script>
 
+<script>
+ $("#share").click(function(){ 
+ 	console.log('succes')
+	$.post('/post/share/' + {{$post->id}},
+	function(data)
+	{
+		
+	});
+});
+</script>
 
 <script>
 $(document).ready(function() {
