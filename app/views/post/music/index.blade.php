@@ -146,11 +146,11 @@
 });
 
  $("#share").click(function(){ 
-
+ 	console.log('succes')
 	$.post('/post/share/' + {{$post->id}},
 	function(data)
 	{
-		console.log('succes')
+		
 	});
 });
 @if(Auth::user())
