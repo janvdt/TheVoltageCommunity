@@ -49,16 +49,7 @@ class CommentController extends BaseController {
 		$commentModel = new Comment;
 		$commentModel->body = Input::get('textcomment');
 		$commentModel->post_id = Input::get("post_id");
-
-		if(Auth::user()){
-			$commentModel->user_id = Auth::user()->id;
-		}
-		else
-		{
-			$facebooksession = Session::get('hybridAuth');
-			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
-			$commentModel->user_id = $facebookuser->id;
-		}
+		$commentModel->user_id = Auth::user()->id;
 
 		$post = Post::find(Input::get("post_id"));
 		if(Input::has('comment_id'))
@@ -69,31 +60,11 @@ class CommentController extends BaseController {
 
 		$post = Post::find(Input::get("post_id"));
 
-		if(Auth::user()){
+		
 		DB::table('notifications')->insert(array('body' => "commented your post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by));
-		}
-		else
-		{
-			$facebooksession = Session::get('hybridAuth');
-			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
-			DB::table('notifications')->insert(array('body' => "commented your post!",'user_id' => $facebookuser->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by));
-		}
-
-		if(Auth::user()){
-			if($post->created_by != Auth::user()->id){
-			DB::table('notifications')->insert(array('body' => "commented on a post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by,'activity' => 1));
-			}
-		}
-
-		if(Session::has('hybridAuth'))
-		{
-			$facebooksession = Session::get('hybridAuth');
-			$facebookuser = User::where('identifier',$facebooksession->identifier)->first();
-
-			if($post->created_by != $facebookuser->id)
-			{
-				DB::table('notifications')->insert(array('body' => "commented on a post!",'user_id' => $facebookuser->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by,'activity' => 1));
-			}
+		
+		if($post->created_by != Auth::user()->id){
+		DB::table('notifications')->insert(array('body' => "commented on a post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by,'activity' => 1));
 		}
 
 

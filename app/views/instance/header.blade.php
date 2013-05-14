@@ -62,8 +62,6 @@
 										@endif
 									</a>
 									</div>
-									
-									
 								</li>
 							@endif
 							@endif
