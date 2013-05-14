@@ -226,7 +226,14 @@ class PostController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+
+		DB::table('posts')->where('id',$id)->delete();
+
+		DB::table('comments')->where('post_id',$id)->delete();
+
+		DB::table('notifications')->where('post_id',$id)->delete();
+
+		return Redirect::back();
 	}
 
 	public function like($id)
@@ -257,5 +264,33 @@ class PostController extends BaseController {
 
 		return View::make('like.index')
 			->with('post',$post);
+	}
+	public function share($id)
+    {
+    	$socialAuth = new Hybrid_Auth('../app/config/hybridauth.php');
+
+    	$facebook = $socialAuth->authenticate( "Facebook" );
+
+    	$post = Post::find($id);
+   		
+   		if($post->soundcloud_art != NULL){
+   		$facebook->api()->api("/me/feed", "post", array(
+      	"message" => "I just shared a post from the Voltage Community",
+      	"picture" => "$post->soundcloud_art",
+      	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
+      	"name"    => "$post->title",
+      	"caption" => "$post->body"
+   		));
+   		}
+   		else
+   		{
+   			$facebook->api()->api("/me/feed", "post", array(
+      	"message" => "I just shared a post from the Voltage Community",
+      	"picture" => "$post->youtube_art",
+      	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
+      	"name"    => "$post->title",
+      	"caption" => "$post->body"
+   		));
+   		}	
 	}
 }

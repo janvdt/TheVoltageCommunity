@@ -67,6 +67,7 @@
 <script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>
 <script src="/assets/libraries/masonry2/jquery.masonry.min.js"></script>
 <script src="/assets/libraries/tinycon/tinycon.min.js"></script>
+<script src="http://connect.facebook.net/en_US/all.js"></script>  
 
 
 <script>

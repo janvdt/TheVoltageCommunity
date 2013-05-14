@@ -77,10 +77,11 @@
 	</div>
 </div>
 <div class="row loadmore">
-		<div class="span12 offset7">
+		<div class="span12">
 			
 		</div>
 	</div>
+</div>
 @stop
 
 @section('scripts')

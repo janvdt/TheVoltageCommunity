@@ -7,11 +7,13 @@
     client_id: "706bb7625906c6e65ff8bb1bebdd22b7",
   });
 </script>
+ 
 <div class="span12">
 	<div class="span11">
 	@if(Auth::user())
 	@if(Auth::user()->id == $post->created_by)
 	<a href="{{ URL::action('PostController@editMusic', array($post->id)) }}" class="btn btn-primary pull-right">Edit post</a>
+	<a href="#delete-post-{{ $post->id }}" data-toggle="modal" class="btn btn-danger pull-right">Delete</a>
 	@endif
 	@endif
 	<h4>{{$post->title}}</h4>
@@ -40,6 +42,13 @@
 			</div>
 			@endif
 		</div>
+		<div class="row">
+			@if(Auth::user())
+			<div class="span4 offset1 sharebutton">
+				<a class="btn btn-success btn-large" id="share"><i class="icon-share-alt">share</i></a>
+			</div>
+			@endif
+		</div>
 	</div>
 	<div class="span7">
 		<div id="postsoundcloud">
@@ -63,7 +72,7 @@
 			<a class="btn btn-success" href="#comment-post" data-toggle="modal"><i class="icon-pencil"> Comment!</i></a>
 		</div>
 		@endif
-
+		
 		<div class="comments">
 			@foreach($post->comments as $comment)
 			<div class="well">
@@ -101,6 +110,23 @@
 	</form>
 </div>
 
+<div class="modal hide fade" id="delete-post-{{ $post->id }}">
+	<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@destroy', array($post->id)) }}">
+		<input type="hidden" name="_method" value="DELETE">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>Delete post</h3>
+		</div>
+		<div class="modal-body">
+			<p>Are you sure you want to delete this post?</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Cancel</button>
+			<input class="btn btn-danger" type="submit" value="Delete page">
+		</div>
+	</form>
+</div>
+
 @stop
 
 @section('scripts')
@@ -116,6 +142,15 @@
 		counttext="<p class='likevalue'>"+likecount+"</p>";
 		$('.likeref').append(counttext);
 		$('#post').hide();
+	});
+});
+
+ $("#share").click(function(){ 
+
+	$.post('/post/share/' + {{$post->id}},
+	function(data)
+	{
+		console.log('succes')
 	});
 });
 @if(Auth::user())
@@ -139,6 +174,5 @@ $("#upload-comment-form").ajaxForm({
 	}
 });
 @endif
-
-
 @stop
+

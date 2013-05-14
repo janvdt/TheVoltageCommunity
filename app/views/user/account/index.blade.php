@@ -47,9 +47,38 @@
 	<div class="span12">
 		<div class="span4">
 			<h4>Your Music Posts</h4>
-			<ul>
+			<ul class="nav">
 				@foreach($musicposts as $musicpost)
-					<li class="span3"><a href="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">{{$musicpost->title}}</a> <a href="" data-toggle="modal" class="btn btn-danger pull-right">Delete</a></li>
+					<li class="span3 accountmusicpost">
+						<a href="#delete-post-{{ $musicpost->id }}" data-toggle="modal" class="btn btn-danger pull-right">Delete</a>
+						@if($musicpost->image_id != 0)
+							<img class="img-rounded" src="{{ url($musicpost->image->getPathname()) }}" alt="" width="100">
+						@else
+							@if($musicpost->soundcloud_art != NULL)
+								<img class="img-rounded" src="{{ url($musicpost->soundcloud_art) }}" alt="" width="100">
+							@else
+								<img class="img-rounded" src="{{ url($musicpost->youtube_art) }}" alt="" width="100">
+							@endif
+						@endif
+						<a href="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">{{$musicpost->title}}</a>
+					</li>
+					<div class="modal hide fade" id="delete-post-{{ $musicpost->id }}" >
+					
+						<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@destroy', array($musicpost->id)) }}" >
+							<input type="hidden" name="_method" value="DELETE">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h3>Delete Post</h3>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure you want to delete this post?</p>
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal">Cancel</button>
+								<input class="btn btn-danger" type="submit" value="Delete image">
+							</div>
+						</form>
+					</div>
 				@endforeach
 			</ul>
 		</div>
