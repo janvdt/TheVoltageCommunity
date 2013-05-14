@@ -110,7 +110,9 @@
 </div>
 
 @section('scripts')
-
+@if(Auth::user())
+	Tinycon.setBubble({{count($notcount)}});
+@endif
 
 @stop
 	
