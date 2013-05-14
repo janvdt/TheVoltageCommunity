@@ -125,10 +125,12 @@ $("#upload-comment-form").ajaxForm({
 	dataType: 'json',
 	success: function(data) {
 	console.log(data.id);
+	@if(Auth::user())
 	@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL)		
 	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>"  + data.body + "</div>";
 	@else
 	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' width='100'>"  + data.body + "</div>";
+	@endif
 	@endif
 	$(".comments").append(comment);
 
