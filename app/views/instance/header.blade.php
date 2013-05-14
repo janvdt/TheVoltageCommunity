@@ -3,15 +3,13 @@
 		<a href="{{{ URL::to('/') }}}"><img class="" src="/images/logovoltage.png" alt=""></a>
 	</div>
 
-	@if (Auth::check() or Cache::has('hybridAuth'))
+	@if (Auth::check())
 	<ul class="nav span6">
 		
 			<li class="dropdown pull-right">
 				<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>
 				@if(Auth::user())
 				 Welcome {{Auth::user()->first_name}} {{Auth::user()->last_name}}
-				@else
-				Welcome {{$facebookuser->first_name}} {{$facebookuser->last_name}}
 				@endif
 				<b class="caret"></b></a>
 
