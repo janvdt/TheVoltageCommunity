@@ -145,6 +145,15 @@
 	});
 });
 
+$("#share").click(function(){ 
+ 	console.log('succes');
+	$.post('/post/share/' + {{$post->id}},
+	function(data)
+	{
+		console.log('succes');
+	});
+});
+
 @if(Auth::user())
 // Ajax file upload for the file upload modal.
 $("#upload-comment-form").ajaxForm({

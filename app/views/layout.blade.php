@@ -70,19 +70,6 @@
 
 <script>
 $(document).ready(function() {
- $("#share").click(function(){ 
- 	console.log('succes');
-	$.post('/post/share/' + {{$post->id}},
-	function(data)
-	{
-		console.log('succes');
-	});
-});
-});
-</script>
-
-<script>
-$(document).ready(function() {
   var $container = $('.graphposts');
   $('.pagination ul li:not(:last)').remove();
 
