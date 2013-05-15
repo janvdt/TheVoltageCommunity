@@ -36,7 +36,7 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
-Route::post('post/share/{id}', 'PostController@share');
+
 Route::resource('comment','CommentController');
 Route::get('post/showlikes/{id}', 'PostController@showLikes');
 Route::get('post/createMusic', 'PostController@createMusic');
@@ -46,6 +46,7 @@ Route::resource('music','MusicController');
 Route::resource('graph','GraphController');
 Route::resource('post','PostController');
 Route::post('post/like/{id}', 'PostController@like');
+Route::get('post/share/{id}', 'PostController@share');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');
 Route::get('user/showaccount/{id}', 'UserController@showAccount');
