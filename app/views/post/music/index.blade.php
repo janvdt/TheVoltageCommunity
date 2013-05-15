@@ -45,7 +45,7 @@
 		<div class="row">
 			@if(Auth::user())
 			<div class="span4 offset1 sharebutton">
-				<a class="btn btn-success btn-large" href="{{ URL::action('PostController@share', array($post->id)) }}"><i class="icon-share-alt">share</i></a>
+				<a class="btn btn-success btn-large" id="share"><i class="icon-share-alt">share</i></a>
 			</div>
 			@endif
 		</div>

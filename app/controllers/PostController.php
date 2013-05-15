@@ -292,6 +292,6 @@ class PostController extends BaseController {
       	"caption" => "$post->body"
    		));
    		}
-   		return Redirect::action('PostController@showMusic', array($post->id));	
+   			
 	}
 }
