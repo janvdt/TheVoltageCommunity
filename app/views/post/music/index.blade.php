@@ -147,10 +147,11 @@
 
 $("#share").click(function(){ 
  	console.log('succes');
-	$.post('/post/share/' + {{$post->id}},
+	$.get('/post/share/' + {{$post->id}},
 	function(data)
 	{
 		console.log('succes');
+		$('#share').hide();
 	});
 });
 
