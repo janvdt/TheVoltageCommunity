@@ -55,7 +55,7 @@ Route::resource('account','AccountController');
 Route::post('account/unfollow/{id}', 'AccountController@unfollow');
 Route::post('account/follow/{id}', 'AccountController@follow');
 Route::get('activity', 'HomeController@showActivity');
-Route::post('post/share/{id}', 'PostController@share');
+Route::get('post/share/{id}', 'PostController@share');
 
 
 
