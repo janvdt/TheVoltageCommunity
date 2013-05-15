@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'thevoltagecommu',
-			'username'  => 'root',
-			'password'  => 'root',
+			'host'      => 'voltagecommunity.mysql.eu1.frbit.com',
+			'database'  => 'voltagecommunity',
+			'username'  => 'voltagecommunity',
+			'password'  => '86Kt3_NtcotZttR5',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
