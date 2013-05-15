@@ -28,9 +28,26 @@ class PostController extends BaseController {
 	 */
 	public function createMusic()
 	{
+
+		$genresdata = Genre::all();
+
+		//Get tags that belong to images
+		$genresdata = DB::table('genres')->whereExists(function($query){
+				$query->select(DB::raw('*'))
+					->from('genre_post')
+					->whereRaw('genre_post.genre_id = genres.id');
+			})
+			->lists('title', 'id');
+
+		//transform the $tagsdata array.
+		array_walk($genresdata, function (&$item, $key) {
+		$item = array("id"=>$item,"text"=>$item);
+		});
+
 		$images = Image::orderBy('created_at', 'desc')->where('profile',FALSE)->take(10)->get();
 		return View::make('post.music.create')
-			->with('images',$images);
+			->with('images',$images)
+			->with('genresdata', $genresdata);
 	}
 
 	/**
@@ -44,7 +61,8 @@ class PostController extends BaseController {
 			Input::all(),
 			array(
 				'title'        => 'required',
-				'body'         => 'required', 
+				'body'         => 'required',
+				'genre'         => 'required',  
 			)
 		);
 
@@ -83,6 +101,34 @@ class PostController extends BaseController {
 
 
 		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1));
+
+		// validate if the number of tags exceeds the allowed to be chosen
+		if (count(Input::get('genres')) > 3) {
+			return Redirect::back()->with_errors(array('Sorry, you can only pick 3 maximum tags'));
+		}
+		//Decode json object.
+		$obj = json_decode(stripslashes(Input::get('genre-hidden')));
+
+		foreach($obj->val as $val){
+			$genre = Genre::where('title',$val)->first();
+			//When no genre is found.
+			if($genre != NULL){
+			
+			DB::table('genre_post')
+				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+			}
+			else
+			{
+				DB::table('genres')
+				->insert(array('title' => $val));
+
+				$genre = Genre::where('title',$val)->first();
+
+				DB::table('genre_post')
+				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+			}
+		}
+
 		
 		return Redirect::action('MusicController@index');	
 	}
@@ -182,8 +228,28 @@ class PostController extends BaseController {
 	public function editMusic($id)
 	{
 		$post = Post::find($id);
+
+		$genresdata = Genre::all();
+
+		//Get tags that belong to images
+		$genresdata = DB::table('genres')->whereExists(function($query){
+				$query->select(DB::raw('*'))
+					->from('genre_post')
+					->whereRaw('genre_post.genre_id = genres.id');
+			})
+			->lists('title', 'id');
+
+		//transform the $tagsdata array.
+		array_walk($genresdata, function (&$item, $key) {
+		$item = array("id"=>$item,"text"=>$item);
+		});
+
+		//Return the tags that belong to that image.
+		$selectedgenres =   implode(',', $post->getGenresArray());
 		return View::make('post.music.edit')
-			->with('post',$post);
+			->with('post',$post)
+			->with('selectedgenres',$selectedgenres)
+			->with('genresdata',$genresdata);
 	}
 
 	/**
@@ -214,6 +280,51 @@ class PostController extends BaseController {
 		$post->body = Input::get('body');
 
 		$post->save();
+
+		//decode json object.
+		$obj = json_decode(stripslashes(Input::get('genre-hidden')));
+
+		// When object is empty.
+		if($obj == NULL)
+		{
+			$genre = Genre::where('title', Input::get('genre-hidden'))->first();
+
+			//delete tags from the specific image
+			DB::table('genre_post')
+				->where('post_id',$post->id)
+				->delete();
+		}
+		else
+		{
+			//delete tags from the specific image
+			DB::table('genre_post')
+					->where('post_id',$post->id)
+					->delete();
+
+			foreach($obj->val as $val){
+					
+				$genre= Genre::where('title',$val)->first();
+	
+				if($genre != NULL){
+					
+					//when tag exists add to image tag pivot table.
+					DB::table('genre_post')
+						->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+				}
+				else
+				{
+					//insert tag first in tags table
+					DB::table('genres')
+						->insert(array('title' => $val));
+	
+					$genre = Genre::where('title',$val)->first();
+					
+					// Then insert values in image tag pivot table.
+					DB::table('genre_post')
+						->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+				}
+			}
+		}
 
 		return Redirect::action('PostController@showMusic', array($post->id));
 	}
@@ -292,6 +403,6 @@ class PostController extends BaseController {
       	"caption" => "$post->body"
    		));
    		}
-   			
+
 	}
 }

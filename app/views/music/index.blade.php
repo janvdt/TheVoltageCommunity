@@ -4,6 +4,42 @@
 
 <div class ="span12 music">
 <h2>Music</h2>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+ 
+		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar">lol</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+ 
+			<!-- Be sure to leave the brand out there if you want it shown -->
+			<a class="brand" href="#">Genres</a>
+ 
+			<!-- Everything you want hidden at 940px or less, place within here -->
+			<div class="nav-collapse collapse">
+			<!-- .nav, .navbar-search, .navbar-form, etc -->
+			<ul class="nav">
+				<li class="active"><a href="#">All</a></li>
+				<li><a href="#">Own taste</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose genre <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							@foreach($genres as $genre)
+							<li><a href="#">{{$genre->title}}</a></li>
+							@endforeach
+						</ul>
+				</li>
+			</ul>
+			<form class="navbar-search pull-right" action="">
+                 <input type="text" class="search-query span2" placeholder="Search">
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
 
 	<div class="row">
 		<ul class="ch-grid nav nav-pills music-posts">

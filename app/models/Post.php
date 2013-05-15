@@ -49,5 +49,27 @@ class Post extends BaseModel {
     {
         return $this->hasMany('Notification');
     }
- 
+    public function genres()
+	{
+		return $this->belongsToMany('Genre');
+	}
+
+	/**
+	 * Convert linked tags to key/value array.
+	 *
+	 * @return void
+	 */
+	public function getGenresArray()
+	{
+		$genres = array();
+
+		if (count($this->genres)) {
+			foreach ($this->genres as $genre) {
+				$genres[] = $genre->title;
+			}
+		}
+
+		return $genres;
+	}
+
 }

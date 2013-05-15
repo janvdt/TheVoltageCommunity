@@ -311,6 +311,10 @@ $("#soundcloud").select2({
         $('.preview').empty();
         $('.soundcloud-hidden').attr('value', data.permalink_url);
         $('#title').attr('value', data.title);
+        $('.genre').attr('value', data.genre);
+        $('.genre').change();
+        $('.genre-hidden').attr('value', data.genre);
+        $('.genre-hidden').change();
         var str=data.artwork_url;
 		var n=str.replace("large","t500x500");
         $('#art_urlsoundcloud').attr('value', n);

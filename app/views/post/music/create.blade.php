@@ -47,6 +47,14 @@
 			</div>
 
 			<div class="control-group">
+				<label class="control-label">Genre</label>
+				<div class="controls">
+					<input style="width: 300px;" type="text" name="genre" value="" class="genre"/>
+					<input type="hidden" type="text" name="genre-hidden" value="" class="genre-hidden"/>
+				</div>
+			</div>
+
+			<div class="control-group">
 				<input type="hidden" id="art_urlyoutube" name="art_urlyoutube" value="">
 				
 			</div>
@@ -66,4 +74,25 @@
 	</div>
 </div>
 
+@stop
+
+@section('scripts')
+	@parent
+
+	$(".genre").select2({
+		createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
+		multiple: true,
+		data: <?php print(json_encode(array_values($genresdata))); ?>,
+		initSelection : function (element, callback) {
+    	   var data = [];
+        	$(element.val().split(",")).each(function () {
+        	    data.push({id: this, text: this});
+        	});
+        	callback(data);
+    	}
+	}).on("change", function(e) {
+		var genres = JSON.stringify({val:e.val, added:e.added, removed:e.removed});
+		console.log(genres);
+		$('.genre-hidden').attr('value', genres);
+	});
 @stop

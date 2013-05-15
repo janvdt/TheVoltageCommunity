@@ -16,7 +16,13 @@
 	<a href="#delete-post-{{ $post->id }}" data-toggle="modal" class="btn btn-danger pull-right">Delete</a>
 	@endif
 	@endif
+	<div class="span6">
+		@foreach($post->genres as $genre)
+		<span class="label label-info pull-right genresbadge"><h6>{{$genre->title}}</h6></span>
+	@endforeach
 	<h4>{{$post->title}}</h4>
+	
+	</div>
 	</div>
 </div>
 <div class="row">
