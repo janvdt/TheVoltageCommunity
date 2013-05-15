@@ -44,8 +44,8 @@ Route::resource('user', 'UserController');
 Route::resource('music','MusicController');
 Route::resource('graph','GraphController');
 Route::resource('post','PostController');
+Route::post('post/share/{id}', 'PostController@share');
 Route::post('post/like/{id}', 'PostController@like');
-
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');
 Route::get('user/showaccount/{id}', 'UserController@showAccount');
@@ -54,7 +54,7 @@ Route::resource('account','AccountController');
 Route::post('account/unfollow/{id}', 'AccountController@unfollow');
 Route::post('account/follow/{id}', 'AccountController@follow');
 Route::get('activity', 'HomeController@showActivity');
-Route::post('post/share/{id}', 'PostController@share');
+
 
 
 
