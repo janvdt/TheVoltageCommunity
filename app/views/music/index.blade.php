@@ -57,9 +57,9 @@
 
             			<div class="ch-info">
             				@if($musicpost->soundcloud != NULL)
-							<p>
-								<a  href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play">play</i></a>
-							</p>
+						
+								<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+							
             				@endif
                 			<?php $string = $musicpost->title;
 							$maxLength = 40;
