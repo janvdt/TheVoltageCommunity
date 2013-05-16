@@ -75,6 +75,13 @@
         			<div class="viewslikes span2">
         				<div class="pull-left">
         					<div class="pull-left">
+        						@if($musicpost->soundcloud != NULL)
+									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+								@endif
+							</div>
+						</div>
+        				<div class="pull-left">
+        					<div class="pull-left">
         						<i class='icon-eye-open'></i>
         						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
         					</div>
@@ -87,9 +94,6 @@
         					
         				</div>
         			</div>
-        			@if($musicpost->soundcloud != NULL)
-						<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
-					@endif
         			<div class="shelf shelfmusicpost">
 					<div class="bookend_left"></div>
 					<div class="bookend_right"></div>
