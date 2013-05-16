@@ -129,7 +129,10 @@
       return false;
     });
 
-
+$("musicpost").stratus({
+      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
+              
+    });
 
 
 $('.pagination ul li:not(:last)').remove();

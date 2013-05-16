@@ -24,15 +24,6 @@
 	<link rel="stylesheet" href="/assets/libraries/ajax-scroll/src/css/jquery.ias.css">
 
 	<script src="/assets/js/jquery-1.8.0.min.js"></script>
-	<script type="text/javascript">
-  $(document).ready(function(){
-    $("musicpost").stratus({
-      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
-              
-    });
-  });
-</script>
-	
 
 </head>
 
