@@ -40,12 +40,16 @@
 		</div>
 	</div>
 </div>
-
 	<div class="row">
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
     			<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
     			<li class= "musicpost">
+    				@if($musicpost->soundcloud != NULL)
+            				<p class="offset">
+            				<a  href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play">play</i></a>
+            				</p>
+            				@endif
     				@if($musicpost->image_id != 0)
         			<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
         			@else
@@ -127,6 +131,8 @@
       $(document).trigger('retrieve.infscr');
       return false;
     });
+
+
 
 
 $('.pagination ul li:not(:last)').remove();

@@ -11,12 +11,20 @@ class MusicController extends BaseController {
 	{
 		$musicposts = Post::where('type','music')->orderBy('created_at', 'desc');
 
+		$soundclouds = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
+
+		foreach($soundclouds as $soundcloud)
+		{
+			$soundcloudsurl[] = $soundcloud->soundcloud;
+		}
+
 		$genres = Genre::all();
 
 		$musicposts = $musicposts->paginate(8);
 		return View::make('music.index')
 			->with('musicposts',$musicposts)
-			->with('genres',$genres);
+			->with('genres',$genres)
+			->with('soundcloudsurl',$soundcloudsurl);
 	}
 
 	/**

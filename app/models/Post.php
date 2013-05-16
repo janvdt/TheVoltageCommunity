@@ -72,4 +72,6 @@ class Post extends BaseModel {
 		return $genres;
 	}
 
+	
+
 }
