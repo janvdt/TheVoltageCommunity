@@ -18,7 +18,15 @@ class MusicController extends BaseController {
 			$soundcloudsurl[] = $soundcloud->soundcloud;
 		}
 
-		$genres = Genre::all();
+		
+		$dbgenres = DB::table('genres')->select('title')->get();
+
+		//$dbmodels = Businesscardmodel::all();
+		$genres = array();
+
+		foreach ($dbgenres as $genre) {
+			$genres[$genre->title] = $genre->title;
+		}
 
 		$musicposts = $musicposts->paginate(8);
 		return View::make('music.index')

@@ -3,7 +3,7 @@
 @section('instanceContent')
 
 <div class ="span12 music">
-<h2>Music</h2>
+<h2>Music Genre: {{$type}}</h2>
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -22,7 +22,7 @@
 			<div class="nav-collapse collapse">
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 			<ul class="nav">
-				<li class="active"><a href="{{ URL::action('MusicController@index') }}">All</a></li>
+				<li><a href="{{ URL::action('MusicController@index') }}">All</a></li>
 				<li><a href="#">Own taste</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose genre <b class="caret"></b></a>
@@ -30,6 +30,7 @@
 							@foreach($genres as $genre)
 							<li><a href="{{ URL::action('PostController@showGenre') }}?type={{$genre}}">{{$genre}}</a></li>
 							@endforeach
+							
 						</ul>
 				</li>
 			</ul>
@@ -43,6 +44,7 @@
 	<div class="row">
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
+			   @if($musicpost->genrescheck($type))
     			<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
     			<li class= "musicpost">
     				@if($musicpost->image_id != 0)
@@ -96,8 +98,9 @@
 					</div>
     			</li>
     			</a>
-    			
-    		@endforeach
+    			@endif
+    			@endforeach
+    		
 		</ul>
 	</div>
 </div>
@@ -108,7 +111,9 @@
 <div class="row">
 		<div class="span12">
 			<div class="pagination pagination-centered">
-				{{ $musicposts->links() }}
+				
+				
+				
 			</div>
 		</div>
 	</div>
@@ -129,7 +134,7 @@
       return false;
     });
 
-$("musicpost").stratus({
+    $("musicpost").stratus({
       links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
               
     });
@@ -178,3 +183,4 @@ $('.pagination').hide();
 
 
 @stop
+

@@ -36,7 +36,7 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
-
+Route::get('music/genre', 'PostController@showGenre');
 Route::resource('comment','CommentController');
 Route::get('post/showlikes/{id}', 'PostController@showLikes');
 Route::get('post/createMusic', 'PostController@createMusic');
@@ -55,6 +55,7 @@ Route::resource('account','AccountController');
 Route::post('account/unfollow/{id}', 'AccountController@unfollow');
 Route::post('account/follow/{id}', 'AccountController@follow');
 Route::get('activity', 'HomeController@showActivity');
+
 
 
 

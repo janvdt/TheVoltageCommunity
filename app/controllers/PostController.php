@@ -109,6 +109,7 @@ class PostController extends BaseController {
 		//Decode json object.
 		$obj = json_decode(stripslashes(Input::get('genre-hidden')));
 
+		if($obj != NULL){
 		foreach($obj->val as $val){
 			$genre = Genre::where('title',$val)->first();
 			//When no genre is found.
@@ -123,6 +124,27 @@ class PostController extends BaseController {
 				->insert(array('title' => $val));
 
 				$genre = Genre::where('title',$val)->first();
+
+				DB::table('genre_post')
+				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+			}
+		}
+		}
+		else
+		{
+			$genre = Genre::where('title',Input::get('genre-hidden'))->first();
+			//When no genre is found.
+			if($genre != NULL){
+			
+			DB::table('genre_post')
+				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+			}
+			else
+			{
+				DB::table('genres')
+				->insert(array('title' => Input::get('genre-hidden')));
+
+				$genre = Genre::where('title',Input::get('genre-hidden'))->first();
 
 				DB::table('genre_post')
 				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
@@ -293,6 +315,14 @@ class PostController extends BaseController {
 			DB::table('genre_post')
 				->where('post_id',$post->id)
 				->delete();
+
+			DB::table('genres')
+				->insert(array('title' => Input::get('genre-hidden')));
+
+				$genre = Genre::where('title',Input::get('genre-hidden'))->first();
+
+				DB::table('genre_post')
+				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
 		}
 		else
 		{
@@ -404,5 +434,36 @@ class PostController extends BaseController {
    		));
    		}
 
+	}
+	public function showGenre()
+	{
+		$musicposts = Post::where('type','music')->get();
+		$dbgenres = DB::table('genres')->select('title')->get();
+
+		//$dbmodels = Businesscardmodel::all();
+		$genres = array();
+
+		foreach ($dbgenres as $genre) {
+			$genres[$genre->title] = $genre->title;
+		}
+		$soundclouds = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
+
+		$soundcloudsurl = array();
+		foreach($soundclouds as $soundcloud)
+		{
+			if($soundcloud->genrescheck(Input::get('type'))){
+			$soundcloudsurl[] = $soundcloud->soundcloud;
+			}
+		}
+
+
+		
+		$type = Input::get('type');
+
+		return View::make('post.genre.index')
+			->with('genres',$genres)
+			->with('musicposts',$musicposts)
+			->with('type',$type)
+			->with('soundcloudsurl',$soundcloudsurl);
 	}
 }

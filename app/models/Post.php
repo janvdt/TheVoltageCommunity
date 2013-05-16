@@ -71,7 +71,23 @@ class Post extends BaseModel {
 
 		return $genres;
 	}
-
+	public function genrescheck($title)
+	{
+				//Itterate over each permission from a role
+				foreach($this->genres as $genre)
+				{
+					//Check if a permission was found.
+					if($title=== $genre->title)
+					{
+						// Or if a specified value was matched.
+						if($title ===$genre->title)return true;
+					}
+				}
+			
+			return false;
+	}
 	
+
+
 
 }
