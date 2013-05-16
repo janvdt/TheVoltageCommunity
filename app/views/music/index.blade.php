@@ -56,9 +56,6 @@
         			@endif
 
             			<div class="ch-info">
-            				@if($musicpost->soundcloud != NULL)
-								<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
-							@endif
                 			<?php $string = $musicpost->title;
 							$maxLength = 40;
 
@@ -90,6 +87,9 @@
         					
         				</div>
         			</div>
+        			@if($musicpost->soundcloud != NULL)
+								<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+							@endif
         			<div class="shelf shelfmusicpost">
 					<div class="bookend_left"></div>
 					<div class="bookend_right"></div>
