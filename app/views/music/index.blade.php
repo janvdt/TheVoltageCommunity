@@ -45,11 +45,6 @@
 			@foreach ($musicposts as $musicpost)
     			<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
     			<li class= "musicpost">
-    				@if($musicpost->soundcloud != NULL)
-            				<p class="offset">
-            				<a  href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play">play</i></a>
-            				</p>
-            				@endif
     				@if($musicpost->image_id != 0)
         			<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
         			@else
@@ -61,6 +56,11 @@
         			@endif
 
             			<div class="ch-info">
+            				@if($musicpost->soundcloud != NULL)
+							<p>
+								<a  href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play">play</i></a>
+							</p>
+            				@endif
                 			<?php $string = $musicpost->title;
 							$maxLength = 40;
 
