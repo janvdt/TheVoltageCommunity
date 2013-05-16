@@ -22,6 +22,16 @@
 	<link rel="stylesheet" href="/assets/libraries/select2/select2.css">
 	<link rel="stylesheet" href="/assets/libraries/Font-Awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/assets/libraries/ajax-scroll/src/css/jquery.ias.css">
+
+	<script src="/assets/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript">
+  $(document).ready(function(){
+    $("musicpost").stratus({
+      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
+              
+    });
+  });
+</script>
 	
 
 </head>
@@ -54,7 +64,7 @@
 </div><!-- .container -->
 
 <!-- Scripts -->
-<script src="/assets/js/jquery-1.8.0.min.js"></script>
+
 <script src="/assets/libraries/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="/assets/libraries/nestedSortable/jquery.mjs.nestedSortable.js"></script>
 <script src="/assets/libraries/bootstrap/js/bootstrap.min.js"></script>
@@ -70,14 +80,7 @@
 <script src="/assets/libraries/tinycon/tinycon.min.js"></script>
 <script type="text/javascript" src="/assets/js/sound.js"></script>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("musicpost").stratus({
-      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
-              
-    });
-  });
-</script>
+
 
 <script>
 $(document).ready(function() {
