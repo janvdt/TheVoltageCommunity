@@ -72,7 +72,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $.stratus({
+    $("musicpost").stratus({
       links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
               
     });

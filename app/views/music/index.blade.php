@@ -57,10 +57,8 @@
 
             			<div class="ch-info">
             				@if($musicpost->soundcloud != NULL)
-						
 								<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
-							
-            				@endif
+							@endif
                 			<?php $string = $musicpost->title;
 							$maxLength = 40;
 
@@ -157,7 +155,21 @@ $('.pagination').hide();
         speed: 'fast',
         start: undefined
     }
-  });
+    },
+  // trigger Masonry as a callback
+  function( newElements ) {
+   
+    $('#stratus').remove();
+
+    $("musicpost").stratus({
+      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
+              
+    });
+  
+   
+  }
+);
+ 
 
 
 @stop
