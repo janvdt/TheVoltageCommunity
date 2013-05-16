@@ -159,12 +159,15 @@ $('.pagination').hide();
   // trigger Masonry as a callback
   function( newElements ) {
    
-    $('#stratus').remove();
-
-    $("musicpost").stratus({
-      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
-              
+    
+ $('.music').on('click',".musicpost",function() {
+      $.postMessage($(this).attr('href'), src, $('#stratus iframe')[0].contentWindow);
+      return false;
     });
+    console.log('test');
+
+
+
   
    
   }

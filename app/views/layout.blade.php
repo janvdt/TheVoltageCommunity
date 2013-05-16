@@ -68,7 +68,7 @@
 <script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>
 <script src="/assets/libraries/masonry2/jquery.masonry.min.js"></script>
 <script src="/assets/libraries/tinycon/tinycon.min.js"></script>
-<script type="text/javascript" src="http://stratus.sc/stratus.js"></script>
+<script type="text/javascript" src="/assets/js/sound.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function(){
