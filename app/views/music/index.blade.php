@@ -75,6 +75,9 @@
         			<div class="viewslikes span2">
         				<div class="pull-left">
         					<div class="pull-left">
+        						@if($musicpost->soundcloud != NULL)
+									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+								@endif
         						<i class='icon-eye-open'></i>
         						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
         					</div>
@@ -83,9 +86,6 @@
         					<div class="pull-left likes">
         						<i class='icon-thumbs-up'></i>
         						<span class="badge badge-inverse">{{count($musicpost->likes)}}</span></i>
-        						@if($musicpost->soundcloud != NULL)
-									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
-								@endif
         					</div>
         				</div>
         			</div>
