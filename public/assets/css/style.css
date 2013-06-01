@@ -1,13 +1,198 @@
-/*
-* Author: Volta Web
-* Version: 1.0.0
-* Copyright 2013 Volta Web
-* www: http://volta.be
-* mail: web@volta.be
-*/
 
+@import url(http://fonts.googleapis.com/css?family=Dorsa);
+@charset "utf-8";
 /* Top Navbar
 ==========================================*/
+.headervisit
+{
+	width: 100%;
+	background-color: #C6E2CC;
+	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+	
+	color: black;
+	margin-top: 25px;
+	margin-left: 0px;
+}
+.accountposts img
+{
+	padding: 3px;
+	margin-left: -9px;
+	margin-right: -15px;
+	margin-bottom: -10px;
+}
+.accountposts a:hover
+{
+	display: none;
+}
+
+.infoaccount
+{
+	width: 100%;
+	background-color: white;
+	-webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.50), 0px 1px 1px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.50), 0px 1px 1px 1px rgba(255, 255, 255, 0.05) inset;
+	
+	color: black;
+	margin-top: 25px;
+	margin-left: 0px;
+}
+.info
+{
+	width: 100%;
+	background-color: #C6E2CC;
+	-webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+	margin-left: 0px;
+}
+.tastes
+{
+	padding-left: 30px;
+}
+
+.activityref
+{
+	color:black;
+}
+.notificationsitem:hover
+{
+	opacity:0.6;
+}
+.notread
+{
+	background-color: #C6E2CC;
+}
+.notreadimg
+{
+	padding: 5px;
+	margin-left: 0px;
+}
+.notifications
+{
+	background-color: whiteSmoke;
+	height:180px;
+	overflow: auto;
+}
+.soundcloudactivity
+{
+	max-height: 360px;
+}
+.notificationsitem
+{
+	width: 100%;
+	margin-left: 0px;
+	margin-top: 5px;
+}
+.nottext
+{
+	height:25px;
+	margin-top: 10px;
+	margin-left: 0px;
+}
+.messagesection
+{
+	width: 84%;
+}
+.messagepost img
+{
+	margin: 25px;
+}
+.commentsection
+{
+	width: 84%;
+}
+.commentpost img
+{
+	margin: 25px;
+}
+.likeref
+{
+	color:black;
+	margin-left: 25px;
+}
+.likevalue
+{
+	margin-left: 10px;
+}
+.heart
+{
+	width: 50px;
+}
+.editbody
+{
+	color: black;
+}
+.getstarted
+{
+	margin-top: 25px;
+}
+.getstarted a
+{
+	text-decoration: none;
+}
+.accountpost
+{
+	margin-left: 40px;
+}
+
+.tracks-overview-home
+{
+	margin-left: 50px;
+}
+.accountimg
+{
+	margin-top: 7px;
+}
+.editaccount
+{
+	margin-top: 35px;
+}
+.writemessage
+{
+	height:100%;
+	width: 100%;
+	background-color: whiteSmoke;
+	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+	
+	color: black;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.writecomment
+{
+	height:100%;
+	width: 100%;
+	background-color: whiteSmoke;
+	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+	
+	color: black;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.welcome
+{
+	width: 100%;
+	background-color: #c6e2cc;
+	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+	
+	color: black;
+	margin-top: 25px;
+}
+.welcometitle
+{
+	font-size: 30px;
+  line-height: 34px;
+  margin: 32px 0 15px;
+  font-weight: normal;
+  color:white;
+}
+.controls
+{
+	margin-top: 25px;
+}
 
 .view-first:hover img { 
     transform: scale(1.1);
@@ -112,18 +297,16 @@
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
+    padding-top: 0px;
 }
 
 .video-container iframe,
 .video-container object,
 .video-container embed {
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 400px;
 }
 
 .ch-info {
@@ -200,13 +383,14 @@
 .ch-grid:after {
     clear: both;
 }
- 
+
 .ch-grid li {
     width: 220px;
     height: 220px;
     display: inline-block;
     margin: 35px;
     margin-top: 60px;
+    margin-bottom: 90px;
 }
 
 .ch-info {
@@ -237,10 +421,11 @@
 .ch-info h3 {
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
+    font-size: 20px;
+  	line-height: 34px;
+ 	font-weight: normal;
     margin: 0 35px 20px;
-    padding: 45px 0 0 0;
+    padding: 30px 0 0 0;
     height: 140px;
     font-family: 'Open Sans', Arial, sans-serif;
     text-shadow: 
@@ -252,7 +437,7 @@
     color: #fff;
     padding: 0px 20px;
     font-style: italic;
-    margin-top: -20px;
+    margin-top: -25px;
     margin-left: 40px;
     font-size: 12px;
     border-top: 1px solid rgba(255,255,255,0.5);
@@ -265,13 +450,14 @@
     color: rgba(255,255,255,0.7);
     font-style: normal;
     font-weight: 700;
-    margin-top: -12px;
+    margin-top: 0px;
     text-transform: uppercase;
     font-size: 9px;
     letter-spacing: 1px;
     padding-top: 4px;
     font-family: 'Open Sans', Arial, sans-serif;
 }
+
  
 .ch-info p a:hover {
     color: rgba(255,242,34, 0.8);
@@ -323,18 +509,49 @@
 	margin-top: 80px;
 }
 
-.shelfmusicpost
+.titlemusicpost
 {
-	margin-top: 20px;
-	margin-left: 10px;
+	min-height: 80px;
+
+}
+
+.titlemusicpost h6
+{
+	font-size: 16px;
+  color: black;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+.titlemusicpost h6::first-letter {
+	color: #c6e2cc;
+	font-weight: normal;
+}
+.accountimg img
+{
+	margin-top: 70px;
 }
 .music-posts a
 {
 	text-decoration: none;
 }
-.accountmusicpost
+.deletepostaccount
 {
-	margin-bottom: 25px;
+	margin-top: 15px;
+}
+
+#postsoundcloud
+{
+	width: 100%;
+	margin-top: 45px;
+}
+
+.titlemusicpost
+{
+	text-decoration: none;
+	font-size: 18px;
+  	color: black;
+  	font-weight: 200;
+  	letter-spacing: -1px;
 }
 .genresbadge
 {
@@ -342,7 +559,10 @@
 	letter-spacing: 0.2em;
 	margin-bottom: 25px;
 }
-
+.accountmusicpost
+{
+	margin-bottom: 10px;
+}
 
 /* Header
 ==========================================*/
@@ -369,7 +589,12 @@
 }
 .viewslikes
 {
-	margin-left: 45px;
+	margin-left: 35px;
+	margin-bottom: 10px;
+}
+.shelfmusicpost
+{
+	margin-left: 10px;
 }
 .likes
 {
@@ -427,8 +652,13 @@
 	
 	height: 100%;
 	padding: 20px;
+	width: 94%;
+	background-color: #c6e2cc;
+	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
+		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
 	
-	margin-bottom: 25px;
+	color: black;
+	margin-top: 25px;
 }
 .comments
 {
@@ -563,24 +793,3 @@
 /* Header
 ==========================================*/
 
-.site-header .logo {
-	margin-bottom: 20px;
-}
-
-.site-header .site-header-content {
-	position: static;
-}
-.site-header .site-header-content .nav,
-.site-header .site-header-content .form-search {
-	float: none;
-}
-.site-header .site-header-content .form-search {
-	margin-top: 20px;
-}
-.site-header .site-header-content .nav li {
-	display: block;
-	width: 100%;
-}
-
-
-}

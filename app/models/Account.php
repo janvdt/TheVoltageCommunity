@@ -16,6 +16,11 @@ class Account extends BaseModel {
 		return Account::find($this->image_id);
 	}
 
+	public function tastes()
+	{
+		return $this->hasMany('Taste');
+	}
+
 	public function getImagePathname($size = 'thumb')
 	{
 		// If an image was linked.
@@ -49,4 +54,9 @@ class Account extends BaseModel {
 		
 		return true;
 	}
+
+	public function messages()
+    {
+        return $this->hasMany('Message');
+    }
 }

@@ -10,7 +10,7 @@
  
 		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar">lol</span>
+				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
@@ -23,7 +23,9 @@
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 			<ul class="nav">
 				<li><a href="{{ URL::action('MusicController@index') }}">All</a></li>
-				<li><a href="#">Own taste</a></li>
+				@if(Auth::user())
+				<li><a href="{{ URL::action('MusicController@myTaste') }}">Own taste</a></li>
+				@endif
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose genre <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -35,18 +37,47 @@
 				</li>
 			</ul>
 			<form class="navbar-search pull-right" action="">
-                 <input type="text" class="search-query span2" placeholder="Search">
+                 <input type="text" class="search-query span2" id="searchDatagenre" placeholder="Search">
 			</form>
 			</div>
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="span10">
+	@foreach($subgenresdata as $subgenre)
+		<a href="{{ URL::action('PostController@showSubgenre') }}?type={{$subgenre}}&genre={{$type}}"><span class="label label-inverse">{{$subgenre}}</span></a>
+	@endforeach
+	</div>
+</div>
+
 	<div class="row">
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
 			   @if($musicpost->genrescheck($type))
     			<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
     			<li class= "musicpost">
+    				<div class="row">
+    					<div class="span3 titlemusicpost">
+    						<h6>
+    						@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->facebookpic == NULL )
+								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="30" alt="">
+							@else
+								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="30" alt="">
+							@endif
+    						<?php $string = $musicpost->title;
+							$maxLength = 50;
+
+						if (strlen($string) > $maxLength) {
+    					$stringCut = substr($string, 0, $maxLength);
+    					$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
+						}
+
+						echo stripslashes("$string</h6>")
+						?>
+						
+    					</div>
+    				</div>
     				@if($musicpost->image_id != 0)
         			<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
         			@else
@@ -172,13 +203,49 @@ $('.pagination').hide();
       return false;
     });
     console.log('test');
+});
 
+ $('#searchDatagenre').keyup(function() {
+ 	var searchVal = $(this).val();
+ 	var type = "{{Input::get('type')}}";
 
+ 	if(searchVal !== '') {
+ 
+            $.get('genre/searchgenre?searchData='+searchVal+'&type='+type, function(returnData) {
+                /* If the returnData is empty then display message to user
+                 * else our returned data results in the table.  */
+                if (!returnData) {
+                    $('.music-posts').html('<p style="padding:5px;">Search term entered does not return any data.</p>');
+                } 
+               	else 
+                {
+                	$('.music-posts li').each(function(i)
+					{
+						$(this).css("display", "none");
+   						
+					});
+					console.log(returnData);
+                 	for (var i = 0; i < returnData.length; i++) {
 
-  
-   
-  }
-);
+                 	
+    				if(returnData[i].id !== undefined)
+    				{
+                 	$searchpost = "<li class='musicpost' id='searchresults'><div class='row'><div class='span3 titlemusicpost'><h6><a href='http://tvctheme.loc/user/visitaccount/"+ returnData[i].userid +"'><img src='../" + returnData[i].image +"' width='30' alt=''></a>"+ returnData[i].title +"</h6></div></div>@if(" + returnData[i].soundcloud_art +" !=  null)<div class='ch-item ch-img-1 soundcloudimg' style='background-image: url("+ returnData[i].soundcloud_art + ");'>@endif @if(" + returnData[i].youtube_art +" !=  null)<div class='ch-item ch-img-1 youtubeimg' style='background-image: url("+ returnData[i].youtube_art + ");'>@endif<a href ='http://tvctheme.loc/post/showmusic/"+ returnData[i].id +"'><div class='ch-info'><h3>" + returnData[i].title +"</h3><a href=''></a></div></div></a></div><div class='viewslikes span2'><div class='pull-left'><div class='pull-left'>@if(" + returnData[i].soundcloud +" != null)<a href='" +returnData[i].soundcloud + "' class='stratus'><i class='icon-play'></i></a>@endif<i class='icon-eye-open'></i><span class='badge badge-inverse'>"+returnData[i].views+"</span></i></div></div><div class=''><div class='pull-left likes'><i class='icon-heart'></i><span class='badge badge-inverse'>"+returnData[i].postlikes+"</span></i></div></div></div><div class='shelf shelfmusicpost'><div class='bookend_left'></div><div class='bookend_right'></div><div class='reflection'></div></div></li>";
+
+                 	$(".music-posts").append($searchpost);
+                 	}
+					}  
+                }
+            });
+        } else {
+            $('.music-posts li').each(function(i)
+			{
+				$(this).css("display", "block");
+				$('#searchresult').remove();
+			});""
+        }
+ 
+    });
  
 
 

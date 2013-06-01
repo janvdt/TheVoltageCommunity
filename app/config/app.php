@@ -184,4 +184,40 @@ return array(
 
 	),
 
+	'tastes' => array(
+
+		'Electronic' => array(
+
+			'title' => 'Electronic',
+		),
+		'Hiphop' => array(
+
+			'title' => 'Hiphop',
+		),
+		'House' => array(
+
+			'title' => 'House',
+		),
+		'Drum&bass' => array(
+
+			'title' => 'Drum&bass',
+		),
+		'Dubstep' => array(
+
+			'title' => 'Dubstep',
+		),
+		'Pop' => array(
+
+			'title' => 'Pop',
+		),
+		'Dance' => array(
+
+			'title' => 'Dance',
+		),
+		'Indie' => array(
+
+			'title' => 'Indie',
+		)
+	),
+
 );

@@ -2,9 +2,14 @@
 
 class Post extends BaseModel {
 
+
 	public function image()
 	{
 		return $this->belongsTo('Image');
+	}
+	public function style()
+	{
+		return $this->belongsTo('Style');
 	}
 
 	/**
@@ -86,8 +91,46 @@ class Post extends BaseModel {
 			
 			return false;
 	}
-	
+	public function subgenrescheck($post_id,$type)
+	{
+			$dbgenre = DB::table('genres')->where('title',Input::get('genre'))->first();
+			$dbsubgenre = DB::table('subgenres')->where('title',$type)->first();
+			$dbtests = DB::table('subgenre_genre')->where('subgenre_id',$dbsubgenre->id)->where('genre_id',$dbgenre->id)->get();
+				//Itterate over each permission from a role
+				foreach($dbtests as $subgenre)
+				{
+					//Check if a permission was found.
+					if($post_id=== $subgenre->post_id)
+					{
+						return true;
+					}
+				}
+			
+			return false;
+	}
+	public function tastescheck($account_id)
+	{
+		$dbtastes = DB::table('tastes')->where('account_id',$account_id)->get();
 
+		$genresearch = array();
 
+		foreach($this->genres as $genre)
+		{
+			$genresearch[] = $genre->title;		
+		}
 
+		$genrepost = reset($genresearch);
+
+		//Itterate over each permission from a role
+		foreach($dbtastes as $taste)
+		{
+			//Check if a permission was found.
+			if($taste->name=== $genrepost)
+			{
+				return true;
+			}
+					
+		}
+		return false;
+	}
 }

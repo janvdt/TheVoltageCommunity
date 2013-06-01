@@ -18,7 +18,7 @@ Route::get('/', function()
 	return $HomeController->index();
 });
 
-View::composer('instance.header', function($view)
+View::composer('layout', function($view)
 {
 	if(Auth::user())
 	{
@@ -36,22 +36,126 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
+
+
+Route::get('music/subgenre/searchsubgenre','MusicController@searchsubgenre');
+Route::get('music/genre/searchgenre','MusicController@searchgenre');
+Route::get('music/search','MusicController@search');
+Route::get('music/mytaste/searchtaste','MusicController@searchtaste');
+
+
+Route::get('music/mytaste', 'MusicController@myTaste');
 Route::get('music/genre', 'PostController@showGenre');
+Route::get('music/subgenre', 'PostController@showSubgenre');
 Route::resource('comment','CommentController');
 Route::get('post/showlikes/{id}', 'PostController@showLikes');
 Route::get('post/createMusic', 'PostController@createMusic');
 Route::post('post/storeMusic', 'PostController@storeMusic');
 Route::resource('user', 'UserController');
 Route::resource('music','MusicController');
+Route::get('turntable/utils/soundcloud_fetch_track', function()
+{
+
+    require '../public/utils/include/referrer_check.php';
+
+	require '../public/utils/include/SC_API_KEY.php';
+
+	require '../public/utils/include/API_cache.php';
+
+
+	
+ $track_id = intval(Input::get('id'));
+
+  
+
+  $ZOMG_SECRET = get_soundcloud_api_key();
+
+  $cache_file = 'soundcloud_track_id_' . $track_id . '.json';
+  $api_call = 'http://api.soundcloud.com/tracks/' . $track_id . '.json?client_id=' . $ZOMG_SECRET . '&format=json&callback=wheelsofsteel.soundcloudJSONP_' . $track_id;
+  $cache_for = 480; // cache results for "n" minutes
+
+  $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
+
+  echo($api_cache);
+
+  if (!$res = $api_cache->get_api_cache())
+    $res = '{"error": "Could not load cache"}';
+
+  ob_start();
+  echo $res;
+  $json_body = ob_get_clean();
+
+  header ('Content-Type: application/json');
+  header ('Content-length: ' . strlen($json_body));
+  header ("Expires: " . $api_cache->get_expires_datetime());
+  echo $json_body;
+
+});
+
+Route::get('turntable/utils/soundcloud_fetch_url', function()
+{
+	require '../public/utils/include/referrer_check.php';
+	require '../public/utils/include/SC_API_KEY.php';
+	require '../public/utils/include/API_cache.php';
+
+
+  $track_id = intval(Input::get('id'));
+
+  $ZOMG_SECRET = get_soundcloud_api_key();
+
+  $cache_file = 'soundcloud_track_id_' . $track_id . '.json';
+
+  $js_callback = 'wheelsofsteel.soundcloudURL_' . $track_id;
+
+  $api_call = 'http://api.soundcloud.com/tracks/' . $track_id . '/stream/?client_id=' . $ZOMG_SECRET . '&format=json&callback=' . $js_callback;
+
+function get_web_page($url) {
+
+    /*
+     * hat tip: http://forums.devshed.com/php-development-5/curl-get-final-url-after-inital-url-redirects-544144.html
+    */
+
+    $options = array( 
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => false,     // return web page 
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => true,
+        CURLOPT_CONNECTTIMEOUT => 5,        // timeout on connect 
+        CURLOPT_TIMEOUT        => 5,        // timeout on response 
+        CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
+        CURLOPT_RETURNTRANSFER => true,     // return web page 
+    ); 
+
+    $ch      = curl_init( $url ); 
+    curl_setopt_array( $ch, $options );
+    $content = curl_exec( $ch );
+    $err     = curl_errno( $ch );
+    $errmsg  = curl_error( $ch );
+    $header  = curl_getinfo( $ch );
+    curl_close( $ch );
+
+    return $header;
+
+}  
+
+$myUrlInfo = get_web_page($api_call);
+
+echo "try{\n " . $js_callback . "({ url: '" . $myUrlInfo["url"] . "' });\n} catch(e){}";
+});
+
+Route::resource('turntable','TurntableController');
 Route::resource('graph','GraphController');
-Route::get('post/share/{id}', 'PostController@share');
+Route::post('account/storemessage', 'AccountController@storeMessage');
 Route::resource('post','PostController');
+Route::get('post/share/{id}', 'PostController@share');
 Route::post('post/like/{id}', 'PostController@like');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');
 Route::get('user/showaccount/{id}', 'UserController@showAccount');
 Route::get('user/visitaccount/{id}', 'UserController@visitAccount');
 Route::resource('account','AccountController');
+Route::post('account/updatetaste/{id}', 'AccountController@updateTaste');
+Route::get('account/edittaste/{id}', 'AccountController@editTaste');
 Route::post('account/unfollow/{id}', 'AccountController@unfollow');
 Route::post('account/follow/{id}', 'AccountController@follow');
 Route::get('activity', 'HomeController@showActivity');

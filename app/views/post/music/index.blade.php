@@ -9,25 +9,20 @@
 </script>
  
 <div class="span12">
-	<div class="span11">
-	@if(Auth::user())
-	@if(Auth::user()->id == $post->created_by)
-	<a href="{{ URL::action('PostController@editMusic', array($post->id)) }}" class="btn btn-primary pull-right">Edit post</a>
-	<a href="#delete-post-{{ $post->id }}" data-toggle="modal" class="btn btn-danger pull-right">Delete</a>
-	@endif
-	@endif
-	<div class="span6">
-		@foreach($post->genres as $genre)
-		<span class="label label-info pull-right genresbadge"><h6>{{$genre->title}}</h6></span>
-	@endforeach
-	<h4>{{$post->title}}</h4>
-	
-	</div>
+	<div class="row">
+		<div class="span10">	
+			<p class="posttitle">{{$post->title}}</p>
+		</div>
+		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
+		<div class="span2">
+			<a class="btn btn-inverse btn-large" id="post">I <i class="icon-heart"> u</i></a>
+		</div>
+		@endif
 	</div>
 </div>
 <div class="row">
 	<div class="span12">
-		<div class="span4">
+		<div class="span4 detailspost pull-left">
 			@if($post->image_id != 0)
 			<div class="slider-img ch-img-1" style="background-image: url(/{{ $post->image->getSize('thumb')->getPathname() }});">
 			@else
@@ -37,85 +32,128 @@
 				<div class="slider-img ch-img-1 youtubeimgslider" style="background-image: url({{$post->youtube_art}});">
 				@endif
 			@endif
-		</div>
-		<div class="row">
+			</div>
+			<div class="row">
 			@if(Auth::user())
-			<div class="span4 offset1 likebutton">
-       		@if($post->can($post->id,Auth::user()->id))
-				<a class="btn btn-primary btn-large" id="post"><i class="icon-thumbs-up"> Like !</i></a>
-			@endif
-			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}"><i class="icon-thumbs-up"><p class="likevalue">{{count($post->likes)}}</p></i></a>
+			<div class="span4 likebutton">
+			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}">People who <i class="icon-heart"> this post<span class="badge badge-inverse likevalue">{{count($post->likes)}}</span></i></a>
 			</div>
 			@endif
 		</div>
 		<div class="row">
 			@if(Auth::user())
 			<div class="span4 offset1 sharebutton">
-				<a class="btn btn-success btn-large" id="share"><i class="icon-share-alt">share</i></a>
+				<a class="btn btn-inverse btn-large" href="{{ URL::action('PostController@share', array($post->id)) }}"><img src="/images/facebook-logo-square.png"></a>
+				
 			</div>
 			@endif
 		</div>
 	</div>
 	<div class="span7">
+		@if($post->soundcloud != NULL)
 		<div id="postsoundcloud">
-			@if($post->soundcloud != NULL)
 			<div id="putTheWidgetHere"></div>
 			<script type="text/JavaScript">
   				SC.oEmbed('{{$post->soundcloud}}', {color: "c6e2cc"},  document.getElementById("postsoundcloud"));
 			</script>
-			@else
-			<div class="video-container">
-				<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{$post->youtube}}" allowfullscreen frameborder="0">
+		</div>
+		@else
+		<div class="video-container">
+			<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{$post->youtube}}" allowfullscreen frameborder="0">
 			</iframe>
-			</div>
-			@endif
-		</div>
-		<div class="postreview">
-			{{$post->body}}
-		</div>
-		@if(Auth::user())
-		<div class="buttoncomment">
-			<a class="btn btn-success" href="#comment-post" data-toggle="modal"><i class="icon-pencil"> Comment!</i></a>
 		</div>
 		@endif
 		
-		<div class="comments">
-			@foreach($post->comments as $comment)
-			<div class="well">
-				<p class="pull-right">Posted by: {{$comment->user->first_name}} {{$comment->user->last_name}}</p>
-				@if($comment->user->accountUser()->identifier == 0)
-				<a href="{{ URL::action('UserController@visitAccount',array($comment->user->id)) }}">
-					<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="100">
-				</a>
-				@else
-				<a href="{{ URL::action('UserController@visitAccount',array($comment->user->id)) }}">
-					<img class="img-rounded" src="{{ url($comment->user->accountUser()->facebookpic) }}" alt="" width="100">
-				</a>
-				@endif
-				{{$comment->body}}
+		<div class="postreview">
+			<div class="row">
+				<div class="pull-right">
+					<ul class="nav">
+					<li><a class="editbody" href="{{ URL::action('PostController@editMusic', array($post->id)) }}"><i class="icon-pencil"></i></a></li>
+					</ul>
+				</div>
+				<div class="span1">
+					<ul class="nav">
+						<li><img src="/images/bullhorn.png" /></li>
+					</ul>
+				</div>
 			</div>
-			@endforeach
+				<p class="postbody">{{$post->body}}</p>
+			</div>
 		</div>
 	</div>
-</div>
+	<div class="row">
+		<div class="span11 offset1 commentsection">
+			@if(Auth::user())
+			<div class="row">
+				<div class="writecomment">
+					<form class="form-horizontal" method="POST" action="{{ URL::action('CommentController@store')}}?post_id={{$post->id}}"  id="upload-comment-form">
+						<div class="span2 commentpost">
+							@if(Auth::user()->accountUser()->identifier == 0)
+								<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
+									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="100">
+								</a>
+							@else
+							<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
+								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="100">
+							</a>
+							@endif
+						</div>
+							<div class="control-group">
+								<div class="controls">
+									<textarea name="textcomment" class="input-xxlarge pull-left" id="commenttext" rows="5" placeholder="Enter text ..."></textarea>
+								</div>
+							</div>	
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	@endif
+	<div class="row commentsattach">
+	@foreach($post->comments as $comment)
+	
+		<div class="span11 offset1 commentsection">	
+			<div class="comments">
+				<div class="well">
+					
+					<div class="row">
+						<div class="span5 pull-right">
+							<h6 class="pull-right">Posted by: {{$comment->user->first_name}} {{$comment->user->last_name}}</h6>
+						</div>
+					</div>
 
-<div class="modal hide fade" id="comment-post">
-	<form class="form-horizontal" method="POST" action="{{ URL::action('CommentController@store')}}?post_id={{$post->id}}"  id="upload-comment-form">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h3>Comment</h3>
-		</div>
-		<div class="modal-body">
-			<textarea name="textcomment" class="input-xxlarge pull-left" rows="5" id="inputTextarea" placeholder="Enter text ..."></textarea>
-			<span class="help-inline">{{ $errors->first('menu_title') }}</span>	
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">Cancel</button>
-			<input class="btn btn-primary" type="submit" value="Comment">
-		</div>
-	</form>
-</div>
+					<div class="row">
 
+						<div class="span1">
+							@if($comment->user->accountUser()->identifier == 0)
+								<a href="{{ URL::action('UserController@visitAccount',array($comment->user->id)) }}">
+									<img class="img-rounded" src="{{ url($comment->user->accountUser()->getImagePathname()) }}" alt="" width="75">
+								</a>
+							@else
+								<a href="{{ URL::action('UserController@visitAccount',array($comment->user->id)) }}">
+									<img class="img-rounded" src="{{ url($comment->user->accountUser()->facebookpic) }}" alt="" width="75">
+								</a>
+							@endif
+						</div>
+
+						<div class="span7">
+							<h6>{{$comment->body}}</h6>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span5 pull-right">
+							<h6 class="pull-right">{{$comment->created_at}}</h6>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		@endforeach
+	</div>
+	
+	
 <div class="modal hide fade" id="delete-post-{{ $post->id }}">
 	<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@destroy', array($post->id)) }}">
 		<input type="hidden" name="_method" value="DELETE">
@@ -133,10 +171,34 @@
 	</form>
 </div>
 
+<div class="modal hide fade" id="share-post-{{ $post->id }}">
+	<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@share', array($post->id)) }}" id="upload-share-form">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>Share post</h3>
+		</div>
+		<div class="modal-body">
+			<textarea name="textshare" class="input-xxlarge pull-left" rows="5" id="inputTextarea" placeholder="Enter message ..."></textarea>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Cancel</button>
+			<input class="btn btn-danger" type="submit" value="Post to facebook!">
+		</div>
+	</form>
+</div>
+
 @stop
 
 @section('scripts')
 	@parent
+
+	$("#commenttext").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        $("#upload-comment-form").submit();
+        $("#commenttext").val('');
+    }
+});
 
 	 $("#post").click(function(){ 
 
@@ -145,7 +207,7 @@
 	{
 		var likecount = {{count($post->likes)}}+1;
 		$('.likevalue').remove();
-		counttext="<p class='likevalue'>"+likecount+"</p>";
+		counttext="<span class='badge badge-inverse likevalue'>"+likecount+"</span>";
 		$('.likeref').append(counttext);
 		$('#post').hide();
 	});
@@ -167,14 +229,12 @@ $("#upload-comment-form").ajaxForm({
 	data: { 'ajax': 'true' },
 	dataType: 'json',
 	success: function(data) {
-	console.log(data.id);
+	console.log(data.date.date);
 	
-	@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL)		
-	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='100'>"  + data.body + "</div>";
-	@else
-	var comment = "<div class='well' id='comment"+ data.id +"'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' width='100'>"  + data.body + "</div>";
-	@endif
-	$(".comments").append(comment);
+			
+	var comment = "<div class='span11 offset1 commentsection'><div class='comments'><div class='well' id='comment"+ data.id +"'><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>Posted by: {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6></div></div><div class='row'><div class='span1'>@if(Auth::user()->accountUser()->identifier == 0)<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' alt='' width='75'></a>@else<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' alt='' width='75'></a>@endif</div><div class='span7'><h6>"  + data.body + "</h6></div></div><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>" + data.date.date + "</h6></div></div></div></div></div>";
+	
+	$(".commentsattach").append(comment);
 
 	// Hide the upload modal.
 	$("#comment-post").modal('hide');
@@ -182,5 +242,16 @@ $("#upload-comment-form").ajaxForm({
 	}
 });
 @endif
+// Ajax file upload for the file upload modal.
+$("#upload-share-form").ajaxForm({
+	data: { 'ajax': 'true' },
+	dataType: 'json',
+	success: function(data) {
+	console.log('kak');
+	// Hide the upload modal.
+	$("#share-post-{{ $post->id }}").modal('hide');
+
+	}
+});
 @stop
 

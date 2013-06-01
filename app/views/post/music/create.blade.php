@@ -1,11 +1,25 @@
 @extends('instance.layout')
 
 @section('instanceContent')
-<div class="span9 offset2">
+
+<script src="//connect.soundcloud.com/sdk.js"></script>
+<script>
+  SC.initialize({
+    client_id: "706bb7625906c6e65ff8bb1bebdd22b7",
+  });
+</script>
+<div class="span12">
 <h2>Create Music post </h2>
 </div>
 <div class="row">
-	<div class="span9 offset2">
+	<div class="span3">
+		<div class="pull-left preview span1">
+			<div class="slider-img ch-img-1 soundimgslider" style="background-image: url(../images/mac.jpg);"></div>
+		</div>
+		<div class="span2" id="postsoundcloud">
+		</div>
+	</div>
+	<div class="span9 pull-left">
 		<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@storeMusic') }}">
 			<input type="hidden" name="type" value="{{ Input::get('type') }}">
 			<div class="control-group">
@@ -31,7 +45,7 @@
 					<span class="help-inline">{{ $errors->first('soundcloud') }}</span>
 				</div>
 			</div>
-
+			<input type="hidden" class="soundcloudid-hidden" value="" name="soundcloudid-hidden">
 			<div class="control-group">
 				<input type="hidden" id="art_urlsoundcloud" name="art_urlsoundcloud" value="">
 				
@@ -47,7 +61,7 @@
 			</div>
 
 			<div class="control-group">
-				<label class="control-label">Genre</label>
+				<label class="control-label">Music style</label>
 				<div class="controls">
 					<input style="width: 300px;" type="text" name="genre" value="" class="genre"/>
 					<input type="hidden" type="text" name="genre-hidden" value="" class="genre-hidden"/>
@@ -55,15 +69,16 @@
 			</div>
 
 			<div class="control-group">
-				<input type="hidden" id="art_urlyoutube" name="art_urlyoutube" value="">
-				
+				<label class="control-label">Genre</label>
+				<div class="controls">
+					<input style="width: 300px;" type="text" name="subgenre" value="" class="subgenre"/>
+					<input type="hidden" type="text" name="subgenre-hidden" value="" class="subgenre-hidden"/>
+				</div>
 			</div>
 
 			<div class="control-group">
-				<div class="controls">
-					<div class="controls preview">
-					</div>
-				</div>
+				<input type="hidden" id="art_urlyoutube" name="art_urlyoutube" value="">
+				
 			</div>
 					
 			<div class="form-actions">
@@ -81,7 +96,7 @@
 
 	$(".genre").select2({
 		createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
-		multiple: true,
+		multiple: false,
 		data: <?php print(json_encode(array_values($genresdata))); ?>,
 		initSelection : function (element, callback) {
     	   var data = [];
@@ -95,4 +110,23 @@
 		console.log(genres);
 		$('.genre-hidden').attr('value', genres);
 	});
+
+	$(".subgenre").select2({
+		createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
+		multiple: true,
+		data: <?php print(json_encode(array_values($subgenresdata))); ?>,
+		initSelection : function (element, callback) {
+    	   var data = [];
+        	$(element.val().split(",")).each(function () {
+        	    data.push({id: this, text: this});
+        	});
+        	callback(data);
+    	}
+	}).on("change", function(e) {
+		var subgenres = JSON.stringify({val:e.val, added:e.added, removed:e.removed});
+		console.log(subgenres);
+		$('.subgenre-hidden').attr('value', subgenres);
+	});
+
+	
 @stop

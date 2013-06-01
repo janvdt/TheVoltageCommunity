@@ -39,15 +39,33 @@ class PostController extends BaseController {
 			})
 			->lists('title', 'id');
 
+
 		//transform the $tagsdata array.
 		array_walk($genresdata, function (&$item, $key) {
+		$item = array("id"=>$item,"text"=>$item);
+		});
+
+		$subgenresdata = Subgenre::all();
+
+		//Get tags that belong to images
+		$subgenresdata = DB::table('subgenres')->whereExists(function($query){
+				$query->select(DB::raw('*'))
+					->from('subgenre_genre')
+					->whereRaw('subgenre_genre.subgenre_id = subgenres.id');
+			})
+			->lists('title', 'id');
+
+
+		//transform the $tagsdata array.
+		array_walk($subgenresdata, function (&$item, $key) {
 		$item = array("id"=>$item,"text"=>$item);
 		});
 
 		$images = Image::orderBy('created_at', 'desc')->where('profile',FALSE)->take(10)->get();
 		return View::make('post.music.create')
 			->with('images',$images)
-			->with('genresdata', $genresdata);
+			->with('genresdata', $genresdata)
+			->with('subgenresdata', $subgenresdata);
 	}
 
 	/**
@@ -74,7 +92,7 @@ class PostController extends BaseController {
 		}
 
 		$new_post = array(
-			'title'          => Input::get('title'),
+			'title'          => stripslashes(Input::get('title')),
 			'body'           => Input::get('body'),
 			'type'			 => Input::get('type'),
 			'soundcloud' 	 => Input::get('soundcloud-hidden'),
@@ -88,6 +106,7 @@ class PostController extends BaseController {
 		if(Input::has('art_urlsoundcloud'))
 		{
 			$post->soundcloud_art = Input::get('art_urlsoundcloud');
+			$post->soundcloud_id = Input::get('soundcloudid-hidden');
 		}
 		if(Input::has('art_urlyoutube'))
 		{
@@ -100,56 +119,75 @@ class PostController extends BaseController {
 		$post->save();
 
 
-		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1));
+		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1,'created_at' => $post->created_at,'type' => 1));
 
-		// validate if the number of tags exceeds the allowed to be chosen
-		if (count(Input::get('genres')) > 3) {
-			return Redirect::back()->with_errors(array('Sorry, you can only pick 3 maximum tags'));
-		}
 		//Decode json object.
 		$obj = json_decode(stripslashes(Input::get('genre-hidden')));
 
 		if($obj != NULL){
-		foreach($obj->val as $val){
-			$genre = Genre::where('title',$val)->first();
+		
+			$genre = Genre::where('title',$obj->val)->first();
 			//When no genre is found.
 			if($genre != NULL){
 			
 			DB::table('genre_post')
 				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
 			}
+		}
+
+		// validate if the number of tags exceeds the allowed to be chosen
+		if (count(Input::get('subgenres')) > 3) {
+			return Redirect::back()->with_errors(array('Sorry, you can only pick 3 maximum tags'));
+		}
+
+		//Decode json object.
+		$obj2 = json_decode(stripslashes(Input::get('subgenre-hidden')));
+
+
+		if($obj2 != NULL){
+
+		foreach($obj2->val as $val){
+			$subgenre = Subgenre::where('title',$val)->first();
+			//When no genre is found.
+			if($subgenre != NULL){
+			
+			DB::table('subgenre_genre')
+				->insert(array('genre_id' => $genre->id, 'subgenre_id' => $subgenre->id, 'post_id' => $post->id));
+			}
 			else
 			{
-				DB::table('genres')
+				DB::table('subgenres')
 				->insert(array('title' => $val));
 
-				$genre = Genre::where('title',$val)->first();
+				$subgenre = Subgenre::where('title',$val)->first();
 
-				DB::table('genre_post')
-				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+				DB::table('subgenre_genre')
+				->insert(array('genre_id' => $genre->id, 'subgenre_id' => $subgenre->id,'post_id' => $post->id));
 			}
 		}
 		}
 		else
 		{
-			$genre = Genre::where('title',Input::get('genre-hidden'))->first();
+
+			$subgenre = Subgenre::where('title',Input::get('subgenre-hidden'))->first();
 			//When no genre is found.
-			if($genre != NULL){
+			if($subgenre != NULL){
 			
-			DB::table('genre_post')
-				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+			DB::table('subgenre_genre')
+				->insert(array('genre_id' => $genre->id, 'subgenre_id' => $subgenre->id,'post_id' => $post->id));
 			}
 			else
 			{
-				DB::table('genres')
-				->insert(array('title' => Input::get('genre-hidden')));
+				DB::table('subgenres')
+				->insert(array('title' => Input::get('subgenre-hidden')));
 
-				$genre = Genre::where('title',Input::get('genre-hidden'))->first();
+				$subgenre = Subgenre::where('title',Input::get('subgenre-hidden'))->first();
 
-				DB::table('genre_post')
-				->insert(array('post_id' => $post->id, 'genre_id' => $genre->id));
+				DB::table('subgenre_genre')
+				->insert(array('genre_id' => $genre->id, 'subgenre_id' => $subgenre->id, 'post_id' => $post->id));
 			}
 		}
+	
 
 		
 		return Redirect::action('MusicController@index');	
@@ -381,13 +419,14 @@ class PostController extends BaseController {
 	{
 		$post = Post::find($id);
 
-		DB::table('likes')->insert(array('post_id' => $post->id,'user_id' => Auth::user()->id));
+		Like::insert(array('post_id' => $post->id,'user_id' => Auth::user()->id));
+
 		DB::table('posts')->where('id',$post->id)->increment('postlikes');
 		
-		DB::table('notifications')->insert(array('body' => "liked your post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by));
+		Notification::insert(array('body' => "liked your post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by,"type" => 3,'created_at' => date("Y-m-d H:i:s")));
 		
 		if($post->created_by != Auth::user()->id){
-		DB::table('notifications')->insert(array('body' => "liked a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by,'activity' => 1));
+		Notification::insert(array('body' => "liked a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by,'activity' => 1, 'type' => 3,'created_at' => date("Y-m-d H:i:s")));
 		}
 
 		return $id;
@@ -420,7 +459,7 @@ class PostController extends BaseController {
       	"picture" => "$post->soundcloud_art",
       	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
       	"name"    => "$post->title",
-      	"caption" => "$post->body"
+      	"caption" => Input::get('textshare')
    		));
    		}
    		else
@@ -430,9 +469,11 @@ class PostController extends BaseController {
       	"picture" => "$post->youtube_art",
       	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
       	"name"    => "$post->title",
-      	"caption" => "$post->body"
+      	"caption" => Input::get('textshare')
    		));
    		}
+
+   		return Redirect::action('PostController@showMusic', array('id' => $post->id));
 
 	}
 	public function showGenre()
@@ -456,14 +497,65 @@ class PostController extends BaseController {
 			}
 		}
 
-
+		$subgenresdata = Subgenre::where('title','!=','object');
 		
+		$genre = Genre::where('title',Input::get('type'))->first();
+		
+		if($subgenresdata != NULL and $genre != NULL )
+		{
+		//Get tags that belong to an image.
+		$subgenresdata = $subgenresdata->whereExists(function($query){
+				$genre = Genre::where('title',Input::get('type'))->first();
+				$query->select(DB::raw('*'))
+					  ->from('subgenre_genre')
+					  ->where('subgenre_genre.genre_id',$genre->id)
+					  ->whereRaw('subgenre_genre.subgenre_id = subgenres.id');
+		})
+		->lists('title', 'id');
+		}
+
+
+
 		$type = Input::get('type');
 
 		return View::make('post.genre.index')
 			->with('genres',$genres)
 			->with('musicposts',$musicposts)
 			->with('type',$type)
-			->with('soundcloudsurl',$soundcloudsurl);
+			->with('soundcloudsurl',$soundcloudsurl)
+			->with('subgenresdata',$subgenresdata);
+	}
+	public function showSubGenre()
+	{
+		$musicposts = Post::where('type','music')->get();
+		
+		$type = Input::get('type');
+
+		$dbgenres = DB::table('genres')->select('title')->get();
+
+		$genres = array();
+
+		foreach ($dbgenres as $genre) {
+			$genres[$genre->title] = $genre->title;
+		}
+
+		$soundclouds = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
+
+		$soundcloudsurl = array();
+		foreach($soundclouds as $soundcloud)
+		{
+			if($soundcloud->subgenrescheck($soundcloud->id,$type)){
+			$soundcloudsurl[] = $soundcloud->soundcloud;
+			}
+		}
+
+		$genre = Input::get('genre');
+		
+		return View::make('post.genre.subgenre.index')
+			->with('genres',$genres)
+			->with('musicposts',$musicposts)
+			->with('type',$type)
+			->with('soundcloudsurl',$soundcloudsurl)
+			->with('genre',$genre);
 	}
 }

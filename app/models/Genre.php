@@ -6,5 +6,9 @@ class Genre extends BaseModel {
 	{
 		return $this->belongsToMany('Post');
 	}
+	 public function subgenres()
+	{
+		return $this->belongsToMany('Subgenre');
+	}
 
 }

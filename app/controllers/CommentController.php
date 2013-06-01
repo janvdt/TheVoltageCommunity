@@ -61,10 +61,10 @@ class CommentController extends BaseController {
 		$post = Post::find(Input::get("post_id"));
 
 		
-		DB::table('notifications')->insert(array('body' => "commented your post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by));
+		Notification::insert(array('body' => "commented your post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by,'created_at' => $commentModel->created_at,'type' => 2,'text' => Input::get('textcomment') ));
 		
 		if($post->created_by != Auth::user()->id){
-		DB::table('notifications')->insert(array('body' => "commented on a post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by,'activity' => 1));
+		Notification::insert(array('body' => "commented on a post!",'user_id' => Auth::user()->id,'post_id' => $commentModel->post_id,'post_creator' => $post->created_by,'activity' => 1, 'created_at' => $commentModel->created_at, 'type' => 2, 'text' => Input::get('textcomment')));
 		}
 
 
@@ -76,6 +76,7 @@ class CommentController extends BaseController {
 				'user_id'    => $commentModel->user_id,
 				'body' => $commentModel->body,
 				'id'    => $commentModel->id,
+				'date'  => $commentModel->created_at,
 			);
 
 			return Response::json($response);

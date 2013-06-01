@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="/assets/libraries/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/assets/libraries/bootstrap/css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/style2.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="/assets/css/shelf.css">
 	<link rel="stylesheet" href="/assets/libraries/bootstrap-chosen/css/chosen.css">
 	<link rel="stylesheet" href="/assets/libraries/select2/select2.css">
@@ -24,26 +25,154 @@
 	<link rel="stylesheet" href="/assets/libraries/ajax-scroll/src/css/jquery.ias.css">
 
 	<script src="/assets/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="http://www.youtube.com/player_api"></script>
 
 </head>
 
 <body>
+<div id="top-navbar" class="navbar navbar-static-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="{{URL::to("/")}}">TheVoltageCommunity</a>
+			<div class="nav-collapse collapse">
+				<div class="span6 pull-right">
+
+				@if(Auth::user())
+				<ul class="nav span1 pull-right">
+					<li class="dropdown pull-right">
+						<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="badge badge-important">{{count($notcount)}}</span><b class="caret"></b></a>
+						
+						<ul class="dropdown-menu notifications span4" role="menu">
+							@foreach($notifications as $notification)
+								@if($notification->post_id != 0)
+								@if($notification->post->created_by == Auth::user()->id)
+									@if($notification->activity == FALSE)
+										@if($notification->viewed == FALSE)
+											<li class="notificationsitem notread span3">
+												<div class="span1">
+														@if($notification->user->accountUser()->identifier == 0)
+															<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
+																<img class="img-rounded" src="{{ url($notification->user->accountUser()->getImagePathname()) }}" alt="" width="35">
+															</a>
+														@else
+														<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
+															<img class="img-rounded" src="{{ url($notification->user->accountUser()->facebookpic) }}" alt="" width="35">
+														</a>
+														@endif
+													</div>
+													<div class="span2 nottext">
+														<a href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+															<p class="notificationfont">{{$notification->user->first_name}} {{$notification->body}}</p>
+														</a>														
+													</div>
+
+													<div class="span1 readimg">
+  									 				@if($notification->post->soundcloud_art != NULL)
+														<img class="img-rounded pull-left" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="35">
+													@else
+														<img class="img-rounded pull-left" src="{{ url($notification->post->youtube_art) }}" alt="" width="35">
+													@endif
+													</div>
+											</li>
+
+										@else
+										
+											<li class="notificationsitem span4">
+													<div class="span1">
+														@if($notification->user->accountUser()->identifier == 0)
+															<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
+																<img class="img-rounded" src="{{ url($notification->user->accountUser()->getImagePathname()) }}" alt="" width="35">
+															</a>
+														@else
+														<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
+															<img class="img-rounded" src="{{ url($notification->user->accountUser()->facebookpic) }}" alt="" width="35">
+														</a>
+														@endif
+													</div>
+													<div class="span2 nottext">
+														<a href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+															<p class="notificationfont">{{$notification->user->first_name}} {{$notification->body}}</p>
+														</a>
+														
+													</div>
+
+													<div class="span1 readimg">
+  									 				@if($notification->post->soundcloud_art != NULL)
+														<img class="img-rounded pull-left" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="35">
+													@else
+														<img class="img-rounded pull-left" src="{{ url($notification->post->youtube_art) }}" alt="" width="35">
+													@endif
+													</div>
+											</li>
+											
+
+										@endif
+									@endif
+								@endif
+								@endif
+							@endforeach
+							@foreach($following as $follow)
+								<li class="notificationsitem span3">
+									{{$follow->account->user->notification}}
+								</li>
+							@endforeach
+						</ul>
+					</li>
+				</ul>
+				@endif
+				@if (Auth::check())
+					<ul class="nav span3 pull-right">
+						<li class="dropdown pull-right">
+							<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+							@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL )
+								<img src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" width="25" alt="">
+							@else
+								<img src="{{ url(Auth::user()->accountUser()->facebookpic) }}" width="25" alt="">
+							@endif
+							@if(Auth::user())
+							 Welcome {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+							@endif
+							<b class="caret"></b></a>
+
+							<ul class="dropdown-menu" role="menu" aria-labelledby="choose-instance">
+								<li>
+									@if(Auth::user())
+									<a href="{{ URL::action('UserController@showAccount',array(Auth::user()->id)) }}"><i class="icon-eye-open"> View Account</i></a>
+									@endif
+
+								</li>
+								<li><a href=""><i class="icon-key"> Change password</i></a></li>
+								<li><a href="{{ URL::action('PostController@create') }}"><i class="icon-plus"> Create post</i></a></li>
+							</ul>
+						</li>
+					</ul>
+
+					<ul class="nav span1 pull-right">
+					<li>
+						<a href="{{ URL::action('HomeController@showActivity') }}"><i class="icon-th-list"></i></a>
+					</li>
+				</ul>
+				@endif
+				<ul class="nav pull-right">
+					@if (Auth::check())
+						<li><a href="{{ URL::to('logout')}}">Logout</a></li>
+					@else
+						<li><a href="{{ URL::route('login') }}">Login</a></li>
+					@endif
+				</ul>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <div class="container">
 @yield('content')
+</div>
 
 	<footer class="site-footer">
-		
-
-		<div class="row">
-			<div class="span2">
-			
-			</div>
-
-			<div class="span3 offset7">
-				
-			</div>
-		</div>
+	
 
 		<hr>
 
@@ -51,8 +180,10 @@
 
 		<p>&copy; 2013 Thevoltagecommunity</p>
 
-	</footer>
+	</footer>   
+
 </div><!-- .container -->
+
 
 <!-- Scripts -->
 
@@ -70,7 +201,6 @@
 <script src="/assets/libraries/masonry2/jquery.masonry.min.js"></script>
 <script src="/assets/libraries/tinycon/tinycon.min.js"></script>
 <script type="text/javascript" src="/assets/js/sound.js"></script>
-
 
 
 <script>
@@ -254,7 +384,7 @@ $("#youtube").select2({
 
     function youtubeFormatSelection(data) {
         
-
+    	$('#postsoundcloud').empty();
         $('.preview').empty();
         $('#soundcloud').val('');
         $('.soundcloud-hidden').val('');
@@ -262,7 +392,9 @@ $("#youtube").select2({
         $('#title').attr('value', data.title);
         $('.youtube-hidden').attr('value', data.id);
         $('#art_urlyoutube').attr('value', data.thumbnail.hqDefault);
-        $('.preview').append("<img src='" + data.thumbnail.hqDefault + "' width='100' height='100'/>");
+        var image = "<div class='slider-img ch-img-1 soundimgslider' style='background-image: url(" + data.thumbnail.hqDefault +");'></div>"
+        $('.preview').append(image);
+        $('#postsoundcloud').append("<iframe id='player' src='http://www.youtube.com/embed/" + data.id + "?rel=0&wmode=Opaque&enablejsapi=1' frameborder='0' width='100%'' height='300'></iframe>");
         return data.title;
     }
 
@@ -314,16 +446,23 @@ $("#soundcloud").select2({
 
     function movieFormatSelection(data) {
         $('.preview').empty();
+        $('#postsoundcloud').empty();
         $('.soundcloud-hidden').attr('value', data.permalink_url);
+        $('.soundcloudid-hidden').attr('value', data.id);
         $('#title').attr('value', data.title);
         $('.genre').attr('value', data.genre);
         $('.genre').change();
+        var script   = document.createElement("script");
+		script.type  = "text/javascript";    // use this for linked script
+		script.text  = "SC.oEmbed('" + data.permalink_url + "', {color: 'c6e2cc'},  document.getElementById('postsoundcloud'));"               // use this for inline script
+		$('#postsoundcloud').append(script);
         $('.genre-hidden').attr('value', data.genre);
         $('.genre-hidden').change();
         var str=data.artwork_url;
 		var n=str.replace("large","t500x500");
         $('#art_urlsoundcloud').attr('value', n);
-        $('.preview').append("<img src='" + data.artwork_url + "'/>");
+        var image = "<div class='slider-img ch-img-1 soundimgslider' style='background-image: url(" + data.artwork_url +");'></div>"
+        $('.preview').append(image);
         return data.title;
     }
 

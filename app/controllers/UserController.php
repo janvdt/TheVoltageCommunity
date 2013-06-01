@@ -97,12 +97,16 @@ class UserController extends BaseController {
 		$followers = Follower::where('account_id','!=', Auth::user()->accountUser()->id)->where('follower_id',Auth::user()->accountUser()->id)->get();
 		$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
 		}
+
+		$tastes = Taste::where('account_id',$user->accountuser()->id)->get();
+
 		return View::make('user.account.index')
 			->with('user',$user)
 			->with('musicposts',$musicposts)
 			->with('graphposts',$graphposts)
 			->with('followers',$followers)
-			->with('following',$following);
+			->with('following',$following)
+			->with('tastes',$tastes);
 	}
 	/**
 	 * Display the specified resource.
@@ -206,8 +210,15 @@ class UserController extends BaseController {
 	public function visitAccount($id)
 	{	
 		$user = User::find($id);
-		$musicposts = Post::where('created_by',$user->id)->where('type','music')->get();
+		$shortmusicposts = Post::where('created_by',$user->id)->where('type','music')->take(9)->orderBy('id','desc')->get();
+		$musicposts = Post::where('created_by',$user->id)->where('type','music')->orderBy('id','desc')->get();
+		$shortgraphposts = Post::where('created_by',$user->id)->where('type','graph')->take(9)->orderBy('id','desc')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
+		$notifications = Notification::where('activity',1)->orderBy('created_at','desc');
+
+		$notifications = $notifications->paginate(8);
+
+		$tastes = Taste::where('account_id',$user->accountuser()->id)->get();
 
 		if(Session::has('hybridAuth')){
 			$facebooksession = Session::get('hybridAuth');
@@ -217,14 +228,22 @@ class UserController extends BaseController {
 				->with('user',$user)
 				->with('musicposts',$musicposts)
 				->with('graphposts',$graphposts)
-				->with('facebookuser',$facebookuser);
+				->with('facebookuser',$facebookuser)
+				->with('tastes',$tastes)
+				->with('shortgraphposts',$shortgraphposts)
+				->with('shortmusicposts',$shortmusicposts)
+				->with('notifications',$notifications);
 		}
 		else
 		{
 			return View::make('user.account.visit')
 				->with('user',$user)
 				->with('musicposts',$musicposts)
-				->with('graphposts',$graphposts);
+				->with('graphposts',$graphposts)
+				->with('tastes',$tastes)
+				->with('shortmusicposts',$shortmusicposts)
+				->with('shortgraphposts',$shortgraphposts)
+				->with('notifications',$notifications);
 		}
 	}
 

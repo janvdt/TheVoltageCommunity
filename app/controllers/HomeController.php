@@ -33,10 +33,12 @@ class HomeController extends BaseController {
 
 	public function showActivity()
 	{
-		$followers = Follower::where('account_id',Auth::user()->accountUser()->id)->get();
+		$notifications = Notification::orderBy('created_at','desc');
+
+		$notifications = $notifications->paginate(8);
 
 		return View::make('instance.activity')
-			->with('followers',$followers);
+			->with('notifications',$notifications);
 	}
 
 }

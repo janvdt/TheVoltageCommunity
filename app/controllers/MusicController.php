@@ -28,11 +28,167 @@ class MusicController extends BaseController {
 			$genres[$genre->title] = $genre->title;
 		}
 
-		$musicposts = $musicposts->paginate(8);
+		$musicposts = $musicposts->paginate(16);
 		return View::make('music.index')
 			->with('musicposts',$musicposts)
 			->with('genres',$genres)
 			->with('soundcloudsurl',$soundcloudsurl);
+	}
+	public function myTaste()
+	{
+		$musicposts = Post::where('type','music')->get();
+		$dbgenres = DB::table('genres')->select('title')->get();
+
+		//$dbmodels = Businesscardmodel::all();
+		$genres = array();
+
+		foreach ($dbgenres as $genre) {
+			$genres[$genre->title] = $genre->title;
+		}
+
+		$soundclouds = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
+		$soundcloudsurl = array();
+		foreach($soundclouds as $soundcloud)
+		{
+			if($soundcloud->tastescheck(Auth::user()->accountuser()->id)){
+			$soundcloudsurl[] = $soundcloud->soundcloud;
+			}
+		}
+
+		return View::make('music.mytaste')
+			->with('genres',$genres)
+			->with('soundcloudsurl',$soundcloudsurl)
+			->with('musicposts',$musicposts);
+	}
+	public function search()
+	{
+		/* The search input from user ** passed from jQuery .get() method */
+    	$param = Input::get("searchData");
+
+        /* Fetch the users input from the database and put it into a
+         valuable $fetch for output to our table. */
+        $musicposts = Post::where('type','music')->where('title', 'LIKE', '%' . $param . '%')->orderBy('created_at', 'desc')->get();
+
+        
+
+        foreach($musicposts as $musicpost)
+        {
+        	$musicpost['firstname'] = $musicpost->createdBy()->first_name;
+        	$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        	$musicpost['userid'] = $musicpost->createdBy()->id;
+        	if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        	}
+        	else
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        	}
+        	$test[] = $musicpost->toArray();
+
+        }
+      	return $test;
+	}
+
+	public function searchtaste()
+	{
+		/* The search input from user ** passed from jQuery .get() method */
+    	$param = Input::get("searchData");
+
+        /* Fetch the users input from the database and put it into a
+         valuable $fetch for output to our table. */
+        $musicposts = Post::where('type','music')->where('title', 'LIKE', '%' . $param . '%')->orderBy('created_at', 'desc')->get();
+
+       
+
+        foreach($musicposts as $musicpost)
+        {
+        
+        	if($musicpost->tastescheck(Auth::user()->accountuser()->id))
+        	{
+        		$musicpost['firstname'] = $musicpost->createdBy()->first_name;
+        		$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        		$musicpost['userid'] = $musicpost->createdBy()->id;
+        		if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        		{
+        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        		}
+        		else
+        		{
+        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        		}
+				$test[] = $musicpost->toArray();
+
+
+			}
+        }
+        return $test;
+	}
+
+	public function searchgenre()
+	{
+		/* The search input from user ** passed from jQuery .get() method */
+    	$param = Input::get("searchData");
+
+        /* Fetch the users input from the database and put it into a
+         valuable $fetch for output to our table. */
+       $musicposts = Post::where('type','music')->where('title', 'LIKE', '%' . $param . '%')->orderBy('created_at', 'desc')->get();
+
+
+        foreach($musicposts as $musicpost)
+        {
+        
+        	if($musicpost->genrescheck(Input::get('type')))
+        	{	
+        		$musicpost['firstname'] = $musicpost->createdBy()->first_name;
+        		$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        		$musicpost['userid'] = $musicpost->createdBy()->id;
+        		if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        		{
+        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        		}
+        		else
+        		{
+        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        		}
+				$test[] = $musicpost->toArray();
+			}
+        }
+
+        return $test;
+	}
+
+	public function searchsubgenre()
+	{
+		/* The search input from user ** passed from jQuery .get() method */
+    	$param = Input::get("searchData");
+
+        /* Fetch the users input from the database and put it into a
+         valuable $fetch for output to our table. */
+       $musicposts = Post::where('type','music')->where('title', 'LIKE', '%' . $param . '%')->orderBy('created_at', 'desc')->get();
+
+
+        foreach($musicposts as $musicpost)
+        {
+        
+        	if($musicpost->subgenrescheck($musicpost->id,Input::get('type')))
+        	{
+        		$musicpost['firstname'] = $musicpost->createdBy()->first_name;
+        		$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        		$musicpost['userid'] = $musicpost->createdBy()->id;
+        		if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        		{
+        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        		}
+        		else
+        		{
+        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        		}
+				$test[] = $musicpost->toArray();
+			}
+        }
+
+        return $test;
 	}
 
 	/**
