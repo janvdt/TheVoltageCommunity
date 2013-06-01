@@ -32,6 +32,20 @@ View::composer('layout', function($view)
 
 });
 
+View::composer('diy.layout', function($view)
+{
+	if(Auth::user())
+	{
+	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->where('post_creator',Auth::user()->id)->where('activity',FALSE)->get();
+	$notifications = Notification::where('user_id','!=',Auth::user()->id)->get();
+
+	$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
+
+	$view->with('notcount', $notcount)->with('notifications',$notifications)->with('following',$following);
+	}
+
+});
+
 Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');

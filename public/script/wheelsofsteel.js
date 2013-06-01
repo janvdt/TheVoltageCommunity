@@ -495,15 +495,7 @@ timer = (function() {
       ram = soundManager.getMovie(soundManager.id)._getMemoryUse();
     }
 
-    document.getElementById('control-stats').innerHTML = scratchWrapper[0] + [
-     '<span class="scratch-mode">Scratch mode',
-     ' / latency: ' + latency,
-     ' / </span>' + (!soundManager.html5Only && !SCRATCH_MODE ? '<b style="cursor:help" title="Scratch mode also includes pitch bending and EQ/filter effects.">Scratch mode requires 25+ fps, see "more info" for details</b> / ':'') + (soundManager.html5Only ? (isBrokenHTML5Safari ? '<b class="warning">Safari + Snow Leopard has broken HTML5 audio, often fails to load MP3s. :( <a href="https://bugs.webkit.org/show_bug.cgi?id=32159#c9" class="exclude">Bug #32159</a>. OS X Lion allegedly fixes this. Until then, try Chrome (or Safari on Windows, since it works) or enable flash.</b> / ' : '<b>Using HTML5 audio, scratch mode not supported</b> / '):'') + 'fps' + (requestAnimationFrame ? ' <span title="using requestAnimationFrame for UI updates">(RAF)</span>' : ''),
-     ': ' + (timer.fpsAverage === 29.999 ? 'n/a' : (timer.fpsAverage < badFrameRate ? '<span class="low-framerate" title="Low framerate, slow and/or no GPU/hardware acceleration. '+(SCRATCH_MODE ? 'Try non-scratch mode.' : 'Your browser and/or hardware may be the bottleneck here.') + '">' + timer.fpsAverage + '<\/span>' : timer.fpsAverage)),
-     '<span class="scratch-mode"> / ram: ' +(ram/1024/1024).toFixed(2)+' mb<\/span>' + scratchWrapper[1],
-     (SCRATCH_MODE && !soundManager.html5Only && timer.fpsAverage < badFrameRate && (turntables[0].power.motor || turntables[1].power.motor) ? ' / <b class="warning">Bad sound? Try <a href="?scratch=0" onclick="window.location.href = wheelsofsteel.getURLState({scratch:0});return false" class="exclude">non-scratch mode</a>. Lack of hardware acceleration (or high load) means high CPU use, which kills audio processing.<\/b>' : ''),
-     (!SCRATCH_MODE && !soundManager.html5Only && timer.fpsAverage >= goodFrameRate && (turntables[0].power.motor || turntables[1].power.motor) ? ' / <b class="highlight">Looks like you\'re one of the cool kids. Try <a href="?scratch=1" onclick="window.location.href = wheelsofsteel.getURLState({scratch:1});return false" class="exclude">scratch mode</a>.<\/b>' : '')
-    ].join('');
+    
 
   };
 
@@ -2257,9 +2249,6 @@ function Turntable(oTT, sURL) {
 
     self.setBlockSize(self.data.sound.blockSize);
 
-    if (SCRATCH_MODE) {
-      document.getElementById('experimental').style.display = 'block';
-    }
 
     // local reference
     sound = self.data.sound.soundObject;
@@ -3221,7 +3210,7 @@ soundManager.onready(function() {
       loaderForm = [document.getElementById('loader-form-1'), document.getElementById('loader-form-2')],
       urlParams,
       keyData,
-      sc = document.getElementById('soundcloud-tracks'),
+      sc = document.getElementById('music-posts'),
       sc_cache = {},
       loadURL;
 
@@ -3714,26 +3703,7 @@ soundManager.onready(function() {
 
   }
 
-  var moreinfo_link = document.getElementById('moreinfo-link');
-
-  moreinfo_link.onclick = function(e) {
-
-    var controls = document.getElementById('controls'),
-    css_open = 'open',
-    was_open = controls.className === css_open;
-    controls.className = (was_open ? '' : css_open);
-    if (was_open) {
-      // toggle-based effect
-      window.location.hash = '#less';
-      if (e) {
-        e.preventDefault();
-      }
-      return false;
-    } else {
-      return true;
-    }
-
-  };
+  
 
   if (window.location.hash && window.location.hash.match(/more/i) && document.getElementById('controls').className !== 'open') {
 
