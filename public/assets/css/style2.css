@@ -284,6 +284,19 @@ h4::first-letter {
   letter-spacing: -1px;
   font-size: 14px;
 }
+.footerfont
+{
+	font-size: 20px;
+  line-height: 50px;
+  margin: 10px 0 -20px;
+  color:black;
+}
+.navbar-inner
+{
+	background-color: grey;
+}
+
+
 
 
 

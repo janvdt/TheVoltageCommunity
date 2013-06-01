@@ -12,10 +12,12 @@
 <link rel="stylesheet" media="screen" href="/assets/css/turntable.css" />
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="stylesheet" href="/assets/css/style2.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/assets/css/shelf.css">
 <script src="script/soundmanager2.js"></script>
 <script src="script/wheelsofsteel.js"></script>
 <script src="/assets/js/jquery-1.8.0.min.js"></script>
 <script src="/assets/libraries/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>
 </head>
 
 <body>
@@ -174,4 +176,9 @@
 
 	</footer>   
 
-</div><!-- .contain
+</div>
+
+ 
+
+</body>
+</html>

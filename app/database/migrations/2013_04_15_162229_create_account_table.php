@@ -19,6 +19,11 @@ class CreateAccountTable extends Migration {
 			$table->string('facebookpic');
 			$table->timestamps();
 		});
+
+		DB::table('accounts')->insert(array(
+			'biography'     => 'fresh install',
+			
+		));
 	}
 
 	/**

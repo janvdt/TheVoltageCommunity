@@ -17,9 +17,13 @@ class CreateNotificationsTable extends Migration {
 			$table->text('body');
 			$table->integer('post_id');
 			$table->integer('user_id');
+			$table->integer('account_id');
+			$table->integer('message_id');
 			$table->boolean('viewed');
 			$table->integer('post_creator');
 			$table->boolean('activity');
+			$table->integer('type');
+			$table->text('text');
 			$table->timestamps();
 		});
 	}

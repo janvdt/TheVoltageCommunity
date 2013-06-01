@@ -39,6 +39,8 @@ body {
 #tt-wrapper {
  position:relative;
  padding: 64px 0px 64px 0px;
+
+ 
  
 }
 
@@ -1888,11 +1890,15 @@ form.loader-form input[type='url']:focus {
 
 #the-music {
  padding-bottom: 1em;
+ text-transform: none;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: -1px;
 }
 
 #the-music a span.artist {
- font-weight: normal;
- color: rgba(255,255,255,0.5);
+ 
 }
 
 #the-music a.loading {
@@ -1902,7 +1908,7 @@ form.loader-form input[type='url']:focus {
 }
 
 #the-music a.active {
- color: #fff;
+ 
 }
 
 #default-content h2 {

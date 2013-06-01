@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
 			$table->string('role', 255);
 			$table->string('status', 255);
 			$table->boolean('master');
+			$table->integer('account_id');
+			$table->integer('identifier');
 			$table->timestamps();
 		});
 
@@ -28,6 +30,7 @@ class CreateUsersTable extends Migration {
 			'password'  => Hash::make('pukkelpop'),
 			'first_name' => 'Jan',
 			'master'     => 1,
+			'account_id' => 1,
 		));
 	}
 

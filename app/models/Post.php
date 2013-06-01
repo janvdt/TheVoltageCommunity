@@ -112,6 +112,7 @@ class Post extends BaseModel {
 	{
 		$dbtastes = DB::table('tastes')->where('account_id',$account_id)->get();
 
+
 		$genresearch = array();
 
 		foreach($this->genres as $genre)
@@ -119,14 +120,16 @@ class Post extends BaseModel {
 			$genresearch[] = $genre->title;		
 		}
 
+
 		$genrepost = reset($genresearch);
 
 		//Itterate over each permission from a role
 		foreach($dbtastes as $taste)
 		{
 			//Check if a permission was found.
-			if($taste->name=== $genrepost)
+			if($taste->name === $genrepost)
 			{
+
 				return true;
 			}
 					

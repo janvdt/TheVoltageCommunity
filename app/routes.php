@@ -51,7 +51,7 @@ Route::get('login', array('as' => 'login', function()
 	return View::make('instance.login');
 }));
 
-
+Route::get('turntable/search','TurntableController@search');
 Route::get('music/subgenre/searchsubgenre','MusicController@searchsubgenre');
 Route::get('music/genre/searchgenre','MusicController@searchgenre');
 Route::get('music/search','MusicController@search');

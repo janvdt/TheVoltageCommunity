@@ -168,11 +168,11 @@
 		</div>
 	</div>
 </div>
-<div class="row loadmore">
-		<div class="span12">
-			
-		</div>
+<div class="row span12">
+	<div class="finished span5 offset3">
+		
 	</div>
+</div>
 </div>
 @stop
 
@@ -209,10 +209,10 @@ $('.pagination').hide();
                    // selector for all items you'll retrieve
     loading: {
         finished: undefined,
-        finishedMsg: "<em>Congratulations</em>",
+        finishedMsg: "",
         img: "/images/loader.gif",
         msg: null,
-        msgText: "<em>Loading the next set of posts...</em>",
+        msgText: "",
         selector: null,
         speed: 'fast',
         start: undefined

@@ -11,7 +11,7 @@ class CreateImagetagsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('post_genre', function($table)
+		Schema::create('genre_post', function($table)
 		{
 			$table->increments('id');
 			$table->integer('post_id');

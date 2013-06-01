@@ -31,6 +31,8 @@ class PostController extends BaseController {
 
 		$genresdata = Genre::all();
 
+
+
 		//Get tags that belong to images
 		$genresdata = DB::table('genres')->whereExists(function($query){
 				$query->select(DB::raw('*'))
@@ -122,11 +124,11 @@ class PostController extends BaseController {
 		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1,'created_at' => $post->created_at,'type' => 1));
 
 		//Decode json object.
-		$obj = json_decode(stripslashes(Input::get('genre-hidden')));
+		$inputgenre = Input::get('genre');
 
-		if($obj != NULL){
+		if($inputgenre != NULL){
 		
-			$genre = Genre::where('title',$obj->val)->first();
+			$genre = Genre::where('title',$inputgenre)->first();
 			//When no genre is found.
 			if($genre != NULL){
 			

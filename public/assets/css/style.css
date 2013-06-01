@@ -608,7 +608,13 @@
 ==========================================*/
 .site-footer
 {
-	margin-top: 25px;
+	background-color: #c6e2cc;
+	height: 150px;
+	margin-top: 80px;
+}
+.logofooter img
+{
+	margin-top: 15px;
 }
 /* Menu
 ==========================================*/

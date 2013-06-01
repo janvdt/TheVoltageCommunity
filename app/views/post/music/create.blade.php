@@ -63,10 +63,19 @@
 			<div class="control-group">
 				<label class="control-label">Music style</label>
 				<div class="controls">
-					<input style="width: 300px;" type="text" name="genre" value="" class="genre"/>
-					<input type="hidden" type="text" name="genre-hidden" value="" class="genre-hidden"/>
+					 <select id='e1' name="genre">
+        				<option value="Electronic">Electronic</option>
+        				<option value="Hiphop">Hiphop</option>
+        				<option value="House">House</option>
+        				<option value="Drum&bass">Drum&bass</option>
+        				<option value="Dubstep">Dubstep</option>
+        				<option value="Pop">Pop</option>
+        				<option value="Dance">Dance</option>
+        				<option value="Indie">Indie</option>
+  					</select>
 				</div>
 			</div>
+			
 
 			<div class="control-group">
 				<label class="control-label">Genre</label>
@@ -94,22 +103,7 @@
 @section('scripts')
 	@parent
 
-	$(".genre").select2({
-		createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
-		multiple: false,
-		data: <?php print(json_encode(array_values($genresdata))); ?>,
-		initSelection : function (element, callback) {
-    	   var data = [];
-        	$(element.val().split(",")).each(function () {
-        	    data.push({id: this, text: this});
-        	});
-        	callback(data);
-    	}
-	}).on("change", function(e) {
-		var genres = JSON.stringify({val:e.val, added:e.added, removed:e.removed});
-		console.log(genres);
-		$('.genre-hidden').attr('value', genres);
-	});
+	$("#e1").select2();
 
 	$(".subgenre").select2({
 		createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },

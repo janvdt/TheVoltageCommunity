@@ -2,7 +2,10 @@
 
 @section('content')
 
-<div class="span12">
+<div>
+	@if(Auth::user())
+		<h2>{{Auth::user()->first_name}} show us what you got</h2>
+	@endif
 	<div id="tt-wrapper-wrapper">
 		<div id="tt-wrapper">
 			<div id="tt-container">
@@ -398,8 +401,14 @@
 							<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$musicpost->youtube_art}});">
 							@endif
         					@endif
+
 								
 							</div>
+							<div class="shelf shelfmusicpost">
+							<div class="bookend_left"></div>
+							<div class="bookend_right"></div>
+							<div class="reflection"></div>
+						</div>
 						</li>
             		@endif
             	@endforeach
@@ -407,6 +416,91 @@
 		</div>
 	</div>
 </div>
+</div>
+<div class="row">
+	<div class="span12">
+		<div class="pagination pagination-centered">
+			{{ $musicposts->links() }}
+		</div>
+	</div>
+</div>
 
+ <script type="text/javascript">
+$(document).ready(function(){
+	
+$('.pagination ul li:not(:last)').remove();
+$('.pagination').hide();
+// infinitescroll() is called on the element that surrounds 
+// the items you will be loading more of
+  $('.music-posts').infinitescroll({
+ 
+    navSelector  : ".pagination",            
+                   // selector for the paged navigation (it will be hidden)
+    nextSelector : ".pagination ul li a",    
+                   // selector for the NEXT link (to page 2)
+    itemSelector : ".musicpost",          
+                   // selector for all items you'll retrieve
+    loading: {
+        finished: undefined,
+        finishedMsg: "<em>Congratulations</em>",
+        img: "/images/loader.gif",
+        msg: null,
+        msgText: "<em>Loading the next set of posts...</em>",
+        selector: null,
+        speed: 'fast',
+        start: undefined
+    }
+    },
+  // trigger Masonry as a callback
+  function( newElements ) {
+   
+    
+});
+$('#searchData').keyup(function() {
+ 	var searchVal = $(this).val();
+
+ 	if(searchVal !== '') {
+ 
+            $.get('turntable/search?searchData='+searchVal, function(returnData) {
+                /* If the returnData is empty then display message to user
+                 * else our returned data results in the table.  */
+                if (!returnData) {
+                    $('.music-posts').html('<p style="padding:5px;">Search term entered does not return any data.</p>');
+                } 
+                else 
+                {
+                	$('.music-posts li').each(function(i)
+					{
+						$(this).css("display", "none");
+   						
+					});
+                	for (var i = 0; i < returnData.length; i++) {
+                 	console.log(returnData);
+    				if(returnData[i].id !== undefined)
+    				{
+                 	$searchpost = "<li class='musicpost' id='searchresults'><div class='row'><div class='span3 titlemusicpost'><h6><a href='#' data-track-id='"+ returnData[i].soundcloudid + "' oncontextmenu='return false'>"+ returnData[i].title +"</a></h6></div></div>@if(" + returnData[i].soundcloud_art +" !=  null)<div class='ch-item ch-img-1 soundcloudimg' style='background-image: url("+ returnData[i].soundcloud_art + ");'>@endif @if(" + returnData[i].youtube_art +" !=  null)<div class='ch-item ch-img-1 youtubeimg' style='background-image: url("+ returnData[i].youtube_art + ");'>@endif<a href ='http://tvctheme.loc/post/showmusic/"+ returnData[i].id +"'></div></a></div><div class='shelf shelfmusicpost'><div class='bookend_left'></div><div class='bookend_right'></div><div class='reflection'></div></div></li>";
+
+                 	$(".music-posts").append($searchpost);
+                 	}
+
+					}  
+                }
+            });
+        } else {
+            $('.music-posts li').each(function(i)
+			{
+				$(this).css("display", "block");
+				$('#searchresults').remove();
+			});""
+        }
+ 
+    });
+});
+
+
+</script>
 @stop
+
+
+
 

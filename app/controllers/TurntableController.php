@@ -9,14 +9,42 @@ class TurntableController extends \BaseController {
 	 */
 	public function index()
 	{
-		$musicposts = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
+		$musicposts = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->where('soundcloud_id','!=',0);
+
+		$musicposts = $musicposts->paginate(8);
 		return View::make('diy.index')
 			->with('musicposts',$musicposts);
 	}
 
-	public function fetch()
+	public function search()
 	{
-		
+		/* The search input from user ** passed from jQuery .get() method */
+    	$param = Input::get("searchData");
+
+        /* Fetch the users input from the database and put it into a
+         valuable $fetch for output to our table. */
+        $musicposts = Post::where('type','music')->where('title', 'LIKE', '%' . $param . '%')->where('soundcloud_id','!=',0)->orderBy('created_at', 'desc')->get();
+
+        
+
+        foreach($musicposts as $musicpost)
+        {
+        	$musicpost['firstname'] = $musicpost->createdBy()->first_name;
+        	$musicpost['soundcloudid'] = $musicpost->soundcloud_id;
+        	$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        	$musicpost['userid'] = $musicpost->createdBy()->id;
+        	if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        	}
+        	else
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        	}
+        	$test[] = $musicpost->toArray();
+
+        }
+      	return $test;
 	}
 
 	/**

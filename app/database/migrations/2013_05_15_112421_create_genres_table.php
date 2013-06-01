@@ -17,6 +17,41 @@ class CreateGenresTable extends Migration {
 			$table->string('title', 255);
 			$table->timestamps();
 		});
+
+			DB::table('genres')->insert(array(
+			'title'     => 'Electronic',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'HipHop',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'House',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'Drum&bass',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'Dubstep',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'Pop',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'Dance',
+		));
+
+			DB::table('genres')->insert(array(
+			'title'     => 'Indie',
+		));
+		
+
+		
 	}
 
 	/**

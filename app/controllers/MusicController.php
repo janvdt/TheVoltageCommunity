@@ -13,6 +13,7 @@ class MusicController extends BaseController {
 
 		$soundclouds = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
 
+		$soundcloudsurl = array();
 		foreach($soundclouds as $soundcloud)
 		{
 			$soundcloudsurl[] = $soundcloud->soundcloud;

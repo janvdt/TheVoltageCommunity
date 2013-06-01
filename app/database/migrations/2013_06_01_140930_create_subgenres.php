@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTastesTable extends Migration {
+class CreateSubgenres extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,12 +11,10 @@ class CreateTastesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tastes', function($table)
+		Schema::create('subgenres', function($table)
 		{
 			$table->increments('id');
-			$table->integer('account_id');
-			$table->string('name',255);
-			$table->string('value',255);
+			$table->string('title');
 			$table->timestamps();
 		});
 	}
@@ -28,7 +26,7 @@ class CreateTastesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tastes');
+		//
 	}
 
 }
