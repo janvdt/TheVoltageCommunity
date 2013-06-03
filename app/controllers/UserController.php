@@ -214,7 +214,7 @@ class UserController extends BaseController {
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->orderBy('id','desc')->get();
 		$shortgraphposts = Post::where('created_by',$user->id)->where('type','graph')->take(9)->orderBy('id','desc')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
-		$notifications = Notification::where('activity',1)->orderBy('created_at','desc');
+		$notifications = Notification::where('activity',1)->orderBy('id','desc');
 
 		$notifications = $notifications->paginate(8);
 

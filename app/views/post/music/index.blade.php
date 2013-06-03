@@ -41,7 +41,7 @@
 			@endif
 		</div>
 		<div class="row">
-			@if(Auth::user())
+			@if(Auth::user() and Auth::user()->accountUser()->facebook != NULL)
 			<div class="span4 offset1 sharebutton">
 				<a class="btn btn-inverse btn-large" href="{{ URL::action('PostController@share', array($post->id)) }}"><img src="/images/facebook-logo-square.png"></a>
 				
@@ -152,6 +152,7 @@
 		</div>
 		@endforeach
 	</div>
+</div>
 	
 	
 <div class="modal hide fade" id="delete-post-{{ $post->id }}">

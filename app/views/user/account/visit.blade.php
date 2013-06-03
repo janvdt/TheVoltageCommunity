@@ -2,29 +2,38 @@
 
 @section('instanceContent')
 <div class="span12">
-	<div class="row">
-		<div class="span4 headervisit">
+	<div class="row headervisit">
+		<div class="span1 greyprofile">
+			
+		</div>
+		<div class="span2 profilepicture">
 			@if($user->accountUser()->image_id != 0 or $user->accountUser()->facebookpic == NULL )
-				<img src="{{ url($user->accountUser()->getImagePathname()) }}" alt="">
+				<img class="img-polaroid" src="{{ url($user->accountUser()->getImagePathname()) }}" alt="" width="162px">
 			@else
-				<img src="{{ url($user->accountUser()->facebookpic) }}" alt="">
+				<img class="img-polaroid" src="{{ url($user->accountUser()->facebookpic) }}" alt="" width="162">
 			@endif
 		</div>
-		<div class="span4">
+		<div class="span1 greyprofile">
+			
+		</div>
+		<div class="span6">
+			<p class="namevisit">{{$user->first_name}} {{$user->last_name}}</p>
+			<i class="icon-heart"></i>
+			@foreach($tastes as $taste)
+			{{$taste->name}},
+			@endforeach
+			<div class="progress progress-info progress-striped scorebar">
+  				<div class="bar" style="width: 95%"></div><i class="icon-star"></i>
+			</div>
+		</div>
+		<div class="span2">
 			@if(Auth::user() or Session::has('hybridAuth'))
 			<div class="span3 socialbutton">
-				<h3>Follow!</h3>
 				@if(Auth::user())
 					@if($user->accountUser()->canFollow(Auth::user()->accountUser()->id,$user->accountUser()->id))
-						<a class="btn btn-primary" id="follow"><i class="icon-star"> Follow !</i></a>
+						<a class="btn btn-inverse btn-large" id="follow"><i class="icon-user"> Follow</i></a>
 					@else
-						<a class="btn btn-danger" id="unfollow"><i class="icon-star-empty"> Unfollow !</i></a>
-					@endif
-				@else
-					@if($user->accountUser()->canFollow($facebookuser->accountUser()->id,$user->accountUser()->id))
-						<a class="btn btn-primary" id="follow"><i class="icon-star"> Follow !</i></a>
-					@else
-						<a class="btn btn-danger" id="unfollow"><i class="icon-star-empty"> Unfollow !</i></a>
+						<a class="btn btn-large" id="unfollow"><i class="icon-user"> Unfollow</i></a>
 					@endif
 				@endif
 			@endif
@@ -36,30 +45,9 @@
 	<div class="row">
 		<div class="span3 infoaccount">
 			<div class="span3 info">
-				<p class="infofont">INFO</p>
+				<p class="infofont">Music</p>
 			</div>
-			<div class="span3">
-				<div class="row">
-					<p class="infofont">{{$user->first_name}} {{$user->last_name}}</p>
-				</div>
-
-				<div class="row">
-					<p class="infofont">Music taste</p>
-					<ul class="nav tastes">
-						@foreach($tastes as $taste)
-						<li>{{$taste->name}}</li>
-						@endforeach
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="span3 infoaccount">
-			<div class="span3 info">
-				<p class="infofont">MY MUSIC</p>
-			</div>
-			<a href=""><p class="infofont">Musicposts ({{count($musicposts)}})</p></a>
+			<a href="{{ URL::action('AccountController@visitmusicposts', array($user->id)) }}"><p class="musiccount">Musicposts ({{count($musicposts)}})</p></a>
 			<ul class="nav nav-pills">
 				@foreach($shortmusicposts as $shortmusicpost)
 					<li class="accountposts">
@@ -80,14 +68,14 @@
 	<div class="row">
 		<div class="span3 infoaccount">
 			<div class="span3 info">
-				<p class="infofont">MY GRAPHICS</p>
+				<p class="infofont">Graphics</p>
 			</div>
-			<a href=""><p class="infofont">Graphicposts ({{count($graphposts)}})</p></a>
+			<a href=""><p class="musiccount">Graphicposts ({{count($graphposts)}})</p></a>
 			<ul class="nav nav-pills">
 				@foreach($shortgraphposts as $shortgraphpost)
 					<li class="accountposts">
 						<a href="{{ URL::action('PostController@showGraph', array($shortgraphpost->id)) }}">
-							<img src="{{ $shortgraphpost->image->getSize('original')->getPathname() }}" alt="" width="90" border="0">
+							<img class="avatar visitgraph" src="/{{ $shortgraphpost->image->getSize('original')->getPathname() }}" alt="" width="90" height="90px">
 						</a>
 					</li>
 				@endforeach
@@ -96,9 +84,10 @@
 	</div>
 </div>
 
-<div class="span6 offset1">
+<div class="span7 offset1">
 	<h2>Activity</h4>
-	<div class="span5 messagesection">
+	<div class="span6 messagesection">
+			Message
 			@if(Auth::user())
 			<div class="row">
 				<div class="writemessage">
@@ -125,13 +114,13 @@
 			@endif
 			
 	<div class="row">
-		<div class="span6">
+		<div class="offset1 span4">
 			<ul class="visitaccountlog nav">
 				@foreach($notifications as $notification)
 					@if($user->accountUser()->id == $notification->account_id and  $notification->account_id != 0)
-					<li class=" activity">
+					<li class="activity">
 						<div class="row log">
-							<div class="span5">
+							<div class="span4">
 								<div class="pull-left">
 									<p class="visitaccounttitle">
 										<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
@@ -159,10 +148,12 @@
 								@endif
 							</div>
 						</div>
+						<hr>
 					</li>
-					<hr>
+					
 
 					@elseif($notification->user_id == $user->id and $notification->account_id == 0)
+					@if($notification->type == 6)
 					<li class=" activity">
 						<div class="row log">
 							<div class="span4">
@@ -185,16 +176,53 @@
 									</div>
 								@endif
 								<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
+									<img class="avatar" src="/{{ $notification->post->image->getSize('original')->getPathname() }}" alt="">
+								</a>
+							</div>
+						</div>
+						<hr>
+					</li>
+					@else
+					<li class=" activity">
+						<div class="row log">
+							<div class="span4">
+								<div class="pull-left">
+									<p class="visitaccounttitle">
+									{{$notification->user->first_name}} {{$notification->user->last_name}} {{$notification->body}}</p>
+								</div>
+								
+								<div class="pull-right">
+									<h6>{{$notification->created_at}}<h6>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="offset span4">
+								<h5>{{$notification->post->title}}</h5>
+								@if($notification->type == 2)
+									<div class="alert alert-success">
+										<h6>{{$notification->text}}</h6>
+									</div>
+								@endif
+								@if($notification->post->type == 'graph')
+								<a class="" href="{{URL::action('PostController@showGraph',array($notification->post_id)) }}">
+									<img class="avatar" src="/{{ $notification->post->image->getSize('original')->getPathname() }}" alt="">
+								</a>
+								@else
+								<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 									@if($notification->post->soundcloud_art != NULL)
 										<img class="img-rounded soundcloudactivity" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="500">
 									@else
 										<img class="img-rounded" src="{{ url($notification->post->youtube_art) }}" alt="" width="500">
 									@endif
 								</a>
+								@endif
 							</div>
 						</div>
+						<hr>
 					</li>
-					<hr>
+					@endif
+					
 					@endif
 					
 				@endforeach
@@ -203,29 +231,37 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="span12">
+		<div class="pagination pagination-centered">
+			{{ $notifications->links() }}
+		</div>
+	</div>
+</div>
+
 @stop
 
 @section('scripts')
 	@parent
-
-	 $("#follow").click(function(){ 
+	$('.socialbutton').on('click',"#follow",function() {
+	 
 
 	$.post('/account/follow/' + {{$user->accountUser()->id}},
 	function(data)
 	{
-		$("#follow").hide();
-		var button = "<a class='btn btn-danger' id='unfollow'><i class='icon-star-empty'></i></a>";
+		$(".socialbutton").empty();
+		var button = "<a class='btn btn-large' id='unfollow'><i class='icon-user'> Unfollow</i></a>";
 		$(".socialbutton").append(button);
 	});
 });
 
-	 $("#unfollow").click(function(){ 
+	 $('.socialbutton').on('click',"#unfollow",function() {
 
 	$.post('/account/unfollow/' + {{$user->accountUser()->id}},
 	function(data)
 	{
-		$("#unfollow").hide();
-		var button = "<a class='btn btn-primary' id='follow'><i class='icon-star'></i></a>";
+		$(".socialbutton").empty();
+		var button = "<a class='btn btn-inverse btn-large' id='follow'><i class='icon-user'> Follow</i></a>";
 		$(".socialbutton").append(button);
 	});
 });
@@ -246,7 +282,7 @@ $("#upload-message-form").ajaxForm({
 	success: function(data) {
 	
 	
-		var message = "<li class='activity'><div class='row log'><div class='span4'><div class='pull-left'><p class='visitaccounttitle'>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</p></div><div class='pull-right'><h6>" + data.date.date +"<h6></div></div></div></li>";
+		var message = "<li class='activity'><div class='row log'><div class='span4'><div class='pull-left'><p class='visitaccounttitle'><a href=''>@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL )<img src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' width='30' alt=''>@else<img src='{{ url(Auth::user()->accountUser()->facebookpic) }}' width='30' alt=''>@endif</a> {{Auth::user()->first_name}} {{Auth::user()->last_name}} " + data.text + "</p></div><div class='pull-right'><h6>" + data.date.date +"<h6></div></div></div><div class='row'><div class='offset span4'><div class='alert alert-success'><h6>" + data.body + "</h6></div></div></div></li>";
 	
 	
 	$(".visitaccountlog").prepend(message);
@@ -256,4 +292,27 @@ $("#upload-message-form").ajaxForm({
 });
 @endif
 
+$('.pagination ul li:not(:last)').remove();
+$('.pagination').hide();
+// infinitescroll() is called on the element that surrounds 
+// the items you will be loading more of
+  $('.visitaccountlog').infinitescroll({
+ 
+    navSelector  : ".pagination",            
+                   // selector for the paged navigation (it will be hidden)
+    nextSelector : ".pagination ul li a",    
+                   // selector for the NEXT link (to page 2)
+    itemSelector : ".activity",          
+                   // selector for all items you'll retrieve
+    loading: {
+        finished: undefined,
+        finishedMsg: "<em>Congratulations</em>",
+        img: "/images/loader.gif",
+        msg: null,
+        msgText: "<em>Loading the next set of posts...</em>",
+        selector: null,
+        speed: 'fast',
+        start: undefined
+    }
+});
 @stop

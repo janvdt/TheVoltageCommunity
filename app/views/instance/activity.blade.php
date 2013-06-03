@@ -21,17 +21,19 @@
 				@if($notification->post_id == 0)
 				<li class=" activity">
 					<ul class="nav nav-pills  activityref offset8">
-  									<li class="dropdown">
-    									<a class="dropdown-toggle activityref" data-toggle="dropdown" href="#">
-        									<i class="icon-th-large"></i>
-        									<b class="caret"></b>
-      									</a>
-    									<ul class="dropdown-menu">
-    											<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
-    										</li>
-    									</ul>
-  									</li>
-								</ul>
+  						<li class="dropdown">
+    						<a class="dropdown-toggle activityref" data-toggle="dropdown" href="#">
+        						<i class="icon-th-large"></i>
+        						<b class="caret"></b>
+      						</a>
+    						
+    						<ul class="dropdown-menu">
+    							</li>
+    								<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
+    							</li>
+    						</ul>
+  						</li>
+					</ul>
 						<div class="row log">
 							<div class="span6 offset2">
 								<div class="pull-left">
@@ -106,6 +108,11 @@
 									<h6>{{$notification->text}}</h6>
 								</div>
 								@endif
+								@if($notification->post->type == 'graph')
+								<a class="" href="{{URL::action('PostController@showGraph',array($notification->post_id)) }}">
+									<img class="avatar" src="/{{ $notification->post->image->getSize('original')->getPathname() }}" alt="">
+								</a>
+								@else
 								<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 									@if($notification->post->soundcloud_art != NULL)
 										<img class="img-rounded soundcloudactivity" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="500">
@@ -113,6 +120,7 @@
 										<img class="img-rounded" src="{{ url($notification->post->youtube_art) }}" alt="" width="500">
 									@endif
 								</a>
+								@endif
 							</div>
 						</div>
 						<div class="row">
@@ -126,9 +134,7 @@
 						@if($notification->post->soundcloud != NULL)
 							<div id="postsoundcloudactivity{{$notification->post->id}}" class="span5 offset3">
 								<div id="putTheWidgetHere"></div>
-								<script type="text/JavaScript">
-  									SC.oEmbed('{{$notification->post->soundcloud}}', {color: "c6e2cc"},  document.getElementById("postsoundcloudactivity{{$notification->post->id}}"));
-								</script>
+								
 							</div>
 						@else
 							<div class="video-container">

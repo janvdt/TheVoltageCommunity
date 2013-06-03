@@ -649,7 +649,7 @@ body.battle-style .turntable {
  font-size: 10px;
  line-height: 9px;
  text-align: right;
- color: rgba(255,255,255,0.3);
+ color: black;
 }
 
 .turntable .pitch .legend ul li span {
@@ -1454,12 +1454,13 @@ body .turntable .platter .record .slipmat {
  -moz-transition: opacity 1s ease-in-out;
  -ms-transition: opacity 1s ease-in-out;
  -webkit-transition: opacity 1s ease-in-out;
+ background-color: white;
 }
 
 /* a few test skins/themes for the decks + mixer */
 
-body.yahoo .turntable .platter .record .slipmat-y {
- background: transparent url(../image/slipmats/yahoo.jpg) no-repeat 50% 50%;
+body.tvc .turntable .platter .record .slipmat-y {
+ background: transparent url(../image/slipmats/tvc.jpg) no-repeat 50% 50%;
  opacity: 0;
 }
 
@@ -1474,26 +1475,26 @@ body.flickr #tt-2 .platter .record .slipmat-f {
 }
 
 body.flickr .turntable .platter .record .slipmat,
-body.yahoo .turntable .platter .record .slipmat {
+body.tvc .turntable .platter .record .slipmat {
  opacity: 0;
 }
 
 body.flickr #tt-1 .platter .record .slipmat-f,
 body.flickr #tt-2 .platter .record .slipmat-f,
-body.yahoo .turntable .platter .record .slipmat-y {
+body.tvc .turntable .platter .record .slipmat-y {
  opacity: 1;
 }
 
-body.yahoo .turntable .body {
- background-color: #602070;
+body.tvc .turntable .body {
+ background-color: #c6e2cc;
 }
 
-body.yahoo #mixer {
- background-color: #602070;
+body.tvc #mixer {
+ background-color: whiteSmoke;
 }
 
-body.yahoo #mixer .pots li .pot {
- background-color: #460262;
+body.tvc #mixer .pots li .pot {
+ background-color: #c6e2cc;
  border: 1px solid #401545;
 }
 

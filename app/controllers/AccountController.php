@@ -197,10 +197,19 @@ class AccountController extends BaseController {
 				'body' => $message->body,
 				'id'    => $message->id,
 				'date'  => $message->created_at,
+				'text'  => 'placed a message!',
 			);
 
 			return Response::json($response);
 		}
+	}
+	public function visitmusicposts($id)
+	{
+		$user = User::find($id);
+		$musicposts = Post::where('created_by',$user->id)->where('type','music')->orderBy('id','desc')->get();
+		return View::make('user.account.visit.musicpost')
+			->with('musicposts',$musicposts)
+			->with('user',$user);
 	}
 
 }

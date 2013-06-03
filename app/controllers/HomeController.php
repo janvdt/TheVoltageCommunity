@@ -40,5 +40,32 @@ class HomeController extends BaseController {
 		return View::make('instance.activity')
 			->with('notifications',$notifications);
 	}
+	public function searchuser()
+	{
+		$param = Input::get("searchData");
+
+		$users = User::where('id','!=',Auth::user()->id);
+
+		$users =$users->Where(function($query)
+			{
+				$query->where('first_name', 'LIKE', '%' . Input::get("searchData") . '%')
+					->orwhere('last_name', 'LIKE', '%' . Input::get("searchData") . '%');
+			})->get();
+
+		$test = array();
+		foreach($users as $user)
+		{
+			if($user->accountUser()->facebookpic != NULL)
+        	{
+        		$user['image'] = $user->accountUser()->facebookpic;
+        	}
+        	else
+        	{
+        		$user['image'] = $user->accountUser()->getImagePathname();
+        	}
+			$test[] = $user->toArray();
+		}
+		return $test;
+	}
 
 }

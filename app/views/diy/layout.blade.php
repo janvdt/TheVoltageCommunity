@@ -20,7 +20,7 @@
 <script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>
 </head>
 
-<body>
+<body class="has_js">
 <!-- hide non-js fallback open state for #moreinfo, etc. -->
 <script>document.body.className='has_js';</script>
 

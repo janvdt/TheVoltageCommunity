@@ -267,12 +267,12 @@ h4::first-letter {
 }
 .infofont
 {
-	padding:5px;
+	padding:10px;
 	text-transform: none;
-	font-size: 18px;
+	font-size: 25px;
   color: black;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -1px;
 }
 .visitaccounttitle
@@ -294,6 +294,26 @@ h4::first-letter {
 .navbar-inner
 {
 	background-color: grey;
+}
+.namevisit
+{
+ 	text-transform: none;
+	color: black;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	letter-spacing: -1px;
+	font-size: 40px;
+	margin-top: 40px;
+}
+.musiccount
+{
+	text-transform: none;
+	color: black;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	letter-spacing: -1px;
+	font-size: 20px;
+	margin-left: 10px;
 }
 
 

@@ -35,8 +35,22 @@
 		<div class="container">
 			<a class="brand" href="{{URL::to("/")}}">TheVoltageCommunity</a>
 			<div class="nav-collapse collapse">
+				@if(Auth::user())
+				<form class="navbar-search " id="searchusers" action="">
+                 <input type="text" class="search-query span3" id="searchDatauser" placeholder="Search users" width="400">
+                 <ul id="suggestions" class="nav span4">
+               
+                 </ul>
+				</form>
+				@endif
 				<div class="span6 pull-right">
-
+					<ul class="nav span1 pull-right">
+					@if (Auth::check())
+						<li><a href="{{ URL::to('logout')}}">Logout</a></li>
+					@else
+						<li><a href="{{ URL::route('login') }}">Login</a></li>
+					@endif
+				</ul>
 				@if(Auth::user())
 				<ul class="nav span1 pull-right">
 					<li class="dropdown pull-right">
@@ -61,16 +75,26 @@
 														@endif
 													</div>
 													<div class="span2 nottext">
+														@if($notification->post->type == 'graph')
+														<a href="{{URL::action('PostController@showGraph',array($notification->post_id)) }}">
+															<p class="notificationfont">{{$notification->user->first_name}} {{$notification->body}}</p>
+														</a>
+														@else
 														<a href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 															<p class="notificationfont">{{$notification->user->first_name}} {{$notification->body}}</p>
-														</a>														
+														</a>
+														@endif														
 													</div>
 
 													<div class="span1 readimg">
-  									 				@if($notification->post->soundcloud_art != NULL)
-														<img class="img-rounded pull-left" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="35">
+													@if($notification->post->type == 'graph')
+														<img class="avatar" src="/{{ $notification->post->image->getSize('original')->getPathname() }}" alt="" width="35">
 													@else
-														<img class="img-rounded pull-left" src="{{ url($notification->post->youtube_art) }}" alt="" width="35">
+  									 					@if($notification->post->soundcloud_art != NULL)
+															<img class="img-rounded pull-left" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="35">
+														@else
+															<img class="img-rounded pull-left" src="{{ url($notification->post->youtube_art) }}" alt="" width="35">
+														@endif
 													@endif
 													</div>
 											</li>
@@ -90,18 +114,28 @@
 														@endif
 													</div>
 													<div class="span2 nottext">
+														@if($notification->post->type == 'graph')
+														<a href="{{URL::action('PostController@showGraph',array($notification->post_id)) }}">
+															<p class="notificationfont">{{$notification->user->first_name}} {{$notification->body}}</p>
+														</a>
+														@else
 														<a href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 															<p class="notificationfont">{{$notification->user->first_name}} {{$notification->body}}</p>
 														</a>
+														@endif
 														
 													</div>
 
 													<div class="span1 readimg">
-  									 				@if($notification->post->soundcloud_art != NULL)
-														<img class="img-rounded pull-left" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="35">
-													@else
-														<img class="img-rounded pull-left" src="{{ url($notification->post->youtube_art) }}" alt="" width="35">
-													@endif
+														@if($notification->post->type == 'graph')
+														<img class="avatar" src="/{{ $notification->post->image->getSize('original')->getPathname() }}" alt="" width="35">
+														@else
+  									 						@if($notification->post->soundcloud_art != NULL)
+																<img class="img-rounded pull-left" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="35">
+															@else
+																<img class="img-rounded pull-left" src="{{ url($notification->post->youtube_art) }}" alt="" width="35">
+															@endif
+														@endif
 													</div>
 											</li>
 											
@@ -153,13 +187,6 @@
 					</li>
 				</ul>
 				@endif
-				<ul class="nav pull-right">
-					@if (Auth::check())
-						<li><a href="{{ URL::to('logout')}}">Logout</a></li>
-					@else
-						<li><a href="{{ URL::route('login') }}">Login</a></li>
-					@endif
-				</ul>
 			</div>
 			</div>
 		</div>
@@ -341,6 +368,7 @@ $('select[name=select-tag]').change(function(){
 			});
 			</script>
 
+
 <script>
 $(document).ready(function() {	
 $("#youtube").select2({
@@ -468,6 +496,55 @@ $("#soundcloud").select2({
         return data.title;
     }
 
+</script>
+
+<script>
+
+	$("#suggestions").hide();
+	
+	$('#searchDatauser').keyup(function() {
+
+ 	var searchVal = $(this).val();
+ 	$("#suggestions").show();
+ 	if(searchVal !== '') {
+ 
+            $.get('http://tvc.loc/search?searchData='+searchVal, function(returnData) {
+                /* If the returnData is empty then display message to user
+                 * else our returned data results in the table.  */
+                if (!returnData) {
+                    $('.music-posts').html('<p style="padding:5px;">Search term entered does not return any data.</p>');
+                } 
+                else 
+                {
+                	
+					console.log(returnData);
+                	$('#suggestions div').each(function(i)
+					{
+						$(this).css("display", "none");
+   						
+					});
+
+                 	for (var i = 0; i < returnData.length; i++) {
+                 	
+    				if(returnData[i].id !== undefined)
+    				{
+    					console.log(returnData[i].first_name);
+                 	$searchuser = "<li id='searchresultuser span3'><div class='span1 searchimg'><img src='" + returnData[i].image +"' width='30'></div><div class='span2'><a href='http://tvc.loc/user/visitaccount/"+ returnData[i].id +"'><h6>"+ returnData[i].first_name + " "+returnData[i].last_name +"</h6></a></div></li>";
+
+                 	$("#suggestions").append($searchuser);
+                 	}
+
+					}  
+    				
+                }
+            });
+        } else {
+            $('#suggestions').empty();
+            $("#suggestions").hide();
+			
+        }
+ 
+    });
 </script>
 
 

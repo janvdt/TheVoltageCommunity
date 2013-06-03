@@ -79,15 +79,9 @@
 			@foreach ($graphposts as $graphpost)
 				
 					<li class= "musicpost span3">
-						<a href ="{{ URL::action('PostController@showMusic', array($graphpost->id)) }}">
+						<a href ="{{ URL::action('PostController@showGraph', array($graphpost->id)) }}">
 						@if($graphpost->image_id != 0)
 							<div class="ch-item ch-img-1" style="background-image: url(/{{ $graphpost->image->getSize('thumb')->getPathname() }});">
-						@else
-						@if($musicpost->soundcloud_art != NULL)
-							<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$graphpost->soundcloud_art}});">
-						@else
-							<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$graphpost->youtube_art}});">
-						@endif
 						@endif
 
 						<div class="ch-info">

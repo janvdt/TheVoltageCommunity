@@ -50,10 +50,11 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
-
+Route::get('search','HomeController@searchuser');
 Route::get('turntable/search','TurntableController@search');
 Route::get('music/subgenre/searchsubgenre','MusicController@searchsubgenre');
 Route::get('music/genre/searchgenre','MusicController@searchgenre');
+Route::get('graph/search','GraphController@search');
 Route::get('music/search','MusicController@search');
 Route::get('music/mytaste/searchtaste','MusicController@searchtaste');
 
@@ -63,6 +64,7 @@ Route::get('music/genre', 'PostController@showGenre');
 Route::get('music/subgenre', 'PostController@showSubgenre');
 Route::resource('comment','CommentController');
 Route::get('post/showlikes/{id}', 'PostController@showLikes');
+Route::get('post/createGraph', 'PostController@createGraph');
 Route::get('post/createMusic', 'PostController@createMusic');
 Route::post('post/storeMusic', 'PostController@storeMusic');
 Route::resource('user', 'UserController');
@@ -166,7 +168,9 @@ Route::post('post/like/{id}', 'PostController@like');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');
 Route::get('user/showaccount/{id}', 'UserController@showAccount');
+
 Route::get('user/visitaccount/{id}', 'UserController@visitAccount');
+Route::get('account/visitmusicposts/{id}', 'AccountController@visitmusicposts');
 Route::resource('account','AccountController');
 Route::post('account/updatetaste/{id}', 'AccountController@updateTaste');
 Route::get('account/edittaste/{id}', 'AccountController@editTaste');
@@ -187,10 +191,12 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('files', 'FileController@store');
 	Route::delete('files/{id}', 'FileController@destroy');
 	Route::post('images', 'ImageController@index');
-	Route::get('post/createGraph', 'PostController@createGraph');
+	
 	Route::post('post/storeGraph', 'PostController@storeGraph');
 	Route::get('post/editmusic/{id}', 'PostController@editMusic');
+	Route::get('post/editgraph/{id}', 'PostController@editGraph');
 	Route::post('post/updatemusic/{id}', 'PostController@updateMusic');
+	Route::post('post/updategraph/{id}', 'PostController@updateGraph');
 	Route::resource('subcomment','SubcommentController');
 });
 

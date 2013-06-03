@@ -243,8 +243,10 @@ class PostController extends BaseController {
 		$post->image_id = Input::get('image_id') ? Input::get('image_id'): 0;
 		
 		$post->save();
+
+		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1,'created_at' => $post->created_at,'type' => 6));
 		
-		return Redirect::action('InstanceController@index');	
+		return Redirect::action('GraphController@index');;	
 	}
 
 	/**
@@ -277,6 +279,14 @@ class PostController extends BaseController {
 	public function showGraph($id)
 	{
 		$post = Post::find($id);
+
+		DB::table('posts')->where('id',$id)->increment('views');
+
+		if(Auth::user())
+		{
+			DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
+		}
+
 		return View::make('post.graph.index')
 			->with('post',$post);
 	}
@@ -398,6 +408,42 @@ class PostController extends BaseController {
 
 		return Redirect::action('PostController@showMusic', array($post->id));
 	}
+
+	public function editGraph($id)
+	{
+		$post = Post::find($id);
+
+		//Return the tags that belong to that image.
+		return View::make('post.graph.edit')
+			->with('post',$post);
+	}
+
+	public function updateGraph($id)
+	{
+		$validator = Validator::make(
+			Input::all(),
+			array(
+				'title'	=> 'required',
+				'body'	=> 'required',
+			)
+		);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()
+				->withInput()
+				->withErrors($validator);
+		}
+
+		$post = Post::find($id);
+		$post->title = Input::get('title');
+		$post->body = Input::get('body');
+
+		$post->save();
+
+		return Redirect::action('PostController@showGraph', array($post->id));
+	}
+
 
 	/**
 	 * Remove the specified resource from storage.

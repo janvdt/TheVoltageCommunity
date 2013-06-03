@@ -497,7 +497,7 @@ $('#searchData').keyup(function() {
     });
 });
 
-
+document.body.className = ['has_js tvc'];
 </script>
 @stop
 
