@@ -40,7 +40,7 @@
 				<span class="icon-bar"></span>
 			</a>
       		
-      		<a class="brand offset2" href="#">TVC</a>
+      		<a class="brand offset2" href="{{URL::to("/")}}">TVC</a>
 			<div class="nav-collapse">
 				<ul class="nav pull-right itemsnav">
 					
