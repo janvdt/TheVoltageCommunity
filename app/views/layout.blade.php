@@ -83,6 +83,7 @@
 								</ul>
 					</li>
 					@endif
+			@if(Auth::check())
 			<li class="dropdown pull-right">
 						<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="badge badge-important">{{count($notcount)}}</span><b class="caret"></b></a>
 						
@@ -179,6 +180,7 @@
 							@endforeach
 						</ul>
 					</li>
+					@endif
           	@if (Auth::check())
 				<li class="pull-right"><a href="{{ URL::to('logout')}}">Logout</a></li>
 		 	@else
