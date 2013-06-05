@@ -953,6 +953,10 @@
 {
 		display: none;
 }
+#mixer
+{
+	display: none;
+}
 }
 /* Portrait tablet to landscape
 ==========================================*/
