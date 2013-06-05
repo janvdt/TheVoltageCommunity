@@ -330,7 +330,7 @@
 
 <!-- /tt-wrapper-wrapper -->
 </div>
-
+<a href="?scratch=1#more" class="exclude">?scratch=1</a>
 <div id="content span12">
 	<div class="navbar">
 	<div class="navbar-inner">
