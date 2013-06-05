@@ -948,7 +948,12 @@
 
 /* Media Queries
 ==========================================*/
-
+@media(max-width: 1024px){
+	#tt-2
+{
+		display: none;
+}
+}
 /* Portrait tablet to landscape
 ==========================================*/
 
@@ -960,10 +965,7 @@
 	margin-bottom: 25px;
 	display: none;
 }
-#tt-2
-{
-		display: none;
-}
+
 
 
 /* Content
