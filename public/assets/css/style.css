@@ -953,6 +953,12 @@
 {
 		display: none;
 }
+#tt-1
+{
+	width: 100%;
+margin-left: auto;
+margin-right: auto;
+}
 #mixer
 {
 	display: none;
