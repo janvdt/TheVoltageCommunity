@@ -50,6 +50,14 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
+
+Route::post('playlist/updatetitle/{id}', 'PlaylistController@updatetitle');
+Route::get('playlist/copy/{id}', 'PlaylistController@copy');
+Route::get('playlist/showplaylist/{id}', 'PlaylistController@showplaylist');
+Route::post('playlist/destroySelected', 'PlaylistController@destroySelected');
+Route::get('playlist/playlistsound','PlaylistController@playlistsound');
+Route::post('playlist/orderplaylist/{id}', 'PlaylistController@orderPlaylist');
+Route::get('post/addplaylist', 'PostController@addplaylist');
 Route::get('search','HomeController@searchuser');
 Route::get('turntable/search','TurntableController@search');
 Route::get('music/subgenre/searchsubgenre','MusicController@searchsubgenre');
@@ -57,8 +65,7 @@ Route::get('music/genre/searchgenre','MusicController@searchgenre');
 Route::get('graph/search','GraphController@search');
 Route::get('music/search','MusicController@search');
 Route::get('music/mytaste/searchtaste','MusicController@searchtaste');
-
-
+Route::get('playlist/showall', 'PlaylistController@showAll');
 Route::get('music/mytaste', 'MusicController@myTaste');
 Route::get('music/genre', 'PostController@showGenre');
 Route::get('music/subgenre', 'PostController@showSubgenre');
@@ -67,6 +74,7 @@ Route::get('post/showlikes/{id}', 'PostController@showLikes');
 Route::get('post/createGraph', 'PostController@createGraph');
 Route::get('post/createMusic', 'PostController@createMusic');
 Route::post('post/storeMusic', 'PostController@storeMusic');
+Route::resource('playlist', 'PlaylistController');
 Route::resource('user', 'UserController');
 Route::resource('music','MusicController');
 Route::get('turntable/utils/soundcloud_fetch_track', function()
@@ -164,6 +172,7 @@ Route::resource('graph','GraphController');
 Route::post('account/storemessage', 'AccountController@storeMessage');
 Route::resource('post','PostController');
 Route::get('post/share/{id}', 'PostController@share');
+
 Route::post('post/like/{id}', 'PostController@like');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');

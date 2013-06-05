@@ -9,7 +9,7 @@ class TurntableController extends \BaseController {
 	 */
 	public function index()
 	{
-		$musicposts = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->where('soundcloud_id','!=',0);
+		$musicposts = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->where('soundcloud_id','!=',0)->orderBy('id','desc');
 
 		$musicposts = $musicposts->paginate(8);
 		return View::make('diy.index')

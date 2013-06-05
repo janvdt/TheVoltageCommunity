@@ -17,6 +17,7 @@ class CreateAccountTable extends Migration {
 			$table->integer('image_id');
 			$table->integer('identifier');
 			$table->string('facebookpic');
+			$table->integer('point_id');
 			$table->timestamps();
 		});
 

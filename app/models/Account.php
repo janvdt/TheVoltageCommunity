@@ -21,6 +21,20 @@ class Account extends BaseModel {
 		return $this->hasMany('Taste');
 	}
 
+	public function playlists()
+	{
+		return $this->hasMany('Playlist');
+	}
+	public function points()
+	{
+		return $this->hasOne('Point');
+	}
+
+	public function levels()
+	{
+		return $this->belongsToMany('Level');
+	}
+
 	public function getImagePathname($size = 'thumb')
 	{
 		// If an image was linked.

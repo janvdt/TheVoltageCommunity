@@ -59,6 +59,11 @@ class Post extends BaseModel {
 		return $this->belongsToMany('Genre');
 	}
 
+	public function playlists()
+	{
+		return $this->belongsToMany('Playlist');
+	}
+
 	/**
 	 * Convert linked tags to key/value array.
 	 *

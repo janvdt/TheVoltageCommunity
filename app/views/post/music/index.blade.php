@@ -19,6 +19,26 @@
 		</div>
 		@endif
 	</div>
+	<div class="row">
+		<div class="span2 offset10">
+			@if(Auth::user())
+			<ul class="nav nav-pills">
+  				<li class="dropdown">
+    				<a class=" btn dropdown-toggle" data-toggle="dropdown" href="#">
+        						<i class="icon-plus"></i>Playlist
+    							<span class="caret"></span>
+      						</a>
+    						
+    						<ul class="dropdown-menu">
+    							@foreach(Auth::user()->accountUser()->playlists as $playlist)
+   	 						<li value="{{$playlist->id}}" class="playlist" class="span"><a>{{$playlist->title}}</a></li>
+   	 					@endforeach
+    						</ul>
+  						</li>
+					</ul>
+			@endif
+		</div>
+	</div>
 </div>
 <div class="row">
 	<div class="span12">
@@ -49,7 +69,8 @@
 			@endif
 		</div>
 	</div>
-	<div class="span7">
+	<div style="width:2px;height:400px;background-color:#C6E2CC;float:left;"></div>
+	<div class="span7 contentbox">
 		@if($post->soundcloud != NULL)
 		<div id="postsoundcloud">
 			<div id="putTheWidgetHere"></div>
@@ -81,6 +102,7 @@
 			</div>
 		</div>
 	</div>
+	<div class="span12" style="height:2px;background-color:#C6E2CC;float:left;"></div>
 	<div class="row">
 		<div class="span11 offset1 commentsection">
 			@if(Auth::user())
@@ -212,6 +234,20 @@
 		$('.likeref').append(counttext);
 		$('#post').hide();
 	});
+});
+
+$(".playlist").click(function(){ 
+
+	var searchVal = $(this).val();
+
+	var postid = {{$post->id}}
+
+	$.post('/post/addplaylist/?playlistid='+searchVal+'&postid='+postid,
+	function(data)
+	{
+	
+	});
+
 });
 
 $("#share").click(function(){ 

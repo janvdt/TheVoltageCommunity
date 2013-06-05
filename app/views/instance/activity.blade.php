@@ -18,7 +18,7 @@
 		@if($notification->following($notification->user->accountUser()->id))
 			@if($notification->activity == TRUE)
 				@if($notification->user_id != Auth::user()->id)
-				@if($notification->post_id == 0)
+				@if($notification->post_id == 0 and $notification->type == 7 )
 				<li class=" activity">
 					<ul class="nav nav-pills  activityref offset8">
   						<li class="dropdown">
@@ -28,7 +28,55 @@
       						</a>
     						
     						<ul class="dropdown-menu">
+    							<li>
+    								<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
     							</li>
+    						</ul>
+  						</li>
+					</ul>
+						<div class="row log">
+							<div class="span6 offset2">
+								<div class="pull-left">
+									<p class="activitytitle">
+										<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
+										@if($notification->user->accountUser()->image_id != 0 or $notification->user->accountUser()->facebookpic == NULL )
+										<img src="{{ url($notification->user->accountUser()->getImagePathname()) }}" width="50" alt="">
+										@else
+										<img src="{{ url($notification->user->accountUser()->facebookpic) }}" width="50" alt="">
+										@endif
+										</a>
+										{{$notification->user->first_name}} {{$notification->user->last_name}} {{$notification->body}}
+									</p>
+								</div>
+									
+								<div class="pull-right">
+									<h6>{{$notification->created_at}}<h6>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="offset3 span5">
+								@if($notification->playlist->posts->first() != NULL)
+									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->soundcloud_art }}" alt="" width="500"></a>
+								@else
+									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/500x500&text=Playlist" alt="" width="500"></a>
+								@endif
+							</div>
+						</div>
+						
+					</li>
+				@endif
+				@if($notification->post_id == 0 and $notification->type != 7)
+				<li class=" activity">
+					<ul class="nav nav-pills  activityref offset8">
+  						<li class="dropdown">
+    						<a class="dropdown-toggle activityref" data-toggle="dropdown" href="#">
+        						<i class="icon-th-large"></i>
+        						<b class="caret"></b>
+      						</a>
+    						
+    						<ul class="dropdown-menu">
+    							<li>
     								<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
     							</li>
     						</ul>
@@ -64,7 +112,8 @@
 							</div>
 						</div>
 					</li>
-				@else
+				@endif
+				@if($notification->type != 7 )
 					<li class=" activity">
 						<ul class="nav nav-pills  activityref offset8">
   									<li class="dropdown">

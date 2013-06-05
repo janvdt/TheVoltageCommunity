@@ -1,21 +1,22 @@
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('/assets/fonts/fonts/Chunkfive-webfont.eot');
+    src: url('/assets/fonts/fonts/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/fonts/Chunkfive-webfont.woff') format('woff'),
+         url('/assets/fonts/fonts/Chunkfive-webfont.ttf') format('truetype'),
+         url('/assets/fonts/fonts/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
+}
+@import url(http://fonts.googleapis.com/css?family=Dorsa);
+@charset "utf-8";
 /*------ header ------- */
 header {
   padding: 30px 0 29px;
   z-index: 50;
 }
-/* navbar */
-.navbar_ {
-  margin: 0;
-  position: relative;
-}
-.navbar_ .navbar-inner_ {
-  padding: 0;
-  margin: 0;
-  border: none;
-  min-height: inherit;
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
+
 /*nav*/
 .navbar_ .container {
   position: relative;
@@ -68,21 +69,7 @@ header {
   -moz-border-radius: 44px;
   border-radius: 44px;
 }
-.nav-collapse_ .nav > li > a .sf-sub-indicator {
-  position: absolute;
-  width: 9px;
-  height: 6px;
-  background: url(../img/indicator1.png) no-repeat 0 0;
-  left: 50%;
-  bottom: 21px;
-  margin-left: -5px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  border-radius: none;
-}
+
 .nav-collapse_ .nav > li.sfHover > a,
 .nav-collapse_ .nav > li.sfHover > a:hover,
 .nav-collapse_ .nav > li > a:hover,
@@ -98,64 +85,260 @@ header {
 .nav-collapse_ .nav > li.active > a .sf-sub-indicator {
   background-position: 0 bottom;
 }
-.sub-menu > a {
-  position: relative;
-}
-.nav-collapse_ .nav ul {
-  position: absolute;
-  display: none;
-  width: 120px;
-  left: -18px;
-  top: 115px;
-  list-style: none;
-  zoom: 1;
-  z-index: 9;
-  background: #ffffff;
-  padding: 12px 0;
-  margin: 0;
-}
-.nav-collapse_ .nav ul li {
-  text-align: center;
-}
-.nav-collapse_ .nav ul li a {
-  padding: 4px 0;
-  display: block;
-  background: none;
-}
-.nav-collapse_ .nav > li > ul li > a:hover,
-.nav-collapse_ .nav > li > ul li.sfHover > a {
-  text-decoration: none;
-  color: #ffffff;
-  background: #e85356;
-}
-.nav-collapse_ .nav ul .sf-sub-indicator {
-  display: none;
-}
-.nav-collapse_ .nav ul ul li a {
-  color: #ffffff;
-}
-.nav-collapse_ .nav li ul ul li a:hover {
-  text-decoration: none;
-  color: #000000;
-}
-/*------ logo ------- */
-.navbar_ .brand_ {
-  display: block;
-  float: left;
-  font-size: 0;
-  line-height: 0;
-  padding: 12px 0 0 4px;
-  margin: 0;
-}
-.navbar_ .brand_ h1 {
-  font-size: 0;
-  line-height: 0;
-}
 
+
+
+
+.navbar_ .btn {
+    display: inline-block;
+    float: right;
+    background: #c6e2cc;
+    padding: 18px 0 20px;
+    text-decoration: none;
+    margin: 0;
+    font-size: 20px;
+    line-height: 24px;
+    text-shadow: none;
+    color: #ffffff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    width: 63px;
+    text-align: center;
+    font-weight: normal;
+    position: relative;
+    display: none;
+  }
+
+
+  .navbar_ .btn:hover {
+    background: #181818;
+    color: #ffffff;
+  }
+  .navbar_ .btn .icon-bar {
+    position: absolute;
+    width: 9px;
+    height: 6px;
+    background: url(../img/indicator.png) no-repeat 0 0;
+    left: 50%;
+    bottom: 12px;
+    margin-left: -5px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    border-radius: none;
+  }
+  @media (min-width: 768px) and (max-width: 979px) {
+  .navbar_ .btn {
+    display: none !important;
+  }
+  /* navbar */
+  .navbar_ {
+    margin: 0;
+    position: relative;
+  }
+  .navbar_ .navbar-inner_ {
+    padding: 0;
+    margin: 0;
+    border: none;
+    min-height: inherit;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  }
+  /*nav*/
+  .navbar_ .container {
+    position: relative;
+  }
+  .nav-collapse_ {
+    height: auto !important;
+    overflow: visible !important;
+    clear: none !important;
+  }
+  .nav-collapse_ .nav > li {
+    float: left !important;
+    margin-left: 10px;
+  }
+
+}
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+  /* navbar */
+  .nav-collapse_ {
+    padding-top: 0px;
+    padding-right: 0;
+  }
+  .navbar_ .nav-collapse_ {
+    position: relative;
+   left:50px;
+    top: 40px;
+    right: auto;
+  }
+  .navbar_ .btn {
+    display: inline-block;
+    float: right;
+    background: #c6e2cc;
+    padding: 18px 0 20px;
+    text-decoration: none;
+    margin: 0;
+    font-size: 20px;
+    line-height: 24px;
+    text-shadow: none;
+    color: #ffffff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    width: 63px;
+    text-align: center;
+    font-weight: normal;
+    position: relative;
+  }
+  .navbar_ .btn:hover {
+    background: #c6e2cc;
+    color: #c6e2cc;
+  }
+  .navbar_ .btn .icon-bar {
+    position: absolute;
+    width: 9px;
+    height: 6px;
+    background: url(../img/indicator.png) no-repeat 0 0;
+    left: 50%;
+    bottom: 12px;
+    margin-left: -5px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    border-radius: none;
+  }
+  .nav-collapse_ .nav {
+    position: relative;
+    zoom: 1;
+    z-index: 900;
+    width: 600px;
+    background: #ffffff;
+    padding: 0px 0;
+    margin: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+  }
+  .nav-collapse_ .nav li {
+    background: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .nav-collapse_ .nav li a {
+    display: block;
+    font-weight: normal;
+    padding: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    width: 100%;
+    padding: 8px 0;
+    margin-left: 60px;
+    font-weight: normal;
+    font: 30px/35px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
+
+  }
+  .nav-collapse_ .nav > li.sfHover,
+  .nav-collapse_ .nav > li:hover,
+  .nav-collapse_ .nav > li.active,
+  .nav-collapse_ .nav > li.active {
+    background: none;
+  }
+  .nav-collapse_ .nav > li.sfHover > a,
+  .nav-collapse_ .nav > li.sfHover > a:hover,
+  .nav-collapse_ .nav > li > a:hover,
+  .nav-collapse_ .nav > li.active > a,
+  .nav-collapse_ .nav > li.active > a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background: #c6e2cc;
+  }
+  .sub-menu > a {
+    position: relative;
+    display: block;
+  }
+  .nav-collapse_ .nav ul {
+    position: absolute;
+    display: none;
+    width: 100%;
+    list-style: none;
+    zoom: 1;
+    z-index: 9;
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 0;
+  }
+  .nav-collapse_ .nav ul li a {
+    
+  }
+  .nav-collapse_ .nav ul li a:hover {
+    background: #575757 !important;
+  }
+  .row {
+    padding: 0 20px;
+  }
+  footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .bg-glow {
+    background: none;
+  }
+  .thumbnail-1 > img {
+    width: 100%;
+  }
+  #form-search input {
+    width: 70%;
+  }
+  .portfolio {
+    margin-left: -30px;
+  }
+  .portfolio li {
+    float: left;
+    margin-left: 30px;
+    width: 44%;
+  }
+  .portfolio li img {
+    width: 100%;
+  }
+  #search input {
+    width: 66%;
+  }
+  .thumbnails-1 .thumbnail-1 img {
+    width: 100%;
+  }
+  .thumbnails-1 {
+    margin-left: -20px;
+  }
+  .thumbnails-1 li {
+    float: left;
+    width: 45%;
+    margin-left: 20px;
+  }
+}
 
 /*------ h1, h2, h3, h4, h5, h6 ------- */
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -175,8 +358,7 @@ header h1 {
   margin: 0;
 }
 h2 {
-  font-size: 50px;
-  line-height: 52px;
+ 	font: 50px/68px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
 }
 h3 {
   font-size: 30px;
@@ -231,8 +413,7 @@ h4::first-letter {
 }
 .posttitle
 {
-	font-size: 30px;
-  line-height: 52px;
+	font: 50px/68px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
 }
 .slogan
 {
@@ -269,10 +450,10 @@ h4::first-letter {
 {
 	padding:10px;
 	text-transform: none;
-	font-size: 25px;
+	font-size: 35px;
   color: black;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   letter-spacing: -1px;
 }
 .visitaccounttitle
@@ -314,7 +495,10 @@ h4::first-letter {
 	letter-spacing: -1px;
 	font-size: 20px;
 	margin-left: 10px;
+	margin-top: 0px;
 }
+
+
 
 
 

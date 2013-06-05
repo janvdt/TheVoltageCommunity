@@ -22,8 +22,9 @@
 			@foreach($tastes as $taste)
 			{{$taste->name}},
 			@endforeach
+			{{$user->accountuser()->levels->first()->value}}
 			<div class="progress progress-info progress-striped scorebar">
-  				<div class="bar" style="width: 95%"></div><i class="icon-star"></i>
+  				<div class="bar" style="width: {{$user->accountUser()->points->value}}%"></div><i class="icon-star"></i>
 			</div>
 		</div>
 		<div class="span2">
@@ -41,7 +42,8 @@
 		</div>
 	</div>
 </div>
-<div class="span3">
+<div id="sticky-anchor"></div>
+<div class="span3" id="sticky">
 	<div class="row">
 		<div class="span3 infoaccount">
 			<div class="span3 info">
@@ -182,7 +184,8 @@
 						</div>
 						<hr>
 					</li>
-					@else
+					@endif
+					@if($notification->type != 6 and $notification->type != 7)
 					<li class=" activity">
 						<div class="row log">
 							<div class="span4">
@@ -216,6 +219,33 @@
 										<img class="img-rounded" src="{{ url($notification->post->youtube_art) }}" alt="" width="500">
 									@endif
 								</a>
+								@endif
+							</div>
+						</div>
+						<hr>
+					</li>
+					@endif
+					@if($notification->type == 7)
+					<li class=" activity">
+						<div class="row log">
+							<div class="span4">
+								<div class="pull-left">
+									<p class="visitaccounttitle">
+									{{$notification->user->first_name}} {{$notification->user->last_name}} {{$notification->body}}</p>
+								</div>
+								
+								<div class="pull-right">
+									<h6>{{$notification->created_at}}<h6>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="offset span4">
+								<h5>{{$notification->playlist->title}}</h5>
+								@if($notification->playlist->posts->first() != NULL)
+									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->soundcloud_art }}" alt="" width="500"></a>
+								@else
+									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/500x500&text=Playlist" alt="" width="500"></a>
 								@endif
 							</div>
 						</div>
@@ -315,4 +345,8 @@ $('.pagination').hide();
         start: undefined
     }
 });
+
+
+
+
 @stop

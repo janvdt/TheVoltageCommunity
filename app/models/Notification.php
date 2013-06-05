@@ -13,6 +13,11 @@ class Notification extends BaseModel {
         return $this->belongsTo('Message');
     }
 
+     public function playlist()
+    {
+        return $this->belongsTo('Playlist');
+    }
+
     public function user()
     {
         return $this->belongsTo('User');

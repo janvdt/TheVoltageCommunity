@@ -34,6 +34,7 @@
 							@endforeach
 						</ul>
 				</li>
+				<li><a href="{{ URL::action('PlaylistController@index') }}">My playlists</a></li>
 			</ul>
 			<form class="navbar-search pull-right" action="">
                  <input type="text" class="search-query span2" id="searchData" placeholder="Search">
@@ -140,8 +141,10 @@
         					<div class="pull-left likes">
         						<i class='icon-heart'></i>
         						<span class="badge badge-inverse">{{count($musicpost->likes)}}</span></i>
+   
         					</div>
         				</div>
+
         			</div>
         			<div class="shelf shelfmusicpost">
 					<div class="bookend_left"></div>
