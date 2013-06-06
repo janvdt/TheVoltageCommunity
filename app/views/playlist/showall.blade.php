@@ -39,6 +39,10 @@
 @section('scripts')
 	@parent
 
+
+$("#playlist").addClass('active');
+
+
  $(".add").click(function(){
 
  	var playlist = $(this).attr('value');

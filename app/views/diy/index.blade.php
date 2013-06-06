@@ -427,7 +427,7 @@
 
  <script type="text/javascript">
 $(document).ready(function(){
-	
+	$("#diy").addClass('active');
 $('.pagination ul li:not(:last)').remove();
 $('.pagination').hide();
 // infinitescroll() is called on the element that surrounds 
@@ -498,6 +498,8 @@ $('#searchData').keyup(function() {
 });
 
 document.body.className = ['has_js tvc'];
+
+
 </script>
 @stop
 

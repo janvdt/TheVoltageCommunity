@@ -23,6 +23,7 @@ header {
 }
 .nav-collapse_ {
   padding: 0;
+  left: 10px;
   z-index: 10;
   float: right;
 }

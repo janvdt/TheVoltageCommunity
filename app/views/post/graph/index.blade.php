@@ -180,6 +180,8 @@
 @section('scripts')
 	@parent
 
+	
+
 	$("#commenttext").keypress(function(event) {
     if (event.which == 13) {
         event.preventDefault();
@@ -200,7 +202,7 @@
 		$('#post').hide();
 	});
 });
-
+$("#graph").addClass('active');
 $("#share").click(function(){ 
  	console.log('succes');
 	$.get('/post/share/' + {{$post->id}},

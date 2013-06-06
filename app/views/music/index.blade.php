@@ -4,8 +4,8 @@
 
 <div class ="span12 music">
 <h2>Music</h2>
-<div class="navbar">
-	<div class="navbar-inner">
+<div class="navbar navbarmusic span12">
+	<div class="navbar-inner navbarinnermusic">
 		<div class="container">
  
 		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->

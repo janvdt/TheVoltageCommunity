@@ -10,7 +10,7 @@
 			</div>
 			<div class="span5 getstarted">
 				<div class="pull-right">
-					<a href="{{ URL::route('login') }}" class="btn btn-large btn-inverse">Get started</a>
+					<a href="{{ URL::route('login') }}" class="btn btn-large btn-inverse"><img src="/images/lightninglight.png"/ width="75">Power up!</a>
 				</div>
 			</div>
 		</div>
@@ -124,5 +124,13 @@
 
 
 
+
+@stop
+
+@section('scripts')
+	@parent
+
+
+	$("#home").addClass('active');
 
 @stop

@@ -93,7 +93,7 @@
 @section('scripts')
 	@parent
 
-
+$("#graph").addClass('active');
 $('#searchData').keyup(function() {
  	var searchVal = $(this).val();
 

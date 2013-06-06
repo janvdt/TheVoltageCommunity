@@ -79,6 +79,8 @@
 	@parent
 
 
+
+
 @if(Auth::user())
 // Ajax file upload for the file upload modal.
 $("#upload-playlist-form").ajaxForm({
