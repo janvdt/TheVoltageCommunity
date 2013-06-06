@@ -60,10 +60,12 @@
     				<div class="row">
     					<div class="span3 titlemusicpost">
     						<h6>
+    						@if(Auth::user())
     						@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->facebookpic == NULL )
 								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="30" alt="">
 							@else
 								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="30" alt="">
+							@endif
 							@endif
     						<?php $string = $musicpost->title;
 							$maxLength = 50;

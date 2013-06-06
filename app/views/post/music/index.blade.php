@@ -15,7 +15,7 @@
 		</div>
 		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
 		<div class="span2">
-			<a class="btn btn-inverse btn-large" id="post">I <i class="icon-heart"> u</i></a>
+			<a class="btn btn-inverse btn-large" id="post">AC<img src="/images/lightning.png"/ width="50">DC</a>
 		</div>
 		@endif
 	</div>
@@ -56,7 +56,7 @@
 			<div class="row">
 			@if(Auth::user())
 			<div class="span4 likebutton">
-			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}">People who <i class="icon-heart"> this post<span class="badge badge-inverse likevalue">{{count($post->likes)}}</span></i></a>
+			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}">People who <img src="/images/lightning.png"/ width="30"> this post<span class="badge badge-inverse likevalue">{{count($post->likes)}}</span></i></a>
 			</div>
 			@endif
 		</div>
@@ -103,9 +103,10 @@
 		</div>
 	</div>
 	<div class="span12" style="height:2px;background-color:#C6E2CC;float:left;"></div>
+	@if(Auth::user())
 	<div class="row">
 		<div class="span11 offset1 commentsection">
-			@if(Auth::user())
+			
 			<div class="row">
 				<div class="writecomment">
 					<form class="form-horizontal" method="POST" action="{{ URL::action('CommentController@store')}}?post_id={{$post->id}}"  id="upload-comment-form">
@@ -129,6 +130,7 @@
 					</form>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 	@endif
@@ -174,6 +176,7 @@
 		</div>
 		@endforeach
 	</div>
+</div>
 </div>
 	
 	

@@ -6,7 +6,6 @@
 <input type="hidden" id="selected-image-input" name="image_id">
 
 @section('footer')
-	@parent
 
 	<!-- Modal file select -->
 	
@@ -28,6 +27,8 @@
 						</div>
 					</div>
 				</fieldset>
+				<div class="loader">
+				</div>
 			</div>
 
 			<div class="modal-footer">
@@ -93,6 +94,10 @@ $("#upload-image-form").ajaxForm({
 		// Hide the upload modal.
 		$("#upload-image").modal('hide');
 	}
+});
+
+$(document).ajaxStart(function() {
+  $(".loader").append("<h3>Uploading</h3><img src='/images/loader.gif'>");
 });
 
 

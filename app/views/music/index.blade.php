@@ -34,7 +34,9 @@
 							@endforeach
 						</ul>
 				</li>
-				<li><a href="{{ URL::action('PlaylistController@index') }}">My playlists</a></li>
+				@if(Auth::user())
+					<li><a href="{{ URL::action('PlaylistController@index') }}">My playlists</a></li>
+				@endif
 			</ul>
 			<form class="navbar-search pull-right" action="">
                  <input type="text" class="search-query span2" id="searchData" placeholder="Search">
@@ -50,6 +52,7 @@
     				<div class="row">
     					<div class="span3 titlemusicpost">
     						<h6>
+    						@if(Auth::user())
     						<a href="{{ URL::action('UserController@visitAccount',array($musicpost->createdBy()->id)) }}">
     						@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->facebookpic == NULL )
 								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="30" alt="">
@@ -57,6 +60,7 @@
 								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="30" alt="">
 							@endif
 							</a>
+							@endif
     						<?php $string = $musicpost->title;
 							$maxLength = 50;
 

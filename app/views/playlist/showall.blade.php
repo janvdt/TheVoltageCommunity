@@ -9,32 +9,28 @@
 		</div>
 	</div>
 
-<ul>
+<ul class="thumbnails">
 @foreach($playlists as $playlist)
-	<li class="span3 playlistpost">
-		<div class="span2 authorplaylist">
-		<a href="{{ URL::action('UserController@visitAccount',array($playlist->account->id)) }}">
-    		<h6>
-    		@if($playlist->account->image_id != 0 or $playlist->account->facebookpic == NULL )
-				<img src="{{ url($playlist->account->getImagePathname()) }}" width="30" alt="">
-			@else
-				<img src="{{ url($playlist->account->facebookpic) }}" width="30" alt="">
-			@endif
-			 {{$playlist->account->user->first_name}} {{$playlist->account->user->last_name}}</h6>
-		</a>
+	<li class="span3">
+		<div class="row">
+			<div class="pull-right copybutton">
+				<a class=" btn btn-inverse add" name="{{$playlist->id}}" value="{{$playlist->id}}" id="{{$playlist->id}}"><i class="icon-plus"> get this playlist</i></a>
+			</div>
 		</div>
-		<div class="span1 pull-right btnplus">
-			<a class="btn btn-inverse add" value="{{$playlist->id}}"><i class="icon-plus"></i></a>
-		</div>
+
 		<div class="thumbnail">
+			@if($playlist->posts->first() != NULL)
 			<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt="" width="250"></a>
+			@else
+			<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/250x250&text=Playlist" alt="" width="250"></a>
+			@endif
 			<div class="title">
 				<h5 class="playlisttitle">{{$playlist->title}}</h5>
-				<a class='play' value="{{$playlist->id}}"><i class="icon-play"></i></a>
 			</div>
 		</div>
 	</li>
 @endforeach
+</ul>
 </div>
 <div class="stratusplayer">
 </div>
@@ -49,10 +45,13 @@
 
  	console.log(playlist);
 
+ 	$(this).hide();
+
  	$.get('/playlist/copy/' +playlist,
 	function(data)
 	{
-		$('.add').hide();
+		
+
 	});
 
 	

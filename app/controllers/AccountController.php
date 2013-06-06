@@ -87,6 +87,74 @@ class AccountController extends BaseController {
 		$account->save();
 
 		return Redirect::action('UserController@showAccount', array($account->id));
+	
+	}
+
+	public function editprofile()
+	{
+		return View::make('user.editprofile');
+	}
+
+	public function updateprofile($id)
+	{
+		$validator = Validator::make(
+			Input::all(),
+			array(
+				'biography' => 'required',
+				 
+			)
+		);
+
+		if ($validator->fails()) {
+			return Redirect::back()
+				->withInput()
+				->withErrors($validator);
+		}
+
+		$account = Account::find($id);
+		$account->biography = Input::get('biography');
+		$account->image_id = Input::get('image_id') ? Input::get('image_id'): 0;
+
+		DB::table('images')->where('id',Input::get('image_id') ? Input::get('image_id'): 0)->update(array('profile' => 1));
+
+		$account->save();
+
+		return Redirect::action('AccountController@choosetaste');
+	}
+	public function choosetaste()
+	{
+		//Permission that belong to the role being edited.
+		$checkedTastes = Taste::where('account_id',Auth::user()->accountUser()->id)->lists('value', 'name');
+
+		$tastes = DB::table('genres')->select('title')->get();
+
+		return View::make('user.account.choosetaste')
+			->with('checkedTastes',$checkedTastes)
+			->with('tastes',$tastes);
+	}
+	public function updateprofiletaste($id)
+	{
+		$account = Account::find($id);
+		DB::table('tastes')
+				->where('account_id',$account->id)
+				->delete();
+	
+			$tastes = Input::get('tastes');
+
+
+
+			if($tastes != NULL){
+				//insert new permissions.
+				foreach($tastes as $name => $value)
+				{
+					
+					DB::table('tastes')
+					->insert(array('account_id' => $account->id, 'name' => $name, 'value' => $value));
+
+				}
+			}
+	
+			return Redirect::to('/');
 	}
 
 	/**

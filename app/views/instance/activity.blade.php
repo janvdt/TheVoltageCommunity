@@ -56,11 +56,14 @@
 						</div>
 						<div class="row">
 							<div class="offset3 span5">
-								@if($notification->playlist->posts->first() != NULL)
-									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->soundcloud_art }}" alt="" width="500"></a>
-								@else
-									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/500x500&text=Playlist" alt="" width="500"></a>
-								@endif
+									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}">
+									@if($notification->playlist->posts->first() != NULL)
+										<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->soundcloud_art }});">
+									@else
+										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url(http://placehold.it/500x500&text=Playlist);">
+									@endif
+									</div>
+								</a>
 							</div>
 						</div>
 						
@@ -122,8 +125,9 @@
         									<b class="caret"></b>
       									</a>
     									<ul class="dropdown-menu">
-    										
+    										@if(Auth::user()->identifier != 0)
     										<li class="fbshare"><a href="#share-post-{{ $notification->post->id }}" data-toggle="modal"><h6><img src="/images/facebook-logo-square.png" width="20" height="20"> Post to facebook!</h6></a></li>
+    										@endif
     										<li>
     											<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
     										</li>
@@ -159,21 +163,24 @@
 								@endif
 								@if($notification->post->type == 'graph')
 								<a class="" href="{{URL::action('PostController@showGraph',array($notification->post_id)) }}">
-									<img class="avatar" src="/{{ $notification->post->image->getSize('original')->getPathname() }}" alt="">
+									<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->post->image->getSize('medium')->getPathname() }});">
+									</div>
+
 								</a>
 								@else
 								<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 									@if($notification->post->soundcloud_art != NULL)
-										<img class="img-rounded soundcloudactivity" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="500">
+										<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->post->soundcloud_art }});">
 									@else
-										<img class="img-rounded" src="{{ url($notification->post->youtube_art) }}" alt="" width="500">
+										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url({{$notification->post->youtube_art}});">
 									@endif
+									</div>
 								</a>
 								@endif
 							</div>
 						</div>
 						<div class="row">
-							<div class="offset3">
+							<div class="offset4">
 								<span class="badge badge-inverse">{{count($notification->post->comments)}} <i class="icon-comment"></i></span>
 								<span class="badge badge-inverse">{{count($notification->post->likes)}} <i class="icon-heart"></i></span>
 							</div>

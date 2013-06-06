@@ -265,15 +265,31 @@ class PostController extends BaseController {
 		{
 			DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
 		}
-
-		if($post->created_by != Auth::user()->id)
+		if(Auth::user())
 		{
-			$user = User::find($post->created_by);
-			DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+			if($post->created_by != Auth::user()->id)
+			{	
+				$user = User::find($post->created_by);
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
 		}
 
-		return View::make('post.music.index')
+			return View::make('post.music.index')
 			->with('post',$post);
+		
 	}
 
 	/**
@@ -293,10 +309,26 @@ class PostController extends BaseController {
 			DB::table('notifications')->where('user_id','!=',Auth::user()->id)->where('post_id',$post->id)->update(array('viewed' => 1));
 		}
 
-		if($post->created_by != Auth::user()->id)
+		if(Auth::user())
 		{
-			$user = User::find($post->created_by);
-			DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+			if($post->created_by != Auth::user()->id)
+			{	
+				$user = User::find($post->created_by);
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
 		}
 
 		return View::make('post.graph.index')
@@ -489,10 +521,26 @@ class PostController extends BaseController {
 		Notification::insert(array('body' => "liked a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => $post->created_by,'activity' => 1, 'type' => 3,'created_at' => date("Y-m-d H:i:s")));
 		}
 
-		if($post->created_by != Auth::user()->id)
+		if(Auth::user())
 		{
-			$user = User::find($post->created_by);
-			DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+			if($post->created_by != Auth::user()->id)
+			{	
+				$user = User::find($post->created_by);
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
 		}
 
 		return $id;
@@ -539,10 +587,26 @@ class PostController extends BaseController {
    		));
    		}
 
-   		if($post->created_by != Auth::user()->id)
+   		if(Auth::user())
 		{
-			$user = User::find($post->created_by);
-			DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+			if($post->created_by != Auth::user()->id)
+			{	
+				$user = User::find($post->created_by);
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
 		}
 
    		return Redirect::action('PostController@showMusic', array('id' => $post->id));

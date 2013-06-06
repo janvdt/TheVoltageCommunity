@@ -51,6 +51,8 @@ Route::get('login', array('as' => 'login', function()
 	return View::make('instance.login');
 }));
 
+Route::get('account/choosetaste', 'AccountController@choosetaste');
+Route::get('account/editprofile','AccountController@editprofile');
 Route::post('playlist/updatetitle/{id}', 'PlaylistController@updatetitle');
 Route::get('playlist/copy/{id}', 'PlaylistController@copy');
 Route::get('playlist/showplaylist/{id}', 'PlaylistController@showplaylist');
@@ -76,6 +78,9 @@ Route::get('post/createMusic', 'PostController@createMusic');
 Route::post('post/storeMusic', 'PostController@storeMusic');
 Route::resource('playlist', 'PlaylistController');
 Route::resource('user', 'UserController');
+Route::post('account/updateprofile/{id}', 'AccountController@updateprofile');
+Route::post('account/updateprofiletaste/{id}', 'AccountController@updateprofiletaste');
+
 Route::resource('music','MusicController');
 Route::get('turntable/utils/soundcloud_fetch_track', function()
 {

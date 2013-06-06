@@ -18,24 +18,32 @@
 		</div>
 		<div class="span6">
 			<p class="namevisit">{{$user->first_name}} {{$user->last_name}}</p>
-			<i class="icon-heart"></i>
+			<img src="/images/lightning.png"/ width="50">
 			@foreach($tastes as $taste)
 			{{$taste->name}},
 			@endforeach
-			{{$user->accountuser()->levels->first()->value}}
-			<div class="progress progress-info progress-striped scorebar">
-  				<div class="bar" style="width: {{$user->accountUser()->points->value}}%"></div><i class="icon-star"></i>
+			<div class="row">
+			<div class="span2">
+				<img src="/images/task.png"/ width="50">{{$user->accountuser()->levels->first()->value}}
 			</div>
+			<div class="progress progress-info progress-striped scorebar progressbalk span4">
+  				<div class="bar" style="width: {{$user->accountUser()->points->value}}%"></div><i class="icon-star">{{$user->accountUser()->points->value}}%</i>
+			</div>
+
+		</div>
+			
 		</div>
 		<div class="span2">
 			@if(Auth::user() or Session::has('hybridAuth'))
 			<div class="span3 socialbutton">
 				@if(Auth::user())
+				 @if(Auth::user()->id != $user->id)
 					@if($user->accountUser()->canFollow(Auth::user()->accountUser()->id,$user->accountUser()->id))
 						<a class="btn btn-inverse btn-large" id="follow"><i class="icon-user"> Follow</i></a>
 					@else
 						<a class="btn btn-large" id="unfollow"><i class="icon-user"> Unfollow</i></a>
 					@endif
+				@endif
 				@endif
 			@endif
 			</div>

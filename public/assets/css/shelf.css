@@ -29,9 +29,9 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff1f3', endColorstr='#d1d8de', GradientType='0' );
   /* IE6-9 */
 
-  -webkit-box-shadow: 0 2px 2px #708698, 0 4px 0 #abb8c3, 0 20px 30px -8px #000000, transparent 0 0 0, transparent 0 0 0, transparent 0 0 0;
-  -moz-box-shadow: 0 2px 2px #708698, 0 4px 0 #abb8c3, 0 20px 30px -8px #000000, transparent 0 0 0, transparent 0 0 0, transparent 0 0 0;
-  box-shadow: 0 2px 2px #708698, 0 4px 0 #abb8c3, 0 20px 30px -8px #000000, transparent 0 0 0, transparent 0 0 0, transparent 0 0 0;
+  -webkit-box-shadow: 0 2px 2px #C6E2CC, 0 4px 0 #C6E2CC, 0 20px 30px -8px #000000, transparent 0 0 0, transparent 0 0 0, transparent 0 0 0;
+  -moz-box-shadow: 0 2px 2px #C6E2CC, 0 4px 0 #C6E2CC, 0 20px 30px -8px #000000, transparent 0 0 0, transparent 0 0 0, transparent 0 0 0;
+  box-shadow: 0 2px 2px #C6E2CC, 0 4px 0 #C6E2CC, 0 20px 30px -8px #000000, transparent 0 0 0, transparent 0 0 0, transparent 0 0 0;
 }
 .bookend_left {
   display: block;
@@ -95,7 +95,7 @@
   background-color: #ffffff;
   /* Old browsers */
 
-  background-image: -moz-linear-gradient(0deg, #ffffff 0%, rgba(0, 0, 0, 0) 35%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 100%);
+  background-image: -moz-linear-gradient(0deg, green 0%, rgba(0, 0, 0, 0) 35%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 100%);
   /*FF3.6+ */
 
   background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, #ffffff), color-stop(35%, rgba(0, 0, 0, 0)), color-stop(65%, rgba(255, 255, 255, 0.8)), color-stop(100%, rgba(0, 0, 0, 0)));

@@ -53,6 +53,16 @@ class UserController extends BaseController {
 			$account->biography = "Fill in your biography";
 
 			$account->save();
+
+			$point = new Point;
+
+			$point->account_id = $account->id;
+
+			$point->value = 1;
+
+			$point->save();
+
+			DB::table('account_level')->insert(array('account_id' => $account->id, 'level_id' => 1));
 	
 
 			$user = new User;
@@ -71,9 +81,19 @@ class UserController extends BaseController {
 
 			$user->save();
 
-	
+			$email = $user->email;
+			$password = Input::get('password');
+
+			if (Auth::attempt(array('email' => $email, 'password' => $password)	))
+			{
+					
+				return Redirect::action('AccountController@editprofile');
+
+			}
+
 			return Redirect::to('/');
 	}
+
 
 	/**
 	 * Display the specified resource.

@@ -65,9 +65,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="span12" style="height:2px;background-color:#C6E2CC;float:left;"></div>
+	@if(Auth::user())
 	<div class="row">
 		<div class="span11 offset1 commentsection">
-			@if(Auth::user())
+			
 			<div class="row">
 				<div class="writecomment">
 					<form class="form-horizontal" method="POST" action="{{ URL::action('CommentController@store')}}?post_id={{$post->id}}"  id="upload-comment-form">
@@ -136,6 +138,7 @@
 		</div>
 		@endforeach
 	</div>
+</div>
 	
 	
 <div class="modal hide fade" id="delete-post-{{ $post->id }}">

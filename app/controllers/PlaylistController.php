@@ -95,7 +95,14 @@ class PlaylistController extends \BaseController {
 	}
 	public function showall()
 	{
-		$playlists = Playlist::where('account_id','!=', Auth::user()->accountUser()->id)->get();
+		if(Auth::user())
+		{
+			$playlists = Playlist::where('account_id','!=', Auth::user()->accountUser()->id)->get();
+		}
+		else
+		{
+			$playlists = Playlist::all();
+		}
 		return View::make('playlist.showall')
 			->with('playlists',$playlists);
 	}
@@ -146,6 +153,29 @@ class PlaylistController extends \BaseController {
 		{
 			
 			DB::table('points')->where('account_id',$playlist->account_id)->increment('value');
+		}
+
+		if(Auth::user())
+		{
+			if($playlist->account_id != Auth::user()->accountUser()->id)
+			{	
+				$account = Account::find($playlist->account_id);
+				$user = User::find($account->user->id);
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
 		}
 	}
 	public function playlistsound()
