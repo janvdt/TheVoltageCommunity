@@ -263,6 +263,7 @@
 }
 .getstarted
 {
+	min-height: 50px;
 	margin-top: 25px;
 }
 .getstarted a
@@ -274,10 +275,6 @@
 	margin-left: 40px;
 }
 
-.tracks-overview-home
-{
-	margin-left: 50px;
-}
 .accountimg
 {
 	margin-top: 7px;
@@ -324,9 +321,12 @@
 {
 	font-size: 30px;
   line-height: 34px;
-  margin: 32px 0 15px;
   font-weight: normal;
   color:white;
+}
+.welcomecontent
+{
+	padding: 20px;
 }
 .controls
 {
