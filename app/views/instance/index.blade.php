@@ -64,7 +64,7 @@
 			@endforeach
 		</ul>
 	
-		<div class="shelf span12">
+		<div class="shelf">
 			<div class="bookend_left"></div>
 			<div class="bookend_right"></div>
 			<div class="reflection"></div>

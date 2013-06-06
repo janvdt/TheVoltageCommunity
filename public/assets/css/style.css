@@ -14,7 +14,7 @@
 }
 .homemusic
 {
-	padding-left: 25px;
+	padding: 0px;
 }
 .authorplaylist
 {
@@ -28,6 +28,10 @@
 {
 	margin-left: 0px;
 	margin-top: 10px;
+}
+.navbar-static-top
+{
+	margin-right: 0px;
 }
 #suggestions
 {
@@ -527,7 +531,7 @@
 
 .ch-grid {
     margin: 0px 0 0 0;
-    padding-left: 50px;
+    padding-left: 45px;
     list-style: none;
     
     
@@ -548,8 +552,10 @@
     width: 220px;
     height: 220px;
     display: inline-block;
-    margin: 15px;
+    margin-right:60px;
+    margin-left: 0px;
     margin-bottom: 90px;
+    margin-top: 60px;
 }
 
 
