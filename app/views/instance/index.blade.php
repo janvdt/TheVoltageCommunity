@@ -18,7 +18,7 @@
 
 <div class ="span12 tracks-overview-home">
 	<h2>Music</h2>
-	<div class="row">
+	<div class="row homemusic">
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
 				
