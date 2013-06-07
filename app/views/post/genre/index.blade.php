@@ -51,7 +51,7 @@
 	</div>
 </div>
 
-	<div class="row">
+	<div class="row musicnoti">
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
 			   @if($musicpost->genrescheck($type))
@@ -249,7 +249,7 @@ $('.pagination').hide();
  
     });
  
-
+    if ($('.music-posts li').length == 0) {$('.musicnoti').append("<h5>There is no music available in this genre.</h5>")}
 
 @stop
 

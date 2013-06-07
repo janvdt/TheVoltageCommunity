@@ -39,6 +39,8 @@
 @section('scripts')
 	@parent
 
+if ($('.thumbnails li').length == 0) {$('.music').append("<h5>There are currently no playlists available.</h5>")}
+
 
 $("#playlist").addClass('active');
 

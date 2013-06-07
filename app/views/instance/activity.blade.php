@@ -12,7 +12,10 @@
 	<h2>Activity log </h2>
 </div>
 </div>
-<div class="row span11">
+<div class="row span11 lognoti">
+@if($notifications == NULL)
+<p>You have currently no activitylogs</p>
+@endif
 <ul class="activitylog nav">
 	@foreach($notifications as $notification)
 		@if($notification->following($notification->user->accountUser()->id))
@@ -276,6 +279,6 @@ $('.pagination').hide();
     }
 });
 
-
+if ($('.activitylog li').length == 0) {$('.lognoti').append("<h5>You currently have no activitylogs. Please make sure that you are following Voltage Community members</h5>")}
 
 @stop

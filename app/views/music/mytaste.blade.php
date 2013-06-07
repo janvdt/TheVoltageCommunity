@@ -240,5 +240,7 @@ $('.pagination').hide();
         }
  
     });
+
+    if ($('.music-posts li').length == 0) {$('.searchterm').append("<h5>There is no music that matches your taste.</h5>")}
  
 @stop

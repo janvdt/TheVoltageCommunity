@@ -100,4 +100,6 @@ $("#upload-playlist-form").ajaxForm({
 });
 @endif
 
+if ($('.thumbnails li').length == 0) {$('.music').append("<h5>You have no playlists. Please make one and score some points</h5>")}
+
 @stop
