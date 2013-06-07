@@ -40,7 +40,7 @@
 				<span class="icon-bar"></span>
 			</a>
       		
-      		<a class="brand offset2 titlehead" href="{{URL::to("/")}}"><img src="/images/lightninglight.png"/ width="30"> Voltage Community Beta</a>
+      		<a class="brand offset2 titlehead" href="{{URL::to("/")}}"><img src="/images/lightninglight.png" width="30"> Voltage Beta</a>
 			<div class="nav-collapse">
 				<ul class="nav pull-right itemsnav">
 					
