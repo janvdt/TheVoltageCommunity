@@ -309,14 +309,38 @@ Route::get('social/authenticate/{action}', array("as" => "hybridauth", function(
 
 	if($user == NULL)
 	{	
-		DB::table('accounts')->insert(array('identifier' => $facebooklogin->identifier,'facebookpic' => $facebooklogin->photoURL ));
+			$totalpoint = new Totalpoint;
+
+			$totalpoint->value = 1;
+
+			$totalpoint->save();
+
+		DB::table('accounts')->insert(array('identifier' => $facebooklogin->identifier,'facebookpic' => $facebooklogin->photoURL,'totalpoint_id' => $totalpoint->id ));
 
 		$account = Account::where('identifier',$facebooklogin->identifier)->first();
+
+		$totalpointupdate = Totalpoint::find($totalpoint->id);
+
+			$totalpointupdate->account_id = $account->id;
+
+			$totalpointupdate->save();
+
+			$point = new Point;
+
+			$point->account_id = $account->id;
+
+			$point->value = 1;
+
+			$point->save();
+
+			DB::table('account_level')->insert(array('account_id' => $account->id, 'level_id' => 1));
 
    		DB::table('users')->insert(array('email' => $facebooklogin->email,'first_name' => $facebooklogin->firstName,'last_name' => $facebooklogin->lastName,'status' => 'Active','account_id' => $account->id,'identifier' => $facebooklogin->identifier));
    		$facebookuser = User::where('identifier',$facebooklogin->identifier)->first();
 
    		Auth::loginUsingId($facebookuser->id);
+
+   		return Redirect::action('AccountController@editprofile');
    	}
    	else
    	{

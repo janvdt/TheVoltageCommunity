@@ -15,6 +15,7 @@ class CreatePointsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('value');
+			$table->integer('account_id');
 			$table->timestamps();
 		});
 	}

@@ -15,6 +15,7 @@ class CreatePlaylistsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('title');
+			$table->integer('account_id');
 			$table->timestamps();
 		});
 	}
