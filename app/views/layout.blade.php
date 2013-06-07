@@ -528,7 +528,7 @@ $("#soundcloud").select2({
  	$("#suggestions").show();
  	if(searchVal !== '') {
  
-            $.get('http://thevoltagecommunity.com/search?searchData='+searchVal, function(returnData) {
+            $.get('http://tvc.loc/search?searchData='+searchVal, function(returnData) {
                 /* If the returnData is empty then display message to user
                  * else our returned data results in the table.  */
                 if (!returnData) {
