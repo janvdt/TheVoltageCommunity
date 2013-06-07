@@ -94,45 +94,5 @@
 	@parent
 
 $("#graph").addClass('active');
-$('#searchData').keyup(function() {
- 	var searchVal = $(this).val();
 
- 	if(searchVal !== '') {
- 
-            $.get('graph/search?searchData='+searchVal, function(returnData) {
-                /* If the returnData is empty then display message to user
-                 * else our returned data results in the table.  */
-                if (!returnData) {
-                    $('.music-posts').html('<p style="padding:5px;">Search term entered does not return any data.</p>');
-                } 
-                else 
-                {
-                	$('.box').each(function(i)
-					{
-						$(this).css("display", "none");
-   						
-					});
-
-                 	for (var i = 0; i < returnData.length; i++) {
-                 	console.log(returnData[i]);
-    				if(returnData[i].id !== undefined)
-    				{
-                 	$searchpost = "<div id='searchresult' class='box'><a href='http://tvc.loc/post/showgraph/"+ returnData[i].id +"'><div class='view view-first'><img src=' " + returnData[i].imagegraph + "'><div class='mask'><h2>" + returnData[i].title + "</h2><p>" + returnData[i].body + "</p></div></div></a><div class='viewlikes span2'><div class='pull-left'><div class='pull-left'><i class='icon-eye-open'><span class='badge badge-inverse'>" + returnData[i].views + "</span></i></div></div><div class=''><div class='pull-left likes'><i class='icon-heart'></i><span class='badge badge-inverse'>" + returnData[i].postlikes + "</span></i></div><div class='pull-right'><a href=''><img src=''></a></div></div></div></div>";
-
-                 	$(".graphposts").append($searchpost);
-                 	}
-
-					}  
-    				
-                }
-            });
-        } else {
-            $('.box').each(function(i)
-			{
-				$(this).css("display", "block");
-				$('#searchresult').remove();
-			});""
-        }
- 
-    });
 @stop
