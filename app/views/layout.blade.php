@@ -80,6 +80,7 @@
 									</li>
 									<li><a href=""><i class="icon-key"> Change password</i></a></li>
 									<li><a href="{{ URL::action('PostController@create') }}"><i class="icon-plus"> Create post</i></a></li>
+									<li><a href="{{ URL::action('PlaylistController@index') }}"> My playlists</a></li>
 								</ul>
 					</li>
 					@endif
