@@ -46,5 +46,5 @@
 			</div>
 		</div>
 	</div>
-	<a href="{{ URL::route('socialAuth', 'facebook') }}" class="btn"><img src= "/images/facebook.png" width="50" />Sign in with Facebook</a>
+	<a href="{{ URL::route('socialAuth', 'facebook') }}" class="btn"><img src= "/images/facebook.png" width="50" /></a>
 @stop
