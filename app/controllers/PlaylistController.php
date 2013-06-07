@@ -274,4 +274,6 @@ class PlaylistController extends \BaseController {
   		return Redirect::action('PlaylistController@show',array($playlist->id));
 	}
 
+	
+
 }
