@@ -61,7 +61,7 @@ class HomeController extends BaseController {
         	}
         	else
         	{
-        		$user['image'] = "http://www.thevoltagecommunity.com"$user->accountUser()->getImagePathname();
+        		$user['image'] = $user->accountUser()->getImagePathname();
         	}
 			$test[] = $user->toArray();
 		}
