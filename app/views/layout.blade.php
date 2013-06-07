@@ -523,13 +523,14 @@ $("#soundcloud").select2({
 	$("#suggestions").hide();
 	
 	$('#searchDatauser').keyup(function() {
-	var url ='http://www.thevoltagecommunity.com';
+	var url =(location.protocol + "//" + location.hostname + 
+      (location.port && ":" + location.port));
 	console.log(url);
  	var searchVal = $(this).val();
  	$("#suggestions").show();
  	if(searchVal !== '') {
  
-            $.get(url + 'search?searchData='+searchVal, function(returnData) {
+            $.get(url + '/search?searchData='+searchVal, function(returnData) {
                 /* If the returnData is empty then display message to user
                  * else our returned data results in the table.  */
                 if (!returnData) {
