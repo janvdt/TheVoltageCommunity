@@ -251,6 +251,8 @@ class PlaylistController extends \BaseController {
 		$delete_playlist = Playlist::find($id);
 		$delete_playlist->delete();
 
+		DB::table('notifications')->where('playlist_id',$playlist->id)->delete();
+
 		return Redirect::action('PlaylistController@index');
 	}
 

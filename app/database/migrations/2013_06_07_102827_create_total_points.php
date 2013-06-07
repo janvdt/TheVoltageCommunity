@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePointsTable extends Migration {
+class CreateTotalPoints extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,10 +11,11 @@ class CreatePointsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('points', function($table)
+		Schema::create('totalpoints', function($table)
 		{
 			$table->increments('id');
 			$table->integer('value');
+			$table->integer('account_id');
 			$table->timestamps();
 		});
 	}
@@ -26,7 +27,7 @@ class CreatePointsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('points');
+		Schema::drop('totalpoints');
 	}
 
 }

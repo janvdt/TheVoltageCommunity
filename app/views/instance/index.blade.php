@@ -4,13 +4,18 @@
 		<div class="span12 welcome">
 			<div class="welcomecontent span6">
 				<p class="welcometitle">YOUR MIX OF MUSIC</p>
-				<p>The Voltage Community is a place to share what fuels your creativity, and discover what inspires others.
+				<p class="welcometext">The Voltage Community is a place to share what fuels your creativity, and discover what inspires others.
 					Built by people who love music, for designers, this is your one-stop shop for creative inspiration.
 				</p>
 			</div>
 			<div class="span5 getstarted">
 				<div class="pull-right">
+					@if(Auth::user())
+					<img src="/images/lightninglight.png"/ width="75">
+					
+					@else
 					<a href="{{ URL::route('login') }}" class="btn btn-large btn-inverse"><img src="/images/lightninglight.png"/ width="75">Power up!</a>
+					@endif
 				</div>
 			</div>
 		</div>

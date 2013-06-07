@@ -1,5 +1,7 @@
 <div class="row">
-<div class="span12 navigation">
+	<div class="span6">
+	</div>
+<div class="span6 navigation">
 	<div class="container menu clearfix pull-right">
 		<div class="navbar navbar_">
 			<div class="container">
@@ -11,6 +13,7 @@
 						<li id="playlist"><a href="{{ URL::action('PlaylistController@showAll') }}">Playlists</a></li>
 						<li><a href="{{ URL::action('TurntableController@index') }}?scratch=1">DIY</a></li>
 						<li id="graph"><a href="{{ URL::action('GraphController@index') }}">Graphics</a></li>
+						<li id="graph"><a href="{{ URL::action('AccountController@showscores') }}">Scores</a></li>
 					</ul>
 				</div>
 			</div>

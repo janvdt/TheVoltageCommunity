@@ -267,6 +267,22 @@ $(document).ready(function() {
   			$container.masonry({
     		itemSelector : '.box'
   		});
+  			function Populate(){
+    vals = $('input[type="checkbox"]:checked').map(function() {
+        return this.value;
+    }).get().join(',');
+    console.log(vals);
+    $('#removeposts').val(vals);
+	}
+
+	$('input[type="checkbox"]').on('change', function() {
+    Populate()
+    $('#buttonremove').show();
+
+    if(!$('#removeposts').val()){
+	$('#buttonremove').hide();
+	}
+	}).change();
 	});
   }
 );

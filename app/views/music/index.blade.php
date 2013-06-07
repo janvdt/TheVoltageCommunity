@@ -62,7 +62,7 @@
 							</a>
 							@endif
     						<?php $string = $musicpost->title;
-							$maxLength = 50;
+							$maxLength = 40;
 
 						if (strlen($string) > $maxLength) {
     					$stringCut = substr($string, 0, $maxLength);
@@ -76,34 +76,20 @@
     				</div>
     				
     					
-    				@if($musicpost->image_id != 0)
-        			<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
-        			@else
+    				<div class="test">
+    					<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
         			@if($musicpost->soundcloud_art != NULL)
         			<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$musicpost->soundcloud_art}});">
         			@else
         			<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$musicpost->youtube_art}});">
         			@endif
-        			@endif
-        				<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
-            			<div class="ch-info">
-            				
-                			<?php $string = $musicpost->title;
-							$maxLength = 40;
+        			
+        				
+            			
+            			
+        			</div>
+        		</a>
 
-						if (strlen($string) > $maxLength) {
-    					$stringCut = substr($string, 0, $maxLength);
-    					$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
-						}
-
-						echo "<h3>$string</h3>"
-						?>
-
-                			
-                				<a href=""></a>
-                			
-            			</div>
-            			</a>
         			</div>
         			
         			<div class="viewslikes span2">

@@ -50,12 +50,14 @@ Route::get('login', array('as' => 'login', function()
 {
 	return View::make('instance.login');
 }));
-
+Route::get('account/showscores', 'AccountController@showscores');
 Route::get('account/choosetaste', 'AccountController@choosetaste');
 Route::get('account/editprofile','AccountController@editprofile');
 Route::post('playlist/updatetitle/{id}', 'PlaylistController@updatetitle');
 Route::get('playlist/copy/{id}', 'PlaylistController@copy');
 Route::get('playlist/showplaylist/{id}', 'PlaylistController@showplaylist');
+Route::post('post/destroygraphSelected', 'PostController@destroygraphSelected');
+Route::post('post/destroySelected', 'PostController@destroySelected');
 Route::post('playlist/destroySelected', 'PlaylistController@destroySelected');
 Route::get('playlist/playlistsound','PlaylistController@playlistsound');
 Route::post('playlist/orderplaylist/{id}', 'PlaylistController@orderPlaylist');
@@ -185,6 +187,7 @@ Route::get('user/showaccount/{id}', 'UserController@showAccount');
 
 Route::get('user/visitaccount/{id}', 'UserController@visitAccount');
 Route::get('account/visitmusicposts/{id}', 'AccountController@visitmusicposts');
+Route::get('account/visitgraphposts/{id}', 'AccountController@visitgraphposts');
 Route::resource('account','AccountController');
 Route::post('account/updatetaste/{id}', 'AccountController@updateTaste');
 Route::get('account/edittaste/{id}', 'AccountController@editTaste');

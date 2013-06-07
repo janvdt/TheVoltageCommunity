@@ -38,9 +38,11 @@ class AccountController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function showscores()
 	{
-		//
+		$totalscores = Totalpoint::all();
+		return View::make('score.index')
+			->with('totalscores',$totalscores);
 	}
 
 	/**
@@ -277,6 +279,16 @@ class AccountController extends BaseController {
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->orderBy('id','desc')->get();
 		return View::make('user.account.visit.musicpost')
 			->with('musicposts',$musicposts)
+			->with('user',$user);
+	}
+
+	public function visitgraphposts($id)
+	{
+		$user = User::find($id);
+		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->orderBy('id','desc');
+		$graphposts = $graphposts->paginate(4);
+		return View::make('user.account.visit.graphpost')
+			->with('graphposts',$graphposts)
 			->with('user',$user);
 	}
 

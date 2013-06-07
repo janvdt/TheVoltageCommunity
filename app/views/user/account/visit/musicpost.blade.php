@@ -3,13 +3,30 @@
 @section('instanceContent')
 
 <div class ="span12 music">
-<h2>{{$user->first_name}} {{$user->last_name}} Music posts</h2>
+<div class="row">
+	<div class="span10">
+		<h2>{{$user->first_name}} {{$user->last_name}} Music posts</h2>
+	</div>
+	
+	<div class="span2">
+		<a id="buttonremove" class="btn btn-danger pull-right" href="#delete-selected" data-toggle="modal">Remove selected</a>
+	</div>
+
+</div>
 
 	<div class="row">
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
     			<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
     				<div class="row">
+    					@if($musicpost->created_by == Auth::user()->id)
+    					<div class="pull-right">
+							<a href="{{ URL::action('PostController@editMusic', array($musicpost->id)) }}" ><i class='icon-pencil'></i></a>
+						</div>
+    					<label class="pull-right">
+						{{Form::checkbox('remove[]', $musicpost->id)}}
+						</label>
+						@endif
     					<div class="span3 titlemusicpost">
     						<h6>
     						<?php $string = $musicpost->title;
@@ -112,6 +129,22 @@
 		</ul>
 	</div>
 </div>
+<div class="modal hide fade" id="delete-selected">
+	<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@destroySelected') }}">
+		<div class="modal-header">
+			<input type="hidden"  id="removeposts" name="removeposts">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>Delete selected songs</h3>
+		</div>
+		<div class="modal-body">
+			<p>Are you sure you want to delete the selected songs</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Cancel</button>
+			<input class="btn btn-danger" type="submit" value="Delete">
+		</div>
+	</form>
+</div>
 <div class="row">
 	<div class="span12 loader">
 	</div>
@@ -208,6 +241,23 @@ $('#searchData').keyup(function() {
         }
  
     });
+
+    function Populate(){
+    vals = $('input[type="checkbox"]:checked').map(function() {
+        return this.value;
+    }).get().join(',');
+    console.log(vals);
+    $('#removeposts').val(vals);
+	}
+
+	$('input[type="checkbox"]').on('change', function() {
+    Populate()
+    $('#buttonremove').show();
+
+    if(!$('#removeposts').val()){
+	$('#buttonremove').hide();
+	}
+	}).change();
  
 
 

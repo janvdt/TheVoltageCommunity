@@ -270,6 +270,7 @@ class PostController extends BaseController {
 			if($post->created_by != Auth::user()->id)
 			{	
 				$user = User::find($post->created_by);
+				DB::table('totalpoints')->where('account_id',$user->accountUser()->id)->increment('value');
 				if($user->accountuser()->points->value < 100)
 				{
 					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
@@ -314,6 +315,7 @@ class PostController extends BaseController {
 			if($post->created_by != Auth::user()->id)
 			{	
 				$user = User::find($post->created_by);
+				DB::table('totalpoints')->where('account_id',$user->accountUser()->id)->increment('value');
 				if($user->accountuser()->points->value < 100)
 				{
 					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
@@ -507,6 +509,43 @@ class PostController extends BaseController {
 		return Redirect::back();
 	}
 
+	public function destroySelected()
+	{
+
+		$posts = explode(',', Input::get('removeposts'));
+	
+
+		//remove all images that are selected.
+		foreach ($posts as $post){
+
+			DB::table('posts')
+				->where('id',$post)->where('created_by',Auth::user()->id)->delete();
+
+			DB::table('notifications')->where('post_id',$post)->delete();
+			
+		}
+  		return Redirect::action('AccountController@visitmusicposts',array(Auth::user()->id));
+	}
+
+
+	public function destroygraphSelected()
+	{
+
+		$posts = explode(',', Input::get('removeposts'));
+	
+
+		//remove all images that are selected.
+		foreach ($posts as $post){
+
+			DB::table('posts')
+				->where('id',$post)->where('created_by',Auth::user()->id)->delete();
+
+			DB::table('notifications')->where('post_id',$post)->delete();
+			
+		}
+  		return Redirect::action('AccountController@visitgraphposts',array(Auth::user()->id));
+	}
+
 	public function like($id)
 	{
 		$post = Post::find($id);
@@ -526,6 +565,7 @@ class PostController extends BaseController {
 			if($post->created_by != Auth::user()->id)
 			{	
 				$user = User::find($post->created_by);
+				DB::table('totalpoints')->where('account_id',$user->accountUser()->id)->increment('value');
 				if($user->accountuser()->points->value < 100)
 				{
 					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
@@ -592,6 +632,7 @@ class PostController extends BaseController {
 			if($post->created_by != Auth::user()->id)
 			{	
 				$user = User::find($post->created_by);
+				DB::table('totalpoints')->where('account_id',$user->accountUser()->id)->increment('value');
 				if($user->accountuser()->points->value < 100)
 				{
 					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');

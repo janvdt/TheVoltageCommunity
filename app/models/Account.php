@@ -29,6 +29,10 @@ class Account extends BaseModel {
 	{
 		return $this->hasOne('Point');
 	}
+	public function totalpoints()
+	{
+		return $this->hasOne('Totalpoint');
+	}
 
 	public function levels()
 	{

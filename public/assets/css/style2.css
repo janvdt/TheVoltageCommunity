@@ -493,7 +493,17 @@ h4::first-letter {
 	margin-left: 10px;
 	margin-top: 0px;
 }
-
+.followcount
+{
+	text-transform: none;
+	color: black;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	letter-spacing: -1px;
+	font-size: 20px;
+	margin-left: 0px;
+	margin-top: 0px;
+}
 
 
 

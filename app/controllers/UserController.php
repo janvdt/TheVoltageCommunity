@@ -48,11 +48,25 @@ class UserController extends BaseController {
 					->withErrors($validator);
 			}
 
+			$totalpoint = new Totalpoint;
+
+			$totalpoint->value = 1;
+
+			$totalpoint->save();
+
 			$account = new Account;
 
 			$account->biography = "Fill in your biography";
 
+			$account->totalpoint_id = $totalpoint->id;
+
 			$account->save();
+
+			$totalpointupdate = Totalpoint::find($totalpoint->id);
+
+			$totalpointupdate->account_id = $account->id;
+
+			$totalpointupdate->save();
 
 			$point = new Point;
 
@@ -63,7 +77,8 @@ class UserController extends BaseController {
 			$point->save();
 
 			DB::table('account_level')->insert(array('account_id' => $account->id, 'level_id' => 1));
-	
+			
+			
 
 			$user = new User;
 
@@ -105,7 +120,15 @@ class UserController extends BaseController {
 
 		$user = User::find($id);
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->get();
+		$shortmusicposts = Post::where('created_by',$user->id)->where('type','music')->take(9)->orderBy('id','desc')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
+		$shortgraphposts = Post::where('created_by',$user->id)->where('type','graph')->take(9)->orderBy('id','desc')->get();
+		$playlists = Playlist::where('account_id',Auth::user()->accountUser()->id)->take(9)->orderBy('id','desc')->get();
+		
+
+		$notifications = Notification::where('activity',1)->orderBy('id','desc');
+
+		$notifications = $notifications->paginate(8);
 		if(Session::has('hybridAuth'))
 		{
 			$facebookuser = User::where('identifier',Session::get('hybridAuth')->identifier)->first();
@@ -126,7 +149,11 @@ class UserController extends BaseController {
 			->with('graphposts',$graphposts)
 			->with('followers',$followers)
 			->with('following',$following)
-			->with('tastes',$tastes);
+			->with('tastes',$tastes)
+			->with('shortmusicposts',$shortmusicposts)
+			->with('shortgraphposts',$shortgraphposts)
+			->with('notifications',$notifications)
+			->with('playlists',$playlists);
 	}
 	/**
 	 * Display the specified resource.

@@ -11,7 +11,7 @@ class CreateLevelaccountTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('level_account', function($table)
+		Schema::create('account_level', function($table)
 		{
 			$table->increments('id');
 			$table->integer('account_id');
