@@ -523,8 +523,7 @@ $("#soundcloud").select2({
 	$("#suggestions").hide();
 	
 	$('#searchDatauser').keyup(function() {
-	var url =(location.protocol + "//" + location.hostname + 
-      (location.port && ":" + location.port) + "/");
+	var url ='http://www.thevoltagecommunity.com';
 	console.log(url);
  	var searchVal = $(this).val();
  	$("#suggestions").show();
