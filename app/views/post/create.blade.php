@@ -11,7 +11,7 @@
 		<ul class="thumbnails">
 			<li class="span3">
 				<div class="thumbnail thumbnail-businesscards">
-					<img src="http://placehold.it/400x300&text=Music" alt="">
+					<img src="/images/music.png"  width="400" height="300" alt="">
 					<div class="btn-centered">
 						<a class="btn btn-primary" href="{{ URL::action('PostController@createMusic') }}?type=music">Select</a>
 					</div>
