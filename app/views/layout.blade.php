@@ -524,6 +524,7 @@ $("#soundcloud").select2({
 	
 	$('#searchDatauser').keyup(function() {
 	var url = 'http://thevoltagecommunity.com';
+	console.log(url);
  	var searchVal = $(this).val();
  	$("#suggestions").show();
  	if(searchVal !== '') {
