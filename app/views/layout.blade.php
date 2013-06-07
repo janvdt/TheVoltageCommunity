@@ -520,51 +520,7 @@ $("#soundcloud").select2({
 
 <script>
 
-	$("#suggestions").hide();
 	
-	$('#searchDatauser').keyup(function() {
-
- 	var searchVal = $(this).val();
- 	$("#suggestions").show();
- 	if(searchVal !== '') {
- 
-            $.get('http://tvc.loc/search?searchData='+searchVal, function(returnData) {
-                /* If the returnData is empty then display message to user
-                 * else our returned data results in the table.  */
-                if (!returnData) {
-                    $('.music-posts').html('<p style="padding:5px;">Search term entered does not return any data.</p>');
-                } 
-                else 
-                {
-                	
-					console.log(returnData);
-                	$('#suggestions div').each(function(i)
-					{
-						$(this).css("display", "none");
-   						
-					});
-
-                 	for (var i = 0; i < returnData.length; i++) {
-                 	
-    				if(returnData[i].id !== undefined)
-    				{
-    					console.log(returnData[i].first_name);
-                 	$searchuser = "<li id='searchresultuser span3'><div class='span1 searchimg'><img src='" + returnData[i].image +"' width='30'></div><div class='span2'><h6><a href='http://tvc.loc/user/visitaccount/"+ returnData[i].id +"'>"+ returnData[i].first_name + " "+returnData[i].last_name +"</a></h6></div></li>";
-
-                 	$("#suggestions").append($searchuser);
-                 	}
-
-					}  
-    				
-                }
-            });
-        } else {
-            $('#suggestions').empty();
-            $("#suggestions").hide();
-			
-        }
- 
-    });
 </script>
 
 
