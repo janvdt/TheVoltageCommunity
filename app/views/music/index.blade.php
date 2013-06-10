@@ -46,7 +46,7 @@
 	</div>
 </div>
 	<div class="row">
-		<ul class="ch-grid nav nav-pills music-posts">
+		<ul class="ch-grid nav nav-pills music-posts isotope" id="infinite_scroll">
 			@foreach ($musicposts as $musicpost)
     			<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
     				<div class="row">
@@ -98,9 +98,9 @@
         						@if($musicpost->soundcloud != NULL)
 									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
 								@else
-									<a id="video_{{$musicpost->id}}" href="http://www.youtube.com/watch?v={{$musicpost->youtube}}">
-                  						<i class="icon-film"></i>
-                					</a>
+									<a value="{{$musicpost->youtube}}" href="#youtube-post-{{ $musicpost->youtube }}" data-toggle="modal" id="play" class="playyoutube"><i class="icon-film"></i></a>
+									
+							
 								@endif
         						<i class='icon-eye-open'></i>
         						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
@@ -165,6 +165,19 @@ $("musicpost").stratus({
       color: 'c6e2cc'
               
     });
+$(".playyoutube").click(function(){
+
+ 	var youtube = $(this).attr('value');
+
+ 	console.log(youtube);
+
+ 	 jQuery.iLightBox([
+		{
+			URL: "http://www.youtube.com/watch?v="+ youtube + ""
+		}
+	]);
+	
+});
 
 
 $('.pagination ul li:not(:last)').remove();
