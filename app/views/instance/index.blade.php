@@ -26,45 +26,74 @@
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
 				
-					<li class= "musicpost span3">
-						<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
-						@if($musicpost->image_id != 0)
-							<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
-						@else
-						@if($musicpost->soundcloud_art != NULL)
-							<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$musicpost->soundcloud_art}});">
-						@else
-							<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$musicpost->youtube_art}});">
-						@endif
-						@endif
+					<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
+    				<div class="row">
+    					<div class="span3 titlemusicpost">
+    						<h6>
+    						@if(Auth::user())
+    						<a href="{{ URL::action('UserController@visitAccount',array($musicpost->createdBy()->id)) }}">
+    						@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->facebookpic == NULL )
+								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="30" alt="">
+							@else
+								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="30" alt="">
+							@endif
+							</a>
+							@endif
+    						<?php $string = $musicpost->title;
+							$maxLength = 40;
 
-						<div class="ch-info">
-							<?php 
-								$string = $musicpost->title;
-								$maxLength = 40;
+						if (strlen($string) > $maxLength) {
+    					$stringCut = substr($string, 0, $maxLength);
+    					$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
+						}
 
-								if (strlen($string) > $maxLength) {
-									$stringCut = substr($string, 0, $maxLength);
-									$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
-								}
-
-								echo "<h3>$string</h3>"
-							?>
-							
-								<a class="link" href=""></a>
-							
-            			</div>
+						echo stripslashes("$string</h6>")
+						?>
+						
+    					</div>
+    				</div>
+    				
+    					
+    				<div class="test">
+    					<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
+        			@if($musicpost->soundcloud_art != NULL)
+        			<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$musicpost->soundcloud_art}});">
+        			@else
+        			<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$musicpost->youtube_art}});">
+        			@endif
+        			
+        				
+            			
+            			
         			</div>
-        			</a>
-        			<div class="row accountpost">
-        				@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->	facebookpic == NULL )
-							<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="25" alt="">
-						@else
-							<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="25" alt="">
-						@endif
-						{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}
-					</div>
-    				</li>
+        		</a>
+
+        			</div>
+        			
+        			<div class="viewslikes span2">
+        				<div class="pull-left">
+        					<div class="pull-left">
+        						@if($musicpost->soundcloud != NULL)
+									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+								@else
+									<a value="{{$musicpost->youtube}}" href="#youtube-post-{{ $musicpost->youtube }}" data-toggle="modal" id="play" class="playyoutube"><i class="icon-film"></i></a>
+									
+							
+								@endif
+        						<i class='icon-eye-open'></i>
+        						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
+        					</div>
+        				</div>
+        				<div class="">
+        					<div class="pull-left likes">
+        						<i class='icon-heart'></i>
+        						<span class="badge badge-inverse">{{count($musicpost->likes)}}</span></i>
+   
+        					</div>
+        				</div>
+
+        			</div>
+    			</li>
 			@endforeach
 		</ul>
 	
@@ -133,6 +162,20 @@
 
 @section('scripts')
 	@parent
+
+	$('.tracks-overview-home').on('click',".playyoutube",function() {
+
+ 	var youtube = $(this).attr('value');
+
+ 	console.log(youtube);
+
+ 	 jQuery.iLightBox([
+		{
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
+		}
+	]);
+	
+});
 
 
 	$("#home").addClass('active');

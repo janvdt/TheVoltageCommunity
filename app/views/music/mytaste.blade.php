@@ -44,18 +44,21 @@
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
 			   @if($musicpost->tastescheck(Auth::user()->accountuser()->id))
-    			<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
-    			<li class= "musicpost">
+    			<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
     				<div class="row">
     					<div class="span3 titlemusicpost">
     						<h6>
+    						@if(Auth::user())
+    						<a href="{{ URL::action('UserController@visitAccount',array($musicpost->createdBy()->id)) }}">
     						@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->facebookpic == NULL )
 								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="30" alt="">
 							@else
 								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="30" alt="">
 							@endif
+							</a>
+							@endif
     						<?php $string = $musicpost->title;
-							$maxLength = 50;
+							$maxLength = 40;
 
 						if (strlen($string) > $maxLength) {
     					$stringCut = substr($string, 0, $maxLength);
@@ -67,38 +70,33 @@
 						
     					</div>
     				</div>
-    				@if($musicpost->image_id != 0)
-        			<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
-        			@else
+    				
+    					
+    				<div class="test">
+    					<a href ="{{ URL::action('PostController@showMusic', array($musicpost->id)) }}">
         			@if($musicpost->soundcloud_art != NULL)
         			<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$musicpost->soundcloud_art}});">
         			@else
         			<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$musicpost->youtube_art}});">
         			@endif
-        			@endif
-
-            			<div class="ch-info">
-                			<?php $string = $musicpost->title;
-							$maxLength = 40;
-
-						if (strlen($string) > $maxLength) {
-    					$stringCut = substr($string, 0, $maxLength);
-    					$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
-						}
-
-						echo "<h3>$string</h3>"
-						?>
-
-                			<p>
-                				<a href="{{ URL::action('UserController@visitAccount',array($musicpost->createdBy()->id)) }}">{{$musicpost->createdBy()->first_name}} {{$musicpost->createdBy()->last_name}}</a>
-                			</p>
-            			</div>
+        			
+        				
+            			
+            			
         			</div>
+        		</a>
+
+        			</div>
+        			
         			<div class="viewslikes span2">
         				<div class="pull-left">
         					<div class="pull-left">
         						@if($musicpost->soundcloud != NULL)
 									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+								@else
+									<a value="{{$musicpost->youtube}}" href="#youtube-post-{{ $musicpost->youtube }}" data-toggle="modal" id="play" class="playyoutube"><i class="icon-film"></i></a>
+									
+							
 								@endif
         						<i class='icon-eye-open'></i>
         						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
@@ -106,18 +104,20 @@
         				</div>
         				<div class="">
         					<div class="pull-left likes">
-        						<i class='icon-thumbs-up'></i>
+        						<i class='icon-heart'></i>
         						<span class="badge badge-inverse">{{count($musicpost->likes)}}</span></i>
+   
         					</div>
         				</div>
+
         			</div>
         			<div class="shelf shelfmusicpost">
 					<div class="bookend_left"></div>
 					<div class="bookend_right"></div>
 					<div class="reflection"></div>
 					</div>
+
     			</li>
-    			</a>
     			@endif
     			@endforeach
     		
@@ -155,9 +155,25 @@
     });
 
     $("musicpost").stratus({
-      links: '<?php echo(implode(",", $soundcloudsurl)); ?>'
+      links: '<?php echo(implode(",", $soundcloudsurl)); ?>',
+      random: true,
+      color: 'c6e2cc'
               
     });
+
+    $('.music').on('click',".playyoutube",function() {
+
+ 	var youtube = $(this).attr('value');
+
+ 	console.log(youtube);
+
+ 	 jQuery.iLightBox([
+		{
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
+		}
+	]);
+	
+});
 
 
 $('.pagination ul li:not(:last)').remove();
