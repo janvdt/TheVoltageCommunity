@@ -38,22 +38,25 @@
     				</div>
     				
     					
-    				@if($musicpost->image_id != 0)
-        			<div class="ch-item ch-img-1" style="background-image: url(/{{ $musicpost->image->getSize('thumb')->getPathname() }});">
-        			@else
+    				<div class="test">
+    					
         			@if($musicpost->soundcloud_art != NULL)
+        			<a href="{{$musicpost->soundcloud}}" class="stratus">
         			<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$musicpost->soundcloud_art}});">
         			@else
+        			<a value="{{$musicpost->youtube}}" id="play" class="playyoutube">
         			<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$musicpost->youtube_art}});">
         			@endif
-        			@endif
+        		
         				
         			</div>
+        			</a>
+        		</div>
 
         			<div class="viewslikes span2">
         				<div class="pull-left">
         					<div class="pull-left">
-        						<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+        						
         					</div>
         				</div>
         			</div>
@@ -102,6 +105,19 @@ $("musicpost").stratus({
       color: 'c6e2cc'
               
     });
+$('.music').on('click',".playyoutube",function() {
+
+ 	var youtube = $(this).attr('value');
+
+ 	console.log(youtube);
+
+ 	 jQuery.iLightBox([
+		{
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
+		}
+	]);
+	
+});
 
 $( "#sortableplaylist" ).sortable({
 	handle:'div',

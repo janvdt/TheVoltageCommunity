@@ -27,7 +27,12 @@
 
 		<div class="thumbnail">
 			@if($playlist->posts->first() != NULL)
-			<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt="" width="250"></a>
+			<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}">
+				@if($playlist->posts->first()->soundcloud_art != NULL)
+				<img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt="" width="250"></a>
+				@else
+				<img class="avatar img-polaroid polaroidyoutube" src="{{ $playlist->posts->first()->youtube_art }}" alt="" width="250" heigh="250"></a>
+				@endif
 			@else
 			<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/250x250&text=Playlist" alt="" width="250"></a>
 			@endif

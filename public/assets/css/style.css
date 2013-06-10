@@ -29,9 +29,9 @@
 {
 	height: 90px;
 }
-.authorplaylist
+.polaroidyoutube
 {
-	
+	height: 250px;
 }
 .navigation
 {
@@ -889,6 +889,7 @@
 	
 	color: black;
 	margin-top: 25px;
+	margin-bottom: 15px;
 }
 .comments
 {
@@ -1034,7 +1035,10 @@ margin-right: auto;
 ==========================================*/
 
 @media (max-width: 767px) {
-
+.lines
+{
+	display: none;
+}
 }
 
 

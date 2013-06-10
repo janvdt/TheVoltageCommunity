@@ -69,7 +69,7 @@
 			@endif
 		</div>
 	</div>
-	<div style="width:2px;height:400px;background-color:#C6E2CC;float:left;"></div>
+	<div class="lines" style="width:2px;height:400px;background-color:#C6E2CC;float:left;"></div>
 	<div class="span7 contentbox">
 		@if($post->soundcloud != NULL)
 		<div id="postsoundcloud">
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="span12" style="height:2px;background-color:#C6E2CC;float:left;"></div>
+	<div class="span12 lines" style="height:2px;background-color:#C6E2CC;float:left;"></div>
 	@if(Auth::user())
 	<div class="row">
 		<div class="span11 offset1 commentsection">
