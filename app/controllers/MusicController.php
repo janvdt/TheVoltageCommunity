@@ -151,7 +151,8 @@ class MusicController extends BaseController {
         		}
         		else
         		{
-        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        			$$imageurl = strval($musicpost->createdBy()->accountUser()->getImagePathname());
+        			$musicpost['image'] = "../".$imageurl;
         		}
 				$test[] = $musicpost->toArray();
 			}
@@ -184,7 +185,8 @@ class MusicController extends BaseController {
         		}
         		else
         		{
-        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        			$imageurl = strval($musicpost->createdBy()->accountUser()->getImagePathname());
+        			$musicpost['image'] = "../".$imageurl;
         		}
 				$test[] = $musicpost->toArray();
 			}
