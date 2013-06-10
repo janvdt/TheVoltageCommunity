@@ -70,7 +70,7 @@
 
         			</div>
         			
-        			<div class="viewslikes span2">
+        			<div class="viewslikes span3">
         				<div class="pull-left">
         					<div class="pull-left">
         						@if($musicpost->soundcloud != NULL)
@@ -80,13 +80,13 @@
 									
 							
 								@endif
-        						<i class='icon-eye-open'></i>
+        						<i class='icon-eye-open watch'></i>
         						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>
         					</div>
         				</div>
         				<div class="">
         					<div class="pull-left likes">
-        						<i class='icon-heart'></i>
+        						<img src="/images/lightning.png" width="15" height="15">
         						<span class="badge badge-inverse">{{count($musicpost->likes)}}</span></i>
    
         					</div>
