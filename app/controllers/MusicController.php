@@ -29,7 +29,7 @@ class MusicController extends BaseController {
 			$genres[$genre->title] = $genre->title;
 		}
 
-		$musicposts = $musicposts->paginate(16);
+		$musicposts = $musicposts->paginate(100);
 		return View::make('music.index')
 			->with('musicposts',$musicposts)
 			->with('genres',$genres)

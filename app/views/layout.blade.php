@@ -252,17 +252,7 @@
 		d=355,e="         assets         img  jpg URL function options thumbnails  thumbnail iLightBox  type caesarlima  image photos MS day test click var skin  sherlock_holmes btn append html class this fired br Event caption getMinutes new getMilliseconds scrollTop getSeconds 1E4 getHours Date overlay http minScale com return fullscreen  smartRecognition controls metro add dark opacity width www alert innerToolbar for you one path horizontal attr height primary styles vars nextOpacity button prevOpacity target 27845 blur 27780 278081 27771 white hide 720 27898 parade div the item keyCode onAfterLoad onHide 5E3 next moveTo setTimeout keyup total currentElement onOpen fullViewPort ilightbox onExitFullScreen onEnterFullScreen 1280 onAfterChange trailer watch onShow text null on onBeforeChange black keyboard esc clearTimeout It callback trigger onRender This to ll h2 27749_2 27749 youtube Checkmate lastly video And yourself iprodev MV5BMTM1NTMyMDE4OV5BMTFeQW1wNF5BbWU3MDEyNTI0OTU See webm fill screen when good enter that fit effects it yeah current Oh mind your blow DOM Caption First 75 631_1steampunksplash4 603_1beauty4 604_1beauty3 592_1r388_yb_banner dialogue_message 585_1DawnO_056casei OK 601_1beauty1 583_1testsnowwhite 625_1beautykaetsite 350_1r3__2007__caesarlima_seb8mag3 319_1caenewpg2 val 618_1marilia_splash 481_1cae_shadow Yes 599_1nero_splash_1 397_1natascha_wind 452_1npblonde 489_1zokvamp_beauty li ul prettyPrint effect show dialogue Slideshow onBeforeLoad video_3 video_html5 video_4 title video_5 video_6 video_7 video_8 video_9 video_gallery resized forceresize wiidth 300px clearfix _Z4Z Mxbo vimeo 55331511 hulu 424558 metacafe 9542534 man_of_steel_trailer dailymotion photo xp53r5_the avengers official mac 2_shortfilms gametrailers videos za4633 crysis wonders episode hell of town focus mixed_contents window inline_gallery mp4 Skins html5video can poster 544 startFrom even light be modified maxScale document per embed lNxhpNpnAkk autohide border egm showinfo showsearch mqdefault stretch icon nextOffsetX element google_maps ajax maps 420 iframe slideshow_button image_gallery_with_slideshow pageOffsetY 100 nextScale prevScale or switchSpeed 700 group body prevOffsetX basis normalOpacity goTo Stop inline_html_simple singleimage_1 inline_html_forced demo_inline_element inline off remove activeOpacity fadeIn loadedFadeSpeed singleimage_2 360 currentItem ajax_simple open_in_modal show_alert Custom ajax_forced functions are cool ajax_modal flash_simple flash_forced iframe_1 ready  iframe_3 singleimage_3 singleimage_4 Alert show_prompt How would describe input center Awesome unbind clear src Cancel Attention show_confirm Click smile if love No Do agree events_gallery pre_events gif time upgrade hr 300 supports elements created image_gallery fly video_1 video_2 iframe_2".split(" "),
 		f=0,g={},f=function(b){return(62>b?"":f(parseInt(b/62)))+(35<(b%=62)?String.fromCharCode(b+29):b.toString(36))};if(!"".replace(/^/,String)){for(;d--;)g[f(d)]=e[d]||f(d);e=[function(b){return g[b]}];f=function(){return"\\w+"};d=1}for(;d--;)e[d]&&(c=c.replace(RegExp("\\b"+f(d)+"\\b","g"),e[d]));a(c);
 		
-		$(window).load(function(){
-			$('[data-spy="scroll"]').each(function () {
-				var t = $(this);
-				t.scrollspy();
-				$(window).resize(function(){
-					t.scrollspy('refresh');
-					$(this).trigger('scroll');
-				});
-			});
-		});
-
+		
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'ID']);
 		_gaq.push(['_setDomainName', 'HOST']);

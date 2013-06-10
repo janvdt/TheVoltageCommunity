@@ -199,6 +199,7 @@ $('.pagination').hide();
       return false;
     });
     console.log('test');
+    console.log($('#video_4').data('events'));
 });
 $('#searchData').keyup(function() {
  	var searchVal = $(this).val();
