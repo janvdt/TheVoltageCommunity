@@ -165,7 +165,7 @@ $("musicpost").stratus({
       color: 'c6e2cc'
               
     });
-$(".playyoutube").click(function(){
+$('.music').on('click',".playyoutube",function() {
 
  	var youtube = $(this).attr('value');
 
@@ -173,7 +173,7 @@ $(".playyoutube").click(function(){
 
  	 jQuery.iLightBox([
 		{
-			URL: "http://www.youtube.com/watch?v="+ youtube + ""
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
 		}
 	]);
 	
