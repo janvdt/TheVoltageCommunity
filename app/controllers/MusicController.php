@@ -116,7 +116,8 @@ class MusicController extends BaseController {
         		}
         		else
         		{
-        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        			$imageurl = $musicpost->createdBy()->accountUser()->getImagePathname();
+        			$musicpost['image'] = "../".$imageurl;
         		}
 				$test[] = $musicpost->toArray();
 
