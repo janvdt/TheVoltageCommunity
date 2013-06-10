@@ -15,7 +15,7 @@
 		</div>
 		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
 		<div class="span2">
-			<a class="btn btn-inverse btn-large" id="post">AC<img src="/images/lightning.png"/ width="50">DC</a>
+			<a class="btn btn-inverse btn-large" id="post"><img src="/images/lightning.png"/ width="50"></a>
 		</div>
 		@endif
 	</div>
