@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>iLightBox &middot; Revolutionary Lightbox Plugin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Hemn Chawroka" />
+	<meta property="og:title" content="iLightBox - Revolutionary Lightbox Plugin" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="iLightBox allows you to easily create the most beautiful overlay windows using the jQuery Javascript library. By combining support for a wide range of media with gorgeous skins and a user-friendly API, iLightBox aims to push the Lightbox concept as far as possible." />
+	<meta name="description" content="iLightBox allows you to easily create the most beautiful overlay windows using the jQuery Javascript library. By combining support for a wide range of media." />
+	<meta name="keywords" content="jQuery, lightbox, lightboxs, jquery plugin, jquery lightbox plugin, design user interface, overlay, jquery overlay, slideshow maker, best light box, best lightbox, WordPress lightbox plugin, WordPress gallery, image gallery with slideshow, powerfull lightbox plugin, new lightbox plugin, new functional lightbox plugin, html5 video, media gallery, modern, video gallery, photo gallery, modal box, jquery modal box plugin, lightboxes, photo lightbox, website photo gallery, photo gallery for website, gallery photo album, video lightbox, slide show web, create picture gallery, photo light box, photo lightbox, light box photo, lightbox photo, web photo album, video and image slideshow, photography box, display lightbox, wordpress for photographers, JavaScript lightbox with API" />
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="assets/css/docs.css" rel="stylesheet" />
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet" />
+    <link href="assets/css/demo_ajax_stevejobs.css" rel="stylesheet" />
+    <link href="src/css/ilightbox.css" rel="stylesheet" />
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-top: 0;
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+	
+	.jumbotron {
+	  background: #793e3a; /* Old browsers */
+	  background: -moz-linear-gradient(45deg,  #793e3a 0%, #170f3e 100%); /* FF3.6+ */
+	  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#793e3a), color-stop(100%,#170f3e)); /* Chrome,Safari4+ */
+	  background: -webkit-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Chrome10+,Safari5.1+ */
+	  background: -o-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* Opera 11.10+ */
+	  background: -ms-linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* IE10+ */
+	  background: linear-gradient(45deg,  #793e3a 0%,#170f3e 100%); /* W3C */
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#793e3a', endColorstr='#170f3e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	}
+	
+	.masthead .btn {
+	  padding: 11px 19px;
+	}
+	
+	.masthead .btn [class^="icon-"] {
+	  margin-top: 7px;
+	}
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: fixed;
+      z-index: 1035;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+    }
+
+    .navbar  {
+      margin-bottom: 0;
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.5);
+              box-shadow: 0 2px 10px rgba(0,0,0,.5);
+			  
+      -webkit-border-radius: 0 0 4px 4px;
+         -moz-border-radius: 0 0 4px 4px;
+              border-radius: 0 0 4px 4px;
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+	.masthead {
+		padding-top: 110px;
+		padding-bottom: 60px;
+	}
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4, .marketing .span4 p, .marketing .marketing-byline {
+      text-align: center;
+    }
+	.marketing .marketing-byline.left {
+	  text-align: left;
+      margin-top: -50px;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+	.marketing p, .hero-unit {
+	  text-align: left;
+	}
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+	  text-align: left;
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+	  margin-bottom: 60px !important;
+    }
+	
+	.thumbnail > img {
+	  margin: 0 auto;
+	}
+	
+	h3 sup {
+		font-size: 13px;
+		font-weight: normal;
+	}
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+		.navbar-wrapper {
+          position: relative;
+		  margin-top: 20px;
+		}
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+	
+	div.center {
+		width: 450px;
+		height: 260px;
+		text-align: center;
+	}
+	
+	div.center h2 {
+		display: block;
+		margin: 0;
+	}
+	
+	div.center h2 img {
+		display: block;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	
+	.ilightbox-dialogue .ilightbox-container, .ilightbox-dialogue .ilightbox-inner-toolbar {
+		width: auto !important;
+		height: auto !important;
+	}
+	
+	.dialogue {
+		min-width: 200px;
+		max-width: 600px;
+		max-height: 400px;
+		padding: 20px;
+		padding-top: 20px;
+	}
+	
+	.dialogue .btn {
+		float: right;
+		padding-right: 20px;
+		padding-left: 20px;
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+	
+	/* Slidshow button styles */
+	a.slideshow_button {
+		display: none;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 35px;
+		padding: 14px 30px;
+		margin: auto;
+		cursor: pointer;
+		font-size: 22px;
+		z-index: 100001;
+		width: 140px;
+	}
+	
+	html.win .ilightbox-noscroll, html.win .ilightbox-noscroll .navbar-wrapper {
+		padding-right: 17px;
+	}
+	
+	html.linux .ilightbox-noscroll, html.linux .ilightbox-noscroll .navbar-wrapper {
+		padding-right: 13px;
+	}
+    </style>
+	<!--[if IE 7]>
+    <style>
+	.jumbotron {
+	  background: #47263C url(assets/img/bs-docs-masthead-pattern.png) repeat center center;
+	  filter: none;
+	}
+	
+    .navbar-wrapper {
+      width: 100%;
+    }
+    </style>
+	<![endif]-->
+	
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+    <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
+    <div class="container navbar-wrapper">
+
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://ilightbox.net/">iLightBox</a>
+          <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li style="display: none;"><a href="#home">Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#singleimage">Single Image</a></li>
+                  <li><a href="#imagegallery">Image Gallery</a></li>
+                  <li><a href="#advanced_images">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#html_inline_content">Inline Content</a></li>
+                  <li><a href="#html_ajax">Ajax</a></li>
+                  <li><a href="#html_flash">Flash / SWF</a></li>
+                  <li><a href="#html_iframe">IFRAME</a></li>
+                  <li><a href="#html_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#video_simple">Simple Usage</a></li>
+                  <li><a href="#video_advanced_examples">Advanced Examples</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advanced Examples <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#advanced_mixed">Mixed Contents & Google Maps via API</a></li>
+                  <li><a href="#advanced_events">Events</a></li>
+                  <li><a href="#galley_with_slideshow">Image Gallery with Slideshow</a></li>
+                  <li><a href="#advanced_dialogues">Alert/Confirm/Prompt</a></li>
+                  <li><a href="plus_comment.html">Image Preview + Sidebar</a></li>
+                  <li><a href="infinite_scroll.html">Infinite Scroll Gallery</a></li>
+                  <li><a href="responsive_slider.html">Responsive Slider!</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="discussion.html">Discussion</a></li>
+                  <li><a href="faq.html">Frequently Asked Questions</a></li>
+                  <li><a href="changelog.html">Changelog</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                <ul class="dropdown-menu" id="projects_container">
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+
+    </div><!-- /.container -->
+
+<div class="jumbotron masthead" id="home">
+  <div class="container">
+    <h1>iLightBox</h1>
+    <p>Sleek, intuitive, powerful, and revolutionary jQuery lightbox plugin for creative and ambitious web designers and developers.</p>
+    <p>
+      <a href="http://goo.gl/nl0Bg" class="btn btn-primary btn-large">Download iLightBox&nbsp;&nbsp;<i class="icon-download-alt icon-white"></i></a>
+      <a href="http://goo.gl/DlaJq" class="btn btn-info btn-large">Download for WordPress&nbsp;&nbsp;<i class="icon-download-alt icon-white"></i></a>
+      <a href="discussion.html" class="btn btn-success btn-large">Discussion&nbsp;&nbsp;<i class="icon-comment icon-white"></i></a>
+    </p>
+    <ul class="masthead-links">
+      <li>
+        Version 1.4.1
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="bs-docs-social">
+  <div class="container">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Filightbox.net%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=recommend&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+      </li>
+      <li>
+        <div class="g-plusone" data-size="medium" data-href="http://ilightbox.net/"></div>
+      </li>
+      <li class="follow-btn">
+        <a href="https://twitter.com/chawroka" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @chawroka</a>
+      </li>
+      <li class="tweet-btn">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ilightbox.net/" data-count="horizontal" data-via="chawroka" data-related="@chawroka:iLightBox - Revolutionary Lightbox for creative and ambitious web designers and developers.">Tweet</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+
+
+    <h1>Introducing iLightBox</h1>
+    <p class="marketing-byline">iLightBox allows you to easily create the most beautiful responsive overlay windows using the jQuery JavaScript library.<br>
+	By combining support for a wide range of media with gorgeous skins and a user-friendly API, iLightBox aims to push the Lightbox concept as far as possible.</p>
+    <p class="marketing-byline">Need reasons to love iLightBox Look no further.</p>
+
+    <div class="row-fluid">
+      <div class="span4">
+        <img src="assets/img/cross-browser.png" alt="iLightBox Cross-Browser support">
+        <h2>Browser support</h2>
+        <p align="center">IE7+ (including IE10), Firefox, Safari, Opera, Chrome, IOS4+, and Android are supported.</p>
+      </div>
+      <div class="span4">
+        <img src="assets/img/bs-docs-responsive-illustrations.png" alt="iLightBox Responsive Capability">
+        <h2>Made for everyone.</h2>
+        <p align="center">iLightBox was made to not only look and behave great in the latest desktop browsers (as well as IE7!), but in tablet and smartphone browsers as well.</p>
+      </div>
+      <div class="span4">
+        <img src="assets/img/bs-docs-bootstrap-features.png" alt="iLightBox Features">
+        <h2>Packed with features.</h2>
+        <p align="center">To make things even more awesome iLightBox comes with fullscreen, retina-ready skins, supports for swipe events, Youtube and Vimeo integration for HTML5 video, powerful Javascript API and has lifetime free support and updates.</p>
+      </div>
+    </div>
+
+      <hr class="featurette-divider">
+	
+	<div class="hero-unit row" style="margin: 0; font-size: 14px; padding: 20px;">
+		<div class="span6">
+			<h3>Features</h3>
+			<ul>
+				<li>jQuery capabilities.</li>
+				<li>Responsive design.</li>
+				<li>6 ready to use skins.</li>
+				<li>Native browser fullscreen support.</li>
+				<li>Cross browser, supports Chrome, FireFox, Safari, Opera and IE7+</li>
+				<li>Device friendly, works in iPhone, iPad, Android Devices and Windows Phone.</li>
+				<li>Highly User Interface Design.</li>
+				<li>Fully customizable, its possible to customize or redesign all parts of iLightBox.</li>
+				<li>Search engine optimized (SEO)</li>
+				<li>YouTube and Vimeo videos are supported.</li>
+				<li>Video auto recognition from sites.</li>
+				<li>Smart Content recognizer</li>
+				<li>Option to preview thumbnail over navigation.</li>
+				<li>Advanced JavaScript API considered.</li>
+				<li>Smart resource loader</li>
+				<li>Simple clean & valid markup</li>
+				<li>Developed with pure object oriented JavaScript</li>
+				<li>Multilanguage support</li>
+				<li>Keyboard support</li>
+				<li>Touch support</li>
+				<li>Mouse support: (Click, Wheel)</li>
+				<li>Extended HTML documentation</li>
+				<li>Powerful, documented API public methods, properties, callbacks</li>
+				<li>Tons features more...</li>
+			</ul>
+		</div>
+		<div class="span5">
+			<h3>WordPress <sup>Version</sup> Features</h3>
+			<ul>
+				<li>Show galleries and inline galleries.</li>
+				<li>Compatible with the regular wordpress gallery shortcode.</li>
+				<li>Shortcode parser for HTML contents.</li>
+				<li>Multiple file upload.</li>
+				<li>Works with Ajax Themes.</li>
+				<li>Autodetect all Videos and Images links.</li>
+				<li>Mobile Optimization capability.</li>
+				<li>Search engine optimized (SEO)</li>
+				<li>YouTube and Vimeo videos are supported.</li>
+				<li>Multilanguage support</li>
+				<li>Extended HTML documentation</li>
+				<li>Powerful, documented API public methods, properties, callbacks</li>
+				<li>Tons features more...</li>
+			</ul>
+		</div>
+	</div>
+
+      <hr class="featurette-divider">
+	
+	<div class="hero-unit">
+	  IF YOU HAVE ANY QUESTION THAT ARE BEYOND THE SCOPE OF THE ILIGHTBOX, PLEASE FEEL FREE TO <a href="http://ilightbox.net/discussion.html">JOIN THE DISCUSSION</a> OR <a href="http://codecanyon.net/user/hemn?ref=hemn">EMAIL ME VIA MY USER PAGE CONTACT FORM</a>. THANKS SO MUCH!
+	</div>
+
+
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider" id="singleimage">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Single Image</span></h2>
+		<p class="marketing-byline left">Here we use default settings and default styles for single image preview.</p>
+			<ul class="thumbnails">
+              <li class="span3">
+                <a id="singleimage_1" href="assets/img/photos/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg" class="thumbnail" data-caption="I'm lost in the world, I'm down on my mind, I'm building a city, And I'm down for the night.">
+                  <img src="assets/img/thumbnails/lost_in_the_world_by_vhm_alex-d5mbdg7.jpg" alt="iLightBox - Single Image" />
+                </a>
+              </li>
+              <li class="span3">
+                <a id="singleimage_2" href="assets/img/photos/princess_of_china_by_vhm_alex-d5gu1a2.jpg" class="thumbnail" data-caption="You really hurt me.">
+                  <img src="assets/img/thumbnails/princess_of_china_by_vhm_alex-d5gu1a2.jpg" alt="iLightBox - Single Image" />
+                </a>
+              </li>
+              <li class="span3">
+                <a id="singleimage_3" href="assets/img/photos/shame_by_vhm_alex-d58ipnj.jpg" class="thumbnail" data-caption="An interpretation of Michael Fassbender as Brandon, a sex addict in director Steve McQueen's 2011 film <i>Shame</i>.">
+                  <img src="assets/img/thumbnails/shame_by_vhm_alex-d58ipnj.jpg" alt="iLightBox - Single Image" />
+                </a>
+              </li>
+              <li class="span3">
+                <a id="singleimage_4" href="assets/img/photos/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg" class="thumbnail">
+                  <img src="assets/img/thumbnails/love_will_tear_us_apart_by_vhm_alex-d4tqff9.jpg" alt="iLightBox - Single Image" />
+                </a>
+              </li>
+            </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+	    Pictures by <a href="http://vhm-alex.deviantart.com/" target="_blank"><b>vhm-Alex</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="imagegallery">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Image Gallery</span></h2>
+        <p class="marketing-byline left">Here we use default settings and customize skin for some pictures in image gallery preview.</p>
+	  
+		  <ul class="thumbnails" id="image_gallery">
+			<li class="span5">
+			  <a href="assets/img/photos/challenger_by_nikosalpha-d5mgk3u.jpg" data-options="thumbnail: 'assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg'" class="thumbnail" data-caption="Presenting Tonia Sotiropoulou, in a new 2012 shooting. Tonia is currently in the big screen with James Bond's Skyfall. This photo is a sample for magazine use, more photos will follow in the future. See previous work with her at <a href='http://nikosalpha.com/tonia'>nikosalpha.com/tonia</a>.">
+				<img src="assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg" alt="iLightBox - Image Gallery" />
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/catharine_by_nikosalpha-d5drzr1.jpg" data-options="thumbnail: 'assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg'" class="thumbnail" data-caption="Presenting Catharine. She is a young multitalented beautiful voice singing in the UK. Follow her work <a href='https://www.facebook.com/CatharineAmorosoMusic'>here</a>">
+				<img src="assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg" alt="iLightBox - Image Gallery" />
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/underexposed_by_nikosalpha.jpg" data-options="thumbnail: 'assets/img/thumbnails/underexposed_by_nikosalpha.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/underexposed_by_nikosalpha.jpg" alt="iLightBox - Image Gallery" />
+			  </a>
+			</li>
+			<li class="span2 pull-right">
+			  <a href="assets/img/photos/auric_by_nikosalpha-d4ymtor.jpg" data-options="thumbnail: 'assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg', skin: 'light'" class="thumbnail" data-caption="One more photo of one of my favorite subjects, the Lips. I decided to create a unique tag in my website only for them. Here they are so far: <a href='http://nikosalpha.com/lips'>nikosalpha.com/lips</a>.">
+				<img src="assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg" alt="iLightBox - Image Gallery" />
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/piece_by_nikosalpha-d3bc2cc.jpg" data-options="thumbnail: 'assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg'" class="thumbnail" data-caption="The sweetest piece of my life">
+				<img src="assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg" alt="iLightBox - Image Gallery" />
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/blonde_by_nikosalpha-d5hk45h.jpg" data-options="thumbnail: 'assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg'" class="thumbnail" data-caption="New session with the singer Valerie Kalenti! (:">
+				<img src="assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg" alt="iLightBox - Image Gallery" />
+			  </a>
+			</li>
+		  </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+	    Pictures by <a href="http://nikosalpha.com" target="_blank">nikos<b>vasilakis</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="advanced_images">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">IMAGES <span class="muted">&middot; Advanced Examples</span></h2>
+        <p class="marketing-byline left">Here we use custom settings and advanced options for making advanced previews.</p>
+		
+		<ul class="thumbnails advanced-images">
+		  <li class="span4">
+			  <a href="#" id="inline_gallery" class="thumbnail"><img src="assets/img/thumbnails/599_1nero_splash_1.jpg" alt="iLightBox - Inline Image Gallery" /></a>
+			  <div class="caption">
+				<h3>Inline Image Gallery</h3>
+				<p>An image Gallery with a single click and some customization like: skin, path, startFrom, ...</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Pictures by <a href="http://www.caesarlima.com/#mi=2&pt=1&pi=10000&s=0&p=1&a=0&at=0" target="_blank"><b>caesarlima</b></a>
+			  </div>
+		  </li>
+		  <li class="span4">
+			  <a id="forceresize" href="http://www.caesarlima.com/#mi=2&pt=1&pi=10000&s=7&p=2&a=0&at=0" photo="assets/img/photos/caesarlima/481_1cae_shadow.jpg" data-options="width:400, width:400" target="_blank" class="thumbnail"><img src="assets/img/thumbnails/481_1cae_shadow.jpg" alt="iLightBox - Force Size & Custom Attribute" /></a>
+			  <div class="caption">
+				<h3>Force Size & Custom Attribute</h3>
+				<p>A single image via custom attribute, force size and some customization like: skin, ...</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Picture by <a href="http://www.caesarlima.com/#mi=2&pt=1&pi=10000&s=7&p=2&a=0&at=0" target="_blank"><b>caesarlima</b></a>
+			  </div>
+		  </li>
+		  <li class="span4">
+			  <a id="open_in_modal" href="http://marcuseriksson.net/c/s/ski/" target="_blank" class="thumbnail"><img src="assets/img/thumbnails/MS-test-day-27749.jpg" alt="iLightBox - Open in Modal" /></a>
+			  <div class="caption">
+				<h3>Open in Modal</h3>
+				<p>Toggle if <code>clicking the overlay</code> or <code>press "Esc"</code> key shouldn't close iLightBox.</p>
+			  </div>
+	  
+			  <div class="alert alert-info" align="left">
+				Pictures by <a href="http://marcuseriksson.net/" target="_blank"><b>MARCUS ERIKSSON</b></a>
+			  </div>
+		  </li>
+		</ul>
+
+      </div>
+
+      <hr class="featurette-divider" id="html_inline_content">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; Inline Content</span></h2>
+        <p class="lead"></p>
+			<style>
+				#demo_inline_element h1 {
+					font-size: 19px;
+					text-transform: uppercase;
+					margin: 0;
+					margin-bottom: 10px;
+					line-height:100%;
+					font-weight: 200;
+					letter-spacing: -1px;
+				}
+				#demo_inline_element h1 span {
+					display: block;
+					font-size: 12px;
+					line-height:100%;
+				}
+				#demo_inline_element div.span7 {
+					font-size: 0px;
+					line-height:0%;
+				}
+				#demo_inline_element p {
+					font-size: smaller;
+					line-height:150%;
+				}
+			</style>
+			  <div class="well" style="margin: 20px auto;">
+				<div class="row-fluid" id="demo_inline_element">
+				  <div class="span7"><iframe width="100%" scrolling="auto" height="360" frameborder="0" hspace="0" src="http://player.vimeo.com/video/28379417?autoplay=0&amp;portrait=0&amp;title=0&amp;byline=0"></iframe></div>
+				  <div class="span5">
+					<h1>Tokyo Rising<span class="muted ">Featuring Pharrell Williams</span></h1>
+					
+					<p>Tokyo faces a new reality after the tragedy of 3/11. While persistent challenges still lay ahead, the city's creative class is hell-bent on making 
+					sure that their hometown thrives. Innovative and resilient, they are defining the future of Tokyo on their own terms.
+					<br><br>
+					<a href="http://www.palladiumboots.com/video/tokyo-rising" target="_blank" class="pull-right">Full Documentary</a></p><br>
+					
+					<p>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/22" target="_blank">architecture & design</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/19" target="_blank">art</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/17" target="_blank">culture</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/72" target="_blank">japan</a></code> 
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/16" target="_blank">music</a></code> 
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/71" target="_blank">tokyo</a></code> 
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/18" target="_blank">urban exploration</a></code>
+					  <code><a href="http://www.palladiumboots.com/taxonomy/term/20" target="_blank">video</a></code>
+					</p>
+				  </div>
+				</div>
+			  </div>
+			  
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span6"><button type="button" id="inline_html_simple" target="#demo_inline_element" class="btn btn-large btn-block btn-inverse" data-type="inline" data-caption="Design custom layouts and pull them into iLightBox to create fancy overlays.">Open top content in iLightBox</button></div>
+				  <div class="span6"><button type="button" id="inline_html_forced" class="btn btn-large btn-block btn-inverse">Open top content in iLightBox with forced size (720x360)</button></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_ajax">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; Ajax</span></h2>
+        <p class="marketing-byline left">iLightBox can handle Ajax calls. All ajax options is customizable. The lazy loading can load ajax call and all entire elements.</p>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span4"><button type="button" id="ajax_simple" target="assets/ajax/stevejobs.html" data-type="ajax" class="btn btn-large btn-block btn-inverse">Open Ajax</button></div>
+				  <div class="span4"><button type="button" id="ajax_forced" target="assets/ajax/stevejobs.html" data-type="ajax" data-options="width: 702, height: 300" class="btn btn-large btn-block btn-inverse">Open Ajax with forced size (702x300)</button></div>
+				  <div class="span4"><button type="button" id="ajax_modal" target="assets/ajax/ajax-video.html" data-type="ajax" class="btn btn-large btn-block btn-inverse">Open Ajax in modal</button></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_flash">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; FLASH / SWF</span></h2>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span6"><a href="http://www.adobe.com/jp/events/cs3_web_edition_tour/swfs/perform.swf" id="flash_simple" data-options="width:595, height:380" class="btn btn-large btn-block btn-inverse">Open Flash in iLightBox</a></div>
+				  <div class="span6"><a href="http://www.adobe.com/jp/events/cs3_web_edition_tour/swfs/perform.swf" id="flash_forced" data-options="width:720, height:460" class="btn btn-large btn-block btn-inverse">Open Flash with forced size (720x460)</a></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_iframe">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; IFRAME</span></h2>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span4"><a href="http://www.iprodev.com/" id="iframe_1" data-options="width:'95%', height:460" class="btn btn-large btn-block btn-inverse">Open iProDev (95%x460)</a></div>
+				  <div class="span4"><a href="https://maps.google.com/maps?hl=en&q=Champ+de+Mars,+5+Avenue+Anatole+France,+75007+Paris,+France&panel=1&f=d&fb=1&dirflg=d&geocode=0,48.858278,2.294254&cid=0,0,10222232094831998944&hq=eiffel+tower&hnear=eiffel+tower&vpsrc=6&t=h&output=embed" id="iframe_2" data-options="width:860, height:420" data-caption="Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France. <a href='http://en.wikipedia.org/wiki/Eiffel_Tower' target='_blank'>Eiffel Tower</a>" class="btn btn-large btn-block btn-inverse">Open Eiffel Tower (860x420)</a></div>
+				  <div class="span4"><a href="https://maps.google.com/maps?f=d&amp;source=embed&amp;saddr=&amp;daddr=48.855927,2.298171&amp;hl=en&amp;geocode=&amp;sll=48.856005,2.298203&amp;sspn=0.004963,0.013078&amp;t=h&amp;mra=mift&amp;mrsp=1&amp;sz=17&amp;ie=UTF8&amp;ll=48.856019,2.298203&amp;spn=0.004934,0.013078&amp;layer=c&amp;cbll=48.855927,2.298171&amp;panoid=geXVBB0v9nE2d2ZSZFx4Jg&amp;cbp=12,315.41,,0,-9.17&amp;output=svembed" id="iframe_3" data-options="width:860, height:320" class="btn btn-large btn-block btn-inverse">Open Eiffel Tower Panoramio (860x320)</a></div>
+				</div>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="html_advanced_examples">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">HTML <span class="muted">&middot; Advanced Examples</span></h2>
+		<p class="marketing-byline left">In this case iLightBox display the DOM elements that created on the fly and the lazy loading can load all entire elements.</p>
+
+<pre class="prettyprint linenums">
+&lt;div class="center"&gt;
+  &lt;h2&gt;
+    &lt;img src="assets/img/smile.gif"&gt;
+    It's time to upgrade.
+  &lt;/h2&gt;
+  &lt;hr&gt;
+  &lt;p&gt;iLightBox supports DOM elements created on the fly.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+			<div class="well" style="margin: 20px auto;">
+				<a href="#" id="DOM" data-options="width:860, height:420" class="btn btn-large btn-block btn-inverse">Create DOM elements 'on the fly'</a>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="video_simple">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Video <span class="muted">&middot; Simple Usage</span></h2>
+		<p class="marketing-byline left">Here we use default settings for single video preview.</p>
+
+			<ul class="thumbnails">
+              <li class="span3">
+                <a id="video_1" href="http://www.youtube.com/embed/uuwfgXD8qV8?autohide=1&border=0&egm=0&showinfo=0&showsearch=0" class="thumbnail" data-caption="Katy Perry - Part Of Me" data-options="width:1920, height:1080">
+                  <img src="assets/img/photos/katy_perry_part_of_me.jpg" alt="iLightBox - YouTube Video" />
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>YouTube</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span3">
+                <a id="video_2" href="http://player.vimeo.com/video/54333970?autoplay=0" class="thumbnail" data-options="width:800, height:450">
+                  <img src="assets/img/photos/376665716_1280.jpg" alt="iLightBox - Vimeo Video" />
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Vimeo</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span3">
+                <a id="video_3" href="http://trailers.apple.com/movies/newline/thelaststand/laststand-tlr1_720p.mov" class="thumbnail" data-options="width:1280, height:544">
+                  <img src="assets/img/photos/thumbnail_7050.jpg" alt="iLightBox - QuickTime Video" />
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>QuickTime</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span3">
+                <a id="video_html5" href="http://iprodev.com/ilightbox/assets/macbookpro-colors-cc-us-20121116_848x480.ipad.mp4" class="thumbnail" data-options="width:848, height:480, html5video: { webm: 'http://iprodev.com/ilightbox/assets/macbookpro-colors-cc-us-20121116_848x480.webmhd.webm', poster: 'assets/img/photos/macbook-pro-poster.jpg' }">
+                  <img src="assets/img/photos/macbook-pro.jpg" alt="iLightBox - HTML5 Video" />
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>HTML5</b>&nbsp;&nbsp;</code></center>
+              </li>
+            </ul>
+      </div>
+
+      <hr class="featurette-divider" id="video_advanced_examples">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Video <span class="muted">&middot; Advanced Examples</span></h2>
+		<p class="marketing-byline left">In this case iLightBox recognize the video from any sites that the video is available on it and just show the video. Awesome :-)</p>
+			<ul class="thumbnails">
+              <li class="span4">
+                <a id="video_4" href="http://www.youtube.com/watch?v=_Z4Z-E-Mxbo" class="thumbnail">
+                  <img src="assets/img/photos/564645646.jpg" alt="iLightBox - Advanced YouTube Video" />
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>YouTube</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_5" href="http://vimeo.com/55331511" class="thumbnail">
+                  <img src="assets/img/photos/382910812_1280.jpg" alt="iLightBox - Advanced Vimeo Video" />
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Vimeo</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_6" href="http://www.hulu.com/watch/424558" class="thumbnail">
+                  <img src="assets/img/photos/60159184.jpg" alt="iLightBox - Advanced Hulu Video" />
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Hulu</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_7" href="http://www.metacafe.com/watch/9542534/man_of_steel_trailer/" class="thumbnail">
+                  <img src="assets/img/photos/man_of_steel_trailer.jpg" alt="iLightBox - Advanced MetaCafe Video" />
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>MetaCafe</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_8" href="http://www.dailymotion.com/video/xp53r5_the-avengers-official-trailer-2_shortfilms" class="thumbnail">
+                  <img src="assets/img/photos/42228545-jpeg_preview_large.jpg" alt="iLightBox - Advanced Dailymotion Video" />
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Dailymotion</b>&nbsp;&nbsp;</code>
+              </li>
+              <li class="span4">
+                <a id="video_9" href="http://www.gametrailers.com/videos/za4633/crysis-3-the-7-wonders---episode-1--hell-of-a-town" data-options="width: 1280, height: 720" class="thumbnail">
+                  <img src="assets/img/photos/t_crysis3_7wonders_ep1trailer.jpg" alt="iLightBox - Advanced GameTrailers Video" />
+                </a>
+				<code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>GameTrailers</b>&nbsp;&nbsp;</code>
+              </li>
+            </ul>
+			
+			<div class="well" style="margin: 20px auto;">
+				<a href="#" id="video_gallery" class="btn btn-large btn-block btn-inverse">Create "Video Gallery" from top videos in Modal</a>
+            </div>
+      </div>
+
+      <hr class="featurette-divider" id="advanced_mixed">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Mixed & Google Maps</span></h2>
+
+			<ul class="thumbnails">
+              <li class="span6">
+                <a id="mixed_contents" href="#" class="thumbnail">
+                  <img src="assets/img/photos/mixed_contents.jpg" alt="iLightBox - Mixed Contents" />
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Mixed Contents</b>&nbsp;&nbsp;</code></center>
+              </li>
+              <li class="span6">
+                <a id="google_maps" href="#" class="thumbnail" alt="The White House">
+                  <img src="assets/img/photos/maps.jpg" alt="iLightBox - Google Maps via API" />
+                </a>
+				<center><code style="display:inline-block; margin-top: 10px;">&nbsp;&nbsp;<b>Google Maps via API</b>&nbsp;&nbsp;</code></center>
+              </li>
+            </ul>
+      </div>
+
+      <hr class="featurette-divider" id="advanced_events">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Events</span></h2>
+
+			<div class="well" style="margin: 20px auto;">
+				<button type="button" id='events_gallery' class="btn btn-large btn-block btn-inverse">Click me</button>
+            </div>
+		<pre style="height: 300px; overflow: auto;" id="pre_events"></pre>
+      </div>
+
+      <hr class="featurette-divider" id="galley_with_slideshow">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Image Gallery with Slideshow</span></h2>
+        <p class="marketing-byline left">Here we use some tricks in image gallery preview to give slideshow ability.</p>
+	  
+		  <ul class="thumbnails" id="image_gallery_with_slideshow">
+			<li class="span5">
+			  <a href="assets/img/photos/challenger_by_nikosalpha-d5mgk3u.jpg" data-options="thumbnail: 'assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/challenger_by_nikosalpha-d5mgk3u.jpg" alt="iLightBox - Image Gallery with Slideshow" />
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/catharine_by_nikosalpha-d5drzr1.jpg" data-options="thumbnail: 'assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/catharine_by_nikosalpha-d5drzr1.jpg" alt="iLightBox - Image Gallery with Slideshow" />
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/underexposed_by_nikosalpha.jpg" data-options="thumbnail: 'assets/img/thumbnails/underexposed_by_nikosalpha.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/underexposed_by_nikosalpha.jpg" alt="iLightBox - Image Gallery with Slideshow" />
+			  </a>
+			</li>
+			<li class="span2 pull-right">
+			  <a href="assets/img/photos/auric_by_nikosalpha-d4ymtor.jpg" data-options="thumbnail: 'assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/auric_by_nikosalpha-d4ymtor.jpg" alt="iLightBox - Image Gallery with Slideshow" />
+			  </a>
+			</li>
+			<li class="span3">
+			  <a href="assets/img/photos/piece_by_nikosalpha-d3bc2cc.jpg" data-options="thumbnail: 'assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/piece_by_nikosalpha-d3bc2cc.jpg" alt="iLightBox - Image Gallery with Slideshow" />
+			  </a>
+			</li>
+			<li class="span2">
+			  <a href="assets/img/photos/blonde_by_nikosalpha-d5hk45h.jpg" data-options="thumbnail: 'assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg'" class="thumbnail">
+				<img src="assets/img/thumbnails/blonde_by_nikosalpha-d5hk45h.jpg" alt="iLightBox - Image Gallery with Slideshow" />
+			  </a>
+			</li>
+		  </ul>
+      </div>
+	  
+	  <div class="alert alert-info" align="left">
+	    Pictures by <a href="http://nikosalpha.com" target="_blank">nikos<b>vasilakis</b></a>
+	  </div>
+
+      <hr class="featurette-divider" id="advanced_dialogues">
+
+      <div class="featurette">
+        <h2 class="featurette-heading">Advanced Examples <span class="muted">&middot; Alert/Confirm/Prompt</span></h2>
+		<p class="marketing-byline left">You can replace the basic functionality provided by the standard javascript alert(), confirm(), and prompt() functions.</p>
+
+			<div class="well" style="margin: 20px auto;">
+				<div class="row-fluid">
+				  <div class="span4"><button type="button" id='show_alert' class="btn btn-large btn-block btn-inverse">Click me for an alert!</button></div>
+				  <div class="span4"><button type="button" id='show_prompt' class="btn btn-large btn-block btn-inverse">Click me for a prompt dialogue</button></div>
+				  <div class="span4"><button type="button" id='show_confirm' class="btn btn-large btn-block btn-inverse">Click me for a confirm dialogue</button></div>
+				</div>
+            </div>
+
+      </div>
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <hr class="featurette-divider">
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#home">Back to top</a></p>
+        <p align="left">&copy; 2012 <a href="http://iprodev.com/">Hemn Chawroka</a> - <a href="https://plus.google.com/108136157352034274807?rel=author" rel="author">Google+</a>, <a href="https://facebook.com/iprofessionaldev">Facebook</a>, <a href="https://twitter.com/chawroka">Twitter</a>.</p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="assets/js/css_browser_selector.min.js"></script>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+	<script type="text/javascript" async defer src="http://iprodev.com/projects.php?p=ilightbox"></script>
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="src/js/jquery.mousewheel.js"></script>
+    <script src="src/js/ilightbox.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script>
+
+		var a=eval,c='$(46).54(m(){m j(){g=!1;26(f);e.1Z("3a")}m h(b,a){b=$("<1C />",{"J":"39 3q"}).H(b);$.r([{l:b,t:"I",3f:a?a:20}],{D:"16-1x 1R-39",Z:1,1d:!0,38:{37:!1},1y:{37:!1},X:{1t:!1},15:{12:!1},28:{2a:m(a){$(".G",a.1O).B(m(){$(".G",a.1O).5h("B");a.1y()})},1Y:m(a){$(".G-1l",a.1O).3Q()}}})}3S.36&&36();$("#4G").r();$("#4P").r();$("#57").r();$("#58").r();$("35#5E 34 a").r();$("#3n").r({1j:"3B",D:"3F",1d:!0,X:{19:0.7},15:{12:!1}});$("#3T").B(m(){$.r([{l:"9/i/x/u/33.k",t:"w",n:{q:"9/i/o/u/33.k",D:"18"}},{l:"9/i/x/u/32.k",t:"w",n:{q:"9/i/o/u/32.k"}},{l:"9/i/x/u/31.k",n:{q:"9/i/o/u/31.k",D:"18"},t:"w"},{l:"9/i/x/u/30.k",n:{q:"9/i/o/u/30.k"},t:"w",O:"3V 3X 41 43 44 21 a 47-4j 4v 4y 4B."},{l:"9/i/x/u/2Y.k",n:{q:"9/i/o/u/2Y.k"},t:"w"},{l:"9/i/x/u/2X.k",n:{q:"9/i/o/u/2X.k",D:"18"},t:"w"},{l:"9/i/x/u/2V.k",n:{q:"9/i/o/u/2V.k"},t:"w"},{l:"9/i/x/u/2U.k",n:{q:"9/i/o/u/2U.k",1a:5A},t:"w",O:"2b 1g 3m 2c 3o:3p"},{l:"9/i/x/u/2T.k",n:{q:"9/i/o/u/2T.k"},t:"w"},{l:"9/i/x/u/2S.k",n:{q:"9/i/o/u/2S.k"},t:"w"},{l:"9/i/x/u/2R.k",n:{q:"9/i/o/u/2R.k",D:"18"},t:"w"},{l:"9/i/x/u/2P.k",n:{q:"9/i/o/u/2P.k"},t:"w"},{l:"9/i/x/u/2N.k",n:{q:"9/i/o/u/2N.k",D:"18"},t:"w"},{l:"9/i/x/u/2M.k",n:{q:"9/i/o/u/2M.k"},t:"w"},{l:"9/i/x/u/2L.k",n:{q:"9/i/o/u/2L.k"},t:"w"},{l:"9/i/x/u/2K.k",n:{q:"9/i/o/u/2K.k"},t:"w"}],{40:3,D:"42",1h:"1i",45:1.3,X:{19:0.4},1m:{4i:2J,1o:0.55,4A:2J,1q:0.55},o:{4C:0.6,4M:1}});11!1});$("#4T").B(m(){$.r([{l:"9/i/x/y-A-z-1A.k",n:{q:"9/i/o/y-A-z-1A.k"},t:"w",O:"2I 2H. 27\'2d 2F 2E 2D."},{l:"9/i/x/y-A-z-1w.k",n:{q:"9/i/o/y-A-z-1w.k"},t:"w",O:"2C 2A, 2z\'s 2w 2u. 2p 1e 2m."},{l:"9/i/x/y-A-z-1s.k",n:{q:"9/i/o/y-A-z-1s.k"},t:"w",O:"2l 2j, K 1g. 2i."},{l:"9/i/x/y-A-z-1u.k",n:{q:"9/i/o/y-A-z-1u.k"},t:"w"},{l:"9/i/x/y-A-z-1v.k",n:{q:"9/i/o/y-A-z-1v.k"},t:"w"},{l:"9/i/x/y-A-z-2g.k",n:{q:"9/i/o/y-A-z-2f.k"},t:"w"}],{D:"16-23",1h:"1i",X:{19:0.7,1t:!1},24:{25:!1},1m:{1o:0.55,1q:0.55}});11!1});$("#4F").r({1j:"1r",D:"16-1x"});$("#4H").B(m(){$.r([{l:"#4I",t:"4J",n:{1a:1z,1k:4Q}}],{D:"16-1x"});11!1});$("#4S").r({1j:"1r",X:{19:0.6},D:"1B",Z:1});$("#4W").r({1j:"1r",X:{19:0.6},D:"1B",Z:1});$("#50").r({1j:"1r",1d:!0,X:{19:0.6,1t:!1},15:{12:!1},24:{25:!1},D:"1B",Z:1});$("#51").r({1d:!0,15:{12:!1},D:"18"});$("#52").r({1d:!0,15:{12:!1},Z:1});$("#53").r();$("#5I").r({Z:1});$("#56").r({Z:1});$("#2G").B(m(){C b=$(\'<1C J="5f"><2e><i 5j="9/i/5o.5w">27\\\'s 5x 2c 5y.</2e><5z><p>r 5B 2G 5C 5D 21 1D 5F.</p></1C>\');$.r([{l:b,t:"I"}],{1d:!0,15:{12:!1},D:"1B",Z:1});11!1});$("#5G").r();$("#5H").r();$("#3c").r();$("#3d").r();$("#3e").r({14:!0});$("#3g").r({14:!0});$("#3h").r({14:!0});$("#3i").r({14:!0});$("#3j").r({14:!0});$("#3k").r({14:!0});$("#3l").B(m(){$.r([{l:"Y://1b.2h.10/1X?v=3r-E-3s"},{l:"Y://3t.10/3u"},{l:"Y://1b.3v.10/1X/3w"},{l:"Y://1b.3x.10/1X/3y/3z/"},{l:"Y://1b.3A.10/2k/3C-3D-3E-1W-3G"},{l:"Y://1b.3H.10/3I/3J/3K-3-1D-7-3L---3M-1--3N-3O-a-3P",n:{1a:1U,1k:1z}}],{14:!0,D:"18",X:{1t:!1},24:{25:!1},1m:{1o:0.55,1q:0.55}});11!1});$("#3R").B(m(){$.r([{l:"Y://2n.10/1R/9/2o.3U",n:{q:"9/i/o/F/1W.k",3W:{2q:"Y://2n.10/1R/9/2o.2q",3Y:"9/i/F/1W.k"},1a:1U,1k:3Z}},{l:"9/i/F/1.k",O:"2b 1g 2r 1D 2s 2t 1f 2v 12.",n:{q:"9/i/o/F/1.k",1Q:"2r"}},{l:"9/i/F/2.k",O:"2b 1g 2x 2c 1D 2s 2t 1f 2v 12.",n:{q:"9/i/o/F/2.k",1Q:"2x"}},{l:"Y://1b.2h.10/48/49?4a=1&4b=0&4c=0&4d=0&4e=0",n:{q:"9/i/o/F/4f.k",1Q:"4g",4h:"2k",1a:1U,1k:1z}},{l:"9/i/F/3.k",n:{q:"9/i/o/F/3.k"}},{l:"9/i/F/4.k",n:{q:"9/i/o/F/4.k"}},{l:"9/i/F/5.k",n:{q:"9/i/o/F/5.k"}},{l:"9/i/F/6.k",n:{q:"9/i/o/F/6.k"}},{l:"9/i/F/7.k",n:{q:"9/i/o/F/7.k"}},{l:"9/i/F/8.k",n:{q:"9/i/o/F/8.k"}}],{1h:"1i",D:"16-23",1m:{1o:0,1q:0}});11!1});$("#4k").B(m(){$.r([{l:"9/4l/4m.I",n:{1a:1z,1k:4n},t:"4o"}],{Z:1,D:"16-23"});11!1});C e=$(\'<a J="G G-1l 4p">3a</a>\'),g=!1,f=20;$("35#4q 34 a").r({D:"16-1x",1h:"1i",15:{q:!1},1m:{4r:4s,4t:0.6,4u:0.6,1o:0.6,1q:0.6},2y:{4w:4x},28:{1P:m(){C b=K;$("4z").H(e);e.21("B",m(){g?j():(b.1n.2B==b.1n.1N-1&&b.4D(0),g=!0,e.1Z("4E"),f=1L(m(){b.1K("1J")},1I))})},1H:m(){e.4K("B").1y().4L()},1G:m(){e.4N(K.n.2y.4O)},22:m(){26(f)},1V:m(b){C a=K;g&&(b.4R==K.1n.1N-1?j():f=1L(m(){a.1K("1J")},1I))},1T:m(){e.1y();26(f)},1S:m(){C b=K;e.38();g&&b.1n.2B!=b.1n.1N-1&&(f=1L(m(){b.1K("1J")},1I))}}});$("#4U").B(m(){C b;b=$("<p />",{I:"4V 1c() 4X 4Y 4Z.","J":"2O"});C a=$("<1p />",{I:"2Q","J":"G G-1l",1M:m(a){13==a.1F&&$(K).29("B")}});h(b.17(a),"59!")});$("#5a").B(m(){C b=$("<p />",{I:"5b 5c 1f 5d r?","J":"2O"}),a=$("<5e />",{t:"1Z",2W:"5g!"}),d=$("<1C />",{"J":"5i"}),c=$("<1p />",{I:"2Q","J":"G G-1l",B:m(){C b=a.2W();1c(b)},1M:m(a){13==a.1F&&$(K).29("B")}}),e=$("<1p />",{I:"5k","J":"G",B:m(){1c(20)}});h(b.17(a).17(d).17(c).17(e),"5l!")});$("#5m").B(m(){C b=$("<p />",{I:"5n 2Z 5p 1f 5q r"}),a=$("<1p />",{I:"2Z","J":"G G-1l",B:m(){1c(!0)},1M:m(a){13==a.1F&&$(K).29("B")}}),d=$("<1p />",{I:"5r","J":"G",B:m(){1c(!1)}});h(b.17(d).17(a),"5s 1f 5t?",m(){1c(!1)})});$("#5u").B(m(){C b=$("#5v");$.r([{l:"9/i/x/y-A-z-1A.k",n:{q:"9/i/o/y-A-z-1A.k"},t:"w",O:"2I 2H. 27\'2d 2F 2E 2D."},{l:"9/i/x/y-A-z-1w.k",n:{q:"9/i/o/y-A-z-1w.k"},t:"w",O:"2C 2A, 2z\'s 2w 2u. 2p 1e 2m."},{l:"9/i/x/y-A-z-1s.k",n:{q:"9/i/o/y-A-z-1s.k"},t:"w",O:"2l 2j, K 1g. 2i."},{l:"9/i/x/y-A-z-1u.k",n:{q:"9/i/o/y-A-z-1u.k"},t:"w"},{l:"9/i/x/y-A-z-1v.k",n:{q:"9/i/o/y-A-z-1v.k"},t:"w"},{l:"9/i/x/y-A-z-2g.k",n:{q:"9/i/o/y-A-z-2f.k"},t:"w"}],{1h:"1i",X:{19:0.7},28:{1P:m(){C a=Q W;b.H(a.V()+":"+a.P()+":"+a.T()+"."+a.R()+\' - N "1P" L<M />\').S(U)},2a:m(a,d){C c=Q W;b.H(c.V()+":"+c.P()+":"+c.T()+"."+c.R()+\' - N "2a" L 1e 1E \'+d+".<M />").S(U)},1Y:m(a,d){C c=Q W;b.H(c.V()+":"+c.P()+":"+c.T()+"."+c.R()+\' - N "1Y" L 1e 1E \'+d+".<M />").S(U)},1H:m(){C a=Q W;b.H(a.V()+":"+a.P()+":"+a.T()+"."+a.R()+\' - N "1H" L.<M /><p>-----------------------------------</p>\').S(U)},1T:m(){C a=Q W;b.H(a.V()+":"+a.P()+":"+a.T()+"."+a.R()+\' - N "1T" L.<M />\').S(U)},1S:m(){C a=Q W;b.H(a.V()+":"+a.P()+":"+a.T()+"."+a.R()+\' - N "1S" L.<M />\').S(U)},3b:m(a,d){C c=Q W;b.H(c.V()+":"+c.P()+":"+c.T()+"."+c.R()+\' - N "3b" L 1e 1E \'+d+".<M />").S(U)},1G:m(a,d){C c=Q W;b.H(c.V()+":"+c.P()+":"+c.T()+"."+c.R()+\' - N "1G" L 1e 1E \'+d+".<M />").S(U)},22:m(){C a=Q W;b.H(a.V()+":"+a.P()+":"+a.T()+"."+a.R()+\' - N "22" L.<M />\').S(U)},1V:m(){C a=Q W;b.H(a.V()+":"+a.P()+":"+a.T()+"."+a.R()+\' - N "1V" L.<M />\').S(U)}}});11!1})});',
+		d=355,e="         assets         img  jpg URL function options thumbnails  thumbnail iLightBox  type caesarlima  image photos MS day test click var skin  sherlock_holmes btn append html class this fired br Event caption getMinutes new getMilliseconds scrollTop getSeconds 1E4 getHours Date overlay http minScale com return fullscreen  smartRecognition controls metro add dark opacity width www alert innerToolbar for you one path horizontal attr height primary styles vars nextOpacity button prevOpacity target 27845 blur 27780 278081 27771 white hide 720 27898 parade div the item keyCode onAfterLoad onHide 5E3 next moveTo setTimeout keyup total currentElement onOpen fullViewPort ilightbox onExitFullScreen onEnterFullScreen 1280 onAfterChange trailer watch onShow text null on onBeforeChange black keyboard esc clearTimeout It callback trigger onRender This to ll h2 27749_2 27749 youtube Checkmate lastly video And yourself iprodev MV5BMTM1NTMyMDE4OV5BMTFeQW1wNF5BbWU3MDEyNTI0OTU See webm fill screen when good enter that fit effects it yeah current Oh mind your blow DOM Caption First 75 631_1steampunksplash4 603_1beauty4 604_1beauty3 592_1r388_yb_banner dialogue_message 585_1DawnO_056casei OK 601_1beauty1 583_1testsnowwhite 625_1beautykaetsite 350_1r3__2007__caesarlima_seb8mag3 319_1caenewpg2 val 618_1marilia_splash 481_1cae_shadow Yes 599_1nero_splash_1 397_1natascha_wind 452_1npblonde 489_1zokvamp_beauty li ul prettyPrint effect show dialogue Slideshow onBeforeLoad video_3 video_html5 video_4 title video_5 video_6 video_7 video_8 video_9 video_gallery resized forceresize wiidth 300px clearfix _Z4Z Mxbo vimeo 55331511 hulu 424558 metacafe 9542534 man_of_steel_trailer dailymotion photo xp53r5_the avengers official mac 2_shortfilms gametrailers videos za4633 crysis wonders episode hell of town focus mixed_contents window inline_gallery mp4 Skins html5video can poster 544 startFrom even light be modified maxScale document per embed lNxhpNpnAkk autohide border egm showinfo showsearch mqdefault stretch icon nextOffsetX element google_maps ajax maps 420 iframe slideshow_button image_gallery_with_slideshow pageOffsetY 100 nextScale prevScale or switchSpeed 700 group body prevOffsetX basis normalOpacity goTo Stop inline_html_simple singleimage_1 inline_html_forced demo_inline_element inline off remove activeOpacity fadeIn loadedFadeSpeed singleimage_2 360 currentItem ajax_simple open_in_modal show_alert Custom ajax_forced functions are cool ajax_modal flash_simple flash_forced iframe_1 ready  iframe_3 singleimage_3 singleimage_4 Alert show_prompt How would describe input center Awesome unbind clear src Cancel Attention show_confirm Click smile if love No Do agree events_gallery pre_events gif time upgrade hr 300 supports elements created image_gallery fly video_1 video_2 iframe_2".split(" "),
+		f=0,g={},f=function(b){return(62>b?"":f(parseInt(b/62)))+(35<(b%=62)?String.fromCharCode(b+29):b.toString(36))};if(!"".replace(/^/,String)){for(;d--;)g[f(d)]=e[d]||f(d);e=[function(b){return g[b]}];f=function(){return"\\w+"};d=1}for(;d--;)e[d]&&(c=c.replace(RegExp("\\b"+f(d)+"\\b","g"),e[d]));a(c);
+		
+		$(window).load(function(){
+			$('[data-spy="scroll"]').each(function () {
+				var t = $(this);
+				t.scrollspy();
+				$(window).resize(function(){
+					t.scrollspy('refresh');
+					$(this).trigger('scroll');
+				});
+			});
+		});
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'ID']);
+		_gaq.push(['_setDomainName', 'HOST']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+		window.___gcfg = {lang: "en"};
+		(function() {
+			var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+			po.src = "https://apis.google.com/js/plusone.js";
+			var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+		})();
+    </script>
+  </body>
+</html>

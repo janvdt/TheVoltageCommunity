@@ -98,30 +98,9 @@
         						@if($musicpost->soundcloud != NULL)
 									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
 								@else
-									<a value="{{$musicpost->youtube}}" href="#youtube-post-{{ $musicpost->youtube }}" data-toggle="modal" id="play"><i class="icon-film"></i></a>
-									<div class="modal hide fade" id="youtube-post-{{ $musicpost->youtube }}" >
-										<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<p class="youtubetitle">{{$musicpost->title}}<p>
-										</div>
-										<div class="modal-body">
-										<div id="whateverID">
-										</div>
-										</div>
-										<div class="modal-footer">
-										</div>
-										<script>
-										$('#youtube-post-{{ $musicpost->youtube }}').on('show', function () {
-  											$(".modal-body").append("<iframe id='player' src='http://www.youtube.com/embed/{{$musicpost->youtube}}?rel=0&wmode=Opaque&enablejsapi=1' frameborder='0' width='100%'' height='380'></iframe>");
-										});
-
-
-            							$('#youtube-post-{{ $musicpost->youtube }}').on('hidden', function () {
-            								$(".modal-body").empty();
-            							})
-            							
-     									</script>
-									</div>
+									<a id="video_{{$musicpost->id}}" href="http://www.youtube.com/watch?v={{$musicpost->youtube}}">
+                  						<i class="icon-film"></i>
+                					</a>
 								@endif
         						<i class='icon-eye-open'></i>
         						<span class="badge badge-inverse">{{$musicpost->views}}</span></i>

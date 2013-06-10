@@ -449,7 +449,7 @@ h4::first-letter {
 }
 .infofont
 {
-	font: 50px/68px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
+	font: 30px/68px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
 	padding: 10px
 }
 .visitaccounttitle

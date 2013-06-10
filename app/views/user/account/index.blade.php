@@ -18,7 +18,7 @@
 		</div>
 		<div class="span6">
 			<p class="namevisit">{{$user->first_name}} {{$user->last_name}}</p>
-			<img src="/images/lightning.png"/ width="50">
+			<img src="/images/lightning.png" width="50">
 			@foreach($tastes as $taste)
 			{{$taste->name}},
 			@endforeach
@@ -27,7 +27,7 @@
 			</a>
 			<div class="row">
 			<div class="span2">
-				<img src="/images/{{$user->accountuser()->levels->first()->image}}"/ width="50">{{$user->accountuser()->levels->first()->value}}
+				<img src="/images/task.png" width="50">{{$user->accountuser()->levels->first()->value}}
 			</div>
 			<div class="progress progress-info progress-striped scorebar progressbalk span4">
   				<div class="bar" style="width: {{$user->accountUser()->points->value}}%"></div><i class="icon-star">{{$user->accountUser()->points->value}}%</i>
