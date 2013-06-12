@@ -8,10 +8,48 @@
 {
 	padding: 5px;
 }
+#play
+{
+	color: #96daa5;
+}
+.likebox
+{
+	margin-left: -30px;
+}
+.thumbnails>li
+{
+	margin-left: 30px;
+}
+.playplaylist
+{
+	color: #96daa5;
+	padding: 25px;
+	top:25px;
+}
+.eye
+{
+	margin-right: 10px;
+}
+.playlisticon
+{
+	padding-top: 15px;
+}
+.stratus
+{
+	color: #96daa5;
+}
+.introvideoimg
+{
+	padding:25px;
+}
 .copybutton
 {
 	min-height: 30px;
 	padding: 10px;
+}
+.go
+{
+	margin-left: 25px;
 }
 .homemusic
 {
@@ -49,6 +87,8 @@
 	border-radius: 15px;
 	margin-top: 5px;
 	margin-left: 7px;
+	max-height: 80px;
+	overflow:scroll;
 
 }
 .searchimg
@@ -68,6 +108,40 @@
 {
 	height: 90px;
 }
+.levelimg
+{
+	padding: 20px;
+}
+.score
+{
+	width: 100%;
+	background-color: #C6E2CC;
+	
+			background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+									color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+									color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+									color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+			 						to(transparent));
+			background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+	
+	color: black;
+	margin-top: 25px;
+}
+
 .headervisit
 {
 	width: 100%;
@@ -257,9 +331,12 @@
 {
 	width: 84%;
 }
+.commentpost
+{
+}
 .commentpost img
 {
-	margin: 25px;
+	margin: 0px;
 }
 .likeref
 {
@@ -314,7 +391,7 @@
 }
 .writecomment
 {
-	height:100%;
+	
 	width: 100%;
 	background-color: whiteSmoke;
 	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
@@ -324,9 +401,14 @@
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
+.writecomment img
+{
+	padding: 20px;
+}
 .welcome
 {
 	width: 100%;
+	height: 100%;
 	background-color: #c6e2cc;
 	-webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
 		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.50), -2px 2px 3px 1px rgba(255, 255, 255, 0.05) inset;
@@ -347,6 +429,7 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   letter-spacing: -1px;
+  margin-bottom: 0px;
 }
 .navbar-inverse .navbar-inner {
  
@@ -718,10 +801,11 @@
 
 .titlemusicpost h6
 {
-	font-size: 12px;
+	font-size: 14px;
   color: black;
   font-weight: 300;
   letter-spacing: -1px;
+  padding: 5px;
 }
 .titlemusicpost h6::first-letter {
 	color: #c6e2cc;
@@ -793,6 +877,12 @@
 	margin-left: 35px;
 	margin-bottom: 10px;
 }
+.viewslikes2
+{
+	margin-left: 50px;
+	margin-bottom: 10px;
+}
+
 .shelfmusicpost
 {
 	margin-left: 10px;
@@ -800,6 +890,10 @@
 .likes
 {
 	margin-left: 20px;
+}
+.likes2
+{
+	padding: 35px;
 }
 .likebutton
 {
@@ -897,6 +991,18 @@
 	border-radius: 15px;
 	&
 	padding: 25px;
+}
+.commentpost
+{
+	padding:0px;
+}
+.commentpost img
+{
+	margin-left:25px;
+}
+.commentpost h6
+{
+	margin-right: 15px;
 }
 .buttoncomment
 {

@@ -9,8 +9,7 @@
 		</div>
 		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
 		<div class="span2">
-			<a class="btn btn-inverse btn-large" id="post">I <i class="icon-heart"> u</i></a>
-		</div>
+			<a class="btn btn-inverse btn-large" id="post"><img src="/images/lightninglight.png"/ width="40"></a>
 		@endif
 	</div>
 </div>
@@ -29,8 +28,8 @@
 			</div>
 			<div class="row">
 			@if(Auth::user())
-			<div class="span4 likebutton">
-			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}">People who <i class="icon-heart"> this post<span class="badge badge-inverse likevalue">{{count($post->likes)}}</span></i></a>
+			<div class="span3 likes2">
+				<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}"><img src="/images/lightning.png"/ width="50"><span class="badge badge-inverse likevalue">{{count($post->likes)}}</span><img src="/images/lightning.png"/ width="50"></a>
 			</div>
 			@endif
 		</div>
@@ -196,9 +195,9 @@
 	function(data)
 	{
 		var likecount = {{count($post->likes)}}+1;
-		$('.likevalue').remove();
-		counttext="<span class='badge badge-inverse likevalue'>"+likecount+"</span>";
-		$('.likeref').append(counttext);
+		$('.likes2').empty();
+		counttext="<a class='btn btn-link btn-large likeref'><img src='/images/lightning.png' width='50'><span class='badge badge-inverse likevalue'>"+likecount+"</span><img src='/images/lightning.png' width='50'>";
+		$('.likes2').append(counttext);
 		$('#post').hide();
 	});
 });

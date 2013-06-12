@@ -17,12 +17,19 @@
 	
 	<li class="span3">
 		<div class="row">
+			<div class="span3">
+			<div class="pull-left">
+				<a class="play playplaylist" value="{{$playlist->id}}">
+					<i class="icon-play playlisticon"></i>
+				</a>
+			</div>
 			<div class="pull-right">
 				<a href="#edit-playlist-{{ $playlist->id }}" data-toggle="modal"><i class='icon-pencil'></i></a>
 			</div>
 			<div class="pull-right">
 				<a href="#delete-playlist-{{ $playlist->id }}" data-toggle="modal"><i class='icon-remove'></i></a>
 			</div>
+		</div>
 		</div>
 
 		<div class="thumbnail">
@@ -34,7 +41,7 @@
 				<img class="avatar img-polaroid polaroidyoutube" src="{{ $playlist->posts->first()->youtube_art }}" alt="" width="250" heigh="250"></a>
 				@endif
 			@else
-			<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/250x250&text=Playlist" alt="" width="250"></a>
+			<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/250x250&text=Empty Playlist" alt="" width="250"></a>
 			@endif
 			<div class="title">
 				<h5 class="playlisttitle">{{$playlist->title}}</h5>
@@ -76,6 +83,8 @@
 </div>
 @endforeach
 </div>
+<div class="stratusplayer">
+</div>
 
 
 @stop
@@ -106,5 +115,33 @@ $("#upload-playlist-form").ajaxForm({
 @endif
 
 if ($('.thumbnails li').length == 0) {$('.music').append("<h5>You have no playlists. Please make one and score some points</h5>")}
+
+$(".play").click(function(){
+
+var playlistid = $(this).attr('value');
+console.log(playlistid);
+$('.stratusplayer').empty();
+
+
+$.get('playlist/playlistsound?playlistid='+playlistid, function(returnData) {
+
+    if (!returnData) 
+    {
+        
+    } 
+    else 
+    {
+    	$('#stratus').remove();
+ 		var script   = document.createElement("script");
+		script.type  = "text/javascript";    // use this for linked script
+		script.text  = "$('.playlistpost').stratus({links: '"+ returnData +"',auto_play: true,random: true,color: 'c6e2cc'});"
+		console.log(script);
+		$('.stratusplayer').append(script);
+
+	}
+});
+
+
+});
 
 @stop

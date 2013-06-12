@@ -37,7 +37,7 @@
 		
 		@foreach ($graphposts as $graphpost)
 			
-			<div class="box">
+			<div class="box span3">
 				<a href="{{ URL::action('PostController@showGraph', array($graphpost->id)) }}">
 				<div class="view view-first">
 					<img src="{{ $graphpost->image->getSize('original')->getPathname() }}">
@@ -48,31 +48,38 @@
 
 				</div>
 				</a>
-			<div class="viewslikes span2">
-        		<div class="pull-left">
-        			<div class="pull-left">
-        				<i class='icon-eye-open'>
-        				<span class="badge badge-inverse">{{$graphpost->views}}</span></i>
-        			</div>
-        		</div>
-        		
-        		<div class="">
-        			<div class="pull-left likes">
-        				<i class='icon-heart'></i>
-        				<span class="badge badge-inverse">{{count($graphpost->likes)}}</span></i>
-        			</div>
-        			<div class="pull-right">
-        			<a href="{{ URL::action('UserController@visitAccount',array($graphpost->createdBy()->id)) }}">
+				<div class="viewslikes2 span3">
+						<div class="pull-left">
+							@if(Auth::user())
+    						<a href="{{ URL::action('UserController@visitAccount',array($graphpost->createdBy()->id)) }}">
     						@if($graphpost->createdBy()->accountUser()->image_id != 0 or $graphpost->createdBy()->accountUser()->facebookpic == NULL )
-								<img src="{{ url($graphpost->createdBy()->accountUser()->getImagePathname()) }}" width="25" alt="">
+								<img src="{{ url($graphpost->createdBy()->accountUser()->getImagePathname()) }}" width="20" alt="">
 							@else
-								<img src="{{ url($graphpost->createdBy()->accountUser()->facebookpic) }}" width="25" alt="">
+								<img src="{{ url($graphpost->createdBy()->accountUser()->facebookpic) }}" width="20" alt="">
 							@endif
-						</a>
-					</div>
-        		</div>
-        	</div>
+							</a>
+							@endif
+						</div>
+        				<div class=" eye pull-left">
+        					<i class='icon-eye-open watch'></i>
+        					<span class="badge badge-inverse">{{$graphpost->views}}</span></i>
+        				</div>
+        				<div class="likesgraph">
+        					<div class="pull-left">
+        						<img src="/images/lightning.png" width="15" height="15">
+        					</div>
+        					
+        					<div class="pull-left ">
+        						<span class="badge badge-inverse"> {{count($graphpost->likes)}}</span>
+        					</div>
+        				</div>
+        			</div>
+
+        			
+
+			
         </div>
+        
 		@endforeach
 		
 	</div>

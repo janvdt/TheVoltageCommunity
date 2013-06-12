@@ -15,28 +15,13 @@
 		</div>
 		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
 		<div class="span2">
-			<a class="btn btn-inverse btn-large" id="post"><img src="/images/lightning.png"/ width="50"></a>
+			<a class="btn btn-inverse btn-large" id="post"><img src="/images/lightninglight.png"/ width="40"></a>
 		</div>
 		@endif
 	</div>
 	<div class="row">
 		<div class="span2 offset10">
-			@if(Auth::user())
-			<ul class="nav nav-pills">
-  				<li class="dropdown">
-    				<a class=" btn dropdown-toggle" data-toggle="dropdown" href="#">
-        						<i class="icon-plus"></i>Playlist
-    							<span class="caret"></span>
-      						</a>
-    						
-    						<ul class="dropdown-menu">
-    							@foreach(Auth::user()->accountUser()->playlists as $playlist)
-   	 						<li value="{{$playlist->id}}" class="playlist" class="span"><a>{{$playlist->title}}</a></li>
-   	 					@endforeach
-    						</ul>
-  						</li>
-					</ul>
-			@endif
+
 		</div>
 	</div>
 </div>
@@ -55,8 +40,8 @@
 			</div>
 			<div class="row">
 			@if(Auth::user())
-			<div class="span4 likebutton">
-			<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}">People who <img src="/images/lightning.png"/ width="30"> this post<span class="badge badge-inverse likevalue">{{count($post->likes)}}</span></i></a>
+			<div class="span3 likes2">
+				<a class="btn btn-link btn-large likeref" href="{{ URL::action('PostController@showLikes', array($post->id)) }}"><img src="/images/lightning.png"/ width="50"><span class="badge badge-inverse likevalue">{{count($post->likes)}}</span><img src="/images/lightning.png"/ width="50"></a>
 			</div>
 			@endif
 		</div>
@@ -71,6 +56,24 @@
 	</div>
 	<div class="lines" style="width:2px;height:400px;background-color:#C6E2CC;float:left;"></div>
 	<div class="span7 contentbox">
+		<div class="row">
+		@if(Auth::user())
+			<ul class="nav nav-pills pull-right playlistadd">
+  				<li class="dropdown">
+    				<a class=" btn dropdown-toggle" data-toggle="dropdown" href="#">
+        						<i class="icon-plus"></i>Playlist
+    							<span class="caret"></span>
+      						</a>
+    						
+    						<ul class="dropdown-menu">
+    							@foreach(Auth::user()->accountUser()->playlists as $playlist)
+   	 						<li value="{{$playlist->id}}" class="playlist" class="span"><a>{{$playlist->title}}</a></li>
+   	 					@endforeach
+    						</ul>
+  						</li>
+					</ul>
+			@endif
+		</div>
 		@if($post->soundcloud != NULL)
 		<div id="postsoundcloud">
 			<div id="putTheWidgetHere"></div>
@@ -113,17 +116,17 @@
 						<div class="span2 commentpost">
 							@if(Auth::user()->accountUser()->identifier == 0)
 								<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="100">
+									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="75">
 								</a>
 							@else
 							<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="100">
+								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="75">
 							</a>
 							@endif
 						</div>
 							<div class="control-group">
 								<div class="controls">
-									<textarea name="textcomment" class="input-xxlarge pull-left" id="commenttext" rows="5" placeholder="Enter text ..."></textarea>
+									<textarea name="textcomment" class="input-xxlarge pull-left" id="commenttext" rows="3" placeholder="Enter text ..."></textarea>
 								</div>
 							</div>	
 						</div>
@@ -139,7 +142,7 @@
 	
 		<div class="span11 offset1 commentsection">	
 			<div class="comments">
-				<div class="well">
+				<div class="well commentpost">
 					
 					<div class="row">
 						<div class="span5 pull-right">
@@ -232,9 +235,9 @@
 	function(data)
 	{
 		var likecount = {{count($post->likes)}}+1;
-		$('.likevalue').remove();
-		counttext="<span class='badge badge-inverse likevalue'>"+likecount+"</span>";
-		$('.likeref').append(counttext);
+		$('.likes2').empty();
+		counttext="<a class='btn btn-link btn-large likeref'><img src='/images/lightning.png' width='50'><span class='badge badge-inverse likevalue'>"+likecount+"</span><img src='/images/lightning.png' width='50'>";
+		$('.likes2').append(counttext);
 		$('#post').hide();
 	});
 });
@@ -272,7 +275,7 @@ $("#upload-comment-form").ajaxForm({
 	console.log(data.date.date);
 	
 			
-	var comment = "<div class='span11 offset1 commentsection'><div class='comments'><div class='well' id='comment"+ data.id +"'><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>Posted by: {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6></div></div><div class='row'><div class='span1'>@if(Auth::user()->accountUser()->identifier == 0)<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' alt='' width='75'></a>@else<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' alt='' width='75'></a>@endif</div><div class='span7'><h6>"  + data.body + "</h6></div></div><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>" + data.date.date + "</h6></div></div></div></div></div>";
+	var comment = "<div class='span11 offset1 commentsection'><div class='comments'><div class='well commentpost' id='comment"+ data.id +"'><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>Posted by: {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6></div></div><div class='row'><div class='span1'>@if(Auth::user()->accountUser()->identifier == 0)<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' alt='' width='75'></a>@else<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' alt='' width='75'></a>@endif</div><div class='span7'><h6>"  + data.body + "</h6></div></div><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>" + data.date.date + "</h6></div></div></div></div></div>";
 	
 	$(".commentsattach").append(comment);
 

@@ -186,10 +186,14 @@ class PlaylistController extends \BaseController {
 
 		foreach($playlist->posts as $post)
 		{
-			$test['url'] = $post->soundcloud; 
+			if($post->soundcloud_id != 0)
+			{
+				$test[] = $post->soundcloud;
+			} 
 		}
-
-		return $test;
+		$value = implode(",", $test);
+		
+		return $value;
 	}
 
 	/**

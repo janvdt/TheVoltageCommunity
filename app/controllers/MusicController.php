@@ -11,7 +11,7 @@ class MusicController extends BaseController {
 	{
 		$musicposts = Post::where('type','music')->orderBy('created_at', 'desc');
 
-		$soundclouds = Post::where('soundcloud','!=', NULL)->where('soundcloud_art','!=',NULL)->where('type','music')->get();
+		$soundclouds = Post::where('soundcloud_id','!=', 0)->where('type','music')->get();
 
 		$soundcloudsurl = array();
 		foreach($soundclouds as $soundcloud)

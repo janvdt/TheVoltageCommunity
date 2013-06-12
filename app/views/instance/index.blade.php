@@ -2,21 +2,22 @@
 
 @section('instanceContent')
 		<div class="span12 welcome">
-			<div class="welcomecontent span6">
-				<p class="welcometitle">YOUR MIX OF MUSIC</p>
-				<p class="welcometext">The Voltage Community is a place to share what fuels your creativity, and discover what inspires others.
-					Built by people who love music, for designers, this is your one-stop shop for creative inspiration.
-				</p>
+			<div class="span5">
+				<a id="playintro">
+					<img class="introvideoimg" src="/images/video.png" width="375" height="100">
+				</a>
 			</div>
-			<div class="span5 getstarted">
-				<div class="pull-right">
-					@if(Auth::user())
-					<img src="/images/lightninglight.png"/ width="75">
-					
-					@else
-					<a href="{{ URL::route('login') }}" class="btn btn-large btn-inverse"><img src="/images/lightninglight.png"/ width="75">Power up!</a>
-					@endif
-				</div>
+			<div class="welcomecontent span6 pull-right">
+				<p class="welcometitle">YOUR MIX OF MUSIC</p>
+				<p class="welcometext">Come home to the Voltage community, a great place to browse through the latest music while finding inspiration for your creativity and 
+ your kind of people !
+finally meet the designers and music lovers who share the same passion as you.
+<br>
+<br>
+We give you the space, you give us the music ! 
+<a href="{{ URL::route('login') }}" class="btn btn-inverse go"><i class="icon-chevron-right"></i></a>
+				</p>
+				
 			</div>
 		</div>
 
@@ -33,9 +34,9 @@
     						@if(Auth::user())
     						<a href="{{ URL::action('UserController@visitAccount',array($musicpost->createdBy()->id)) }}">
     						@if($musicpost->createdBy()->accountUser()->image_id != 0 or $musicpost->createdBy()->accountUser()->facebookpic == NULL )
-								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="30" alt="">
+								<img src="{{ url($musicpost->createdBy()->accountUser()->getImagePathname()) }}" width="25" alt="">
 							@else
-								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="30" alt="">
+								<img src="{{ url($musicpost->createdBy()->accountUser()->facebookpic) }}" width="25" alt="">
 							@endif
 							</a>
 							@endif
@@ -111,41 +112,62 @@
 		<ul class="ch-grid nav nav-pills music-posts">
 			@foreach ($graphposts as $graphpost)
 				
-					<li class= "musicpost span3">
-						<a href ="{{ URL::action('PostController@showGraph', array($graphpost->id)) }}">
-						@if($graphpost->image_id != 0)
-							<div class="ch-item ch-img-1" style="background-image: url(/{{ $graphpost->image->getSize('thumb')->getPathname() }});">
-						@endif
-
-						<div class="ch-info">
-							<?php 
-								$string = $graphpost->title;
+					<li class= "musicpost">
+						<div class="row">
+							<div class="span3 titlemusicpost">
+								<h6>
+								@if(Auth::user())
+								<a href="{{ URL::action('UserController@visitAccount',array($graphpost->createdBy()->id)) }}">
+    								@if($graphpost->createdBy()->accountUser()->image_id != 0 or $graphpost->createdBy()->accountUser()->facebookpic == NULL )
+										<img src="{{ url($graphpost->createdBy()->accountUser()->getImagePathname()) }}" width="25" alt="">
+									@else
+										<img src="{{ url($graphpost->createdBy()->accountUser()->facebookpic) }}" width="25" alt="">
+									@endif
+								</a>
+								@endif
+								<?php $string = $graphpost->title;
 								$maxLength = 40;
 
-								if (strlen($string) > $maxLength) {
-									$stringCut = substr($string, 0, $maxLength);
-									$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
-								}
+									if (strlen($string) > $maxLength) {
+    									$stringCut = substr($string, 0, $maxLength);
+    									$string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
+									}
 
-								echo "<h3>$string</h3>"
-							?>
-							
-								<a class="link" href=""></a>
-							
-            			</div>
+								echo stripslashes("$string</h6>")
+								?>
+							</div>
+						</div>
+
+						<div class="test">
+							<a href ="{{ URL::action('PostController@showGraph', array($graphpost->id)) }}">
+								@if($graphpost->image_id != 0)
+									<div class="ch-item ch-img-1" style="background-image: url(/{{ $graphpost->image->getSize('thumb')->getPathname() }});">
+								@endif
+								</div>
+							</a>
+						</div>
+
+						<div class="span2">
+        				<div class="pull-left">
+        					<div class="pull-left">
+        						<i class='icon-eye-open watch'></i>
+        						<span class="badge badge-inverse">{{$graphpost->views}}</span></i>
+        					</div>
+        				</div>
+        				<div class="">
+        					<div class="pull-left likes">
+        						<img src="/images/lightning.png" width="15" height="15">
+        						<span class="badge badge-inverse">{{count($graphpost->likes)}}</span></i>
+   
+        					</div>
+        				</div>
+
         			</div>
-        			</a>
-        			<div class="row accountpost">
-        				@if($graphpost->createdBy()->accountUser()->image_id != 0 or $graphpost->createdBy()->accountUser()->	facebookpic == NULL )
-							<img src="{{ url($graphpost->createdBy()->accountUser()->getImagePathname()) }}" width="25" alt="">
-						@else
-							<img src="{{ url($graphpost->createdBy()->accountUser()->facebookpic) }}" width="25" alt="">
-						@endif
-						{{$graphpost->createdBy()->first_name}} {{$graphpost->createdBy()->last_name}}
-					</div>
-    				</li>
+    			</li>
 			@endforeach
 		</ul>
+
+						
 	
 		<div class="shelf span12">
 			<div class="bookend_left"></div>
@@ -175,6 +197,15 @@
 		}
 	]);
 	
+});
+
+$("#playintro").click(function(){
+
+	 jQuery.iLightBox([
+		{
+			URL: "http://player.vimeo.com/video/68196007?autoplay=1"
+		}
+	]);
 });
 
 

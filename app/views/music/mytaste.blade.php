@@ -3,7 +3,7 @@
 @section('instanceContent')
 
 <div class ="span12 music">
-<h2>Music</h2>
+<h2>Quiet a nice taste you have there!</h2>
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -257,6 +257,6 @@ $('.pagination').hide();
  
     });
 
-    if ($('.music-posts li').length == 0) {$('.searchterm').append("<h5>There is no music that matches your taste.</h5>")}
+    if ($('.music-posts li').length == 0) {$('.music').append("<h5>There is no music that matches your taste =(</h5>")}
  
 @stop

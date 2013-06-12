@@ -40,7 +40,7 @@ class AccountController extends BaseController {
 	 */
 	public function showscores()
 	{
-		$totalscores = Totalpoint::all();
+		$totalscores = Totalpoint::Orderby('value','desc')->get();
 		return View::make('score.index')
 			->with('totalscores',$totalscores);
 	}
