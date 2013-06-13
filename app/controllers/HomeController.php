@@ -33,7 +33,7 @@ class HomeController extends BaseController {
 
 	public function showActivity()
 	{
-		$notifications = Notification::orderBy('created_at','desc');
+		$notifications = Notification::orderBy('id','desc');
 
 		$notifications = $notifications->paginate(8);
 

@@ -182,6 +182,7 @@ Route::any('post/share/{id}', 'PostController@share');
 Route::any('post/activityshare/{id}', 'PostController@activityshare');
 
 Route::post('post/like/{id}', 'PostController@like');
+Route::post('music/listenpoints/{id}', 'PostController@listenpoints');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');
 Route::get('post/showgraph/{id}', 'PostController@showGraph');
 Route::get('user/showaccount/{id}', 'UserController@showAccount');

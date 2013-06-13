@@ -195,6 +195,33 @@ class MusicController extends BaseController {
         return $test;
 	}
 
+	public function listenpoints($id)
+	{
+		if(Auth::user())
+		{
+			$post = Post::find($id);
+			if($post->created_by != Auth::user()->id)
+			{	
+				$user = User::find($post->created_by);
+				DB::table('totalpoints')->where('account_id',$user->accountUser()->id)->increment('value');
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
+		}
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

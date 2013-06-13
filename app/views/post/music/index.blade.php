@@ -229,7 +229,7 @@
     }
 });
 
-	 $("#post").click(function(){ 
+	
 
 	$.post('/post/like/' + {{$post->id}},
 	function(data)

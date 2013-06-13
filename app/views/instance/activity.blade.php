@@ -110,7 +110,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="offset3 span5">
+							<div class="offset2 span6">
 								@if($notification->type == 2 or $notification->type == 5 )
 									<div class="alert alert-success">
 										<h6>{{$notification->text}}</h6>
@@ -158,7 +158,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="offset3 span5">
+							<div class="offset2 span6">
 								@if($notification->type == 2 or $notification->type == 5 )
 									<div class="alert alert-success">
 										<h6>{{$notification->text}}</h6>
@@ -190,7 +190,7 @@
   									</li>
 								</ul>
 						<div class="row log">
-							<div class="span5 offset3">
+							<div class="span6 offset2">
 								<div class="pull-left">
 									<p class="activitytitle">
 									<a href="{{ URL::action('UserController@visitAccount',array($notification->user_id)) }}">
@@ -235,18 +235,20 @@
 							</div>
 						</div>
 						@if($notification->type == 1 and $notification->type != 5)
-						<div class="row">
-						@if($notification->post->soundcloud != NULL)
-							<div id="postsoundcloudactivity{{$notification->post->id}}" class="span5 offset3">
-								<div id="putTheWidgetHere"></div>
-								
+						<div class="row offset4">
+							@if($notification->post->soundcloud != NULL)
+								<div class="playacc">
+									<a class="play playplaylist" value="" style="text-decoration: none;">
+										<i class=" icon-2x icon-play playlisticon"></i>
+									</a>
+								</div>
+							@else
+							<div class="watchacc">
+								<a value="{{$notification->post->youtube}}" href="#youtube-post-{{ $notification->post->youtube }}" data-toggle="modal" id="play" class="playyoutube">
+									<i class=" icon-2x icon-film"></i>
+								</a>
 							</div>
-						@else
-							<div class="video-container">
-								<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/{{$notification->post->youtube}}" allowfullscreen 			frameborder="0">
-								</iframe>
-							</div>
-						@endif
+							@endif
 						</div>
 						@endif
 						<hr>
@@ -327,4 +329,17 @@ $('.pagination').hide();
 
 if ($('.activitylog li').length == 0) {$('.lognoti').append("<h5>You currently have no activitylogs. Please make sure that you are following Voltage Community members</h5>")}
 
+$('.watchacc').on('click',".playyoutube",function() {
+
+ 	var youtube = $(this).attr('value');
+
+ 	console.log(youtube);
+
+ 	 jQuery.iLightBox([
+		{
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
+		}
+	]);
+	
+});
 @stop
