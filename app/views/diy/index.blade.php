@@ -17,7 +17,9 @@
 						<li id="playlist"><a href="{{ URL::action('PlaylistController@showAll') }}">Playlists</a></li>
 						<li id="diy"><a href="{{ URL::action('TurntableController@index') }}?scratch=1">DIY</a></li>
 						<li id="graph"><a href="{{ URL::action('GraphController@index') }}">Graphics</a></li>
+						@if(Auth::user())
 						<li id="graph"><a href="{{ URL::action('AccountController@showscores') }}">Scores</a></li>
+						@endif
 					</ul>
 				</div>
 			</div>

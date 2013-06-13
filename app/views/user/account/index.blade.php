@@ -48,18 +48,26 @@
 				<div class="pull-left">
 				<p class="followcount">Following ({{count($following)}})</p>
 				@foreach($following as $follow)
+				<a href="{{ URL::action('UserController@visitAccount',array($follow->account->user->id)) }}">
 				@if($follow->account->facebookpic == NULL)
-				<img class="img-rounded" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
+				<img class="img-rounded followimg" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
 				@else
-				<img class="img-rounded" src="{{ url($follow->account->facebookpic) }}" alt="" width="25">
+				<img class="img-rounded followimg" src="{{ url($follow->account->facebookpic) }}" alt="" width="25">
 				@endif
+				</a>
 				@endforeach
 			</div>
 
 			<div class="pull-right followers">
 				<p class="followcount">Followers ({{count($followers)}})</p>
 				@foreach($followers as $follower)
-					<img class="img-rounded" src="{{ url($follower->accountfollower->getImagePathname()) }}" alt="" width="25">
+				<a href="{{ URL::action('UserController@visitAccount',array($follow->accountfollower->user->id)) }}">
+					@if($follower->account->facebookpic == NULL)
+					<img class="img-rounded followerimg" src="{{ url($follower->accountfollower->getImagePathname()) }}" alt="" width="25">
+					@else
+					<img class="img-rounded followerimg" src="{{ url($follower->account->facebookpic) }}" alt="" width="25">
+					@endif
+				</a>
 				@endforeach
 			</div>
 			</div>

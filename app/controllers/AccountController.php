@@ -181,11 +181,13 @@ class AccountController extends BaseController {
 
 	public function unfollow($id)
 	{
+		if(Auth::user()){
 		$account = Account::find($id);
 
 		DB::table('followers')->where('account_id',Auth::user()->accountUser()->id)->where('follower_id',$id)->delete();
 		
 		return $id;
+		}
 	}
 	public function editTaste($id)
 	{

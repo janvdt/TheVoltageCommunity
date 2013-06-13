@@ -8,7 +8,9 @@
 		<h2>{{$user->first_name}} {{$user->last_name}} Graphic posts</h2>
 	</div>
 	<div class="span2">
+		@if(Auth::user()->id == $user->id)
 		<a id="buttonremove" class="btn btn-danger pull-right" href="#delete-selected" data-toggle="modal">Remove selected</a>
+		@endif
 	</div>
 </div>
 </div>

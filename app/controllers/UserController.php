@@ -262,10 +262,16 @@ class UserController extends BaseController {
 		$shortgraphposts = Post::where('created_by',$user->id)->where('type','graph')->take(9)->orderBy('id','desc')->get();
 		$graphposts = Post::where('created_by',$user->id)->where('type','graph')->get();
 		$notifications = Notification::where('activity',1)->orderBy('id','desc');
+		$playlists = Playlist::where('account_id',$user->accountUser()->id)->take(9)->orderBy('id','desc')->get();
 
 		$notifications = $notifications->paginate(8);
 
 		$tastes = Taste::where('account_id',$user->accountuser()->id)->get();
+
+		
+		$followers = Follower::where('account_id','!=', $user->accountUser()->id)->where('follower_id',$user->accountUser()->id)->get();
+		$following = Follower::where('account_id', $user->accountUser()->id)->get();
+		
 
 		if(Session::has('hybridAuth')){
 			$facebooksession = Session::get('hybridAuth');
@@ -279,7 +285,10 @@ class UserController extends BaseController {
 				->with('tastes',$tastes)
 				->with('shortgraphposts',$shortgraphposts)
 				->with('shortmusicposts',$shortmusicposts)
-				->with('notifications',$notifications);
+				->with('notifications',$notifications)
+				->with('followers',$followers)
+				->with('following',$following)
+				->with('playlists',$playlists);
 		}
 		else
 		{
@@ -290,7 +299,10 @@ class UserController extends BaseController {
 				->with('tastes',$tastes)
 				->with('shortmusicposts',$shortmusicposts)
 				->with('shortgraphposts',$shortgraphposts)
-				->with('notifications',$notifications);
+				->with('notifications',$notifications)
+				->with('followers',$followers)
+				->with('following',$following)
+				->with('playlists',$playlists);
 		}
 	}
 

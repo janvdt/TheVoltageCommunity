@@ -21,7 +21,7 @@ We give you the space, you give us the music !
 			</div>
 		</div>
 
-<div class ="span12 tracks-overview-home">
+<div class ="span12 music">
 	<h2>Music</h2>
 	<div class="row homemusic">
 		<ul class="ch-grid nav nav-pills music-posts">
@@ -207,6 +207,11 @@ $("#playintro").click(function(){
 		}
 	]);
 });
+
+$("musicpost").stratus({
+      color: 'c6e2cc'
+              
+    });
 
 
 	$("#home").addClass('active');

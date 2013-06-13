@@ -12,6 +12,7 @@
 	</div>
 </div>
 
+
 <div class="row">
 	<ul class="ch-grid nav nav-pills music-posts" id="sortableplaylist">
 		@foreach ($playlist->posts as $musicpost)
@@ -74,6 +75,8 @@
 		</ul>
 	</div>
 </div>
+
+
 
 <div class="modal hide fade" id="delete-selected">
 	<form class="form-horizontal" method="POST" action="{{ URL::action('PlaylistController@destroySelected') }}?playlist={{$playlist->id}}">

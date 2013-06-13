@@ -55,6 +55,50 @@
 	<div class="row">
 		<div class="span3 infoaccount">
 			<div class="span3 info">
+				<p class="infofont">Social</p>
+			</div>
+			<div class="span3">
+				<div class="pull-left">
+				<p class="followcount">Following ({{count($following)}})</p>
+				@foreach($following as $follow)
+				<a href="{{ URL::action('UserController@visitAccount',array($follow->account->user->id)) }}">
+				@if($follow->account->facebookpic == NULL)
+				<img class="img-rounded followimg" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
+				@else
+				<img class="img-rounded followimg" src="{{ url($follow->account->facebookpic) }}" alt="" width="25">
+				@endif
+				</a>
+				@endforeach
+			</div>
+
+			<div class="pull-right followers">
+				<p class="followcount">Followers ({{count($followers)}})</p>
+				@foreach($followers as $follower)
+				<a href="{{ URL::action('UserController@visitAccount',array($follower->accountfollower->user->id)) }}">
+					@if($follower->account->facebookpic == NULL)
+					<img class="img-rounded followerimg" src="{{ url($follower->accountfollower->getImagePathname()) }}" alt="" width="25">
+					@else
+					<img class="img-rounded followerimg" src="{{ url($follower->account->facebookpic) }}" alt="" width="25">
+					@endif
+				</a>
+				@endforeach
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3 infoaccount">
+			<div class="span3 info">
+				<p class="infofont">Biography</p>
+			</div>
+			<div class="span3">
+				<p>{{$user->accountUser()->biography}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3 infoaccount">
+			<div class="span3 info">
 				<p class="infofont">Music</p>
 			</div>
 			<a href="{{ URL::action('AccountController@visitmusicposts', array($user->id)) }}"><p class="musiccount">Musicposts ({{count($musicposts)}})</p></a>
@@ -69,6 +113,26 @@
 							@endif
 
 							</a>
+					</li>
+				@endforeach
+			</ul>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span3 infoaccount">
+			<div class="span3 info">
+				<p class="infofont">Playlists</p>
+			</div>
+			<a href="{{ URL::action('PlaylistController@index') }}"><p class="musiccount">Playlists ({{count($playlists)}})</p></a>
+			<ul class="nav nav-pills">
+				@foreach($playlists as $playlist)
+					<li class="accountposts">
+						@if($playlist->posts->first() != NULL)
+							<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt="" width="90"></a>
+						@else
+							<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/90x90&text=Playlist" alt="" width="90"></a>
+						@endif
 					</li>
 				@endforeach
 			</ul>
