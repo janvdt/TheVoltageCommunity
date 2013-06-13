@@ -329,7 +329,7 @@ $('.pagination').hide();
 
 if ($('.activitylog li').length == 0) {$('.lognoti').append("<h5>You currently have no activitylogs. Please make sure that you are following Voltage Community members</h5>")}
 
-$('.watchacc').on('click',".playyoutube",function() {
+$('.activitylog').on('click',".playyoutube",function() {
 
  	var youtube = $(this).attr('value');
 
