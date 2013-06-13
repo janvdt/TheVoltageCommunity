@@ -95,9 +95,9 @@
         				<div class="pull-left">
         					<div class="pull-left">
         						@if($musicpost->soundcloud != NULL)
-									<a href="{{$musicpost->soundcloud}}" class="stratus"><i class="icon-play"></i></a>
+									<a href="{{$musicpost->soundcloud}}" class="stratus" value="{{$musicpost->id}}"><i class="icon-play"></i></a>
 								@else
-									<a value="{{$musicpost->youtube}}" href="#youtube-post-{{ $musicpost->youtube }}" data-toggle="modal" id="play" class="playyoutube"><i class="icon-film"></i></a>
+									<a value="{{$musicpost->youtube}}" name="{{$musicpost->id}}" href="#youtube-post-{{ $musicpost->youtube }}" data-toggle="modal" id="play" class="playyoutube"><i class="icon-film"></i></a>
 									
 							
 								@endif
@@ -213,6 +213,38 @@ $('.pagination').hide();
     console.log('test');
 });
 
+$('.music').on('click',"a.stratus",function() {
+	var postid = $(this).attr('value');
+	console.log(postid);
+     $.post('/music/listenpoints/' + postid ,
+	function(data)
+	{
+		console.log('success');
+	});
+});
+
+$('.music').on('click',".playyoutube",function() {
+
+ 	var youtube = $(this).attr('value');
+
+ 	console.log(youtube);
+
+ 	var postid = $(this).attr('name');
+	console.log(postid);
+     $.post('/music/listenpoints/' + postid ,
+	function(data)
+	{
+		console.log('success');
+	});
+
+ 	 jQuery.iLightBox([
+		{
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
+		}
+	]);
+	
+});
+
  $('#searchDatasubgenre').keyup(function() {
  	var searchVal = $(this).val();
  	var genre = "{{Input::get('genre')}}";
@@ -239,7 +271,7 @@ $('.pagination').hide();
                  	
     				if(returnData[i].id !== undefined)
     				{
-                 	$searchpost = "<li class='musicpost' id='searchresults'><div class='row'><div class='span3 titlemusicpost'><h6><a href='http://thevoltagecommunity.com/user/visitaccount/"+ returnData[i].userid +"'><img src='" + returnData[i].image +"' width='30' alt=''></a>"+ returnData[i].title +"</h6></div></div><div class='test'><a href ='http://thevoltagecommunity.com/post/showmusic/"+ returnData[i].id +"'>@if(" + returnData[i].soundcloud_art +" !=  null)<div class='ch-item ch-img-1 soundcloudimg' style='background-image: url("+ returnData[i].soundcloud_art + ");'>@endif @if(" + returnData[i].youtube_art +" !=  null)<div class='ch-item ch-img-1 youtubeimg' style='background-image: url("+ returnData[i].youtube_art + ");'>@endif</div></a></div><div class='viewslikes span3'><div class='pull-left'><div class='pull-left'>@if(" + returnData[i].soundcloud_id +" != 0)<a href='" +returnData[i].soundcloud + "' class='stratus'><i class='icon-play'></i></a>@endif @if(" + returnData[i].youtube +" != null)<a value='"+returnData[i].youtube+"' class='playyoutube'><i class='icon-film'></i></a>@endif<i class='icon-eye-open watch'></i><span class='badge badge-inverse'>"+returnData[i].views+"</span></i></div></div><div class=''><div class='pull-left likes'><img src='/images/lightning.png' width='15' height='15'><span class='badge badge-inverse'>"+returnData[i].postlikes+"</span></i></div></div></div><div class='shelf shelfmusicpost'><div class='bookend_left'></div><div class='bookend_right'></div><div class='reflection'></div></div></li>";
+                 	$searchpost = "<li class='musicpost' id='searchresults'><div class='row'><div class='span3 titlemusicpost'><h6><a href='http://thevoltagecommunity.com/user/visitaccount/"+ returnData[i].userid +"'><img src='" + returnData[i].image +"' width='30' alt=''></a>"+ returnData[i].title +"</h6></div></div><div class='test'><a href ='http://thevoltagecommunity.com/post/showmusic/"+ returnData[i].id +"'>@if(" + returnData[i].soundcloud_art +" !=  null)<div class='ch-item ch-img-1 soundcloudimg' style='background-image: url("+ returnData[i].soundcloud_art + ");'>@endif @if(" + returnData[i].youtube_art +" !=  null)<div class='ch-item ch-img-1 youtubeimg' style='background-image: url("+ returnData[i].youtube_art + ");'>@endif</div></a></div><div class='viewslikes span3'><div class='pull-left'><div class='pull-left'><a href='" +returnData[i].provider + "' class='"+returnData[i].class+"' value='"+returnData[i].value+"' name='"+returnData[i].name+"'><i class='"+returnData[i].icon+"'></i></a><i class='icon-eye-open watch'></i><span class='badge badge-inverse'>"+returnData[i].views+"</span></i></div></div><div class=''><div class='pull-left likes'><img src='/images/lightning.png' width='15' height='15'><span class='badge badge-inverse'>"+returnData[i].postlikes+"</span></i></div></div></div><div class='shelf shelfmusicpost'><div class='bookend_left'></div><div class='bookend_right'></div><div class='reflection'></div></div></li>";
 
 
                  	$(".music-posts").append($searchpost);

@@ -77,6 +77,25 @@ class MusicController extends BaseController {
         	$musicpost['firstname'] = $musicpost->createdBy()->first_name;
         	$musicpost['lastname'] = $musicpost->createdBy()->last_name;
         	$musicpost['userid'] = $musicpost->createdBy()->id;
+        	if($musicpost->soundcloud != NULL)
+        	{
+        		$musicpost['provider'] = $musicpost->soundcloud;
+        		$musicpost['class'] = 'stratus';
+        		$musicpost['value'] = $musicpost->id;
+        		$musicpost['icon'] = 'icon-play';
+        		$musicpost['name'] = '';
+
+        	}
+        	else
+        	{
+        		$musicpost['provider'] = '#youtube-post-{{ $musicpost->youtube }}';
+        		$musicpost['class'] = 'playyoutube';
+        		$musicpost['value'] = $musicpost->youtube;
+        		$musicpost['icon'] = 'icon-film';
+        		$musicpost['name'] = $musicpost->id;
+
+        	}
+
         	if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
         	{
         		$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
@@ -108,18 +127,36 @@ class MusicController extends BaseController {
         	if($musicpost->tastescheck(Auth::user()->accountuser()->id))
         	{
         		$musicpost['firstname'] = $musicpost->createdBy()->first_name;
-        		$musicpost['lastname'] = $musicpost->createdBy()->last_name;
-        		$musicpost['userid'] = $musicpost->createdBy()->id;
-        		if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
-        		{
-        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
-        		}
-        		else
-        		{
-        			$imageurl = strval($musicpost->createdBy()->accountUser()->getImagePathname());
-        			$musicpost['image'] = "../".$imageurl;
-        		}
-				$test[] = $musicpost->toArray();
+        	$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        	$musicpost['userid'] = $musicpost->createdBy()->id;
+        	if($musicpost->soundcloud != NULL)
+        	{
+        		$musicpost['provider'] = $musicpost->soundcloud;
+        		$musicpost['class'] = 'stratus';
+        		$musicpost['value'] = $musicpost->id;
+        		$musicpost['icon'] = 'icon-play';
+        		$musicpost['name'] = '';
+
+        	}
+        	else
+        	{
+        		$musicpost['provider'] = '#youtube-post-{{ $musicpost->youtube }}';
+        		$musicpost['class'] = 'playyoutube';
+        		$musicpost['value'] = $musicpost->youtube;
+        		$musicpost['icon'] = 'icon-film';
+        		$musicpost['name'] = $musicpost->id;
+
+        	}
+
+        	if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        	}
+        	else
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        	}
+        	$test[] = $musicpost->toArray();
 
 
 			}
@@ -143,18 +180,36 @@ class MusicController extends BaseController {
         	if($musicpost->genrescheck(Input::get('type')))
         	{	
         		$musicpost['firstname'] = $musicpost->createdBy()->first_name;
-        		$musicpost['lastname'] = $musicpost->createdBy()->last_name;
-        		$musicpost['userid'] = $musicpost->createdBy()->id;
-        		if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
-        		{
-        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
-        		}
-        		else
-        		{
-        			$imageurl = strval($musicpost->createdBy()->accountUser()->getImagePathname());
-        			$musicpost['image'] = "../".$imageurl;
-        		}
-				$test[] = $musicpost->toArray();
+        	$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        	$musicpost['userid'] = $musicpost->createdBy()->id;
+        	if($musicpost->soundcloud != NULL)
+        	{
+        		$musicpost['provider'] = $musicpost->soundcloud;
+        		$musicpost['class'] = 'stratus';
+        		$musicpost['value'] = $musicpost->id;
+        		$musicpost['icon'] = 'icon-play';
+        		$musicpost['name'] = '';
+
+        	}
+        	else
+        	{
+        		$musicpost['provider'] = '#youtube-post-{{ $musicpost->youtube }}';
+        		$musicpost['class'] = 'playyoutube';
+        		$musicpost['value'] = $musicpost->youtube;
+        		$musicpost['icon'] = 'icon-film';
+        		$musicpost['name'] = $musicpost->id;
+
+        	}
+
+        	if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        	}
+        	else
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        	}
+        	$test[] = $musicpost->toArray();
 			}
         }
 
@@ -177,18 +232,36 @@ class MusicController extends BaseController {
         	if($musicpost->subgenrescheck($musicpost->id,Input::get('type')))
         	{
         		$musicpost['firstname'] = $musicpost->createdBy()->first_name;
-        		$musicpost['lastname'] = $musicpost->createdBy()->last_name;
-        		$musicpost['userid'] = $musicpost->createdBy()->id;
-        		if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
-        		{
-        			$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
-        		}
-        		else
-        		{
-        			$imageurl = strval($musicpost->createdBy()->accountUser()->getImagePathname());
-        			$musicpost['image'] = "../".$imageurl;
-        		}
-				$test[] = $musicpost->toArray();
+        	$musicpost['lastname'] = $musicpost->createdBy()->last_name;
+        	$musicpost['userid'] = $musicpost->createdBy()->id;
+        	if($musicpost->soundcloud != NULL)
+        	{
+        		$musicpost['provider'] = $musicpost->soundcloud;
+        		$musicpost['class'] = 'stratus';
+        		$musicpost['value'] = $musicpost->id;
+        		$musicpost['icon'] = 'icon-play';
+        		$musicpost['name'] = '';
+
+        	}
+        	else
+        	{
+        		$musicpost['provider'] = '#youtube-post-{{ $musicpost->youtube }}';
+        		$musicpost['class'] = 'playyoutube';
+        		$musicpost['value'] = $musicpost->youtube;
+        		$musicpost['icon'] = 'icon-film';
+        		$musicpost['name'] = $musicpost->id;
+
+        	}
+
+        	if($musicpost->createdBy()->accountUser()->facebookpic != NULL)
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->facebookpic;
+        	}
+        	else
+        	{
+        		$musicpost['image'] = $musicpost->createdBy()->accountUser()->getImagePathname();
+        	}
+        	$test[] = $musicpost->toArray();
 			}
         }
 
