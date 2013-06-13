@@ -148,6 +148,22 @@ class PostController extends BaseController {
 
 		if($obj2 != NULL){
 
+		DB::table('totalpoints')->where('account_id',Auth::user()->accountUser()->id)->increment('value');
+				if(Auth::user()->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',Auth::user()->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if(Auth::user()->accountuser()->levels->first()->id != 5)
+					{
+						
+						DB::table('account_level')->where('account_id',Auth::user()->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',Auth::user()->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+
 		foreach($obj2->val as $val){
 			$subgenre = Subgenre::where('title',$val)->first();
 			//When no genre is found.
@@ -189,6 +205,26 @@ class PostController extends BaseController {
 				->insert(array('genre_id' => $genre->id, 'subgenre_id' => $subgenre->id, 'post_id' => $post->id));
 			}
 		}
+
+
+				DB::table('totalpoints')->where('account_id',Auth::user()->accountUser()->id)->increment('value');
+				if(Auth::user()->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',Auth::user()->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if(Auth::user()->accountuser()->levels->first()->id != 5)
+					{
+						
+						DB::table('account_level')->where('account_id',Auth::user()->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',Auth::user()->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+		
+
+
 	
 
 		

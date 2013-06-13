@@ -264,7 +264,7 @@ $('.pagination').hide();
  
     });
  
-    if ($('.music-posts li').length == 0) {$('.musicnoti').append("<h5>There is no music available in this genre.</h5>")}
+    if ($('.music-posts li').length == 0) {$('.music').append("<h5>There is no music available in this genre.</h5>")}
 
 @stop
 

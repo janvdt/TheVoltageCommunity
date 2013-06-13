@@ -3,12 +3,35 @@
 @charset "utf-8";
 /* Top Navbar
 ==========================================*/
-
+#the-music
+{
+	padding-left: 15px;
+}
 .thumbnail h5
 {
 	padding: 5px;
 }
 #play
+{
+	color: #96daa5;
+}
+.required
+{
+	color: red;
+}
+.optional
+{
+	color: #96daa5;
+}
+.acctitle
+{
+	color: #96daa5;
+}
+.accsong
+{
+	color: #96daa5;
+}
+.styleacc
 {
 	color: #96daa5;
 }
@@ -24,7 +47,23 @@
 {
 	color: #96daa5;
 	padding: 25px;
+	padding-left: 90px;
+	left: 60px;
 	top:25px;
+	
+}
+.imgscore
+{
+	padding-top: 10px;
+	height: 75px;
+}
+.headerplaylist
+{
+	padding-left:20px;
+}
+.playplaylist a:hover
+{
+	text-decoration: none;
 }
 .eye
 {
@@ -110,7 +149,7 @@
 }
 .levelimg
 {
-	padding: 20px;
+	padding-top: 20px;
 }
 .score
 {
@@ -1145,6 +1184,9 @@ margin-right: auto;
 {
 	display: none;
 }
+#diy
+{
+	display: none;
 }
 
 

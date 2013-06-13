@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="span4">
-		<img src="/images/logofooter.png" width="300">
+		<img src="/images/tvcgreen.png" width="200">
 	</div>
 <div class=" offset2 span6 navigation">
 	<div class="container menu clearfix pull-right">
@@ -12,7 +12,7 @@
 	                	<li id="home"><a href="{{URL::to("/")}}">Home</a></li>
 						<li id="music"><a href="{{ URL::action('MusicController@index') }}">Music</a></li>
 						<li id="playlist"><a href="{{ URL::action('PlaylistController@showAll') }}">Playlists</a></li>
-						<li><a href="{{ URL::action('TurntableController@index') }}?scratch=1">DIY</a></li>
+						<li id="diy"><a href="{{ URL::action('TurntableController@index') }}?scratch=1">DIY</a></li>
 						<li id="graph"><a href="{{ URL::action('GraphController@index') }}">Graphics</a></li>
 						<li id="graph"><a href="{{ URL::action('AccountController@showscores') }}">Scores</a></li>
 					</ul>

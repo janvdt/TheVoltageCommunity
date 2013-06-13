@@ -169,4 +169,9 @@ function Populate(){
 	$('#buttonremove').hide();
 	}
 	}).change();
+
+	if ($('.music-posts li').length == 0) {
+	$('.music').append("<h3>Oops...</h3> <h5>this playlist is empty. Go and make this playlist rock!</h5>")
+	$('#buttonremove').hide();
+	}
 @stop

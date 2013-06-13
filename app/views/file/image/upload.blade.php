@@ -7,7 +7,7 @@
 <input type="hidden" id="selected-image-input" name="image_id">
 
 @section('footer')
-	@parent
+	
 
 	<!-- Modal file select -->
 	<div id="select-image" class="modal hide" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

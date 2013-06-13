@@ -8,41 +8,50 @@
 			<h2>Grab yourself a playlist and enjoy!</h2>
 		</div>
 	</div>
+	<div class="row">
+		<ul class="ch-grid nav nav-pills playlists">
+		@foreach($playlists as $playlist)
+			<li class="playlistshowall">
+				<div class="row">
+					<div class="span3">
+						<div class="pull-right copybutton">
+							<a class=" btn btn btn-link add" name="{{$playlist->id}}" value="{{$playlist->id}}" id="{{$playlist->id}}"><i class="icon-plus"></i></a>
+						</div>
+					</div>
+				</div>
+		
+				<div class="test">
+					@if($playlist->posts->first() != NULL)
+					<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}">
+						@if($playlist->posts->first()->soundcloud_art != NULL)
+						<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url({{$playlist->posts->first()->soundcloud_art}});">
+						@else
+						<div class="ch-item ch-img-1 youtubeimg" style="background-image: url({{$playlist->posts->first()->youtube_art}});">
+						@endif
+						</div>
+					</a>
+					@else
+					<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}">
+						
+						<div class="ch-item ch-img-1 youtubeimg" style="background-image: url('http://placehold.it/250x250&text= Empty Playlist');">
+						</div>
+					</a>
+					@endif
+				</div>
 
-<ul class="thumbnails">
-@foreach($playlists as $playlist)
-	<li class="span3 playlistshowall">
-		<div class="row">
-			<div class="span3">
-			<div class="pull-left">
-				<a class="play playplaylist" value="{{$playlist->id}}">
-					<i class="icon-play playlisticon"></i>
-				</a>
-			</div>
-			<div class="pull-right copybutton">
-				<a class=" btn btn-inverse add" name="{{$playlist->id}}" value="{{$playlist->id}}" id="{{$playlist->id}}"><i class="icon-plus"></i></a>
-			</div>
-		</div>
-		</div>
-
-		<div class="thumbnail">
-			@if($playlist->posts->first() != NULL)
-			<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}">
-				@if($playlist->posts->first()->soundcloud_art != NULL)
-				<img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt=""></a>
-				@else
-				<img class="avatar img-polaroid polaroidyoutube" src="{{ $playlist->posts->first()->youtube_art }}" alt=""></a>
-				@endif
-			@else
-			<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/250x250&text= Empty Playlist" alt="" width="250"></a>
-			@endif
-			<div class="title">
-				<h5 class="playlisttitle">{{$playlist->title}}</h5>
-			</div>
-		</div>
-	</li>
-@endforeach
-</ul>
+				<div class="row">
+					<div class="span3">
+						<div>
+							<a class="play playplaylist" value="{{$playlist->id}}" style="text-decoration: none;">
+								<i class=" icon-2x icon-play playlisticon"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</li>
+		@endforeach
+		</ul>
+	</div>
 </div>
 <div class="stratusplayer">
 </div>
@@ -51,7 +60,7 @@
 @section('scripts')
 	@parent
 
-if ($('.thumbnails li').length == 0) {$('.music').append("<h5>There are currently no playlists available.</h5>")}
+if ($('.playlists li').length == 0) {$('.music').append("<h5>There are currently no playlists available.</h5>")}
 
 
 $("#playlist").addClass('active');

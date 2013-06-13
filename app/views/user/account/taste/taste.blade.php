@@ -10,7 +10,7 @@
 				<form class="form-horizontal" method="POST" action="{{ URL::action('AccountController@updateTaste', array($account->id)) }}" >
 				<input type="hidden" name="_method" value="POST">
 				<fieldset>	
-					<h3>Instance permissions</h3>
+					<h3>Let's see what we got here</h3>
 					{{ View::make('user.account.taste.edit.input')->with('permission', 'Electronic')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes)}}
 					{{ View::make('user.account.taste.edit.input')->with('permission', 'Hiphop')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
 					{{ View::make('user.account.taste.edit.input')->with('permission', 'House')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}

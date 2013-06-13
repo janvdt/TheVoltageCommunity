@@ -482,6 +482,9 @@ $("#youtube").select2({
         var image = "<div class='slider-img ch-img-1 soundimgslider' style='background-image: url(" + data.thumbnail.hqDefault +");'></div>"
         $('.preview').append(image);
         $('#postsoundcloud').append("<iframe id='player' src='http://www.youtube.com/embed/" + data.id + "?rel=0&wmode=Opaque&enablejsapi=1' frameborder='0' width='100%'' height='300'></iframe>");
+        var value = editor.getValue();
+		var text = data.description;
+		editor.setValue(text, true);
         return data.title;
     }
 
@@ -517,6 +520,7 @@ $("#soundcloud").select2({
     escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
 });
 });
+
 </script>
 
 <script>
@@ -550,6 +554,9 @@ $("#soundcloud").select2({
         $('#art_urlsoundcloud').attr('value', n);
         var image = "<div class='slider-img ch-img-1 soundimgslider' style='background-image: url(" + data.artwork_url +");'></div>"
         $('.preview').append(image);
+       	var value = editor.getValue();
+		var text = data.description;
+		editor.setValue(text, true);
         return data.title;
     }
 
@@ -605,6 +612,7 @@ $("#soundcloud").select2({
  
     });
 </script>
+
 
 
 

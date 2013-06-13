@@ -3629,7 +3629,7 @@ soundManager.onready(function() {
 
   }
 
-  o = document.getElementById('the-music');
+  o = document.getElementById('music-posts');
 
   o.onmousedown = function(e) {
 
@@ -3637,9 +3637,13 @@ soundManager.onready(function() {
 
     var target = e.target;
 
-    if (e.target.nodeName.toLowerCase() === 'span') {
+
+
+    if (e.target.nodeName.toLowerCase() === 'div') {
       target = e.target.parentNode;
     }
+     console.log(target);
+
 
     if (target.nodeName.toLowerCase() === 'a' && !utils.hasClass(target, 'exclude')) {
 
@@ -3649,6 +3653,8 @@ soundManager.onready(function() {
 
       target.className = 'active';
       lastTarget = target;
+
+     
 
         var track_id = target.getAttribute('data-track-id');
 
@@ -3683,7 +3689,7 @@ soundManager.onready(function() {
 
     var target = e.target;
 
-    if (e.target.nodeName.toLowerCase() === 'span') {
+    if (e.target.nodeName.toLowerCase() === 'div') {
       target = e.target.parentNode;
     }
 
