@@ -193,7 +193,7 @@ $('.music').on('click',".playyoutube",function() {
 
  	 jQuery.iLightBox([
 		{
-			URL: "http://www.youtube.com/embed/"+ youtube + "","http://www.youtube.com/watch?v=rG22XgpbzDs"
+			URL: "http://www.youtube.com/embed/"+ youtube + ""
 		}
 	]);
 	
