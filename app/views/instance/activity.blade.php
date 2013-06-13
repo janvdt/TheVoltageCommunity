@@ -85,6 +85,7 @@
     							<li>
     								<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
     							</li>
+
     						</ul>
   						</li>
 					</ul>
@@ -119,7 +120,55 @@
 						</div>
 					</li>
 				@endif
-				@if($notification->type != 7 )
+				@if($notification->post_id == 0 and $notification->type == 5)
+				<li class=" activity">
+					<ul class="nav nav-pills  activityref offset8">
+  						<li class="dropdown">
+    						<a class="dropdown-toggle activityref" data-toggle="dropdown" href="#">
+        						<i class="icon-th-large"></i>
+        						<b class="caret"></b>
+      						</a>
+    						
+    						<ul class="dropdown-menu">
+    							<li>
+    								<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
+    							</li>
+
+    						</ul>
+  						</li>
+					</ul>
+						<div class="row log">
+							<div class="span6 offset2">
+								<div class="pull-left">
+									<p class="activitytitle">
+										<a href="{{ URL::action('UserController@visitAccount',array($notification->user->id)) }}">
+										@if($notification->user->accountUser()->image_id != 0 or $notification->user->accountUser()->facebookpic == NULL )
+										<img src="{{ url($notification->user->accountUser()->getImagePathname()) }}" width="50" alt="">
+										@else
+										<img src="{{ url($notification->user->accountUser()->facebookpic) }}" width="50" alt="">
+										@endif
+										</a>
+										{{$notification->user->first_name}} {{$notification->user->last_name}} {{$notification->	body}} on <a href="{{ URL::action('UserController@visitAccount',array(Account::Find($notification->account_id)->user->id)) }}">{{Account::Find($notification->account_id)->user->first_name}} {{Account::Find($notification->account_id)->user->last_name}}</a> wall
+									</p>
+								</div>
+									
+								<div class="pull-right">
+									<h6>{{$notification->created_at}}<h6>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="offset3 span5">
+								@if($notification->type == 2 or $notification->type == 5 )
+									<div class="alert alert-success">
+										<h6>{{$notification->text}}</h6>
+									</div>
+								@endif
+							</div>
+						</div>
+					</li>
+				@endif
+				@if($notification->type != 7 and $notification->type != 5  )
 					<li class=" activity">
 						<ul class="nav nav-pills  activityref offset8">
   									<li class="dropdown">
@@ -134,11 +183,14 @@
     										<li>
     											<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
     										</li>
+    										<li>
+    								<a id="share" href="#share-post-{{ $notification->post->id }}" data-toggle="modal"><img src= "/images/facebook.png" width="20" /> Facebook</a>
+    							</li>
     									</ul>
   									</li>
 								</ul>
 						<div class="row log">
-							<div class="span6 offset2">
+							<div class="span5 offset3">
 								<div class="pull-left">
 									<p class="activitytitle">
 									<a href="{{ URL::action('UserController@visitAccount',array($notification->user_id)) }}">
@@ -173,7 +225,7 @@
 								@else
 								<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 									@if($notification->post->soundcloud_art != NULL)
-										<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->post->soundcloud_art }});">
+										<div class="sliderz-img ch-img-1 soundimgsliderz" style="background-image: url({{ $notification->post->soundcloud_art }});">
 									@else
 										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url({{$notification->post->youtube_art}});">
 									@endif
@@ -182,13 +234,7 @@
 								@endif
 							</div>
 						</div>
-						<div class="row">
-							<div class="offset4">
-								<span class="badge badge-inverse">{{count($notification->post->comments)}} <i class="icon-comment"></i></span>
-								<span class="badge badge-inverse">{{count($notification->post->likes)}} <i class="icon-heart"></i></span>
-							</div>
-						</div>
-						@if($notification->type == 1)
+						@if($notification->type == 1 and $notification->type != 5)
 						<div class="row">
 						@if($notification->post->soundcloud != NULL)
 							<div id="postsoundcloudactivity{{$notification->post->id}}" class="span5 offset3">
@@ -205,7 +251,7 @@
 						@endif
 						<hr>
 						<div class="modal hide fade" id="share-post-{{ $notification->post->id }}">
-							<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@share', array($notification->post->id)) }}" id="upload-share-form">
+							<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@activityshare', array($notification->post->id)) }}" id="upload-share-form">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h3>Share post</h3>
@@ -215,7 +261,7 @@
 								</div>
 								<div class="modal-footer">
 									<button class="btn" data-dismiss="modal">Cancel</button>
-									<input class="btn btn-danger" type="submit" value="Post to facebook!">
+									<input class="btn btn-inverse" type="submit" value="Post to facebook!">
 								</div>
 							</form>
 						</div>

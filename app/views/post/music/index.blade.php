@@ -46,9 +46,9 @@
 			@endif
 		</div>
 		<div class="row">
-			@if(Auth::user() and Auth::user()->accountUser()->facebook != NULL)
+			@if(Auth::user() and Auth::user()->identifier != NULL)
 			<div class="span4 offset1 sharebutton">
-				<a class="btn btn-inverse btn-large" href="{{ URL::action('PostController@share', array($post->id)) }}"><img src="/images/facebook-logo-square.png"></a>
+				<a id="share" href="#share-post-{{ $post->id }}" data-toggle="modal"><img src= "/images/facebook.png" width="60" /></a>
 				
 			</div>
 			@endif
@@ -97,7 +97,7 @@
 				</div>
 				<div class="span1">
 					<ul class="nav">
-						<li><img src="/images/bullhorn.png" /></li>
+						<li><img src="/images/log.png" width="50" /></li>
 					</ul>
 				</div>
 			</div>
@@ -204,14 +204,14 @@
 	<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@share', array($post->id)) }}" id="upload-share-form">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h3>Share post</h3>
+			<img src= "/images/facebook.png" width="50" />
 		</div>
 		<div class="modal-body">
 			<textarea name="textshare" class="input-xxlarge pull-left" rows="5" id="inputTextarea" placeholder="Enter message ..."></textarea>
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal">Cancel</button>
-			<input class="btn btn-danger" type="submit" value="Post to facebook!">
+			<input class="btn btn-inverse" type="submit" value="Post to facebook!">
 		</div>
 	</form>
 </div>
@@ -256,15 +256,6 @@ $(".playlist").click(function(){
 
 });
 
-$("#share").click(function(){ 
- 	console.log('succes');
-	$.get('/post/share/' + {{$post->id}},
-	function(data)
-	{
-		console.log('succes');
-		$('#share').hide();
-	});
-});
 
 @if(Auth::user())
 // Ajax file upload for the file upload modal.
@@ -285,16 +276,6 @@ $("#upload-comment-form").ajaxForm({
 	}
 });
 @endif
-// Ajax file upload for the file upload modal.
-$("#upload-share-form").ajaxForm({
-	data: { 'ajax': 'true' },
-	dataType: 'json',
-	success: function(data) {
-	console.log('kak');
-	// Hide the upload modal.
-	$("#share-post-{{ $post->id }}").modal('hide');
 
-	}
-});
 @stop
 

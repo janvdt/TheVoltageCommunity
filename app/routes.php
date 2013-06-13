@@ -23,7 +23,7 @@ View::composer('layout', function($view)
 	if(Auth::user())
 	{
 	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->where('post_creator',Auth::user()->id)->where('activity',FALSE)->get();
-	$notifications = Notification::where('user_id','!=',Auth::user()->id)->get();
+	$notifications = Notification::where('user_id','!=',Auth::user()->id)->orderBy('id','desc')->get();
 
 	$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
 
@@ -37,7 +37,7 @@ View::composer('diy.layout', function($view)
 	if(Auth::user())
 	{
 	$notcount = Notification::where('viewed',FALSE)->where('user_id','!=',Auth::user()->id)->where('post_creator',Auth::user()->id)->where('activity',FALSE)->get();
-	$notifications = Notification::where('user_id','!=',Auth::user()->id)->get();
+	$notifications = Notification::where('user_id','!=',Auth::user()->id)->orderBy('id','desc')->get();
 
 	$following = Follower::where('account_id', Auth::user()->accountUser()->id)->get();
 
@@ -178,7 +178,8 @@ Route::resource('turntable','TurntableController');
 Route::resource('graph','GraphController');
 Route::post('account/storemessage', 'AccountController@storeMessage');
 Route::resource('post','PostController');
-Route::get('post/share/{id}', 'PostController@share');
+Route::any('post/share/{id}', 'PostController@share');
+Route::any('post/activityshare/{id}', 'PostController@activityshare');
 
 Route::post('post/like/{id}', 'PostController@like');
 Route::get('post/showmusic/{id}', 'PostController@showMusic');

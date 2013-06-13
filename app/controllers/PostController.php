@@ -689,6 +689,60 @@ class PostController extends BaseController {
    		return Redirect::action('PostController@showMusic', array('id' => $post->id));
 
 	}
+	public function activityshare($id)
+    {
+    	$socialAuth = new Hybrid_Auth('../app/config/hybridauth.php');
+
+    	$facebook = $socialAuth->authenticate( "Facebook" );
+
+    	$post = Post::find($id);
+   		
+   		if($post->soundcloud_art != NULL){
+   		$facebook->api()->api("/me/feed", "post", array(
+      	"message" => "I just shared a post from the Voltage Community",
+      	"picture" => "$post->soundcloud_art",
+      	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
+      	"name"    => "$post->title",
+      	"caption" => Input::get('textshare')
+   		));
+   		}
+   		else
+   		{
+   			$facebook->api()->api("/me/feed", "post", array(
+      	"message" => "I just shared a post from the Voltage Community",
+      	"picture" => "$post->youtube_art",
+      	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
+      	"name"    => "$post->title",
+      	"caption" => Input::get('textshare')
+   		));
+   		}
+
+   		if(Auth::user())
+		{
+			if($post->created_by != Auth::user()->id)
+			{	
+				$user = User::find($post->created_by);
+				DB::table('totalpoints')->where('account_id',$user->accountUser()->id)->increment('value');
+				if($user->accountuser()->points->value < 100)
+				{
+					DB::table('points')->where('account_id',$user->accountUser()->id)->increment('value');
+				}
+				else
+				{
+					if($user->accountuser()->levels->first()->id != 5)
+					{
+						$user = User::find($post->created_by);
+						DB::table('account_level')->where('account_id',$user->accountUser()->id)->increment('level_id');
+						DB::table('points')->where('account_id',$user->accountUser()->id)->update(array('value' => 1));
+					}
+
+				}
+			}
+		}
+
+   		return Redirect::action('HomeController@showActivity');
+
+	}
 	public function showGenre()
 	{
 		$musicposts = Post::where('type','music')->get();

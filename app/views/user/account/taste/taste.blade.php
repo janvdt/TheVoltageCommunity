@@ -22,7 +22,7 @@
 				</fieldset>
 				<div class="form-actions">
 					<a class="btn" href="{{ URL::action('UserController@showAccount', array($account->id))}}">Cancel</a>
-					<input type="submit" class="btn btn-primary" value="Save">
+					<input type="submit" class="btn btn-inverse" value="Save">
 				</div>
 				</form>
 			</div>

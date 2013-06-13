@@ -4,8 +4,13 @@
 
 <div class="row">
 	<div class="span12 content">
+		<div class="pull-right">
+			<h3>Step 1/3 </h3>
+		</div>
 		<div class="login-box">
-			<h2>Register</h2>
+			<div class="regtitle">
+				<h2>Hi! ...</h2>
+			</div>
 
 			<form class="form-horizontal" method="POST" action="{{ URL::action('UserController@store')}}" >
 				<div class="control-group">
@@ -19,7 +24,7 @@
 				<div class="control-group">
 					<label class="control-label">First Name </label>
 					<div class="controls">
-						<input class="" type="text"  placeholder="First Name" name="firstname">
+						<input class="" type="text" id="firstname"  placeholder="First Name" name="firstname">
 						<span class="help-inline">Required</span>
 					</div>
 				</div>
@@ -50,7 +55,7 @@
 
 				<div class="form-actions">
 					<a href="" class="btn">Cancel</a>
-					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="submit" class="btn btn-inverse">Save</button>
 				</div>
 			</form>
 		</div>
@@ -59,3 +64,22 @@
 
 
 @stop
+@section('scripts')
+	@parent
+
+$('#firstname').keyup(function() {
+	var firstname = $(this).val();
+	if(firstname !== '') {
+		$('.regtitle').empty();
+		$('.regtitle').append("<h2>Hi! "+firstname+"</h2>");
+	}
+	else
+	{
+		$('.regtitle').empty();
+		$('.regtitle').append("<h2>Hi! ...</h2>");
+	}
+});
+
+@stop
+
+
