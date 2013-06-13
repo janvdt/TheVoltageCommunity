@@ -12,7 +12,7 @@
 	<h2>Activity log </h2>
 </div>
 </div>
-<div class="row span11 lognoti">
+<div class="row span11 lognoti music">
 @if($notifications == NULL)
 <p>You have currently no activitylogs</p>
 @endif
@@ -238,7 +238,7 @@
 						<div class="row offset4">
 							@if($notification->post->soundcloud != NULL)
 								<div class="playacc">
-									<a class="play playplaylist" value="" style="text-decoration: none;">
+									<a href="{{$notification->post->soundcloud}}" class="stratus" value="{{$notification->post->id}}" style="text-decoration: none;">
 										<i class=" icon-2x icon-play playlisticon"></i>
 									</a>
 								</div>
@@ -302,6 +302,11 @@
 
 @section('scripts')
 	@parent
+
+$("activity").stratus({
+      color: 'c6e2cc'
+              
+    });
 
 $('.pagination ul li:not(:last)').remove();
 $('.pagination').hide();
