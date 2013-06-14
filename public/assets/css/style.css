@@ -1195,6 +1195,10 @@ margin-right: auto;
 {
 	display: none;
 }
+.ch-grid
+{
+	padding-left: 5px;
+}
 }
 /* Portrait tablet to landscape
 ==========================================*/
@@ -1208,26 +1212,50 @@ margin-right: auto;
 	display: none;
 }
 
+.content .nav {
+	float: none;
+}
+.ch-grid li
+{
+	margin: 60px;
+	margin-bottom: 80px;
+}
+
+
+}
+
+
+
 
 
 /* Content
 ==========================================*/
 
-.content .nav {
-	float: none;
-}
+
 
 
 
 /* Landscape phones and down
 ==========================================*/
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 .lines
 {
 	display: none;
 }
+.ch-grid li
+{
+	margin: 36px;
+	margin-bottom: 150px;
+}
+
 #diy
+{
+	display: none;
+}
+
+}
+.stratus
 {
 	display: none;
 }
