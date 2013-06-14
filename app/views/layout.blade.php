@@ -63,6 +63,7 @@
 			</li>
 			@endif
 			@if(Auth::check())
+			
 					<li class="dropdown pull-right">
 							<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
 								@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL )
@@ -89,7 +90,7 @@
 					</li>
 					@endif
 			@if(Auth::check())
-			<li class="dropdown pull-right">
+			<li class="dropdown pull-right not">
 						<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="badge badge-important">{{count($notcount)}}</span><b class="caret"></b></a>
 						
 						<ul class="dropdown-menu notifications span4" role="menu">
