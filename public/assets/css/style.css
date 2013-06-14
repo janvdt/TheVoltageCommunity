@@ -1238,7 +1238,7 @@ margin-right: auto;
 /* Landscape phones and down
 ==========================================*/
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
 .lines
 {
 	display: none;
