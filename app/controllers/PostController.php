@@ -661,7 +661,7 @@ class PostController extends BaseController {
       	"picture" => "$post->youtube_art",
       	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
       	"name"    => "$post->title",
-      	"caption" => "text"
+      	"caption" => "$text"
    		));
    		}
 
