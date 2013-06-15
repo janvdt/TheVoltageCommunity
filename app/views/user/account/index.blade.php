@@ -308,9 +308,12 @@
 						<div class="row">
 							<div class="offset span4">
 								<h5>{{$notification->playlist->title}}</h5>
-								@if($notification->playlist->posts->first() != NULL)
+								@if($notification->playlist->posts->first() != NULL and $notification->playlist->posts->first()->soundcloud != NULL )
 									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->soundcloud_art }}" alt="" width="500"></a>
-								@else
+								@elseif($notification->playlist->posts->first() != NULL)
+									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->youtube_art }}" alt="" width="500"></a>
+								@endif
+								@if($notification->playlist->posts->first() == NULL)
 									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/500x500&text=Playlist" alt="" width="500"></a>
 								@endif
 							</div>
