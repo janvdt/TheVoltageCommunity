@@ -45,9 +45,15 @@
 				<div class="row">
 					<div class="span3">
 						<div>
+							@if($playlist->posts->first() != NULL and $playlist->type == 'sound')
 							<a class="play playplaylist" value="{{$playlist->id}}" style="text-decoration: none;">
 								<i class=" icon-2x icon-play playlisticon"></i>
 							</a>
+							@else
+							<a href="{{ URL::action('PlaylistController@showplaylist', array($playlist->id)) }}" class="play playplaylist" style="text-decoration: none;">
+								<i class=" icon-2x icon-film playlisticon"></i>
+							</a>
+							@endif
 						</div>
 					</div>
 				</div>

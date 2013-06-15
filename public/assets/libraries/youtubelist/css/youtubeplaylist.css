@@ -1,0 +1,296 @@
+/* ===[ Surround div around player. Is optional ]=== */
+
+.youtubeplayer {
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* END
+   ================================================== */
+
+/* youtube css (needed)  */
+
+.yt_holder {
+    background: #F2F2F2;
+    font: 12px/20px Arial, Helvetica, sans-serif;
+    padding: 10px;
+    float: left;
+    border: 1px solid #D6D6D6;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 10px #423942;
+    -moz-box-shadow: 2px 2px 10px #423942;
+    box-shadow: 2px 2px 10px #423942;
+}
+
+/** Now set by the js adjustHeight
+ *  Player Iframe and player version 3
+ * #ytvideo {
+ * height:366px;
+ * }
+ * /* Use this is you use the player version 2
+ * Also play with this height isf you use autoHide playerbar
+ * #ytvideo2 {
+ * height:385px;
+ * }
+ */
+
+/** Only set for the page startup height*/
+#ytvideo, #ytvideo2, #ytvideo3, #ytvideo4 {
+  height:366px;
+}
+
+.currentvideo { background: #e6e6e6 }
+
+div.youplayer p {
+    clear: both;
+    position: relative;
+    height: 11px;
+    width: 530px;
+    margin: 0 0 -14px 90px;
+    padding: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: bold;
+    color: #dedede;
+    z-index: 999;
+}
+
+div.youplayer .time {
+    position: absolute;
+    width: 620px;
+    margin-top: -2px;
+    font-size: 10px;
+    color: #dedede;
+    z-index: 999;
+    text-align: right;
+    float: right;
+}
+
+div.youplayer ul.videoyou {
+    position: relative;
+    overflow: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 640px;
+    height: 192px;
+}
+
+div.youplayer ul.videoyou li {
+    list-style-type: none;
+    width: 298px;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+div.youplayer ul.videoyou li img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 82px;
+    height: 62px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+div.youplayer ul.videoyou li a {
+    position: relative;
+    display: block;
+    outline: none;
+    width: 530px;
+    height: 46px;
+    margin: 0;
+    padding: 16px 4px 0 90px;
+    font-size: 11px;
+    line-height: 1.2;
+    text-align: left;
+    text-decoration: none;
+    background: #666;
+    color: #dedede;
+}
+
+div.youplayer ul.videoyou li a.currentvideo {
+    background: #333 !important;
+    width: 530px;
+    color: #dedede;
+}
+
+div.youplayer ul.videoyou li a:hover {
+	background: #595959
+}
+
+/* footer  */
+div.ytfooter {
+	background: url("footer.png") no-repeat scroll center bottom transparent;
+	margin-left: -85px;
+	margin-top: 10px;
+	min-height: 43px;
+	min-width: 819px;
+	position: absolute;
+	z-index: -1;
+}
+
+/* social icons  */
+div.yfacebook {
+    background: transparent url(facebook.png) no-repeat;
+    border: none;
+    float: left;
+    padding: 0;
+    margin: 60px 0 0 1px;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    outline: none;
+}
+div.ytwitter {
+    background: transparent url(twitter.png) no-repeat;
+    border: none;
+    float: left;
+    padding: 0;
+    margin: 100px 0 0 1px;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    outline: none;
+}
+div.ytpin {
+    background: transparent url(pinterest.png) no-repeat;
+    border: none;
+    float: left;
+    padding: 0;
+    margin: 140px 0 0 1px;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    outline: none;
+}
+
+/* up down buttons  */
+div.you_up {
+    border: 0px;
+    float: left;
+    padding: 0;
+    margin: -13px 0 0 -17px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+div.you_down {
+    border: 0px;
+    float: left;
+    padding: 0;
+    margin: -13px 0 0 -17px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+/* === Custom scrollbars IE === */
+div.youplayer {
+	scrollbar-arrow-color: #333333;
+	scrollbar-base-color: #f2f2f2;
+	scrollbar-dark-shadow-color: #f2f2f2;
+	scrollbar-track-color: #f2f2f2;
+	scrollbar-face-color: #f2f2f2;
+	scrollbar-shadow-color: #f2f2f2;
+	scrollbar-highlight-color: #f2f2f2;
+	scrollbar-3d-light-color: #f2f2f2;
+}
+/* === END === */
+
+/* === Custom scrollbars Webkit === */
+.videoyou::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+}
+
+.videoyou::-webkit-scrollbar-track-piece  {
+	background-color: #F2F2F2;
+}
+
+.videoyou::-webkit-scrollbar-thumb:vertical {
+	height: 30px;
+	background-color: #000;
+}
+
+.videoyou::-webkit-scrollbar-button:vertical:increment {
+    background-image: url('downbl.png');
+    background-repeat: no-repeat, repeat-y;
+    background-position: 0px 0px, 0 0;
+}
+
+.videoyou::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url('upbl.png');
+    background-repeat: no-repeat, repeat-y;
+    background-position: 0px 0px, 0 0;
+}
+/* === END === */
+
+/* youtube css END  */
+
+/* for the search form  */
+
+form#quick-search {
+    padding: 0;
+    margin: 10px 0 0 10px;
+    width: 270px;
+    height: 33px;
+    background: #fff url(header-search.gif) no-repeat;
+    border: none;
+}
+
+form#quick-search p {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+form#quick-search input {
+    border: none;
+    background: transparent;
+    color: #666666;
+    margin: 0;
+    padding: 3px;
+    font-size: 1.2em;
+    float: left;
+}
+
+form#quick-search .tbox {
+    margin: 6px 0 0 5px;
+    width: 230px;
+    display: inline;
+}
+
+form#quick-search .btn {
+    width: 24px;
+    height: 24px;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+form#quick-search label {
+	display: none;
+}
+
+/* search END  */

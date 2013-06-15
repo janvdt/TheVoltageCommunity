@@ -48,6 +48,7 @@ class PlaylistController extends \BaseController {
 		$playlist = new Playlist;
 		$playlist->title = Input::get('title');
 		$playlist->account_id = Auth::user()->accountUser()->id;
+		$playlist->type = Input::get('select');
 		$playlist->save();
 
 		DB::table('notifications')->insert(array('body' => "created a playlist!",'user_id' => Auth::user()->id,'playlist_id' => $playlist->id,'activity' => 1,'created_at' => $playlist->created_at,'type' => 7));
@@ -142,7 +143,7 @@ class PlaylistController extends \BaseController {
 		$playlist = Playlist::find($id);
 
 		$id = DB::table('playlists')->insertGetId(
-    	array('title' => $playlist->title, 'account_id' => Auth::user()->accountUser()->id));
+    	array('title' => $playlist->title, 'account_id' => Auth::user()->accountUser()->id,'type' => $playlist->type));
 
 		foreach($playlist->posts as $post)
 		{

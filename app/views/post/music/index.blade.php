@@ -57,7 +57,7 @@
 	<div class="lines" style="width:2px;height:400px;background-color:#C6E2CC;float:left;"></div>
 	<div class="span7 contentbox">
 		<div class="row">
-		@if(Auth::user() and $post->soundcloud != NULL)
+		
 			<ul class="nav nav-pills pull-right playlistadd">
   				<li class="dropdown">
     				<a class=" btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -67,12 +67,17 @@
     						
     						<ul class="dropdown-menu">
     							@foreach(Auth::user()->accountUser()->playlists as $playlist)
+    							@if($post->soundcloud != NULL and $playlist->type == 'sound')
    	 						<li value="{{$playlist->id}}" class="playlist" class="span"><a>{{$playlist->title}}</a></li>
+   	 						@endif
+   	 						@if($post->youtube != NULL and $playlist->type == 'youtube')
+   	 						<li value="{{$playlist->id}}" class="playlist" class="span"><a>{{$playlist->title}}</a></li>
+   	 						@endif
    	 					@endforeach
     						</ul>
   						</li>
 					</ul>
-			@endif
+			
 		</div>
 		@if($post->soundcloud != NULL)
 		<div id="postsoundcloud">

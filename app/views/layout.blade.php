@@ -28,6 +28,13 @@
 	 <link href="/assets/libraries/lightbox/assets/js/google-code-prettify/prettify.css" rel="stylesheet" />
 	 <link href="/assets/libraries/lightbox/src/css/ilightbox.css" rel="stylesheet" />
 
+	 <link rel="stylesheet" type="text/css" href="/assets/libraries/youtubelist/css/youtubeplaylist.css" />
+
+	<!-- Example css playlist to the right. See example 3 -->
+	<link rel="stylesheet" type="text/css" href="/assets/libraries/youtubelist/css/youtubeplaylist-right-with-thumbs.css" />
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ 	
 	<script src="/assets/libraries/lightbox/assets/js/jquery.js"></script>
 	
 
@@ -245,6 +252,27 @@
 	<script src="/assets/libraries/lightbox/assets/js/google-code-prettify/prettify.js"></script>
     <script src="/assets/libraries/lightbox/src/js/jquery.mousewheel.js"></script>
     <script src="/assets/libraries/lightbox/src/js/ilightbox.js"></script>
+    <script type="text/javascript" src="/assets/libraries/youtubelist/js/jquery.youtubeplaylist-min.js"></script>
+   
+
+<script type="text/javascript">
+		$(function() {
+            <!-- videoThumb is a css class found in the foreach list class="videoThumb". ytvideo is the holder ID set as div ID-->
+			$(".videoThumb3").ytplaylist({
+				holderId: 'ytvideo3',
+				html5: false,
+				theme: '&amp;theme=light&amp;color=red',
+				autoPlay: true,
+				adjustHeight: '30',
+				autoHide: false,
+				playOnLoad: false,
+				sliding: false,
+				slideshow: true,
+				modestbranding: true,
+				showInfo: false
+			});
+		});
+</script>
 
 
 <script>
