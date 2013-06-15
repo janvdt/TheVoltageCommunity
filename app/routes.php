@@ -53,6 +53,8 @@ Route::get('login', array('as' => 'login', function()
 Route::get('account/showscores', 'AccountController@showscores');
 Route::get('account/choosetaste', 'AccountController@choosetaste');
 Route::get('account/editprofile','AccountController@editprofile');
+Route::get('playlist/showowntype', 'PlaylistController@showowntype');
+Route::get('playlist/showtype', 'PlaylistController@showtype');
 Route::post('playlist/updatetitle/{id}', 'PlaylistController@updatetitle');
 Route::get('playlist/copy/{id}', 'PlaylistController@copy');
 Route::get('playlist/showplaylist/{id}', 'PlaylistController@showplaylist');

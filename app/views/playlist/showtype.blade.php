@@ -26,7 +26,7 @@
 			<div class="nav-collapse collapse">
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 			<ul class="nav">
-				<li class="active"><a href="{{ URL::action('PlaylistController@showAll') }}">All</a></li>
+				<li><a href="{{ URL::action('PlaylistController@showAll') }}">All</a></li>
 				<li><a href="{{ URL::action('PlaylistController@showtype') }}?type=youtube">Youtube</a></li>
 				<li><a href="{{ URL::action('PlaylistController@showtype') }}?type=sound">Soundcloud</a></li>
 			</ul>

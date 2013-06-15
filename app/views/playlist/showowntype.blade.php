@@ -29,7 +29,7 @@
 			<div class="nav-collapse collapse">
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 			<ul class="nav">
-				<li class="active"><a href="{{ URL::action('PlaylistController@index') }}">All</a></li>
+				<li><a href="{{ URL::action('PlaylistController@index') }}">All</a></li>
 				<li><a href="{{ URL::action('PlaylistController@showowntype') }}?type=youtube">Youtube</a></li>
 				<li><a href="{{ URL::action('PlaylistController@showowntype') }}?type=sound">Soundcloud</a></li>
 			</ul>

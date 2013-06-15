@@ -278,7 +278,26 @@ class PlaylistController extends \BaseController {
 		}
   		return Redirect::action('PlaylistController@show',array($playlist->id));
 	}
+	public function showtype()
+	{
+		if(Auth::user())
+		{
+			$playlists = Playlist::where('account_id','!=', Auth::user()->accountUser()->id)->where('type',Input::get('type'))->get();
+		}
+		else
+		{
+			$playlists = Playlist::where('type',Input::get('type'))->get();
+		}
+		return View::make('playlist.showtype')
+			->with('playlists',$playlists);
+	}
 
+	public function showowntype()
+	{
+		$playlists = Playlist::where('account_id',Auth::user()->accountUser()->id)->where('type',Input::get('type'))->get();
+		return View::make('playlist.showowntype')
+			->with('playlists',$playlists);
+	}
 	
 
 }
