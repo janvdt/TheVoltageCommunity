@@ -258,18 +258,22 @@
 <script type="text/javascript">
 		$(function() {
             <!-- videoThumb is a css class found in the foreach list class="videoThumb". ytvideo is the holder ID set as div ID-->
-			$(".videoThumb3").ytplaylist({
-				holderId: 'ytvideo3',
-				html5: false,
-				theme: '&amp;theme=light&amp;color=red',
-				autoPlay: true,
-				adjustHeight: '30',
-				autoHide: false,
-				playOnLoad: false,
-				sliding: false,
-				slideshow: true,
-				modestbranding: true,
-				showInfo: false
+			$(".videoThumb").ytplaylist({
+				holderId: 'ytvideo',
+                html5: true,
+                <!-- Normal = 640 -->
+        		playerWidth: '640',
+                <!-- set 0 if controls is false or autohide is true - default is 30 -->
+        		adjustHeight: '0',
+                autoPlay: true,
+                autoHide: true,
+                playOnLoad: false,
+                sliding: true,
+                slideshow: false,
+                slidingshow: true,
+                playfirst: 0,
+                theme: '&amp;theme=dark&amp;color=red',
+                controls: true
 			});
 		});
 </script>

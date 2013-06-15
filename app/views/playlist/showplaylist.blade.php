@@ -12,28 +12,40 @@
 <div class="row">
 <div class="span6 offset3">
 	<div class="youtubeplayer">
-   	 <div class="yt_holder">
-    	<div id="ytvideo3"></div>
+    <div class="yt_holder">
+        <div id="ytvideo" style="z-index:1;"></div>
             <!--Up and Down arrow -->
-  			<div class="you_up"><img src="css/up_arrow.png" alt="+ Slide" title="HIDE" /></div>
-  			<div class="you_down"><img src="css/down_arrow.png" alt="- Slide" title="SHOW" /></div>
+  			<div class="you_up"><img src="/images/up_arrow.png" alt="+ Slide" title="HIDE" /></div>
+  			<div class="you_down"><img src="/images/down_arrow.png" alt="- Slide" title="SHOW" /></div>
             <!-- END  -->
 			<div class="youplayer">
-			<ul class="videoyou">
-	        <?php
-	        // Use like this.
-	        include_once('class/class.youtubelist.php');
-	      
+				<ul class="videoyou">
+	            <?php
+	            /***************************************************************************
+	            //youtube playlist jquery plugin Html5 Gdata Api v2  : 4.0
+	            //released:             : Sep 12 2012
+	            //copyright             : Copyright © 2012 cfconsultancy
+	            //email                 : info@cfconsultancy.nl
+	            //website               : http://www.cfconsultancy.nl
+	            ***************************************************************************/
+	            // Use like this.
+	            include_once('class/class.youtubelist.php');
 
-	        if ( $playlist->posts !=null ) {
-	            foreach ($playlist->posts as $musicpost) {
-	                echo '<li><p>' . $musicpost->title . '</p><span class="time">' . 100 . '</span><a class="videoThumb3" href="http://www.youtube.com/watch?v=' . $musicpost->youtube . '" rel="nofollow">' . $musicpost->body . '</a></li>';
+                
+
+                //This part is the foreach list
+	            if ( $playlist->posts !=null ) {
+	                foreach ($playlist->posts as $musicpost) {
+	                    echo '<li><p>' . $musicpost->title . '</p><span class="time">' . 100 . '</span><a class="videoThumb" href="http://www.youtube.com/watch?v=' . $musicpost->youtube . '">' . $musicpost->body . '</a></li>';
+	                }
+	            }else{
+	                echo '<li>Sorry, no video\'s found</li>';
 	            }
-	        }else{
-	            echo '<li>Sorry, no video\'s found</li>';
-	        }
-	        ?>
-       		</ul>
+	            //End list
+	            ?>
+       			</ul>
+	      		<!-- remove this if you don't want anyone to change the results -->
+	      		<!-- END -->
         </div>
         <!-- Remove if you don't want the footer shadow -->
         <div style="height:0px; font-size:0em;clear:both;">&nbsp;</div>
