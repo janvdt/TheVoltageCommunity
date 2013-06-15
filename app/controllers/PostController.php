@@ -641,6 +641,8 @@ class PostController extends BaseController {
 
     	$facebook = $socialAuth->authenticate( "Facebook" );
 
+    	$text = Input::get('textshare');
+
     	$post = Post::find($id);
    		
    		if($post->soundcloud_art != NULL){
@@ -649,7 +651,7 @@ class PostController extends BaseController {
       	"picture" => "$post->soundcloud_art",
       	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
       	"name"    => "$post->title",
-      	"caption" => Input::get('textshare')
+      	"caption" => "$text"
    		));
    		}
    		else
@@ -659,7 +661,7 @@ class PostController extends BaseController {
       	"picture" => "$post->youtube_art",
       	"link"    => "http://www.thevoltagecommunity.com/post/showmusic/$post->id/",
       	"name"    => "$post->title",
-      	"caption" => Input::get('textshare')
+      	"caption" => "text"
    		));
    		}
 
