@@ -64,6 +64,7 @@
 										<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->soundcloud_art }});">
 									@elseif($notification->playlist->posts->first() != NULL)
 									<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->youtube_art }});">
+									@endif
 									@if($notification->playlist->posts->first() == NULL)
 										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url(http://placehold.it/500x500&text=Playlist);">
 									@endif
