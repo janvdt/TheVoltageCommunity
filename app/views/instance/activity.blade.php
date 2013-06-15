@@ -60,16 +60,17 @@
 						<div class="row">
 							<div class="offset3 span5">
 									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}">
-									@if($notification->playlist->posts->first() != NULL)
+									@if($notification->playlist->posts->first() != NULL and $notification->playlist->posts->first()->soundcloud != NULL )
 										<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->soundcloud_art }});">
-									@else
+									@elseif($notification->playlist->posts->first() != NULL)
+									<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->youtube_art }});">
+									@if($notification->playlist->posts->first() == NULL)
 										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url(http://placehold.it/500x500&text=Playlist);">
 									@endif
 									</div>
 								</a>
 							</div>
 						</div>
-						
 					</li>
 				@endif
 				@if($notification->post_id == 0 and $notification->type != 7)
