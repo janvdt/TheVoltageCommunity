@@ -61,7 +61,7 @@
 </div>
 <!-- END youtube player -->
 <div class="row">
-	<ul class="ch-grid nav nav-pills music-posts" id="sortableplaylist">
+	<ul class="ch-grid playlistgrid nav nav-pills music-posts" id="sortableplaylist">
 		@foreach ($playlist->posts as $musicpost)
     		<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
     			<div class="row" data-playlist-id="{{ $playlist->id }}" data-post-id="{{ $musicpost->id }}">
