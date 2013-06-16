@@ -193,11 +193,13 @@
 	<footer class="site-footer">
 	
 
-		<hr>
+		<div class="span2 logofooter pull-right">
+			<img src="/images/logovoltage.png" width="200">
+		</div>
 
-		@yield('footer')
-
-		<p>&copy; 2013 Thevoltagecommunity</p>
+		<div class="span4">
+			<img class="devices" src='/images/devices.png' width="300px" height="200">
+		</div>
 
 	</footer>   
 
