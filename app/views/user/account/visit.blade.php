@@ -57,32 +57,39 @@
 			<div class="span3 info">
 				<p class="infofont">Social</p>
 			</div>
-			<div class="span3">
-				<div class="pull-left">
-				<p class="followcount">Following ({{count($following)}})</p>
-				@foreach($following as $follow)
-				<a href="{{ URL::action('UserController@visitAccount',array($follow->account->user->id)) }}">
-				@if($follow->account->facebookpic == NULL)
-				<img class="img-rounded followimg" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
-				@else
-				<img class="img-rounded followimg" src="{{ url($follow->account->facebookpic) }}" alt="" width="25">
-				@endif
-				</a>
-				@endforeach
+
+			<div class="row">
+				<div class="span3">
+					<div class="pull-left">
+						<p class="followcount">Following ({{count($following)}})</p>
+						@foreach($following as $follow)
+							<a href="{{ URL::action('UserController@visitAccount',array($follow->account->user->id)) }}">
+							@if($follow->account->facebookpic == NULL)
+								<img class="img-rounded followimg" src="{{ url($follow->account->getImagePathname()) }}" alt="" width="25">
+							@else
+								<img class="img-rounded followimg" src="{{ url($follow->account->facebookpic) }}" alt="" width="25">
+							@endif
+							</a>
+						@endforeach
+					</div>
+				</div>
 			</div>
 
-			<div class="pull-right followers">
-				<p class="followcount">Followers ({{count($followers)}})</p>
-				@foreach($followers as $follower)
-				<a href="{{ URL::action('UserController@visitAccount',array($follower->accountfollower->user->id)) }}">
-					@if($follower->account->facebookpic == NULL)
-					<img class="img-rounded followerimg" src="{{ url($follower->accountfollower->getImagePathname()) }}" alt="" width="25">
-					@else
-					<img class="img-rounded followerimg" src="{{ url($follower->account->facebookpic) }}" alt="" width="25">
-					@endif
-				</a>
-				@endforeach
-			</div>
+			<div class="row">
+				<div class="span3">
+					<div class="pull-left followers">
+						<p class="followcount">Followers ({{count($followers)}})</p>
+						@foreach($followers as $follower)
+							<a href="{{ URL::action('UserController@visitAccount',array($follower->accountfollower->user->id)) }}">
+							@if($follower->account->facebookpic == NULL)
+								<img class="img-rounded followerimg" src="{{ url($follower->accountfollower->getImagePathname()) }}" alt="" width="25">
+							@else
+								<img class="img-rounded followerimg" src="{{ url($follower->account->facebookpic) }}" alt="" width="25">
+							@endif
+							</a>
+						@endforeach
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -161,7 +168,7 @@
 <div class="span7 offset1">
 	<h2>Activity</h4>
 	<div class="span6 messagesection">
-			Message
+			<i class=' icon-2x icon-comment'> Leave a Message</i>
 			@if(Auth::user())
 			<div class="row">
 				<div class="writemessage">

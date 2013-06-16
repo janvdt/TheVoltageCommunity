@@ -22,7 +22,7 @@
 			@foreach($tastes as $taste)
 			{{$taste->name}},
 			@endforeach
-			<a class="btn" href="{{ URL::action('AccountController@editTaste', array($user->accountuser()->id)) }}">
+			<a href="{{ URL::action('AccountController@editTaste', array($user->accountuser()->id)) }}">
 				<i class="icon-pencil"></i>
 			</a>
 			<div class="row">
@@ -85,7 +85,7 @@
 				<p class="infofont">Biography</p>
 			</div>
 			<div class="span3">
-				<p>{{$user->accountUser()->biography}}</p>
+				<p class="biographytext">{{$user->accountUser()->biography}}</p>
 			</div>
 		</div>
 	</div>
@@ -155,7 +155,7 @@
 <div class="span7 offset1">
 	<h2>Activity</h4>
 	<div class="span6 messagesection">
-			Message
+			<i class=' icon-2x icon-comment'> Message</i>
 			@if(Auth::user())
 			<div class="row">
 				<div class="writemessage">

@@ -19,6 +19,8 @@
 						<label class="control-label">Biography  </label>
 						<div class="controls">
 							<textarea class="input-xlarge" type="text" size="100" name="biography" placeholder="Biography" value=""></textarea>
+							<span class="help-inline">required</span>
+							<span class="help-inline">{{ $errors->first('biography') }}</span>
 						</div>
 					</div>
 					@if(!Session::has('hybridAuth'))

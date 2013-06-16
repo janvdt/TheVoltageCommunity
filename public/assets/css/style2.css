@@ -503,6 +503,7 @@ h4::first-letter {
 	font-size: 20px;
 	margin-left: 0px;
 	margin-top: 0px;
+	padding-left: 10px;
 }
 .totalscore
 {
@@ -516,6 +517,11 @@ h4::first-letter {
   font-weight: 300;
   letter-spacing: -1px;
   padding-top: 30px;
+}
+.biographytext
+{
+	margin-left: -10px;
+	padding-right: 5px;
 }
 
 
