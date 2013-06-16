@@ -53,7 +53,7 @@
 	</div>
 </div>
 	<div class="row">
-		<ul class="ch-grid nav nav-pills music-posts" id="infinite_scroll">
+		<ul class="ch-grid musicgrid nav nav-pills music-posts" id="infinite_scroll">
 			@foreach ($musicposts as $musicpost)
     			<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
     				<div class="row">

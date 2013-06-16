@@ -1235,7 +1235,11 @@ margin-right: auto;
 }
 .homegrid li
 {
-	padding-left: 50px;
+	padding-left: 40px;
+}
+.musicgrid li
+{
+	padding-left: 40px;
 }
 #searchusers
 {
