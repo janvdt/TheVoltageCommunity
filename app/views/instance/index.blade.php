@@ -148,22 +148,21 @@ We give you the space, you give us the music !
 							</a>
 						</div>
 
-						<div class="span2">
-        				<div class="pull-left">
+						<div class="span3">
         					<div class="pull-left">
-        						<i class='icon-eye-open watch'></i>
-        						<span class="badge badge-inverse">{{$graphpost->views}}</span></i>
+        						<div class="pull-left">
+        							<i class='icon-eye-open watch'></i>
+        							<span class="badge badge-inverse">{{$graphpost->views}}</span></i>
+        						</div>
         					</div>
-        				</div>
-        				<div class="">
-        					<div class="pull-left likes">
-        						<img src="/images/lightning.png" width="15" height="15">
-        						<span class="badge badge-inverse">{{count($graphpost->likes)}}</span></i>
-   
+        					
+        					<div class="">
+        						<div class="pull-left likes">
+        							<img src="/images/lightning.png" width="15" height="15">
+        							<span class="badge badge-inverse">{{count($graphpost->likes)}}</span></i>
+   								</div>
         					</div>
-        				</div>
-
-        			</div>
+						</div>
     			</li>
 			@endforeach
 		</ul>
