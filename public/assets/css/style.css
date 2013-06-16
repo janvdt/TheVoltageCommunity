@@ -1233,11 +1233,9 @@ margin-right: auto;
 .content .nav {
 	float: none;
 }
-.homegrid 
+.homegrid li
 {
-	margin-left: 50px;
-	margin-bottom: 80px;
-
+	padding-left: 50px;
 }
 #searchusers
 {
