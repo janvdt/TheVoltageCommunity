@@ -34,6 +34,11 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="span12">
+		<p class="infoplaylist"> Press on one of the <img src="/images/vinyl.png" width="40"> to add to your own playlists or just press  <i class=" icon-play playlisticon infoicon"></i> to check them out!</p>
+	</div>
+</div>
 	<div class="row">
 		<ul class="ch-grid playlistgrid nav nav-pills playlists">
 		@foreach($playlists as $playlist)

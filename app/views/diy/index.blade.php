@@ -359,7 +359,7 @@
 	<div class="span5">
 		<h5> Just click for the left-deck </h5>
 	</div>
-	<div class="span5">
+	<div class="span5 pull-right">
 		<h5> Press shift+click for the right-deck </h5>
 	</div>
 </div>
