@@ -56,7 +56,7 @@
 				</div>
 			</div>
 
-			
+
 			<input type="hidden" name="type" value="{{ Input::get('type') }}">
 			<div class="control-group">
 				<label class="control-label"><h5>Title</h5>  </label>
@@ -190,6 +190,9 @@ $('#soundcloud').on("select2-removed", function(){
 	var value = editor.getValue();
 		var text = '';
 		editor.setValue(text, true);
+	$('.soundcloudid-hidden').val("");
+	$('#art_urlsoundcloud').val("");
+	console.log('test');
 
 })
 
@@ -219,6 +222,8 @@ $('#youtube').on("select2-opening", function(){
 	var value = editor.getValue();
 		var text = '';
 		editor.setValue(text, true);
+		$('.youtube-hidden').val("");
+	$('#art_urlyoutube').val("");
 })
 
 $('#youtube').on("select2-selecting", function() { 
