@@ -3,7 +3,12 @@
 @section('instanceContent')
 
 <div class ="span12 music">
-<h2>Music</h2>
+<div class="span8 pull-left">
+	<h2>Music</h2>
+</div>
+<div class="span3">
+	<a class="btn btn-inverse pull-right createp" href="{{ URL::action('PostController@createMusic') }}?type=music"><i class="icon-plus"> Create post</i></a>
+</div>
 <div class="navbar navbarmusic span12">
 	<div class="navbar-inner navbarinnermusic">
 		<div class="container">

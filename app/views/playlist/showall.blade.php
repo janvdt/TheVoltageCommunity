@@ -43,7 +43,7 @@
 					<div class="span3">
 						@if(Auth::user())
 						<div class="pull-right copybutton">
-							<a class=" btn btn btn-link add" name="{{$playlist->id}}" value="{{$playlist->id}}" id="{{$playlist->id}}"><i class="icon-plus"></i></a>
+							<a class=" btn btn btn-link add" name="{{$playlist->id}}" value="{{$playlist->id}}" id="{{$playlist->id}}"><img src="/images/vinyl.png" width="40"></a>
 						</div>
 						@endif
 					</div>

@@ -15,7 +15,7 @@
 		</div>
 		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
 		<div class="span2">
-			<a class="btn btn-inverse btn-large" id="post"><img src="/images/lightninglight.png"/ width="40"></a>
+			<a class="btn btn-inverse btn-large" id="post"><img src="/images/heart.png"/ width="40"></a>
 		</div>
 		@endif
 	</div>
@@ -97,13 +97,15 @@
 		<div class="postreview">
 			<div class="row">
 				<div class="pull-right">
+					@if(Auth::user())
 					<ul class="nav">
 					<li><a class="editbody" href="{{ URL::action('PostController@editMusic', array($post->id)) }}"><i class="icon-pencil"></i></a></li>
 					</ul>
+					@endif
 				</div>
 				<div class="span1">
 					<ul class="nav">
-						<li><img src="/images/log.png" width="50" /></li>
+						<li><img src="/images/bullhorn.png" width="30" /></li>
 					</ul>
 				</div>
 			</div>

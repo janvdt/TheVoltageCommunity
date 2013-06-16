@@ -50,9 +50,11 @@
 		<div class="postreview">
 			<div class="row">
 				<div class="pull-right">
+					@if(Auth::user())
 					<ul class="nav">
 					<li><a class="editbody" href="{{ URL::action('PostController@editGraph', array($post->id)) }}"><i class="icon-pencil"></i></a></li>
 					</ul>
+					@endif
 				</div>
 				<div class="span1">
 					<ul class="nav">

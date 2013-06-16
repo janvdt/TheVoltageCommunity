@@ -21,22 +21,6 @@
 	</div>
 	<div class="span9 pull-left">
 		<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@storeMusic') }}">
-			<input type="hidden" name="type" value="{{ Input::get('type') }}">
-			<div class="control-group">
-				<label class="control-label"><h5>Title</h5>  </label>
-				<div class="controls title">
-					<input class="input-xlarge" id="title" type="text" size="100" name="title" placeholder="Post title" value="{{ Input::old('title') }}">
-					<span class="help-inline required reqtitle"><i class="icon-certificate"> required</i></span>
-				</div>
-			</div>
- 			
- 			<div class="control-group">
-				<label class="control-label" for="inputTextarea"><h5>Text</h5></label>
-				<div class="controls bodyp">
-					<textarea class=" pull-left textarea" rows="5" id="inputTextarea" name="body" placeholder="Enter text ..." style="width:80%"></textarea>
-				</div>
-			</div>
-
 			<div class="control-group">
 				<div class="controls">
 					<div class="pull-left">
@@ -71,6 +55,25 @@
 					<span class="help-inline">{{ $errors->first('soundcloud') }}</span>
 				</div>
 			</div>
+
+			
+			<input type="hidden" name="type" value="{{ Input::get('type') }}">
+			<div class="control-group">
+				<label class="control-label"><h5>Title</h5>  </label>
+				<div class="controls title">
+					<input class="input-xlarge" id="title" type="text" size="100" name="title" placeholder="Post title" value="{{ Input::old('title') }}">
+					<span class="help-inline required reqtitle"><i class="icon-certificate"> required</i></span>
+				</div>
+			</div>
+ 			
+ 			<div class="control-group">
+				<label class="control-label" for="inputTextarea"><h5>Text</h5></label>
+				<div class="controls bodyp">
+					<textarea class=" pull-left textarea" rows="5" id="inputTextarea" name="body" placeholder="Enter text ..." style="width:80%"></textarea>
+				</div>
+			</div>
+
+			
 
 			<div class="control-group">
 				<label class="control-label"><h5>Music style</h5></label>
