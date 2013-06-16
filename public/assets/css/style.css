@@ -1302,6 +1302,19 @@ margin-right: auto;
 {
 	padding: 10px;
 }
+.input-xlarge
+{
+	margin-left:25px;
+	width: 175px;
+}
+.accountposts
+{
+	margin-left: 35px;
+}
+.socialbutton
+{
+	margin-left: -40px;
+}
 
 
 }
