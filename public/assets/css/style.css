@@ -1233,10 +1233,11 @@ margin-right: auto;
 .content .nav {
 	float: none;
 }
-.ch-grid li
+.homegrid 
 {
-	margin: 60px;
+	margin-left: 50px;
 	margin-bottom: 80px;
+
 }
 #searchusers
 {
