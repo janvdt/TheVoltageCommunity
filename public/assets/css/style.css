@@ -1217,6 +1217,11 @@ margin-right: auto;
 	margin: 5px;
 	margin-bottom: 80px;
 }
+.musicgrid
+{
+	padding-left: 10px;
+}
+
 }
 /* Portrait tablet to landscape
 ==========================================*/
@@ -1235,11 +1240,15 @@ margin-right: auto;
 }
 .homegrid li
 {
-	padding-left: 40px;
+	padding-left: 45px;
 }
 .musicgrid li
 {
-	padding-left: 40px;
+	padding-left: 45px;
+}
+.playlistgrid li
+{
+	padding-left: 45px;
 }
 #searchusers
 {

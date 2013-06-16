@@ -35,7 +35,7 @@
 	</div>
 </div>
 	<div class="row">
-		<ul class="ch-grid nav nav-pills playlists">
+		<ul class="ch-grid playlistgrid nav nav-pills playlists">
 		@foreach($playlists as $playlist)
 			@if($playlist->posts->first() != NULL)
 			<li class="playlistshowall">
