@@ -1244,15 +1244,15 @@ margin-right: auto;
 }
 .homegrid li
 {
-	padding-left: 45px;
+	padding-left: 40px;
 }
 .musicgrid li
 {
-	padding-left: 45px;
+	padding-left: 40px;
 }
 .playlistgrid li
 {
-	padding-left: 45px;
+	padding-left: 40px;
 }
 .youtubeplaylist
 {
@@ -1266,10 +1266,7 @@ margin-right: auto;
 {
 	display: none;
 }
-.nav-collapse
-{
-	height: auto;
-}
+
 
 }
 
