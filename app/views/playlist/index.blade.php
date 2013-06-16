@@ -38,7 +38,7 @@
 	</div>
 </div>
 	<div class="row">
-		<ul class="ch-grid nav nav-pills playlists">
+		<ul class="ch-grid playlistgrid nav nav-pills playlists">
 		@foreach($playlists as $playlist)
 			<li class="playlistshowown">
 				<div class="row">
