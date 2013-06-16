@@ -78,7 +78,7 @@
 			<div class="control-group">
 				<label class="control-label"><h5>Music style</h5></label>
 				<div class="controls style">
-					 <select id='e1' name="genre">
+					 <select id='e1' name="genre" style="width: 300px;">
         				<option value="Electronic">Electronic</option>
         				<option value="Hiphop">Hiphop</option>
         				<option value="House">House</option>
@@ -174,8 +174,13 @@ console.log('lol');
 });
 
 $('#soundcloud').on("select2-opening", function(){ 
+	 $('.youtube').hide();
+})
+
+$('#soundcloud').on("select2-close", function(){ 
 	 $('.youtube').show();
 })
+
 
 
 
@@ -208,6 +213,10 @@ $('#soundcloud').on("select2-removed", function(){
  
 
 $('#youtube').on("select2-opening", function(){ 
+	 $('.soundcloudcr').hide();
+})
+
+$('#youtube').on("select2-close", function(){ 
 	 $('.soundcloudcr').show();
 })
 
