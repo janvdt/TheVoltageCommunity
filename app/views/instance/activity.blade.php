@@ -258,7 +258,7 @@
 							<form class="form-horizontal" method="POST" action="{{ URL::action('PostController@activityshare', array($notification->post->id)) }}" id="upload-share-form">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h3>Share post</h3>
+									<img src= "/images/facebook.png" width="50" />
 								</div>
 								<div class="modal-body">
 									<textarea name="textshare" class="input-xxlarge pull-left" rows="5" id="inputTextarea" placeholder="Enter message ..."></textarea>
