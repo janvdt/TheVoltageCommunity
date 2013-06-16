@@ -84,7 +84,7 @@
 								@endif
 								<b class="caret"></b></a>
 								
-								<ul class="dropdown-menu" role="menu" aria-labelledby="choose-instance">
+								<ul class="dropdown-menu"  aria-labelledby="choose-instance">
 									<li>
 										@if(Auth::user())
 											<a href="{{ URL::action('UserController@showAccount',array(Auth::user()->id)) }}"><i class="icon-eye-open"> View Account</i></a>

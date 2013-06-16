@@ -1266,6 +1266,10 @@ margin-right: auto;
 {
 	display: none;
 }
+.nav-collapse
+{
+	height: auto;
+}
 
 }
 
