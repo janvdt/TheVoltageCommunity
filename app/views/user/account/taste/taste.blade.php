@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="span12">
 		<div class="row">
-			<div class="span4">
+			<div class="span12">
 				<form class="form-horizontal" method="POST" action="{{ URL::action('AccountController@updateTaste', array($account->id)) }}" >
 				<input type="hidden" name="_method" value="POST">
 				<fieldset>	
