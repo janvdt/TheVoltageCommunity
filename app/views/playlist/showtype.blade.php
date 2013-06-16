@@ -42,8 +42,19 @@
 				<div class="row">
 					<div class="span3">
 						@if(Auth::user())
+						<div class="pull-left">
+							<h5>
+							<a href="{{ URL::action('UserController@visitAccount',array($playlist->account->user->id)) }}">
+    						@if($playlist->account->image_id != 0 or $playlist->account->facebookpic == NULL )
+								<img src="{{ url($playlist->account->getImagePathname()) }}" width="30" alt="">
+							@else
+								<img src="{{ url($playlist->account->facebookpic) }}" width="30" alt="">
+							@endif
+							</a>
+							{{$playlist->account->user->first_name}} {{$playlist->account->user->last_name}}</h5>
+						</div>
 						<div class="pull-right copybutton">
-							<a class=" btn btn btn-link add" name="{{$playlist->id}}" value="{{$playlist->id}}" id="{{$playlist->id}}"><i class="icon-plus"></i></a>
+							<img src="/images/vinyl.png" width="40">
 						</div>
 						@endif
 					</div>
