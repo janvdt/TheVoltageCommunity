@@ -1,7 +1,11 @@
 <div class="row">
-	<div class="span4">
-		<img src="/images/logofooter.png" width="300">
+	<a href="{{URL::to("/")}}">
+	<div class="span4 logosite">
+		
+			<img src="/images/logofooter.png" width="300">
+		
 	</div>
+	</a>
 <div class=" offset2 span6 navigation">
 	<div class="container menu clearfix pull-right">
 		<div class="navbar navbar_">

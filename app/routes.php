@@ -227,7 +227,7 @@ Route::post('login', function()
 	$password = Input::get('password');
 	$remember = Input::get('remember') ? true : false;
 
-	if (Auth::attempt(array('email' => $email, 'password' => $password), $remember))
+	if (Auth::attempt(array('email' => $email, 'password' => $password,'identifier' => 0), $remember))
 	{
 					
 			return Redirect::to('/');

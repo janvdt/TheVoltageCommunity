@@ -13,6 +13,8 @@
 				<label class="control-label">Post title  </label>
 				<div class="controls">
 					<input class="input-xlarge" type="text" size="100" name="title" placeholder="Post title" value="{{ Input::old('title', $post->title) }}">
+					<i class='icon-certificate'></i>
+					<span class="help-inline">{{ $errors->first('title') }}</span>
 				</div>
 			</div>
  			
@@ -20,7 +22,8 @@
 				<label class="control-label" for="inputTextarea">Text</label>
 				<div class="controls">
 					<textarea class="input-xxlarge pull-left" rows="5" id="inputTextarea" name="body" placeholder="Enter text ...">{{$post->body}}</textarea>
-					<span class="help-inline">{{ $errors->first('body') }}</span>
+					<i class='icon-certificate'></i>
+						<span class="help-inline">{{ $errors->first('body') }}</span>
 				</div>
 			</div>
 

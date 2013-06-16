@@ -2,6 +2,7 @@
 
 @section('instanceContent')
 		<div class="span12 welcome">
+			{{Hash::make('secret')}}
 			<div class="span5">
 				<a id="playintro">
 					<img class="introvideoimg" src="/images/video.png" width="375" height="100">

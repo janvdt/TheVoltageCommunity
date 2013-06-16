@@ -203,6 +203,11 @@
 
 </div>
 
+<script>
+
+$("#suggestions").hide();
+</script>
+
  
 
 </body>

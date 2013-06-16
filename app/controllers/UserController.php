@@ -33,7 +33,8 @@ class UserController extends BaseController {
 			$validator = Validator::make(
 				Input::all(),
 				array(
-					'email' => 'required',
+					'email' => 'unique:users,email',
+					'email' => 'email',
 					'firstname'  => 'required',
 					'lastname'  =>'required',
 					'password' => 'confirmed',
@@ -256,6 +257,7 @@ class UserController extends BaseController {
 	 */
 	public function visitAccount($id)
 	{	
+		if(Auth::user()){
 		$user = User::find($id);
 		$shortmusicposts = Post::where('created_by',$user->id)->where('type','music')->take(9)->orderBy('id','desc')->get();
 		$musicposts = Post::where('created_by',$user->id)->where('type','music')->orderBy('id','desc')->get();
@@ -303,6 +305,11 @@ class UserController extends BaseController {
 				->with('followers',$followers)
 				->with('following',$following)
 				->with('playlists',$playlists);
+		}
+		}
+		else
+		{
+		return Redirect::to('/');
 		}
 	}
 
