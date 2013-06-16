@@ -1,3 +1,23 @@
+/**
+ * DJ Schill's adventures on the wheels of steel
+ * ------------------------------------------------------------
+ * A browser-based turntable prototype / toy
+ * (not for serious/skratch DJs given latency etc.)
+ * Code is provided "as-is", unsupported and without warranty.
+ *
+ * http://wheelsofsteel.net/
+ * http://schillmania.com/content/entries/2011/wheels-of-steel/
+ *
+ * HTML + CSS + JS UI, uses SoundManager 2 API
+ * http://schillmania.com/projects/soundmanager2/
+ *
+ * Hardware acceleration needed for a usable UI.
+ * Scratch is laggy on Windows due to Flash/OS
+ * latency (and/or I'm doing it wrong.)
+ */
+
+/* jslint white: false, onevar: false, undef: true, nomen: false, eqeqeq: true, plusplus: false, bitwise: true, regexp: false, newcap: true, immed: true */
+/*global window, turntables, soundManager, console, document, navigator, setTimeout, setInterval, clearInterval, Audio */
 
 (function(window){
 

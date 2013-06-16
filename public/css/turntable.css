@@ -797,7 +797,7 @@ body.battle-style .turntable {
 .turntable .waveform {
  position: relative;
  width: 498px;
- height: 48px;
+ height: 10px;
  background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.1) 100%); /* firefox */
  background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.1) 100%); /* ie 10 */
  background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.1) 100%);

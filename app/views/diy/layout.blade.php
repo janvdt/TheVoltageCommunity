@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
 
-<link rel="stylesheet" media="screen" href="css/wheelsofsteel.css" />
+<link rel="stylesheet" media="screen" href="css/turntable.css" />
 <link rel="stylesheet" href="/assets/libraries/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/assets/libraries/bootstrap/css/bootstrap-responsive.min.css">
 <link rel="stylesheet" media="screen" href="/assets/css/turntable.css" />
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/assets/css/style2.css" type="text/css" media="screen">
 <link rel="stylesheet" href="/assets/css/shelf.css">
 <script src="script/soundmanager2.js"></script>
-<script src="script/wheelsofsteel.js"></script>
+<script src="script/turntable.js"></script>
 <script src="/assets/js/jquery-1.8.0.min.js"></script>
 <script src="/assets/libraries/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/libraries/infinite-scroll/jquery.infinitescroll.min.js"></script>

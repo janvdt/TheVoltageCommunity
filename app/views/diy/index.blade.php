@@ -214,7 +214,7 @@
 			</div>
 			
 			<div style="position:absolute;top:0px;right:0px;margin-top:-1.55em;margin-right:0.5em">
-				<a href="#y" onclick="return wheelsofsteel.nextSkin(event)" title="Change the turntable skin" style="color:#999;font-weight:normal">Y</a>
+				
 			</div>
 		</div>
 
