@@ -57,7 +57,7 @@
 	<div class="lines" style="width:2px;height:400px;background-color:#C6E2CC;float:left;"></div>
 	<div class="span7 contentbox">
 		<div class="row">
-		
+			@if(Auth::user())
 			<ul class="nav nav-pills pull-right playlistadd">
   				<li class="dropdown">
     				<a class=" btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -77,6 +77,7 @@
     						</ul>
   						</li>
 					</ul>
+			@endif
 			
 		</div>
 		@if($post->soundcloud != NULL)
