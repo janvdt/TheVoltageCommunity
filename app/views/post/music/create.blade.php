@@ -125,8 +125,15 @@
 	$("#e1").select2();
 	$('#e1').on("select2-selecting", function() {
 		$(".reqstyle").hide();
+		$(".styleacc").remove();
 		$(".style").append("<span class='help-inline styleacc'><i class='icon-ok'></i></span>");
 	})
+
+	$('#e1').on("select2-removed", function(){ 
+	$(".styleacc").remove();
+	$(".reqstyle").show();
+
+})
 
 	$(".subgenre").select2({
 		createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
