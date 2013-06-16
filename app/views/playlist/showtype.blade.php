@@ -41,7 +41,7 @@
 			<li class="playlistshowall">
 				<div class="row">
 					<div class="span3">
-						@if(Auth::user())
+					
 						<div class="pull-left">
 							<h5>
 							<a href="{{ URL::action('UserController@visitAccount',array($playlist->account->user->id)) }}">
@@ -56,7 +56,7 @@
 						<div class="pull-right copybutton">
 							<img src="/images/vinyl.png" width="40">
 						</div>
-						@endif
+						
 					</div>
 				</div>
 		
