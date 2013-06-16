@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="span4">
-		<img src="/images/tvcgreen.png" width="200">
+		<img src="/images/logofooter.png" width="300">
 	</div>
 <div class=" offset2 span6 navigation">
 	<div class="container menu clearfix pull-right">
