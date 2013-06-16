@@ -7,7 +7,9 @@
 	<h2>Music</h2>
 </div>
 <div class="span3">
+	@if(Auth::user())
 	<a class="btn btn-inverse pull-right createp" href="{{ URL::action('PostController@createMusic') }}?type=music"><i class="icon-plus"> Create post</i></a>
+	@endif
 </div>
 <div class="navbar navbarmusic span12">
 	<div class="navbar-inner navbarinnermusic">
