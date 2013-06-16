@@ -2,7 +2,7 @@
 
 @section('instanceContent')
 		<div class="span12 welcome">
-			
+
 			<div class="span5">
 				<a id="playintro">
 					<img class="introvideoimg" src="/images/video.png" width="375" height="100">
@@ -25,7 +25,7 @@ We give you the space, you give us the music !
 <div class ="span12 music">
 	<h2>Music</h2>
 	<div class="row homemusic">
-		<ul class="ch-grid nav nav-pills music-posts">
+		<ul class="ch-grid homegrid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
 				
 					<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
@@ -110,7 +110,7 @@ We give you the space, you give us the music !
 <div class ="span12 tracks-overview-home">
 	<h2>Graphics</h2>
 	<div class="row">
-		<ul class="ch-grid nav nav-pills music-posts">
+		<ul class="ch-grid homegrid nav nav-pills music-posts">
 			@foreach ($graphposts as $graphpost)
 				
 					<li class= "musicpost">
