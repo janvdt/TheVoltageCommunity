@@ -18,7 +18,12 @@ class PostController extends BaseController {
 	 */
 	public function create()
 	{
+		if(Auth::user()){
 		return View::make('post.create');
+		}else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	/**
@@ -28,6 +33,7 @@ class PostController extends BaseController {
 	 */
 	public function createMusic()
 	{
+		if(Auth::user()){
 
 		$genresdata = Genre::all();
 
@@ -68,6 +74,11 @@ class PostController extends BaseController {
 			->with('images',$images)
 			->with('genresdata', $genresdata)
 			->with('subgenresdata', $subgenresdata);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	/**
@@ -77,6 +88,7 @@ class PostController extends BaseController {
 	 */
 	public function storeMusic()
 	{
+		if(Auth::user()){
 		$validator = Validator::make(
 			Input::all(),
 			array(
@@ -223,12 +235,12 @@ class PostController extends BaseController {
 
 				}
 		
-
-
-	
-
-		
-		return Redirect::action('MusicController@index');	
+		return Redirect::action('MusicController@index');
+		}
+		else
+		{
+			return Redirect::to('/');
+		}	
 	}
 
 	/**
@@ -238,9 +250,15 @@ class PostController extends BaseController {
 	 */
 	public function createGraph()
 	{
+		if(Auth::user()){
 		$images = Image::orderBy('created_at', 'desc')->where('profile',0)->take(10)->get();
 		return View::make('post.graph.create')
 			->with('images',$images);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	/**
@@ -250,6 +268,7 @@ class PostController extends BaseController {
 	 */
 	public function storeGraph()
 	{
+		if(Auth::user()){
 		$validator = Validator::make(
 			Input::all(),
 			array(
@@ -282,7 +301,12 @@ class PostController extends BaseController {
 
 		DB::table('notifications')->insert(array('body' => "created a post!",'user_id' => Auth::user()->id,'post_id' => $post->id,'post_creator' => Auth::user()->id,'activity' => 1,'created_at' => $post->created_at,'type' => 6));
 		
-		return Redirect::action('GraphController@index');;	
+		return Redirect::action('GraphController@index');
+		}
+		else
+		{
+			return Redirect::to('/');
+		}	
 	}
 
 	/**
@@ -381,6 +405,7 @@ class PostController extends BaseController {
 	 */
 	public function editMusic($id)
 	{
+		if(Auth::user()){
 		$post = Post::find($id);
 
 		$genresdata = Genre::all();
@@ -404,6 +429,11 @@ class PostController extends BaseController {
 			->with('post',$post)
 			->with('selectedgenres',$selectedgenres)
 			->with('genresdata',$genresdata);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	/**
@@ -414,6 +444,7 @@ class PostController extends BaseController {
 	 */
 	public function updateMusic($id)
 	{
+		if(Auth::user()){
 		$validator = Validator::make(
 			Input::all(),
 			array(
@@ -489,19 +520,31 @@ class PostController extends BaseController {
 		}
 
 		return Redirect::action('PostController@showMusic', array($post->id));
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	public function editGraph($id)
 	{
+		if(Auth::user()){
 		$post = Post::find($id);
 
 		//Return the tags that belong to that image.
 		return View::make('post.graph.edit')
 			->with('post',$post);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	public function updateGraph($id)
 	{
+		if(Auth::user()){
 		$validator = Validator::make(
 			Input::all(),
 			array(
@@ -524,6 +567,11 @@ class PostController extends BaseController {
 		$post->save();
 
 		return Redirect::action('PostController@showGraph', array($post->id));
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 
@@ -535,6 +583,7 @@ class PostController extends BaseController {
 	 */
 	public function destroy($id)
 	{
+		if(Auth::user()){
 
 		DB::table('posts')->where('id',$id)->delete();
 
@@ -543,10 +592,16 @@ class PostController extends BaseController {
 		DB::table('notifications')->where('post_id',$id)->delete();
 
 		return Redirect::back();
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	public function destroySelected()
 	{
+		if(Auth::user()){
 
 		$posts = explode(',', Input::get('removeposts'));
 	
@@ -561,11 +616,17 @@ class PostController extends BaseController {
 			
 		}
   		return Redirect::action('AccountController@visitmusicposts',array(Auth::user()->id));
+  		}
+  		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 
 	public function destroygraphSelected()
 	{
+		if(Auth::user()){
 
 		$posts = explode(',', Input::get('removeposts'));
 	
@@ -580,6 +641,11 @@ class PostController extends BaseController {
 			
 		}
   		return Redirect::action('AccountController@visitgraphposts',array(Auth::user()->id));
+  		}
+  		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	public function like($id)
