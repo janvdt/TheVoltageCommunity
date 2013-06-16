@@ -152,6 +152,10 @@
 	margin-left: 0px;
 	margin-top: 10px;
 }
+.devices 
+{
+ padding: 15px;
+}
 #suggestions
 {
 	position: absolute;

@@ -219,8 +219,9 @@
 		<div class="span2 logofooter pull-right">
 			<img src="/images/logovoltage.png" width="200">
 		</div>
+
 		<div class="span4">
-			
+			<img class="devices" src='/images/devices.png' width="300px" height="200">
 		</div>
 
 
