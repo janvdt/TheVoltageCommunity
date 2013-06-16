@@ -12,7 +12,7 @@
 	</div>
 </div>
 <div class="row">
-<div class="span6 offset3">
+<div class="span6 offset2">
 	@if($playlist->posts->first()->youtube != NULL)
 	<div class="youtubeplayer">
     <div class="yt_holder">
