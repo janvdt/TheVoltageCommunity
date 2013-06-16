@@ -34,7 +34,6 @@ class UserController extends BaseController {
 				Input::all(),
 				array(
 					'email' => 'unique:users,email',
-					'email' => 'email',
 					'firstname'  => 'required',
 					'lastname'  =>'required',
 					'password' => 'confirmed',
