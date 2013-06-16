@@ -1246,9 +1246,17 @@ margin-right: auto;
 {
 	padding-left: 40px;
 }
+.musicgrid
+{
+	padding: 0px;
+}
+.playlistgrid
+{
+	padding: 0px;
+}
 .musicgrid li
 {
-	padding-left: 40px;
+	padding-left: 30px;
 }
 .playlistgrid li
 {
