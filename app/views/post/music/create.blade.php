@@ -87,6 +87,9 @@
         				<option value="Pop">Pop</option>
         				<option value="Dance">Dance</option>
         				<option value="Indie">Indie</option>
+        				<option value="Funk">Funk</option>
+        				<option value="Soul">Soul</option>
+        				<option value="Breakbeat">Breakbeat</option>
   					</select>
   					<span class="help-inline required reqstyle"><i class="icon-certificate"> required</i></span>
 				</div>

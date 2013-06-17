@@ -46,7 +46,7 @@ class PostController extends BaseController {
 					->whereRaw('genre_post.genre_id = genres.id');
 			})
 			->lists('title', 'id');
-
+		
 
 		//transform the $tagsdata array.
 		array_walk($genresdata, function (&$item, $key) {

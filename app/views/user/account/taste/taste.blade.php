@@ -19,6 +19,9 @@
 					{{ View::make('user.account.taste.edit.input')->with('permission', 'Dubstep')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
 					{{ View::make('user.account.taste.edit.input')->with('permission', 'Pop')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
 					{{ View::make('user.account.taste.edit.input')->with('permission', 'Indie')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
+					{{ View::make('user.account.taste.edit.input')->with('permission', 'Funk')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
+					{{ View::make('user.account.taste.edit.input')->with('permission', 'Soul')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
+					{{ View::make('user.account.taste.edit.input')->with('permission', 'Breakbeat')->with('checkedTastes', $checkedTastes)->with('tastes', $tastes) }}
 				</fieldset>
 				<div class="form-actions">
 					<a class="btn" href="{{ URL::action('UserController@showAccount', array($account->id))}}">Cancel</a>

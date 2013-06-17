@@ -217,7 +217,21 @@ return array(
 		'Indie' => array(
 
 			'title' => 'Indie',
+		),
+		'Funk' => array(
+
+			'title' => 'Funk',
+		),
+		'Soul' => array(
+
+			'title' => 'Soul',
+		),
+		'Breakbeat' => array(
+
+			'title' => 'Breakbeat',
 		)
+
+
 	),
 
 );
