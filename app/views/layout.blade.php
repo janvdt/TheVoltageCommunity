@@ -270,7 +270,7 @@ if(document.location.protocol!='https:')
 <script type="text/javascript">
 if(typeof ClickTale=='function') ClickTale(9522,0.9,"www08");
 </script>
-<!-- ClickTale end of Bottom part -->
+
 
 <script type="text/javascript">
 		$(function() {
