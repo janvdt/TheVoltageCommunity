@@ -18,8 +18,8 @@ class HomeController extends BaseController {
 	public function index()
 	{
 		$images = Image::take(4)->get();
-		$musicposts = Post::where('type','music')->take(4)->orderBy('created_at', 'desc')->get();
-		$graphposts = Post::where('type','graph')->take(4)->orderBy('created_at', 'desc')->get();
+		$musicposts = Post::where('type','music')->take(4)->orderBy('views', 'desc')->get();
+		$graphposts = Post::where('type','graph')->take(4)->orderBy('views', 'desc')->get();
 		$posts = Post::where('type','music')->take(5)->orderBy('postlikes', 'desc')->get();
 
 		return View::make('instance.index')
