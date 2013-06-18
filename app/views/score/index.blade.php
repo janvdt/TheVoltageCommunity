@@ -8,11 +8,15 @@
 <li>
 	<div class="span12 score">
 		<div class="span1">
-			<p class="totalscore">{{$totalscore->value}}</p>
+			<p class="totalscore"></p>
 		</div>
 		<div class="span1">
 			<a href="{{ URL::action('UserController@visitAccount',array($totalscore->account->user->id)) }}">
-				
+				@if($totalscore->account->user->identifier != 0)
+				<img class="img-polaroid imgscore" src="{{ url($totalscore->account->facebookpic) }}" alt="" width="75px">
+				@else
+				<img class="img-polaroid imgscore" src="{{ url($totalscore->account->getImagePathname()) }}" alt="" width="75px">
+				@endif
 			</a>
 		</div>
 
