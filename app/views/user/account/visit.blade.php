@@ -293,10 +293,11 @@
 								@else
 								<a class="" href="{{URL::action('PostController@showMusic',array($notification->post_id)) }}">
 									@if($notification->post->soundcloud_art != NULL)
-										<img class="img-rounded soundcloudactivity" src="{{ url($notification->post->soundcloud_art) }}" alt="" width="500">
+										<div class="sliderz-img ch-img-1 soundimgsliderz" style="background-image: url({{ $notification->post->soundcloud_art }});">
 									@else
-										<img class="img-rounded" src="{{ url($notification->post->youtube_art) }}" alt="" width="500">
+										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url({{$notification->post->youtube_art}});">
 									@endif
+									</div>
 								</a>
 								@endif
 							</div>
@@ -321,14 +322,17 @@
 						<div class="row">
 							<div class="offset span4">
 								<h5>{{$notification->playlist->title}}</h5>
-								@if($notification->playlist->posts->first() != NULL and $notification->playlist->posts->first()->soundcloud != NULL )
-									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->soundcloud_art }}" alt="" width="500"></a>
-								@elseif($notification->playlist->posts->first() != NULL)
-									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $notification->playlist->posts->first()->youtube_art }}" alt="" width="500"></a>
-								@endif
-								@if($notification->playlist->posts->first() == NULL)
-									<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/500x500&text=Playlist" alt="" width="500"></a>
-								@endif
+								<a href="{{ URL::action('PlaylistController@show', array($notification->playlist->id)) }}">
+									@if($notification->playlist->posts->first() != NULL and $notification->playlist->posts->first()->soundcloud != NULL )
+										<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->soundcloud_art }});">
+									@elseif($notification->playlist->posts->first() != NULL)
+									<div class="sliderz-img ch-img-1 soundimgsliderz offset3 span5" style="background-image: url({{ $notification->playlist->posts->first()->youtube_art }});">
+									@endif
+									@if($notification->playlist->posts->first() == NULL)
+										<div class="sliderz-img ch-img-1 youtubeimgsliderz" style="background-image: url(http://placehold.it/500x500&text=Playlist);">
+									@endif
+									</div>
+								</a>
 							</div>
 						</div>
 						<hr>
