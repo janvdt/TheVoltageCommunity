@@ -358,11 +358,36 @@
 </div>
 <div class="row">
 	<div class="span5">
-		<h5> Just click for the left-deck </h5>
+		<a href="#show-info" data-toggle="modal" class="btn btn-primary infobutton">How does it works?</a>
 	</div>
-	<div class="span5 pull-right">
-		<h5> Press shift+click for the right-deck </h5>
-	</div>
+</div>
+
+<div class="modal hide fade" id="show-info">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h3>How do i become a Dj</h3>
+		</div>
+		<div class="modal-body infobody">
+			<div class="row">
+				<div class="infott1 pull-left infott1">
+					<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url('https://i1.sndcdn.com/artworks-000023169988-cr1utv-t500x500.jpg?14d6ecd');">
+					</div>
+					<h5>Click to load on the left-deck</h5>
+				</div>
+			
+				<div class="infott1 pull-right">
+					<div class="ch-item ch-img-1 soundcloudimg" style="background-image: url('https://i1.sndcdn.com/artworks-000048813303-jtfz2x-t500x500.jpg?14d6ecd');">
+					</div>
+					<h5>Shift + Click on the right-deck</h5>
+				</div>
+			</div>
+			<div class="row mixerinfo">
+				
+					<img src='/images/mixerinfo.png' width="800px">
+			
+			</div>
+		</div>
+
 </div>
 
 <div id="content span12">
