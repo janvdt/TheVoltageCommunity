@@ -90,7 +90,6 @@
 											<a href="{{ URL::action('UserController@showAccount',array(Auth::user()->id)) }}"><i class="icon-eye-open"> View Account</i></a>
 										@endif
 									</li>
-									<li><a href=""><i class="icon-key"> Change password</i></a></li>
 									<li><a href="{{ URL::action('PostController@create') }}"><i class="icon-plus"> Create post</i></a></li>
 									<li><a href="{{ URL::action('PlaylistController@index') }}"><i class="icon-list"> My playlists</i></a></li>
 								</ul>

@@ -71,7 +71,6 @@
 											<a href="{{ URL::action('UserController@showAccount',array(Auth::user()->id)) }}"> View Account</i></a>
 										@endif
 									</li>
-									<li><a href=""> Change password</i></a></li>
 									<li><a href="{{ URL::action('PostController@create') }}"> Create post</i></a></li>
 								</ul>
 					</li>
