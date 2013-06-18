@@ -42,6 +42,12 @@
 
 <body>
 
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+
 <div class="navbar navbar-static-top navbar-inverse">
 	<div class="navbar-inner">
 		<div class="container">
@@ -657,7 +663,21 @@ $("#soundcloud").select2({
 
 </script>
 
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
 
+<script type="text/javascript">
+window.ClickTaleScriptSource = 'http://cdn.clicktale.net/www/';
+if(document.location.protocol != 'https:'){
+document.write(unescape("%3Cscript%20src='" + window.ClickTaleScriptSource + "WRe0.js'%20type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+
+<script type="text/javascript">
+
+if(typeof ClickTale=='function')  ClickTale(9522, 1, "www08");
+</script>
+<!-- ClickTale end of Bottom part -->
 
 
 
