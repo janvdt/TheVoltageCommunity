@@ -48,6 +48,7 @@ var WRInitTime=(new Date()).getTime();
 </script>
 <!-- ClickTale end of Top part -->
 
+
 <div class="navbar navbar-static-top navbar-inverse">
 	<div class="navbar-inner">
 		<div class="container">
@@ -260,6 +261,16 @@ var WRInitTime=(new Date()).getTime();
     <script src="/assets/libraries/lightbox/src/js/ilightbox.js"></script>
     <script type="text/javascript" src="/assets/libraries/youtubelist/js/jquery.youtubeplaylist-min.js"></script>
    
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
+<script type="text/javascript">
+if(document.location.protocol!='https:')
+  document.write(unescape("%3Cscript%20src='http://s.clicktale.net/WRe0.js'%20type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+if(typeof ClickTale=='function') ClickTale(9522,0.9,"www08");
+</script>
+<!-- ClickTale end of Bottom part -->
 
 <script type="text/javascript">
 		$(function() {
