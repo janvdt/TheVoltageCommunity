@@ -10,7 +10,18 @@
 		<div class="span1">
 			<p class="totalscore">{{$totalscore->value}}</p>
 		</div>
-		
+		<div class="span1">
+			<a href="{{ URL::action('UserController@visitAccount',array($totalscore->account->user->id)) }}">
+				
+			</a>
+		</div>
+
+		<div class="span4">
+			<p class="email">{{$totalscore->account->user->first_name}} {{$totalscore->account->user->last_name}}</p>
+		</div>
+		<div class="span3">
+			<img class="levelimg" src="/images/{{$totalscore->account->levels->first()->image}}" width="50">
+		</div>
 	</div>
 </li>
 @endforeach
