@@ -179,15 +179,15 @@
         									<b class="caret"></b>
       									</a>
     									<ul class="dropdown-menu">
-    										@if(Auth::user()->identifier != 0)
-    										<li class="fbshare"><a href="#share-post-{{ $notification->post->id }}" data-toggle="modal"><h6><img src="/images/facebook-logo-square.png" width="20" height="20"> Post to facebook!</h6></a></li>
-    										@endif
+    										
     										<li>
     											<a href="#unfollow-{{ $notification->user->accountUser()->id }}" data-toggle="modal"><h6><i class="icon-user"></i> Unfollow!</h6></a>
     										</li>
+    										@if(Auth::user()->identifier != 0)
     										<li>
     								<a id="share" href="#share-post-{{ $notification->post->id }}" data-toggle="modal"><img src= "/images/facebook.png" width="20" /> Facebook</a>
     							</li>
+    								@endif
     									</ul>
   									</li>
 								</ul>
