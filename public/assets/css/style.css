@@ -946,6 +946,11 @@
 {
 	margin-right: -20px;
 }
+.crown
+{
+	padding-left: 125px;
+	margin-bottom: -50px;
+}
 
 .titlemusicpost h6
 {
@@ -1292,8 +1297,13 @@ margin-right: auto;
 {
 	margin-left: 15px;
 }
+.crown
+{
+	padding-left: 80px;
+}
 
 }
+
 /* Portrait tablet to landscape
 ==========================================*/
 
@@ -1398,6 +1408,10 @@ margin-right: auto;
 {
 	margin-top: 50px;
 	margin-right: 25px;
+}
+.crown
+{
+	padding-left: 50px;
 }
 
 

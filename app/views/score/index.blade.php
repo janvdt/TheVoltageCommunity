@@ -3,6 +3,7 @@
 @section('instanceContent')
 
 <h2>Look who's winning</h2>
+<img class="crown" src="/images/crown.png" width="150">
 <ul class="nav">
 @foreach($totalscores as $totalscore)
 <li>
