@@ -91,10 +91,12 @@
 {
 	margin-left: 10px;
 	margin-bottom: 10px;
+	height: 25px;
 }
 .followerimg
 {
 	padding:5px;
+	height: 25px;
 }
 .sharebutton
 {
