@@ -175,7 +175,7 @@ $myUrlInfo = get_web_page($api_call);
 
 echo "try{\n " . $js_callback . "({ url: '" . $myUrlInfo["url"] . "' });\n} catch(e){}";
 });
-
+Route::resource('feedback','FeedbackController');
 Route::resource('turntable','TurntableController');
 Route::resource('graph','GraphController');
 Route::post('account/storemessage', 'AccountController@storeMessage');

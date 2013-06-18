@@ -25,6 +25,10 @@ class Account extends BaseModel {
 	{
 		return $this->hasMany('Playlist');
 	}
+	public function feedbacks()
+	{
+		return $this->hasMany('Feedback');
+	}
 	public function points()
 	{
 		return $this->hasOne('Point');

@@ -15,9 +15,42 @@
 {
 	color: #96daa5;
 }
+.feedbackbody
+{
+	padding: 10px;
+}
 .playyoutube
 {
 	color: #96daa5;
+}
+.feedback
+{
+	width: 100%;
+	background-color: #C6E2CC;
+	
+			background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+									color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+									color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+									color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+			 						to(transparent));
+			background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+	
+	color: black;
+	margin-top: 25px;
 }
 .createp
 {
@@ -1335,6 +1368,15 @@ margin-right: auto;
 .socialbutton
 {
 	margin-left: -40px;
+}
+.logosite img
+{
+	margin-bottom: 26px;
+}
+.menu
+{
+	margin-top: 50px;
+	margin-right: 25px;
 }
 
 

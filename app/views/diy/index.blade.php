@@ -19,6 +19,7 @@
 						<li id="graph"><a href="{{ URL::action('GraphController@index') }}">Graphics</a></li>
 						@if(Auth::user())
 						<li id="graph"><a href="{{ URL::action('AccountController@showscores') }}">Scores</a></li>
+						<li id="feedback"><a href="{{ URL::action('FeedbackController@index') }}">Feedback</a></li>
 						@endif
 					</ul>
 				</div>
