@@ -16,6 +16,10 @@
 {
 	color: #96daa5;
 }
+.followerimg
+{
+	border-radius: 50%;
+}
 .logolikeimg
 {
 	margin-left: 0px;
@@ -1461,10 +1465,7 @@ margin-right: auto;
 {
 	padding-left: 50px;
 }
-.followerimg
-{
-	border-radius: 50%;
-}
+
 
 
 }
