@@ -358,7 +358,7 @@
 </div>
 <div class="row">
 	<div class="span5">
-		<a href="#show-info" data-toggle="modal" class="btn btn-primary infobutton">How does it works?</a>
+		<a href="#show-info" data-toggle="modal" class="btn btn-primary infobutton">How does it work?</a>
 	</div>
 </div>
 
