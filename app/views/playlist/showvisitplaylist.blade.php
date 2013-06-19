@@ -17,7 +17,7 @@
 					<div class="span3">
 						<div class="pull-left headerplaylist">
 							<div class="title">
-								<h5>{{$playlist->title}}<a href="#edit-playlist-{{ $playlist->id }}" data-toggle="modal"><i class='icon-pencil'></i></a><a href="#delete-playlist-{{ $playlist->id }}" data-toggle="modal"><i class='icon-remove'></i></a></h5>
+								<h5>{{$playlist->title}}</h5>
 							</div>
 						</div>
 					</div>
