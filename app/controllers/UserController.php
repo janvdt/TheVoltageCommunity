@@ -128,7 +128,7 @@ class UserController extends BaseController {
 
 		$notifications = Notification::where('activity',1)->orderBy('id','desc');
 
-		$notifications = $notifications->paginate(80);
+		$notifications = $notifications->paginate(150);
 		if(Session::has('hybridAuth'))
 		{
 			$facebookuser = User::where('identifier',Session::get('hybridAuth')->identifier)->first();
@@ -265,7 +265,7 @@ class UserController extends BaseController {
 		$notifications = Notification::where('activity',1)->orderBy('id','desc');
 		$playlists = Playlist::where('account_id',$user->accountUser()->id)->take(9)->orderBy('id','desc')->get();
 
-		$notifications = $notifications->paginate(80);
+		$notifications = $notifications->paginate(150);
 
 		$tastes = Taste::where('account_id',$user->accountuser()->id)->get();
 
