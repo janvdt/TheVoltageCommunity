@@ -59,7 +59,7 @@
 
 	$(".fblogin").click(function(){ 
 	$("#fbimg").hide();
-	$(".fblogin").append("<h3>Busy</h3><img src='/images/loader.gif'>");
+	$(".fblogin").append("<img src='/images/loader.gif'>");
 
 });
 
