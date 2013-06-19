@@ -9,7 +9,7 @@ class MusicController extends BaseController {
 	 */
 	public function index()
 	{
-		$musicposts = Post::where('type','music')->orderBy('created_at', 'desc');
+		$musicposts = Post::where('type','music')->orderBy('id', 'desc');
 
 		$soundclouds = Post::where('soundcloud_id','!=', 0)->where('type','music')->get();
 
