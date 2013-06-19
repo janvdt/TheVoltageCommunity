@@ -4,7 +4,7 @@
 		<div class="span12 welcome">
 
 			<div class="span5">
-				<a id="playintro">
+				<a href="#" id="playintro">
 					<img class="introvideoimg" src="/images/video.png" width="375" height="100">
 				</a>
 			</div>

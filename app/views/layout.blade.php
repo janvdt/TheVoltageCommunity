@@ -217,7 +217,7 @@
 	
 		@yield('footer')
 		<div class="span2 logofooter pull-right">
-			<img src="/images/logovoltage.png" width="200">
+			<img src="/images/logovoltage.png" width="150">
 		</div>
 
 		<div class="span4">
