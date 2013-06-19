@@ -20,6 +20,10 @@
 {
 	border-radius: 50%;
 }
+.newplaylist
+{
+	margin-top: 25px;
+}
 .logolikeimg
 {
 	margin-left: 0px;
@@ -199,6 +203,10 @@
 .followers
 {
 	margin-right: 25px;
+}
+.music
+{
+	margin-top: 25px;
 }
 .watch
 {

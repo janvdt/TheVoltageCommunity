@@ -36,7 +36,7 @@
 </div>
 <div class="row">
 	<div class="span12">
-		
+		<p class="infoplaylist"> Here you can find all the playlists from the Voltage Community members!</p>
 	</div>
 </div>
 	<div class="row">

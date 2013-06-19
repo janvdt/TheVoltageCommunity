@@ -13,6 +13,13 @@
 		@endif
 	</div>
 </div>
+@if($playlist->account_id == Auth::user()->accountUser()->id)
+<div class="row">
+	<div class="span12">
+		<p class="infoownplaylist">You can even drag your songs in a different order try it out!</p>
+	</div>
+</div>
+@endif
 <div class="row">
 <div class="span6 offset2 youtubeplaylist">
 	@if($playlist->posts->first() != NULL and $playlist->type == 'youtube')

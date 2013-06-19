@@ -4,11 +4,11 @@
 
 <div class ="span12 music">
 	<div class="row">
-		<div class="span10">
+		<div class="span9">
 			<h2>Your Playlists</h2>
 		</div>
 		<div class="span2">
-			<a class="btn btn-inverse pull-right" href="{{ URL::action('PlaylistController@create') }}">Create new Playlist</a>
+			<a class="btn btn-inverse pull-right newplaylist" href="{{ URL::action('PlaylistController@create') }}">Create new Playlist</a>
 		</div>
 	</div>
 	<div class="navbar navbarmusic span12">

@@ -528,8 +528,13 @@ h4::first-letter {
 }
 .infoplaylist
 {
-	font: 18px/14px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
+	font: 16px/14px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
 	padding: 20px
+}
+.infoownplaylist
+{
+	font: 16px/14px 'ChunkFiveRegular', Arial, sans-serif;letter-spacing: 0;
+	
 }
 
 

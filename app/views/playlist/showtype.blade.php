@@ -27,8 +27,16 @@
 			<!-- .nav, .navbar-search, .navbar-form, etc -->
 			<ul class="nav">
 				<li><a href="{{ URL::action('PlaylistController@showAll') }}">All</a></li>
+				@if(Input::get('type') == 'youtube')
+				<li class="active"><a href="{{ URL::action('PlaylistController@showtype') }}?type=youtube">Youtube</a></li>
+				@else
 				<li><a href="{{ URL::action('PlaylistController@showtype') }}?type=youtube">Youtube</a></li>
+				@endif
+				@if(Input::get('type') == 'sound')
+				<li class="active"><a href="{{ URL::action('PlaylistController@showtype') }}?type=sound">Soundcloud</a></li>
+				@else
 				<li><a href="{{ URL::action('PlaylistController@showtype') }}?type=sound">Soundcloud</a></li>
+				@endif
 			</ul>
 			</div>
 		</div>
