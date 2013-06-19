@@ -20,7 +20,7 @@
 		@foreach ($graphposts as $graphpost)
 			
 			<div class="box">
-				<div class="pull-left">
+				<div class="pull-left editicon">
 				@if($graphpost->created_by == Auth::user()->id)
 							<a href="{{ URL::action('PostController@editGraph', array($graphpost->id)) }}" ><i class='icon-pencil'></i></a>
 				@endif
