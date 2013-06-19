@@ -11,7 +11,7 @@
 		<div class="span1">
 			<p class="totalscore">{{$totalscore->value}}</p>
 		</div>
-		<div class="span1">
+		<div class="span2">
 			<a href="{{ URL::action('UserController@visitAccount',array($totalscore->account->user->id)) }}">
 				@if($totalscore->account->user->identifier != 0)
 				<img class="img-polaroid imgscore" src="{{ url($totalscore->account->facebookpic) }}" alt="" width="75px">
@@ -25,7 +25,7 @@
 			<p class="email">{{$totalscore->account->user->first_name}} {{$totalscore->account->user->last_name}}</p>
 		</div>
 		<div class="span3">
-			<img class="levelimg" src="/images/{{$totalscore->account->levels->first()->image}}" width="50">
+			<img class="levelimg" src="/images/{{$totalscore->account->levels->first()->image}}" width="80">
 		</div>
 	</div>
 </li>

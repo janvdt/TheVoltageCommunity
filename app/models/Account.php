@@ -52,7 +52,7 @@ class Account extends BaseModel {
 		}
 
 		// Return placeholder by default.
-		return 'http://placehold.it/300x100&text=Profile+image';
+		return '/images/person.png';
 	}
 
 	public function followers()

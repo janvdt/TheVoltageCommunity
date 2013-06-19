@@ -53,9 +53,9 @@
 							@if(Auth::user())
     						<a href="{{ URL::action('UserController@visitAccount',array($graphpost->createdBy()->id)) }}">
     						@if($graphpost->createdBy()->accountUser()->image_id != 0 or $graphpost->createdBy()->accountUser()->facebookpic == NULL )
-								<img src="{{ url($graphpost->createdBy()->accountUser()->getImagePathname()) }}" width="20" alt="">
+								<img class="commentuserimg" src="{{ url($graphpost->createdBy()->accountUser()->getImagePathname()) }}" width="20" alt="">
 							@else
-								<img src="{{ url($graphpost->createdBy()->accountUser()->facebookpic) }}" width="20" alt="">
+								<img class="commentuserimg" src="{{ url($graphpost->createdBy()->accountUser()->facebookpic) }}" width="20" alt="">
 							@endif
 							</a>
 							@endif

@@ -9,7 +9,7 @@
 		</div>
 		@if(Auth::user() and $post->can($post->id,Auth::user()->id))
 		<div class="span2">
-			<a class="btn btn-inverse btn-large" id="post"><img src="/images/lightninglight.png"/ width="40"></a>
+			<a href="#" class="" id="post"><img src="/images/heart.png"/ width="140"></a>
 		@endif
 	</div>
 </div>
@@ -58,7 +58,7 @@
 				</div>
 				<div class="span1">
 					<ul class="nav">
-						<li><img src="/images/bullhorn.png" /></li>
+						<li><img src="/images/log.png" /></li>
 					</ul>
 				</div>
 			</div>
@@ -77,17 +77,17 @@
 						<div class="span2 commentpost">
 							@if(Auth::user()->accountUser()->identifier == 0)
 								<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="100">
+									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="75">
 								</a>
 							@else
 							<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="100">
+								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="75">
 							</a>
 							@endif
 						</div>
 							<div class="control-group">
 								<div class="controls">
-									<textarea name="textcomment" class="input-xxlarge pull-left" id="commenttext" rows="5" placeholder="Enter text ..."></textarea>
+									<textarea name="textcomment" class="input-xxlarge pull-left" id="commenttext" rows="3" placeholder="Enter text ..."></textarea>
 								</div>
 							</div>	
 						</div>
@@ -102,7 +102,7 @@
 	
 		<div class="span11 offset1 commentsection">	
 			<div class="comments">
-				<div class="well">
+				<div class="well commentpost">
 					
 					<div class="row">
 						<div class="span5 pull-right">
@@ -125,7 +125,7 @@
 						</div>
 
 						<div class="span7">
-							<h6>{{$comment->body}}</h6>
+							<p class="postbody">{{$comment->body}}</p>
 						</div>
 					</div>
 					<div class="row">
@@ -223,7 +223,7 @@ $("#upload-comment-form").ajaxForm({
 	console.log(data.date.date);
 	
 			
-	var comment = "<div class='span11 offset1 commentsection'><div class='comments'><div class='well' id='comment"+ data.id +"'><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>Posted by: {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6></div></div><div class='row'><div class='span1'>@if(Auth::user()->accountUser()->identifier == 0)<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' alt='' width='75'></a>@else<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' alt='' width='75'></a>@endif</div><div class='span7'><h6>"  + data.body + "</h6></div></div><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>" + data.date.date + "</h6></div></div></div></div></div>";
+	var comment = "<div class='span11 offset1 commentsection'><div class='comments'><div class='well commentpost' id='comment"+ data.id +"'><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>Posted by: {{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6></div></div><div class='row'><div class='span1'>@if(Auth::user()->accountUser()->identifier == 0)<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->getImagePathname()) }}' alt='' width='75'></a>@else<a href='{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}'><img class='img-rounded' src='{{ url(Auth::user()->accountUser()->facebookpic) }}' alt='' width='75'></a>@endif</div><div class='span7'><p class='postbody'>"  + data.body + "</p></div></div><div class='row'><div class='span5 pull-right'><h6 class='pull-right'>" + data.date.date + "</h6></div></div></div></div></div>";
 	
 	$(".commentsattach").append(comment);
 

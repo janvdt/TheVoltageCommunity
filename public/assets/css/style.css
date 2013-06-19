@@ -7,6 +7,7 @@
 {
 	padding-left: 15px;
 }
+
 .thumbnail h5
 {
 	padding: 5px;
@@ -14,6 +15,10 @@
 #play
 {
 	color: #96daa5;
+}
+.logolikeimg
+{
+	margin-left: 0px;
 }
 
 .infott1
@@ -92,6 +97,7 @@
 	margin-left: 10px;
 	margin-bottom: 10px;
 	height: 25px;
+	border-radius: 50%;
 }
 .followerimg
 {
@@ -137,8 +143,14 @@
 }
 .imgscore
 {
-	padding-top: 10px;
+	
 	height: 75px;
+	width: 75px;
+	border-radius: 50%;
+}
+.commentuserimg
+{
+	border-radius: 50%;
 }
 .headerplaylist
 {
@@ -188,6 +200,7 @@
 .accountposts img
 {
 	height: 90px;
+	border-radius: 50%;
 }
 .polaroidyoutube
 {
@@ -330,7 +343,13 @@
 .profilepicture
 {
 	margin-top: 7px;
+	margin-left: 0px
 }
+.profilepicture img
+{
+	border-radius: 50%;
+}
+
 .accountposts img
 {
 	padding: 3px;
@@ -408,6 +427,26 @@
 .activity
 {
 	padding-left: 25px;
+}
+.activitytitle img
+{
+	border-radius: 50%;
+}
+.searchimg img
+{
+	border-radius: 50%;
+}
+.notificationsitem img
+{
+	border-radius: 50%;
+}
+.barpic
+{
+	border-radius: 50%;
+}
+.playlistpic
+{
+	border-radius: 50%;
 }
 
 .activityref
@@ -942,6 +981,10 @@
 	min-height: 80px;
 
 }
+.titlemusicpost img
+{
+	border-radius: 50%;
+}
 .itemsnav
 {
 	margin-right: -20px;
@@ -1386,6 +1429,7 @@ margin-right: auto;
 .postbody
 {
 	padding: 10px;
+
 }
 .input-xlarge
 {
