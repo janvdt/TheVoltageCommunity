@@ -13,7 +13,7 @@
 </div>
 <div class="row">
 <div class="span6 offset2 youtubeplaylist">
-	@if($playlist->posts->first()->youtube != NULL)
+	@if($playlist->posts->first() != NULL and $playlist->type == 'youtube')
 	<div class="youtubeplayer">
     <div class="yt_holder">
         <div id="ytvideo" style="z-index:1;"></div>

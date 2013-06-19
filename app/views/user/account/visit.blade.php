@@ -131,14 +131,18 @@
 			<div class="span3 info">
 				<p class="infofont">Playlists</p>
 			</div>
-			<a href="{{ URL::action('PlaylistController@index') }}"><p class="musiccount">Playlists ({{count($playlists)}})</p></a>
+			<a href="{{ URL::action('PlaylistController@showvisitplaylist')}}?user={{$user->accountUser()->id}}"><p class="musiccount">Playlists ({{count($playlists)}})</p></a>
 			<ul class="nav nav-pills">
 				@foreach($playlists as $playlist)
 					<li class="accountposts">
-						@if($playlist->posts->first() != NULL)
-							<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt="" width="90"></a>
+						@if($playlist->posts->first() == NULL)
+						<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/90x90&text=Playlist" alt="" width="90"></a>
 						@else
-							<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="http://placehold.it/90x90&text=Playlist" alt="" width="90"></a>
+							@if($playlist->posts->first()->soundcloud != NULL and $playlist->posts->first()->soundcloud != NULL )
+							<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $playlist->posts->first()->soundcloud_art }}" alt="" width="90"></a>
+							@elseif($playlist->posts->first() != NULL)
+							<a href="{{ URL::action('PlaylistController@show', array($playlist->id)) }}"><img class="avatar img-polaroid" src="{{ $playlist->posts->first()->youtube_art }}" alt="" width="90"></a>
+							@endif
 						@endif
 					</li>
 				@endforeach
@@ -176,11 +180,11 @@
 						<div class="span2 messagepost">
 							@if(Auth::user()->accountUser()->identifier == 0)
 								<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="100">
+									<img class="img-rounded commentuserimg" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="100">
 								</a>
 							@else
 							<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="100">
+								<img class="img-rounded commentuserimg" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="100">
 							</a>
 							@endif
 						</div>

@@ -14,6 +14,17 @@ class PlaylistController extends \BaseController {
 			->with('playlists',$playlists);
 	}
 
+	public function showvisitplaylist()
+	{
+		$accountid = Input::get('user');
+		$account = Account::find($accountid);
+		$playlists = Playlist::where('account_id',$accountid)->get();
+		return View::make('playlist.showvisitplaylist')
+			->with('playlists',$playlists)
+			->with('account',$account);
+	}
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -94,6 +105,7 @@ class PlaylistController extends \BaseController {
 			->with('soundcloudsurl',$soundcloudsurl);
 
 	}
+
 	public function showall()
 	{
 		if(Auth::user())
