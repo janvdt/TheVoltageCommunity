@@ -8,7 +8,9 @@
 		<h2>{{$playlist->title}}</h2>
 	</div>
 	<div class="span2">
+		@if($playlist->account_id == Auth::user()->accountUser()->id)
 		<a id="buttonremove" class="btn btn-danger pull-right" href="#delete-selected" data-toggle="modal">Remove selected</a>
+		@endif
 	</div>
 </div>
 <div class="row">
