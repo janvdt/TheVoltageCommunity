@@ -124,11 +124,11 @@
 						<div class="span2 commentpost">
 							@if(Auth::user()->accountUser()->identifier == 0)
 								<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-									<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="75">
+									<img class="img-rounded commentuserimg" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" alt="" width="75">
 								</a>
 							@else
 							<a href="{{ URL::action('UserController@visitAccount',array(Auth::user()->id)) }}">
-								<img class="img-rounded" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="75">
+								<img class="img-rounded commentuserimg" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" alt="" width="75">
 							</a>
 							@endif
 						</div>
