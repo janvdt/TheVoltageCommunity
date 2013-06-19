@@ -5,6 +5,7 @@
 <title>The Voltage Community</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon1.ico">
 
 <link rel="stylesheet" media="screen" href="css/turntable.css" />
 <link rel="stylesheet" href="/assets/libraries/bootstrap/css/bootstrap.min.css">
