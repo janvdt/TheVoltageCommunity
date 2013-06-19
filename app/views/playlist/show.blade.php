@@ -65,9 +65,11 @@
 		@foreach ($playlist->posts as $musicpost)
     		<li class= "musicpost" id="{{$musicpost->id}}" value="{{$musicpost->id}}">
     			<div class="row" data-playlist-id="{{ $playlist->id }}" data-post-id="{{ $musicpost->id }}">
+    				@if($playlist->account_id != Auth::user()->accountUser()->id)
     				<label class="pull-right">
 						{{Form::checkbox('remove[]', $musicpost->id)}}
 					</label>
+					@endif
     				<div class="span3 titlemusicpost">
     					<h6>
     						
