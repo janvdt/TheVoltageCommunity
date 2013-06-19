@@ -35,7 +35,7 @@ class HomeController extends BaseController {
 	{
 		$notifications = Notification::orderBy('id','desc');
 
-		$notifications = $notifications->paginate(50);
+		$notifications = $notifications->paginate(100);
 
 		return View::make('instance.activity')
 			->with('notifications',$notifications);
