@@ -55,9 +55,9 @@
 					<li class="dropdown pull-right">
 							<a id="choose-instance" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
 								@if(Auth::user()->accountUser()->image_id != 0 or Auth::user()->accountUser()->facebookpic == NULL )
-									<img src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" width="25" alt="">
+									<img class="barpic" src="{{ url(Auth::user()->accountUser()->getImagePathname()) }}" width="25" alt="">
 								@else
-									<img src="{{ url(Auth::user()->accountUser()->facebookpic) }}" width="25" alt="">
+									<img class="barpic" src="{{ url(Auth::user()->accountUser()->facebookpic) }}" width="25" alt="">
 								@endif
 								
 								@if(Auth::user())
