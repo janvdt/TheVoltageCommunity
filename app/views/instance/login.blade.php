@@ -11,7 +11,7 @@
 		<div class="span12 content">
 			<div class="login-box">
 				
-					<h2>Login <a class="offset2" href="{{ URL::route('socialAuth', 'facebook') }}"><img src= "/images/facebook.png" width="50" /></a></h2>
+					<h2>Login <a class="offset2 fblogin" href="{{ URL::route('socialAuth', 'facebook') }}"><img src= "/images/facebook.png" width="50" id="fbimg" /></a></h2>
 					
 				
 
@@ -52,4 +52,17 @@
 	</div>
 	<hr>
 	
+@stop
+
+@section('scripts')
+	@parent
+
+	$(".fblogin").click(function(){ 
+	$("#fbimg").hide();
+	$(".fblogin").append("<img src='/images/loader.gif' width='50px'>");
+
+});
+
+@stop
+
 @stop
