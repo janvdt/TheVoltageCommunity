@@ -1458,6 +1458,10 @@ margin-right: auto;
 {
 	padding-left: 50px;
 }
+.followers img
+{
+	border-radius: 50%;
+}
 
 
 }
