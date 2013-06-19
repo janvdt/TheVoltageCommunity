@@ -18,11 +18,14 @@
 	<div class="graphposts span12">
 		
 		@foreach ($graphposts as $graphpost)
-			@if($graphpost->created_by == Auth::user()->id)
+			
 			<div class="box">
 				<div class="pull-right">
+						@if($graphpost->created_by == Auth::user()->id)
 							<a href="{{ URL::action('PostController@editGraph', array($graphpost->id)) }}" ><i class='icon-pencil'></i></a>
+						@endif
 						</div>
+						@if($graphpost->created_by == Auth::user()->id)
     					<label class="pull-right">
 						{{Form::checkbox('remove[]', $graphpost->id)}}
 						</label>
