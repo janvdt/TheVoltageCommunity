@@ -305,7 +305,8 @@ Route::get('social/authenticate/{action}', array("as" => "hybridauth", function(
  
 	// logout
 	$provider->logout();
-
+	if(Cache::get('hybridAuth'))
+	{
 	$facebooklogin = Cache::get('hybridAuth');
 
 	$identifier = $facebooklogin->identifier;
@@ -353,4 +354,5 @@ Route::get('social/authenticate/{action}', array("as" => "hybridauth", function(
    	}
              
     return Redirect::to('/')->with('hybridAuthSuccess', 'Social network Authentication successfull');
+	}
 }));
