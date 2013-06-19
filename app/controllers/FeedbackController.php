@@ -9,7 +9,7 @@ class FeedbackController extends \BaseController {
 	 */
 	public function index()
 	{
-		$feedbacks = Feedback::paginate(4);
+		$feedbacks = Feedback::orderBy('id','desc')->paginate(4);
 		
 		return View::make('feedback.index')
 			->with('feedbacks',$feedbacks);
