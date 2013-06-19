@@ -668,6 +668,10 @@ $("#soundcloud").select2({
 
 </script>
 
+<script type="text/javascript" src="http://www.thevoltagecommunity.com/clickheat/js/clickheat.js"></script><noscript><p><a href="http://www.dugwood.com/index.html">CMS</a></p></noscript><script type="text/javascript"><!--
+clickHeatSite = '';clickHeatGroup = encodeURIComponent(window.location.pathname+window.location.search);clickHeatServer = 'http://www.thevoltagecommunity.com/clickheat/click.php';initClickHeat(); //-->
+</script>
+
 
 
 
