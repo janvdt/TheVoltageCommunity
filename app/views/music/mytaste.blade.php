@@ -3,7 +3,7 @@
 @section('instanceContent')
 
 <div class ="span12 music">
-<h2>Quiet a nice taste you have there!</h2>
+<h2>Quiete a nice taste you have there!</h2>
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
