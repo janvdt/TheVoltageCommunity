@@ -13,7 +13,7 @@
 				<div class="thumbnail thumbnail-businesscards">
 					<img src="/images/music.png"  width="400" height="300" alt="">
 					<div class="btn-centered">
-						<a class="btn btn-inverse" href="{{ URL::action('PostController@createMusic') }}?type=music">Select</a>
+						<a class="btn btn-inverse" href="{{ URL::action('PostController@createMusic') }}?type=music">Music</a>
 					</div>
 				</div>
 			</li>
@@ -24,9 +24,9 @@
 		<ul class="thumbnails">
 			<li class="span3">
 				<div class="thumbnail thumbnail-businesscards">
-					<img src="http://placehold.it/400x300&text=Graph" alt="">
+					<img src="/images/graphics.png"  width="400" height="300" alt="">
 					<div class="btn-centered">
-						<a class="btn btn-inverse" href="{{ URL::action('PostController@createGraph') }}?type=graph">Select</a>
+						<a class="btn btn-inverse" href="{{ URL::action('PostController@createGraph') }}?type=graph">Graphics</a>
 					</div>
 				</div>
 			</li>
