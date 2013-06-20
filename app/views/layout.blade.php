@@ -221,7 +221,7 @@
 		</div>
 
 		<div class="span4">
-			<img class="devices" src='/images/devices.png' width="300px" height="200">
+			<img class="devices" src='/images/devices.png' width="200px" height="100">
 		</div>
 
 
