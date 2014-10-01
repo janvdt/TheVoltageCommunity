@@ -21,7 +21,7 @@
 		</div>
 
 <div class ="span12 music">
-	<h2>Music</h2>
+	<h2>Top Campagnes</h2>
 	<div class="row homemusic">
 		<ul class="ch-grid homegrid nav nav-pills music-posts">
 			@foreach ($musicposts as $musicpost)
@@ -106,7 +106,7 @@
 </div>
 
 <div class ="span12 tracks-overview-home">
-	<h2>Graphics</h2>
+	<h2>Hot Stuff</h2>
 	<div class="row">
 		<ul class="ch-grid homegrid nav nav-pills music-posts">
 			@foreach ($graphposts as $graphpost)
