@@ -9,7 +9,7 @@
 				</a>
 			</div>
 			<div class="welcomecontent span6 pull-right">
-				<p class="welcometitle">YOUR MIX OF MUSIC</p>
+				<p class="welcometitle">BE THE FIRST TO TEST THE APP!</p>
 				<p class="welcometext">Come home to the Voltage community, a great place to browse through the latest music while finding inspiration for your creativity and 
  your kind of people !
 Finally meet the designers and music lovers who share the same passion as you.
