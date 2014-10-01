@@ -2,7 +2,7 @@
 	<a href="{{URL::to("/")}}">
 	<div class="span4 logosite">
 		
-			<img src="/images/logofooter.png" width="300">
+			<img src="/images/logo2.png" width="300">
 		
 	</div>
 	</a>
