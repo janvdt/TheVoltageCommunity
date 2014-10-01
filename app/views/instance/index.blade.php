@@ -5,7 +5,7 @@
 
 			<div class="span5">
 				<a href="#" id="playintro">
-					<img src="/images/logo2.png" width="200">
+					<img id="hurdle" src="/images/logo2.png" width="200">
 				</a>
 			</div>
 			<div class="welcomecontent span6 pull-right">
