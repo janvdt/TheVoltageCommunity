@@ -84,19 +84,8 @@ class FileController extends BaseController {
 			$fileModel->imageable_id = $image->id;
 			$fileModel->imageable_type = 'Image';
 		}
-
-		// Else, it's probably a document.
-		else {
-			// Create a document.
-			$DocumentController = new DocumentController;
-			$document = $DocumentController->store($file);
-
-			// Set imageable id and type.
-			$fileModel->imageable_id = $document->id;
-			$fileModel->imageable_type = 'Document';
-
-		}
-
+		return Response::json("yes");
+		
 		// Save the file to the database.
 		$fileModel->save();
 
