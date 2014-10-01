@@ -23,9 +23,7 @@
 			{{$taste->name}},
 			@endforeach
 			<div class="row">
-			<div class="span2">
-				<img src="/images/{{$user->accountuser()->levels->first()->image}}" width="50">{{$user->accountuser()->levels->first()->value}}
-			</div>
+			
 			<div class="progress progress-info progress-striped scorebar progressbalk span4">
   				<div class="bar" style="width: {{$user->accountUser()->points->value}}%"></div><i class="icon-star">{{$user->accountUser()->points->value}}%</i>
 			</div>
