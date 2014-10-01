@@ -10,12 +10,10 @@
 			</div>
 			<div class="welcomecontent span6 pull-right">
 				<p class="welcometitle">BE THE FIRST TO TEST THE APP!</p>
-				<p class="welcometext">Come home to the Voltage community, a great place to browse through the latest music while finding inspiration for your creativity and 
- your kind of people !
-Finally meet the designers and music lovers who share the same passion as you.
+				<p class="welcometext">Eerst is eerst. Zal jij Hurdle in première kunnen testen? Hurdle creëert een omgeving die jou je dromen en doelen in kaart laat brengen, en meer. Om vanaf het prille begin met je ervaring rekening te kunnen houden, zijn we op zoek naar nieuwsgierige en intelligente testgebruikers om de eerste versie van onze webapplicatie te ervaren. We kunnen maximaal 150 gebruikers toelaten. Bekijk dus het filmpje, roep keihard ‘Ja!’, en laat zo snel mogelijk je gegevens achter op www.hurdle.be.
 <br>
 <br>
-We give you the space, you give us the music ! 
+
 <a href="{{ URL::route('login') }}" class="btn btn-inverse go"><i class="icon-chevron-right"></i></a>
 				</p>
 				
