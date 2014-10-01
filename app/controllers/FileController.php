@@ -73,7 +73,7 @@ class FileController extends BaseController {
 
 		// Prepare file to be saved into the database.
 		$fileModel = new FileModel;
-
+		return Response::json("yes");
 		// Determine if the file is an image.
 		if (getimagesize($file->getPathname())) {
 			// If it's an image, create an image.
@@ -84,7 +84,7 @@ class FileController extends BaseController {
 			$fileModel->imageable_id = $image->id;
 			$fileModel->imageable_type = 'Image';
 		}
-		return Response::json("yes");
+		
 		
 		// Save the file to the database.
 		$fileModel->save();
