@@ -639,7 +639,7 @@ $("#soundcloud").select2({
     				if(returnData[i].id !== undefined)
     				{
     					console.log(returnData[i].first_name);
-                 	$searchuser = "<li id='searchresultuser span3'><div class='span1 searchimg'><img src='" + returnData[i].image +"' width='30'></div><div class='span2'><h6><a href='http://thevoltagecommunity.com/user/visitaccount/"+ returnData[i].id +"'>"+ returnData[i].first_name + " "+returnData[i].last_name +"</a></h6></div></li>";
+                 	$searchuser = "<li id='searchresultuser span3'><div class='span1 searchimg'><img src='" + returnData[i].image +"' width='30'></div><div class='span2'><h6><a href='http://tvcbeta3.eu1.frbit.net/user/visitaccount/"+ returnData[i].id +"'>"+ returnData[i].first_name + " "+returnData[i].last_name +"</a></h6></div></li>";
 
                  	$("#suggestions").append($searchuser);
                  	}
